@@ -9,12 +9,12 @@ package Permit;
  *
  * @author Uer
  */
-public class Permit extends javax.swing.JInternalFrame {
+public class PermitForm extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form Permit
      */
-    public Permit() {
+    public PermitForm() {
         initComponents();
     }
 

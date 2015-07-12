@@ -9,12 +9,12 @@ package Land;
  *
  * @author Uer
  */
-public class Land extends javax.swing.JInternalFrame {
+public class LandForm extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form Land
      */
-    public Land() {
+    public LandForm() {
         initComponents();
     }
 
