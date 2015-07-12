@@ -1,4 +1,5 @@
 # LandAdministrationSystem
 Semester 3 group project
-hi
-What isNext
+
+hi guys
+What is Next
