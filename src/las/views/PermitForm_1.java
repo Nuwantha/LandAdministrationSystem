@@ -4,18 +4,18 @@
  * and open the template in the editor.
  */
 
-package las;
+package las.views;
 
 /**
  *
  * @author H.P. Asela
  */
-public class PermitForm extends javax.swing.JInternalFrame {
+public class PermitForm_1 extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form PermitForm
      */
-    public PermitForm() {
+    public PermitForm_1() {
         initComponents();
     }
 
