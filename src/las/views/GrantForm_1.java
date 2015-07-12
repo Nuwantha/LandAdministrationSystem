@@ -4,18 +4,18 @@
  * and open the template in the editor.
  */
 
-package las;
+package las.views;
 
 /**
  *
  * @author H.P. Asela
  */
-public class GrantForm extends javax.swing.JInternalFrame {
+public class GrantForm_1 extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form GrantForm
      */
-    public GrantForm() {
+    public GrantForm_1() {
         initComponents();
     }
 
