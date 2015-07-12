@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 
-package las.gimhani;
+package las.views;
+
+import java.awt.Toolkit;
 
 /**
  *
@@ -17,6 +19,7 @@ public class FrontPage extends javax.swing.JFrame {
      */
     public FrontPage() {
         initComponents();
+        setSize(Toolkit.getDefaultToolkit().getScreenSize());
     }
 
     /**
