@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package las;
+package las.models;
 
 /**
  *
@@ -12,44 +12,44 @@ package las;
  */
 public class GramaNiladariDivision {
     
-    private String DivisionNo;
-    private String DivisionName;
-    private String Zone;
-    private String GramaNilardariName;
+    private String divisionNumber;
+    private String divisionName;
+    private String zoneName;
+    private String gramaNilardariName;
 
     GramaNiladariDivision() {    
     }
 
-    public String getDivisionNo() {
-        return DivisionNo;
+    public String getDivisionNumber() {
+        return divisionNumber;
     }
 
-    public void setDivisionNo(String DivisionNo) {
-        this.DivisionNo = DivisionNo;
+    public void setDivisionNumber(String divisionNumber) {
+        this.divisionNumber = divisionNumber;
     }
 
     public String getDivisionName() {
-        return DivisionName;
+        return divisionName;
     }
 
-    public void setDivisionName(String DivisionName) {
-        this.DivisionName = DivisionName;
+    public void setDivisionName(String divisionName) {
+        this.divisionName = divisionName;
     }
 
-    public String getZone() {
-        return Zone;
+    public String getZoneName() {
+        return zoneName;
     }
 
-    public void setZone(String Zone) {
-        this.Zone = Zone;
+    public void setZoneName(String zoneName) {
+        this.zoneName = zoneName;
     }
 
     public String getGramaNilardariName() {
-        return GramaNilardariName;
+        return gramaNilardariName;
     }
 
-    public void setGramaNilardariName(String GramaNilardariName) {
-        this.GramaNilardariName = GramaNilardariName;
+    public void setGramaNilardariName(String gramaNilardariName) {
+        this.gramaNilardariName = gramaNilardariName;
     }
     
     

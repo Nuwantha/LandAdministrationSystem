@@ -3,44 +3,57 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-package las;
+package las.models;
 
 /**
  *
- * @author H.P. Asela
+ * @author Nuwantha
  */
 public class Permit {
-    
-    private String PermitNo;
-    private String Date;
-    private String NominatedSuccessor;
-    
-    Permit(){
-}
+    private String permitNumber;
+    private String permitIssueDate;
+    private Lot lot;
+    private Client client;
+    private NominatedSuccessor nominatedSuccessor;
 
-    public String getPermitNo() {
-        return PermitNo;
+    public String getPermitNumber() {
+        return permitNumber;
     }
 
-    public void setPermitNo(String PermitNo) {
-        this.PermitNo = PermitNo;
+    public void setPermitNumber(String permitNumber) {
+        this.permitNumber = permitNumber;
     }
 
-    public String getDate() {
-        return Date;
+    public String getPermitIssueDate() {
+        return permitIssueDate;
     }
 
-    public void setDate(String Date) {
-        this.Date = Date;
+    public void setPermitIssueDate(String permitIssueDate) {
+        this.permitIssueDate = permitIssueDate;
     }
 
-    public String getNominatedSuccessor() {
-        return NominatedSuccessor;
+    public Lot getLot() {
+        return lot;
     }
 
-    public void setNominatedSuccessor(String NominatedSuccessor) {
-        this.NominatedSuccessor = NominatedSuccessor;
+    public void setLot(Lot lot) {
+        this.lot = lot;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public NominatedSuccessor getNominatedSuccessor() {
+        return nominatedSuccessor;
+    }
+
+    public void setNominatedSuccessor(NominatedSuccessor nominatedSuccessor) {
+        this.nominatedSuccessor = nominatedSuccessor;
     }
     
     

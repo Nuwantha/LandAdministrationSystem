@@ -3,37 +3,76 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-package las;
+package las.models;
 
 /**
  *
- * @author H.P. Asela
+ * @author Gimhani
  */
 public class Land {
-    
-    private String LandName;
-    private String LandNo;
-    
-    Land(){
-        
+    private String planNumber;
+    private String landName;
+    private String divisionNumber;
+    private String westBound;
+    private String southBound;
+    private String eastBound;
+    private String northBound;
+
+    public String getPlanNumber() {
+        return planNumber;
+    }
+
+    public void setPlanNumber(String planNumber) {
+        this.planNumber = planNumber;
     }
 
     public String getLandName() {
-        return LandName;
+        return landName;
     }
 
-    public void setLandName(String LandName) {
-        this.LandName = LandName;
+    public void setLandName(String landName) {
+        this.landName = landName;
     }
 
-    public String getLandNo() {
-        return LandNo;
+    public String getDivisionNumber() {
+        return divisionNumber;
     }
 
-    public void setLandNo(String LandNo) {
-        this.LandNo = LandNo;
+    public void setDivisionNumber(String divisionNumber) {
+        this.divisionNumber = divisionNumber;
     }
-   
+
+    public String getWestBound() {
+        return westBound;
+    }
+
+    public void setWestBound(String westBound) {
+        this.westBound = westBound;
+    }
+
+    public String getSouthBound() {
+        return southBound;
+    }
+
+    public void setSouthBound(String southBound) {
+        this.southBound = southBound;
+    }
+
+    public String getEastBound() {
+        return eastBound;
+    }
+
+    public void setEastBound(String eastBound) {
+        this.eastBound = eastBound;
+    }
+
+    public String getNorthBound() {
+        return northBound;
+    }
+
+    public void setNorthBound(String northBound) {
+        this.northBound = northBound;
+    }
+    
     
 }

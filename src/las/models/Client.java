@@ -3,35 +3,38 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-package las;
+package las.models;
 
 /**
  *
  * @author H.P. Asela
  */
 public class Client {
-    
-    protected String name;
-    protected String NIC;
-    protected String birthday;
-    protected String job;
-    protected int income;
-    protected boolean MarriedStatus;
-    protected int NumberOfMarriedSons;
-    protected int NumberOfUnmarriedSons;
-    protected String address;
-    
-    Client(){ 
-        
-}
 
-    public String getName() {
-        return name;
+    private String clientName;
+    private String NIC;
+    private String birthday;
+    private String telephone;
+    private int annualIncome;
+    private String address;
+    
+    private boolean marriedStatus;
+    private int numberOfMarriedSons;
+    private int numberOfUnmarriedSons;
+    
+    private int permitOwnershipPosition;
+    private int grantOwnershipPosition;
+
+    Client() {
+
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getClientName() {
+        return clientName;
+    }
+
+    public void setClientName(String clientName) {
+        this.clientName = clientName;
     }
 
     public String getNIC() {
@@ -50,54 +53,68 @@ public class Client {
         this.birthday = birthday;
     }
 
-    public String getJob() {
-        return job;
+  
+    public boolean isMarried() {
+        return marriedStatus;
     }
 
-    public void setJob(String job) {
-        this.job = job;
-    }
-
-    public int getIncome() {
-        return income;
-    }
-
-    public void setIncome(int income) {
-        this.income = income;
-    }
-
-    public boolean isMarriedStatus() {
-        return MarriedStatus;
-    }
-
-    public void setMarriedStatus(boolean MarriedStatus) {
-        this.MarriedStatus = MarriedStatus;
+    public void setMarriedStatus(boolean marriedStatus) {
+        this.marriedStatus = marriedStatus;
     }
 
     public int getNumberOfMarriedSons() {
-        return NumberOfMarriedSons;
+        return numberOfMarriedSons;
     }
 
-    public void setNumberOfMarriedSons(int NumberOfMarriedSons) {
-        this.NumberOfMarriedSons = NumberOfMarriedSons;
+    public void setNumberOfMarriedSons(int numberOfMarriedSons) {
+        this.numberOfMarriedSons = numberOfMarriedSons;
     }
 
     public int getNumberOfUnmarriedSons() {
-        return NumberOfUnmarriedSons;
+        return numberOfUnmarriedSons;
     }
 
-    public void setNumberOfUnmarriedSons(int NumberOfUnmarriedSons) {
-        this.NumberOfUnmarriedSons = NumberOfUnmarriedSons;
+    public void setNumberOfUnmarriedSons(int numberOfUnmarriedSons) {
+        this.numberOfUnmarriedSons = numberOfUnmarriedSons;
     }
 
     public String getAddress() {
         return address;
     }
 
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
+
+    public int getAnnualIncome() {
+        return annualIncome;
+    }
+
+    public void setAnnualIncome(int annualIncome) {
+        this.annualIncome = annualIncome;
+    }
+
     public void setAddress(String address) {
         this.address = address;
     }
-   
-    
-    
+
+    public int getPermitOwnershipPosition() {
+        return permitOwnershipPosition;
+    }
+
+    public void setPermitOwnershipPosition(int permitOwnershipPosition) {
+        this.permitOwnershipPosition = permitOwnershipPosition;
+    }
+
+    public int getGrantOwnershipPosition() {
+        return grantOwnershipPosition;
+    }
+
+    public void setGrantOwnershipPosition(int grantOwnershipPosition) {
+        this.grantOwnershipPosition = grantOwnershipPosition;
+    }
 }
