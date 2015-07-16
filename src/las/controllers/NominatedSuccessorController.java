@@ -9,6 +9,6 @@ package las.controllers;
  *
  * @author Gimhani
  */
-public class ApplicationController {
+public class NominatedSuccessorController {
     
 }
