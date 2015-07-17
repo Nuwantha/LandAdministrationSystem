@@ -15,7 +15,7 @@ public class Client {
     private String NIC;
     private String birthday;
     private String telephone;
-    private int annualIncome;
+    private double annualIncome;
     private String address;
     
     private boolean marriedStatus;
@@ -27,6 +27,20 @@ public class Client {
 
     Client() {
 
+    }
+
+    public Client( String NIC,String clientName, String birthday, String telephone, String address,  double annualIncome, int grantOwnershipPosition, int permitOwnershipPosition,  boolean marriedStatus, int numberOfMarriedSons, int numberOfUnmarriedSons) {
+        this.clientName = clientName;
+        this.NIC = NIC;
+        this.birthday = birthday;
+        this.telephone = telephone;
+        this.annualIncome = annualIncome;
+        this.address = address;
+        this.marriedStatus = marriedStatus;
+        this.numberOfMarriedSons = numberOfMarriedSons;
+        this.numberOfUnmarriedSons = numberOfUnmarriedSons;
+        this.permitOwnershipPosition = permitOwnershipPosition;
+        this.grantOwnershipPosition = grantOwnershipPosition;
     }
 
     public String getClientName() {
@@ -90,11 +104,11 @@ public class Client {
         this.telephone = telephone;
     }
 
-    public int getAnnualIncome() {
+    public double getAnnualIncome() {
         return annualIncome;
     }
 
-    public void setAnnualIncome(int annualIncome) {
+    public void setAnnualIncome(double annualIncome) {
         this.annualIncome = annualIncome;
     }
 
