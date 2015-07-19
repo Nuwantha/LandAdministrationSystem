@@ -20,6 +20,14 @@ public class FrontPage extends javax.swing.JFrame {
     public FrontPage() {
         initComponents();
         setSize(Toolkit.getDefaultToolkit().getScreenSize());
+        
+        desktopPane.removeAll();
+        ApplicantForm sg = new ApplicantForm();
+        sg.setSize(desktopPane.getSize());
+        desktopPane.add(sg);
+        sg.setVisible(true);
+       // sg.requestFocusForm();
+       
     }
 
     /**
@@ -45,6 +53,7 @@ public class FrontPage extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         internalFrameAreaPanel = new javax.swing.JPanel();
+        desktopPane = new javax.swing.JDesktopPane();
         shortcutAccessPanel = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -158,15 +167,28 @@ public class FrontPage extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        desktopPane.setOpaque(false);
+
+        javax.swing.GroupLayout desktopPaneLayout = new javax.swing.GroupLayout(desktopPane);
+        desktopPane.setLayout(desktopPaneLayout);
+        desktopPaneLayout.setHorizontalGroup(
+            desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 552, Short.MAX_VALUE)
+        );
+        desktopPaneLayout.setVerticalGroup(
+            desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout internalFrameAreaPanelLayout = new javax.swing.GroupLayout(internalFrameAreaPanel);
         internalFrameAreaPanel.setLayout(internalFrameAreaPanelLayout);
         internalFrameAreaPanelLayout.setHorizontalGroup(
             internalFrameAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 552, Short.MAX_VALUE)
+            .addComponent(desktopPane, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         internalFrameAreaPanelLayout.setVerticalGroup(
             internalFrameAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addComponent(desktopPane)
         );
 
         jButton1.setText("Add new applicant");
@@ -210,7 +232,7 @@ public class FrontPage extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+                .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -358,6 +380,7 @@ public class FrontPage extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel desktopJPanel;
+    private javax.swing.JDesktopPane desktopPane;
     private javax.swing.JPanel internalFrameAreaPanel;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
