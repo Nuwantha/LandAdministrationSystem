@@ -20,7 +20,7 @@ import las.models.GramaNiladariDivision;
 public class GramaNiladariDivisionController {
     
         
-    public static boolean addNewClient(GramaNiladariDivision GND) throws ClassNotFoundException, SQLException { 
+    public static boolean addNewGND(GramaNiladariDivision GND) throws ClassNotFoundException, SQLException { 
         Connection conn=DBConnection.getDBConnection().getConnection();
         String sql = "Insert into GND Values('" + GND.getDivisionNumber() + "','" + GND.getDivisionName() + "','" + GND.getGramaNilardariName() + "','" + GND.getZoneName() + "'"; 
         int returnValue = DBHandler.setData(conn, sql);        
@@ -38,7 +38,7 @@ public class GramaNiladariDivisionController {
         }
     }
     
-    public static boolean updateGramaNiladaryDivision(GramaNiladariDivision GND) throws ClassNotFoundException, SQLException{
+    public static boolean updateGND(GramaNiladariDivision GND) throws ClassNotFoundException, SQLException{
         Connection connection = DBConnection.getDBConnection().getConnection();
         String sql ="Update GND set DivisionName='"+GND.getDivisionName()+"' GramaNiladaryName= '"+GND.getGramaNilardariName()+"'ZoneName='"+GND.getZoneName()+"' Where DivisionNumber ='"+GND.getDivisionName()+"'";
         int returnV = DBHandler.setData(connection, sql);
