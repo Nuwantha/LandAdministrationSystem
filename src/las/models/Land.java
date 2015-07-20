@@ -14,9 +14,19 @@ public class Land {
     private String landName;
     private String divisionNumber;
     private String westBound;
-    private String southBound;
     private String eastBound;
     private String northBound;
+    private String southBound;
+
+    public Land(String planNumber, String landName, String divisionNumber, String westBound, String eastBound, String northBound, String southBound) {
+        this.planNumber = planNumber;
+        this.landName = landName;
+        this.divisionNumber = divisionNumber;
+        this.westBound = westBound;
+        this.eastBound = eastBound;
+        this.northBound = northBound;
+        this.southBound = southBound;
+    } 
 
     public String getPlanNumber() {
         return planNumber;

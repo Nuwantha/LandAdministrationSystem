@@ -20,6 +20,14 @@ public class GramaNiladariDivision {
     GramaNiladariDivision() {    
     }
 
+    public GramaNiladariDivision(String divisionNumber, String divisionName, String zoneName, String gramaNilardariName) {
+        this.divisionNumber = divisionNumber;
+        this.divisionName = divisionName;
+        this.zoneName = zoneName;
+        this.gramaNilardariName = gramaNilardariName;
+    }
+    
+    
     public String getDivisionNumber() {
         return divisionNumber;
     }
