@@ -17,6 +17,17 @@ public class Grant {
     private Client client;
     private NominatedSuccessor nominatedSuccessor;
 
+    public Grant(String grantNumber, String grantIssueDate, Permit permit, Lot lot, Client client, NominatedSuccessor nominatedSuccessor) {
+        this.grantNumber = grantNumber;
+        this.grantIssueDate = grantIssueDate;
+        this.permit = permit;
+        this.lot = lot;
+        this.client = client;
+        this.nominatedSuccessor = nominatedSuccessor;
+    }
+    
+    
+    
     public String getGrantNumber() {
         return grantNumber;
     }
