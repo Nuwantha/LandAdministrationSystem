@@ -8,6 +8,7 @@ package las.controllers;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import las.db_utilities.DBConnection;
 import las.db_utilities.DBHandler;
 import las.models.Land;
@@ -42,7 +43,32 @@ public class LandController {
         }else{
             return null;
         }
-        
+      }
+            
+    public static Land searchLand(String PlanNumber) throws ClassNotFoundException, SQLException {
+        Connection conn = DBConnection.getDBConnection().getConnection();
+        String sql = "Select * From Land where PlanNumber = '"+PlanNumber+"'";
+        ResultSet rst = DBHandler.getData(conn, sql);
+        if(rst.next()){
+            Land land = new Land(rst.getString("PlanNumber"), rst.getString("LandName"), rst.getString("DivisionNumber"), rst.getString("WestBound"), rst.getString("EastBound"), rst.getString("NorthBound"), rst.getString("SouthBound"));
+            return land;
+        }else{
+            return null;
+        }
+          
     }
+    
+    public static ArrayList<Land> allLandDetail() throws ClassNotFoundException, SQLException {
+        Connection conn = DBConnection.getDBConnection().getConnection();
+        String sql = "Select PlanNumber,LandName,DivisionNumber,WestBound,EastBound,SouthBound,NorthBound,count(LotNumber) as NumberOfLots  From Land natural join lot group by PlanNumber";
+        ResultSet rst = DBHandler.getData(conn, sql);
+        ArrayList<Land> landlist=new ArrayList<>();
+        while(rst.next()){
+            Land land = new Land(rst.getString("PlanNumber"), rst.getString("LandName"), rst.getString("DivisionNumber"), rst.getString("WestBound"), rst.getString("EastBound"), rst.getString("NorthBound"), rst.getString("SouthBound"),rst.getInt("NumberOfLots"));
+            landlist.add(land);
+        }
+        return landlist;
+    }
+    
      
 }

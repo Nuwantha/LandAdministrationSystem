@@ -17,7 +17,21 @@ public class Land {
     private String eastBound;
     private String northBound;
     private String southBound;
+    private int NumberOfLot;
 
+    public Land(String planNumber, String landName, String divisionNumber, String westBound, String eastBound, String northBound, String southBound, int NumberOfLot) {
+        this.planNumber = planNumber;
+        this.landName = landName;
+        this.divisionNumber = divisionNumber;
+        this.westBound = westBound;
+        this.eastBound = eastBound;
+        this.northBound = northBound;
+        this.southBound = southBound;
+        this.NumberOfLot = NumberOfLot;
+    }
+    
+    
+    
     public Land(String planNumber, String landName, String divisionNumber, String westBound, String eastBound, String northBound, String southBound) {
         this.planNumber = planNumber;
         this.landName = landName;
@@ -82,6 +96,14 @@ public class Land {
 
     public void setNorthBound(String northBound) {
         this.northBound = northBound;
+    }
+
+    public int getNumberOfLot() {
+        return NumberOfLot;
+    }
+
+    public void setNumberOfLot(int NumberOfLot) {
+        this.NumberOfLot = NumberOfLot;
     }
     
     

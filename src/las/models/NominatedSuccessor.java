@@ -14,6 +14,13 @@ public class NominatedSuccessor {
     private String name;
     private String address;
 
+    public NominatedSuccessor(String NIC_S, String name, String address) {
+        this.NIC_S = NIC_S;
+        this.name = name;
+        this.address = address;
+    }
+    
+    
     public String getNIC_S() {
         return NIC_S;
     }

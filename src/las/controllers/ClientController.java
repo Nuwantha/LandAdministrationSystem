@@ -79,5 +79,17 @@ public class ClientController {
         }
         return clientList;
     }
+    
+     public static Client getLastAddedClient() throws ClassNotFoundException, SQLException {
+        Connection conn = DBConnection.getDBConnection().getConnection();
+        String sql = "Select * From Clients order by NIC Desc limit 1";
+        ResultSet rst = DBHandler.getData(conn, sql);
+        if(rst.next()){
+            Client client = new Client(rst.getString("NIC"), rst.getString("ClientName"), rst.getString("Birthday"), rst.getString("Telephone"), rst.getString("Address"), rst.getDouble("AnnualIncome"), rst.getInt("GrantOwnershipPosition"),rst.getInt("PermitOwnershipPosition"),rst.getBoolean("MarriedStatus"),rst.getInt("NumberOfMarriedSons"),rst.getInt("NumberOfUnmarriedSons"));
+           return client;
+        }else{
+            return null;
+        }
+      }
 
 }
