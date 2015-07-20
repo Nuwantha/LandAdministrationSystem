@@ -16,6 +16,15 @@ public class Permit {
     private Client client;
     private NominatedSuccessor nominatedSuccessor;
 
+    public Permit(String permitNumber, String permitIssueDate, Lot lot, Client client, NominatedSuccessor nominatedSuccessor) {
+        this.permitNumber = permitNumber;
+        this.permitIssueDate = permitIssueDate;
+        this.lot = lot;
+        this.client = client;
+        this.nominatedSuccessor = nominatedSuccessor;
+    }
+    
+    
     public String getPermitNumber() {
         return permitNumber;
     }

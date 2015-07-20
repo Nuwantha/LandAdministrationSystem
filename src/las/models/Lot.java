@@ -10,44 +10,56 @@ package las.models;
  * @author Nuwantha
  */
 public class Lot {
-    private int lotNumber;
-    private double numberOfAcres;
-    private double numberofRoods;
-    private double numberOfPerches;
-    
+    private String lotNumber;
+    private int numberOfAcres;
+    private int numberofRoods;
+    private int numberOfPerches; 
     private Land land;
 
-    public int getLotNumber() {
+    public Lot(String lotNumber, int numberOfAcres, int numberofRoods, int numberOfPerches, Land land) {
+        this.lotNumber = lotNumber;
+        this.numberOfAcres = numberOfAcres;
+        this.numberofRoods = numberofRoods;
+        this.numberOfPerches = numberOfPerches;
+        this.land = land;
+    }
+
+    
+    
+    public String getLotNumber() {
         return lotNumber;
     }
 
-    public void setLotNumber(int lotNumber) {
+    public void setLotNumber(String lotNumber) {
         this.lotNumber = lotNumber;
     }
 
-    public double getNumberOfAcres() {
+    public int getNumberOfAcres() {
         return numberOfAcres;
     }
 
-    public void setNumberOfAcres(double numberOfAcres) {
+    public void setNumberOfAcres(int numberOfAcres) {
         this.numberOfAcres = numberOfAcres;
     }
 
-    public double getNumberofRoods() {
+    public int getNumberofRoods() {
         return numberofRoods;
     }
 
-    public void setNumberofRoods(double numberofRoods) {
+    public void setNumberofRoods(int numberofRoods) {
         this.numberofRoods = numberofRoods;
     }
 
-    public double getNumberOfPerches() {
+    public int getNumberOfPerches() {
         return numberOfPerches;
     }
 
-    public void setNumberOfPerches(double numberOfPerches) {
+    public void setNumberOfPerches(int numberOfPerches) {
         this.numberOfPerches = numberOfPerches;
     }
+
+    
+    
 
     public Land getLand() {
         return land;
