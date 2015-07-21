@@ -17,7 +17,7 @@ import las.models.User;
 
 /**
  *
- * @author User
+ * @author Gimhani
  */
 public class NewUserCreator extends javax.swing.JDialog {
 
