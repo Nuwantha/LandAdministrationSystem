@@ -91,5 +91,30 @@ public class ClientController {
             return null;
         }
       }
+     
+     public static int getnextOwnershiPositionPermit(String permitNumber) throws ClassNotFoundException, SQLException {
+        Connection conn = DBConnection.getDBConnection().getConnection();
+        String sql = "Select ownershipPositionPermit From Client natural join permit where permitNumber ='"+permitNumber+"'  order by ownershipPositionPermit Desc limit 1";
+        ResultSet rst = DBHandler.getData(conn, sql);
+        int position=1;
+        if(rst.next()){
+            position=rst.getInt("ownershipPositionPermit")+1;
+        }
+        
+        return  position;
+      }
+        
+      public static int getnextOwnershiPositionGrant(String grantNumber) throws ClassNotFoundException, SQLException {
+        Connection conn = DBConnection.getDBConnection().getConnection();
+        String sql = "Select ownershipPositionGrant From Client natural join grant where grantNumber ='"+grantNumber+"'  order by ownershipPositionGrant Desc limit 1";
+        ResultSet rst = DBHandler.getData(conn, sql);
+        int position=1;
+        if(rst.next()){
+            position=rst.getInt("ownershipPositionPermit")+1;
+        }
+        
+        return  position;
+      }
+
 
 }
