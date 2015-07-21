@@ -15,7 +15,7 @@ import las.models.User;
 
 /**
  *
- * @author User
+ * @author Gimhani
  */
 public class PasswordManager extends javax.swing.JDialog {
 

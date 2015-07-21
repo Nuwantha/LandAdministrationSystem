@@ -16,7 +16,7 @@ import las.models.User;
 
 /**
  *
- * @author User
+ * @author Gimhani
  */
 public class ViewAllUsers extends javax.swing.JDialog {
 
