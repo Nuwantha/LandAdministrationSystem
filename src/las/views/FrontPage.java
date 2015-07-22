@@ -22,23 +22,15 @@ public class FrontPage extends javax.swing.JFrame {
         setSize(Toolkit.getDefaultToolkit().getScreenSize());
         
         desktopPane.removeAll();
-        ApplicantForm sg = new ApplicantForm();
+     ApplicantForm sg = new ApplicantForm();
         sg.setSize(desktopPane.getSize());
         desktopPane.add(sg);
         sg.setVisible(true);
        // sg.requestFocusForm();
-       LandForm ld = new LandForm();
-       ld.setSize(desktopPane.getSize());
-       desktopPane.add(ld);
-       ld.setVisible(true);
-       
-       GramaNiladhariForm gnd = new GramaNiladhariForm();
-       gnd.setSize(desktopPane.getSize());
-       desktopPane.add(gnd);
-       gnd.setVisible(true);
-       
-       
-       
+   
+             
+         
+ 
     }
 
     /**
