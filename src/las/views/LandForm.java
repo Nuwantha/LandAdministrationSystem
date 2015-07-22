@@ -16,6 +16,9 @@ public class LandForm extends javax.swing.JInternalFrame {
      */
     public LandForm() {
         initComponents();
+        
+        
+        
     }
 
     /**
