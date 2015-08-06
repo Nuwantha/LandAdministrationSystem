@@ -31,16 +31,31 @@ public class GramaNiladariDivisionController {
         String sql = "Select * from GND where DivisionNumber='" + DivisionNumber+ "'";
         ResultSet rst = DBHandler.getData(conn, sql);
         if (rst.next()) {
-            GramaNiladariDivision GND = new GramaNiladariDivision(rst.getString("DivisionNumber"), rst.getString("DivisionName"), rst.getString("GramaNiladariName"), rst.getString("ZoneName"));
+            GramaNiladariDivision GND = new GramaNiladariDivision(rst.getString("DivisionNumber"), rst.getString("DivisionName"), rst.getString("ZoneName"), rst.getString("GramaNiladariName"));
              return GND;
         } else {
             return null;
         }
     }
     
+    public static ArrayList<GramaNiladariDivision> getSimmilarGndDivisionNumbers(String divisionNumberPart) throws ClassNotFoundException, SQLException {
+        Connection conn = DBConnection.getDBConnection().getConnection();
+        String sql = "Select * From GND where divisionNumber like '"+divisionNumberPart+"%'  order by divisionNumber limit 10";
+        ResultSet rst = DBHandler.getData(conn, sql);
+        ArrayList<GramaNiladariDivision> GNDList = new ArrayList<>();
+        while (rst.next()) {
+            GramaNiladariDivision GND = new GramaNiladariDivision(rst.getString("DivisionNumber"), rst.getString("DivisionName"), rst.getString("ZoneName"), rst.getString("GramaNiladariName"));
+            GNDList.add(GND);
+        }
+        return GNDList;
+    }
+
+    
+    
+    
     public static boolean updateGND(GramaNiladariDivision GND) throws ClassNotFoundException, SQLException{
         Connection connection = DBConnection.getDBConnection().getConnection();
-        String sql ="Update GND set DivisionName='"+GND.getDivisionName()+"' GramaNiladaryName= '"+GND.getGramaNilardariName()+"'ZoneName='"+GND.getZoneName()+"' Where DivisionNumber ='"+GND.getDivisionName()+"'";
+        String sql ="Update GND set DivisionName='"+GND.getDivisionName()+"', GramaNiladariName= '"+GND.getGramaNilardariName()+"',ZoneName='"+GND.getZoneName()+"' Where DivisionNumber ='"+GND.getDivisionNumber()+"'";
         int returnV = DBHandler.setData(connection, sql);
         return returnV>0;
                
@@ -52,7 +67,7 @@ public class GramaNiladariDivisionController {
         ResultSet rst = DBHandler.getData(conn, sql);
         ArrayList<GramaNiladariDivision> GNDList = new ArrayList<>();
         while (rst.next()) {
-            GramaNiladariDivision GND = new GramaNiladariDivision(rst.getString("DivisionNumber"), rst.getString("DivisionName"), rst.getString("GramaNiladariName"), rst.getString("ZoneName"));
+            GramaNiladariDivision GND = new GramaNiladariDivision(rst.getString("DivisionNumber"), rst.getString("DivisionName"), rst.getString("ZoneName"), rst.getString("GramaNiladariName"));
             GNDList.add(GND);
         }
         return GNDList;

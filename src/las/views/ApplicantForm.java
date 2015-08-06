@@ -3,10 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package las.views;
 
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ButtonModel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import las.controllers.ClientController;
+import las.models.Client;
 
 /**
  *
@@ -665,8 +673,36 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jRadioButton8ActionPerformed
 
     private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
-       ((JPanel)this.jTabbedPane1.getSelectedComponent()).remove(NewApplicantDetailPanel);
-        ((JPanel)this.jTabbedPane1.getComponent(1)).add(CurrentResidencePanel);
+        boolean isMarried = true;
+        String applicantNumber = applicantNumberText.getText();
+        String aplicantName = nameText.getText();
+        String nic = nicText.getText();
+        String telephoneNumber = telephoneText.getText();
+        String address = addressText.getText();
+        Date date = birthdayChooser.getDate();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY-MM-DD");
+        String DOB = simpleDateFormat.format(date);
+        System.out.println(DOB);
+        if (singleStatusRButton.isSelected()) {
+            isMarried = false;
+        };
+        int marriedSons = Integer.parseInt(marriedChildrenCountSpinner.getValue().toString());
+        int unmarriedSons = Integer.parseInt(unmarriedChildrenCountSpinner.getValue().toString());
+        double annualincome = Double.parseDouble(annualIncomeText.getText());
+
+        Client client = new Client(nic, aplicantName, DOB, telephoneNumber, address, annualincome,0,0, isMarried, marriedSons, unmarriedSons);
+        try {
+            boolean addNewClient = ClientController.addNewClient(client);
+            if(addNewClient){
+                JOptionPane.showMessageDialog(rootPane,"applicant added successfully");
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ApplicantForm.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ApplicantForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        ((JPanel) this.jTabbedPane1.getSelectedComponent()).remove(NewApplicantDetailPanel);
+        ((JPanel) this.jTabbedPane1.getComponent(1)).add(CurrentResidencePanel);
         CurrentResidencePanel.setVisible(true);
     }//GEN-LAST:event_nextButtonActionPerformed
 

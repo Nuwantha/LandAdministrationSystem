@@ -24,7 +24,7 @@ public class ClientController {
     public static boolean addNewClient(Client client) throws ClassNotFoundException, SQLException {
         
         Connection conn=DBConnection.getDBConnection().getConnection();
-        String sql = "Insert into Client Values('" + client.getNIC() + "','" + client.getClientName() + "','" + client.getBirthday() + "','" + client.getTelephone() + "','" + client.getAddress() + "','" + client.getAnnualIncome() + "','" + client.getGrantOwnershipPosition() + "','" + client.getPermitOwnershipPosition() + "','" + client.getNumberOfMarriedSons() + "','" + client.getNumberOfUnmarriedSons() + "');";
+        String sql = "Insert into Client Values('" + client.getNIC() + "','" + client.getClientName() + "','" + client.getBirthday() + "','" + client.getTelephone() + "','" + client.getAddress() + "','" + client.getAnnualIncome() + "','" + client.getGrantOwnershipPosition() + "','" + client.getPermitOwnershipPosition() + "','"+client.isMarried()+"','" + client.getNumberOfMarriedSons() + "','" + client.getNumberOfUnmarriedSons() + "');";
         int returnValue = DBHandler.setData(conn, sql);
             
         return returnValue>0;

@@ -5,7 +5,6 @@
  */
 package las.views;
 
-import las.controllers.NominatedSuccessorController;
 import las.models.Grant;
 import las.models.NominatedSuccessor;
 import las.models.Permit;
@@ -15,10 +14,13 @@ import las.models.Permit;
  * @author Gimhani
  */
 public class NominateSuccessorForm extends javax.swing.JDialog {
-
+    Grant grant;
+    Permit permit;
+    PermitForm parent_permit;
+    GrantForm parent_grant;
+    int type;
     /**
      * Creates new form NominateSuccessorForm
-     * @param parent
      * @param modal
      */
     public NominateSuccessorForm(java.awt.Frame parent, boolean modal) {
@@ -27,9 +29,12 @@ public class NominateSuccessorForm extends javax.swing.JDialog {
         nicInvalidLabel.setVisible(false);
     }
     //to view gui for grant successor nomination
-    public NominateSuccessorForm(java.awt.Frame parent, boolean modal,Grant grant) { 
-        this(parent, modal);
+    public NominateSuccessorForm(GrantForm parent, boolean modal,Grant grant) { 
+        //this(parent, modal);
+        this.grant=grant;
+        this.type=2; //if grant .type=2
         this.setTitle("Nominate a successor to Grant");
+        this.parent_grant=parent;
         numberLabel.setText("Grant number:");
         ownerText.setText(grant.getClient().getClientName());
         NominatedSuccessor successor=grant.getNominatedSuccessor();
@@ -41,9 +46,12 @@ public class NominateSuccessorForm extends javax.swing.JDialog {
     }
     
     //to view gui for permit successor nomination
-    public NominateSuccessorForm(java.awt.Frame parent, boolean modal,Permit permit) { 
-        this(parent, modal);
+    public NominateSuccessorForm(PermitForm parent, boolean modal,Permit permit) { 
+        //this(parent, modal);
+        this.permit=permit;
+        this.type=1; //if grant .type=2
         this.setTitle("Nominate a successor to Permit");
+        this.parent_permit=parent;
         numberLabel.setText("Permit number:");
         ownerText.setText(permit.getClient().getClientName());
         NominatedSuccessor successor=permit.getNominatedSuccessor();
@@ -285,8 +293,17 @@ public class NominateSuccessorForm extends javax.swing.JDialog {
     private void add_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_buttonActionPerformed
         NominatedSuccessor successor=new NominatedSuccessor(nic_text.getText(), ns_name_text.getText(), address_text.getText());
         //add this to database
+        if(type==1){
+            this.permit.setNominatedSuccessor(successor);
+        }else{
+            parent_grant.setNominatedSuccessor(successor);
+        }
+        
+        this.setVisible(false);
     }//GEN-LAST:event_add_buttonActionPerformed
-
+    public String sendNIC_S(){
+        return nic_text.getText();
+    }
     /**
      * @param args the command line arguments
      */

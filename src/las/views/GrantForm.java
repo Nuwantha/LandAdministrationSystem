@@ -6,12 +6,15 @@
 
 package las.views;
 
+import las.models.Grant;
+import las.models.NominatedSuccessor;
+
 /**
  *
  * @author H.P. Asela
  */
 public class GrantForm extends javax.swing.JInternalFrame {
-
+    Grant grant;
     /**
      * Creates new form GrantForm
      */
@@ -19,6 +22,9 @@ public class GrantForm extends javax.swing.JInternalFrame {
         initComponents();
     }
 
+    public void setNominatedSuccessor(NominatedSuccessor successor){
+        grant.setNominatedSuccessor(successor);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

@@ -6,12 +6,15 @@
 
 package las.views;
 
+import las.models.NominatedSuccessor;
+import las.models.Permit;
+
 /**
  *
  * @author H.P. Asela
  */
 public class PermitForm extends javax.swing.JInternalFrame {
-
+    Permit permit;
     /**
      * Creates new form PermitForm
      */
@@ -19,6 +22,9 @@ public class PermitForm extends javax.swing.JInternalFrame {
         initComponents();
     }
 
+    public void setNominatedSuccessor(NominatedSuccessor successor){
+        permit.setNominatedSuccessor(successor);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

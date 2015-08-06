@@ -468,6 +468,11 @@ public class FrontPage extends javax.swing.JFrame {
         jButton5.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
         jButton5.setText("Grama Niladari Division Info");
         buttonGroup1.add(jButton5);
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
         shortcutAccessPanel.add(jButton5);
 
         jButton6.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
@@ -476,8 +481,13 @@ public class FrontPage extends javax.swing.JFrame {
         shortcutAccessPanel.add(jButton6);
 
         jButton7.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
-        jButton7.setText("Edit client details");
+        jButton7.setText("Add New Land");
         buttonGroup1.add(jButton7);
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
         shortcutAccessPanel.add(jButton7);
 
         javax.swing.GroupLayout desktopJPanelLayout = new javax.swing.GroupLayout(desktopJPanel);
@@ -609,6 +619,23 @@ public class FrontPage extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        GramaNiladhariForm gramaNiladhariForm = new GramaNiladhariForm();
+        gramaNiladhariForm.setSize(desktopPane.getSize());
+        desktopPane.removeAll();     
+        desktopPane.add(gramaNiladhariForm);
+        gramaNiladhariForm.setVisible(true);
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        LandForm landForm = new LandForm();
+        landForm.setSize(desktopPane.getSize());
+        desktopPane.removeAll();
+        desktopPane.add(landForm);
+        landForm.setVisible(true);
+               
+    }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
      * @param args the command line arguments

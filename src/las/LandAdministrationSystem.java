@@ -6,6 +6,8 @@
 
 package las;
 
+import las.views.FrontPage;
+
 /**
  *
  * @author Gimhani
@@ -16,7 +18,7 @@ public class LandAdministrationSystem {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        new FrontPage().setVisible(true);
     }
     
 }
