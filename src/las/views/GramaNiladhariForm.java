@@ -46,6 +46,9 @@ public class GramaNiladhariForm extends javax.swing.JInternalFrame {
         jButton2 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
 
+        setClosable(true);
+        setPreferredSize(new java.awt.Dimension(868, 518));
+
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
