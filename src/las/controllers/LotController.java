@@ -30,4 +30,18 @@ public class LotController {
             return null;
         }
     }
+    
+      public static Lot getLastAddedLot() throws ClassNotFoundException, SQLException {
+        Connection conn = DBConnection.getDBConnection().getConnection();
+        String sql = "Select * From Lot order by lotNumber Desc limit 1";
+        ResultSet rst = DBHandler.getData(conn, sql);
+        if(rst.next()){
+            Land Land = LandController.searchLand(rst.getString("PlanNumber"));
+            Lot lot = new Lot(rst.getString("LotNumber"), rst.getInt("NumberOfAcres"), rst.getInt("NumberOfPerches"), rst.getInt("NumberOfRoods"),Land);
+            return lot;
+        }else{
+            return null;
+        }
+      }
+    
 }

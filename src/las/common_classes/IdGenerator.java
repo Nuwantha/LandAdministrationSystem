@@ -25,4 +25,20 @@ public class IdGenerator {
         }
         return newPlanNumber;
     } 
+    public  static String generateNextLotNumber(String oldLotNumber){
+        String newLotNumber="L";
+        String substring = oldLotNumber.substring(1);
+        int parseInt = Integer.parseInt(substring);
+        parseInt++;
+        String valueOf = String.valueOf(parseInt);
+        if(parseInt>10&&parseInt<100){
+           newLotNumber+="0"+valueOf; 
+        }
+        else if(parseInt>100){
+            newLotNumber+=valueOf;
+        }else{
+            newLotNumber+="00"+valueOf;
+        }
+        return newLotNumber;
+    } 
 }
