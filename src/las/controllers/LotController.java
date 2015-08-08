@@ -8,6 +8,7 @@ package las.controllers;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import las.db_utilities.DBConnection;
 import las.db_utilities.DBHandler;
 import las.models.Land;
@@ -18,6 +19,14 @@ import las.models.Lot;
  * @author Gimhani
  */
 public class LotController {
+     public static boolean addNewLot(Lot lot) throws ClassNotFoundException, SQLException {
+        Connection conn=DBConnection.getDBConnection().getConnection();
+        String sql = "Insert into Lot Values('" + lot.getLotNumber() + "','" + lot.getNumberOfAcres() + "','" + lot.getNumberOfPerches() + "','" + lot.getNumberofRoods() + "','" + lot.getLand().getPlanNumber() + "')" ;  
+        int returnValue = DBHandler.setData(conn, sql);         
+        return returnValue>0;
+    }
+    
+    
     public static Lot searchLot(String lotNumber) throws ClassNotFoundException, SQLException {
         Connection conn = DBConnection.getDBConnection().getConnection();
         String sql = "Select * from Lot where LotNumber='" + lotNumber+ "'";
@@ -30,6 +39,19 @@ public class LotController {
             return null;
         }
     }
+    
+    public static ArrayList<Lot> searchLotOfLand(String planNumber) throws ClassNotFoundException, SQLException {
+        Connection conn = DBConnection.getDBConnection().getConnection();
+        String sql = "Select * from Lot where planNumber='" + planNumber+ "'";
+        ResultSet rst = DBHandler.getData(conn, sql);
+        ArrayList<Lot> lotList=new ArrayList();
+        while(rst.next()) {
+            Lot lot = new Lot(rst.getString("LotNumber"), rst.getInt("NumberOfAcres"), rst.getInt("NumberOfRoods"), rst.getInt("NumberOfPerches"));
+            lotList.add(lot);
+        } 
+        return lotList;
+    }
+    
     
       public static Lot getLastAddedLot() throws ClassNotFoundException, SQLException {
         Connection conn = DBConnection.getDBConnection().getConnection();

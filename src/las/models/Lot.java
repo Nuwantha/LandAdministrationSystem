@@ -15,7 +15,8 @@ public class Lot {
     private int numberofRoods;
     private int numberOfPerches; 
     private Land land;
-
+    
+    
     public Lot(String lotNumber, int numberOfAcres, int numberofRoods, int numberOfPerches, Land land) {
         this.lotNumber = lotNumber;
         this.numberOfAcres = numberOfAcres;
@@ -24,7 +25,13 @@ public class Lot {
         this.land = land;
     }
 
-    
+    public Lot(String lotNumber, int numberOfAcres, int numberofRoods, int numberOfPerches) {
+        this.lotNumber = lotNumber;
+        this.numberOfAcres = numberOfAcres;
+        this.numberofRoods = numberofRoods;
+        this.numberOfPerches = numberOfPerches;
+    }
+
     
     public String getLotNumber() {
         return lotNumber;

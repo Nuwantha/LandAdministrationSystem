@@ -5,6 +5,8 @@
  */
 package las.models;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Gimhani
@@ -18,6 +20,7 @@ public class Land {
     private String northBound;
     private String southBound;
     private int NumberOfLot;
+    private ArrayList<Lot> lotList;
 
     public Land(String planNumber, String landName, String divisionNumber, String westBound, String eastBound, String northBound, String southBound, int NumberOfLot) {
         this.planNumber = planNumber;
@@ -30,9 +33,7 @@ public class Land {
         this.NumberOfLot = NumberOfLot;
     }
     
-    
-    
-    public Land(String planNumber, String landName, String divisionNumber, String westBound, String eastBound, String northBound, String southBound) {
+     public Land(String planNumber, String landName, String divisionNumber, String westBound, String eastBound, String northBound, String southBound) {
         this.planNumber = planNumber;
         this.landName = landName;
         this.divisionNumber = divisionNumber;
@@ -40,7 +41,20 @@ public class Land {
         this.eastBound = eastBound;
         this.northBound = northBound;
         this.southBound = southBound;
+     }
+    
+    public Land(String planNumber, String landName, String divisionNumber, String westBound, String eastBound, String northBound, String southBound, ArrayList<Lot> lotList) {
+        this.planNumber = planNumber;
+        this.landName = landName;
+        this.divisionNumber = divisionNumber;
+        this.westBound = westBound;
+        this.eastBound = eastBound;
+        this.northBound = northBound;
+        this.southBound = southBound;
+        this.lotList=lotList;
     } 
+    
+    
 
     public String getPlanNumber() {
         return planNumber;
@@ -104,6 +118,14 @@ public class Land {
 
     public void setNumberOfLot(int NumberOfLot) {
         this.NumberOfLot = NumberOfLot;
+    }
+
+    public ArrayList<Lot> getLotList() {
+        return lotList;
+    }
+
+    public void setLotList(ArrayList<Lot> lotList) {
+        this.lotList = lotList;
     }
     
     

@@ -17,7 +17,7 @@ public class IdGenerator {
         int parseInt = Integer.parseInt(substring);
         parseInt++;
         String valueOf = String.valueOf(parseInt);
-        if(parseInt>10){
+        if(parseInt<10){
            newPlanNumber+="0"+valueOf; 
         }
         else{

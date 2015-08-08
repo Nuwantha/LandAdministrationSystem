@@ -102,7 +102,7 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
         occupationText = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         annualIncomeText = new javax.swing.JTextField();
-        birthdayChooser = new com.toedter.calendar.JDateChooser();
+        bithdayChooser = new org.freixas.jcalendar.JCalendarCombo();
         jPanel2 = new javax.swing.JPanel();
         nextButton = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
@@ -461,6 +461,12 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
                 .addContainerGap(49, Short.MAX_VALUE))
         );
 
+        bithdayChooser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bithdayChooserActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout personalDetailPanelLayout = new javax.swing.GroupLayout(personalDetailPanel);
         personalDetailPanel.setLayout(personalDetailPanelLayout);
         personalDetailPanelLayout.setHorizontalGroup(
@@ -485,18 +491,13 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
                     .addGroup(personalDetailPanelLayout.createSequentialGroup()
                         .addGroup(personalDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(personalDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(applicantNumberText, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(nameText)
-                                .addGroup(personalDetailPanelLayout.createSequentialGroup()
-                                    .addGroup(personalDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(telephoneText, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(nicText, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE))
-                                    .addGap(30, 30, 30))
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE))
-                            .addGroup(personalDetailPanelLayout.createSequentialGroup()
-                                .addComponent(birthdayChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(204, 204, 204)))
-                        .addGap(18, 18, 18)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
+                                .addComponent(applicantNumberText, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(telephoneText)
+                                .addComponent(nicText, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE))
+                            .addComponent(bithdayChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(36, 36, 36)
                         .addGroup(personalDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(childrenCountPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
@@ -531,11 +532,11 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
                             .addComponent(jLabel5)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(personalDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(personalDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
-                            .addComponent(birthdayChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(bithdayChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(1, 1, 1)
                 .addGroup(personalDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(marriedStatusRButton)
@@ -679,7 +680,7 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
         String nic = nicText.getText();
         String telephoneNumber = telephoneText.getText();
         String address = addressText.getText();
-        Date date = birthdayChooser.getDate();
+        Date date = bithdayChooser.getDate();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY-MM-DD");
         String DOB = simpleDateFormat.format(date);
         System.out.println(DOB);
@@ -710,6 +711,10 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButton3ActionPerformed
 
+    private void bithdayChooserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bithdayChooserActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bithdayChooserActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel CurrentResidencePanel;
@@ -717,7 +722,7 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
     private javax.swing.JTextArea addressText;
     private javax.swing.JTextField annualIncomeText;
     private javax.swing.JTextField applicantNumberText;
-    private com.toedter.calendar.JDateChooser birthdayChooser;
+    private org.freixas.jcalendar.JCalendarCombo bithdayChooser;
     private javax.swing.JPanel childrenCountPanel;
     private javax.swing.JLabel currentResidenceLabel;
     private javax.swing.JButton jButton1;
