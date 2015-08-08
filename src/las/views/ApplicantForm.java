@@ -10,9 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.ButtonModel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import las.controllers.ClientController;
 import las.models.Client;
 
@@ -27,6 +25,8 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
      */
     public ApplicantForm() {
         initComponents();
+        registerButton.setEnabled(false);
+        addCurrentResidenceButton.setEnabled(false);
     }
 
     /**
@@ -76,6 +76,9 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         newApplicantTab = new javax.swing.JPanel();
         NewApplicantDetailPanel = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        registerButton = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         personalDetailPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -102,9 +105,8 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
         occupationText = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         annualIncomeText = new javax.swing.JTextField();
-        jPanel2 = new javax.swing.JPanel();
-        nextButton = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        birthdayChooser = new com.toedter.calendar.JDateChooser();
+        addCurrentResidenceButton = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
 
         currentResidenceLabel.setText("Current Residence : ");
@@ -312,19 +314,19 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
                             .addGroup(CurrentResidencePanelLayout.createSequentialGroup()
                                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(CurrentResidencePanelLayout.createSequentialGroup()
-                        .addGroup(CurrentResidencePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(currentResidenceLabel)
-                            .addComponent(jLabel13))
-                        .addGap(18, 18, 18)
-                        .addGroup(CurrentResidencePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(CurrentResidencePanelLayout.createSequentialGroup()
-                                .addComponent(jRadioButton3)
-                                .addGap(10, 10, 10)
-                                .addComponent(jRadioButton4))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(CurrentResidencePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(currentResidenceLabel)
+                                    .addComponent(jLabel13))
+                                .addGap(18, 18, 18)
+                                .addGroup(CurrentResidencePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(CurrentResidencePanelLayout.createSequentialGroup()
+                                        .addComponent(jRadioButton3)
+                                        .addGap(10, 10, 10)
+                                        .addComponent(jRadioButton4))
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         CurrentResidencePanelLayout.setVerticalGroup(
@@ -364,6 +366,36 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
+        registerButton.setText("Register");
+        registerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registerButtonActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Cancel");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(596, Short.MAX_VALUE)
+                .addComponent(registerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addGap(31, 31, 31))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(registerButton)
+                    .addComponent(jButton1))
+                .addContainerGap())
+        );
+
         personalDetailPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Personal Details"));
 
         jLabel1.setText("Reg No:");
@@ -371,6 +403,18 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
         jLabel2.setText("Name:");
 
         jLabel3.setText("NIC :");
+
+        nameText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                nameTextKeyReleased(evt);
+            }
+        });
+
+        nicText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                nicTextKeyReleased(evt);
+            }
+        });
 
         jLabel4.setText("Phone Number:");
 
@@ -460,6 +504,13 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
                 .addContainerGap(49, Short.MAX_VALUE))
         );
 
+        addCurrentResidenceButton.setText("Add current residence details");
+        addCurrentResidenceButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addCurrentResidenceButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout personalDetailPanelLayout = new javax.swing.GroupLayout(personalDetailPanel);
         personalDetailPanel.setLayout(personalDetailPanelLayout);
         personalDetailPanelLayout.setHorizontalGroup(
@@ -476,18 +527,22 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
                 .addGap(18, 18, 18)
-                .addGroup(personalDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(personalDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(personalDetailPanelLayout.createSequentialGroup()
                         .addComponent(marriedStatusRButton)
                         .addGap(18, 18, 18)
-                        .addComponent(singleStatusRButton))
+                        .addComponent(singleStatusRButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(addCurrentResidenceButton))
                     .addGroup(personalDetailPanelLayout.createSequentialGroup()
-                        .addGroup(personalDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(nameText)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
-                            .addComponent(applicantNumberText, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(telephoneText)
-                            .addComponent(nicText, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE))
+                        .addGroup(personalDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(personalDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(nameText)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
+                                .addComponent(applicantNumberText, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(telephoneText)
+                                .addComponent(nicText, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE))
+                            .addComponent(birthdayChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(36, 36, 36)
                         .addGroup(personalDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -523,44 +578,21 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
                             .addComponent(jLabel5)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel6))
+                        .addGroup(personalDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(birthdayChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(2, 2, 2)
-                .addGroup(personalDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(marriedStatusRButton)
-                    .addComponent(singleStatusRButton))
-                .addContainerGap(73, Short.MAX_VALUE))
-        );
-
-        nextButton.setText("Next>");
-        nextButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nextButtonActionPerformed(evt);
-            }
-        });
-
-        jButton1.setText("Cancel");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(nextButton, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addGap(31, 31, 31))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nextButton)
-                    .addComponent(jButton1))
-                .addContainerGap())
+                .addGroup(personalDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(personalDetailPanelLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(personalDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(marriedStatusRButton)
+                            .addComponent(singleStatusRButton)))
+                    .addGroup(personalDetailPanelLayout.createSequentialGroup()
+                        .addGap(13, 13, 13)
+                        .addComponent(addCurrentResidenceButton)))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout NewApplicantDetailPanelLayout = new javax.swing.GroupLayout(NewApplicantDetailPanel);
@@ -581,7 +613,7 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
                 .addComponent(personalDetailPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(33, 33, 33))
         );
 
         javax.swing.GroupLayout newApplicantTabLayout = new javax.swing.GroupLayout(newApplicantTab);
@@ -595,7 +627,7 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
         newApplicantTabLayout.setVerticalGroup(
             newApplicantTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(newApplicantTabLayout.createSequentialGroup()
-                .addComponent(NewApplicantDetailPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(NewApplicantDetailPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 446, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -662,55 +694,69 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButton8ActionPerformed
 
-    private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
+    private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
         boolean isMarried = true;
         String applicantNumber = applicantNumberText.getText();
         String aplicantName = nameText.getText();
         String nic = nicText.getText();
         String telephoneNumber = telephoneText.getText();
         String address = addressText.getText();
-        Date date = bithdayChooser.getDate();
+        Date date = birthdayChooser.getDate();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY-MM-DD");
         String DOB = simpleDateFormat.format(date);
         System.out.println(DOB);
         if (singleStatusRButton.isSelected()) {
             isMarried = false;
-        };
+        }
         int marriedSons = Integer.parseInt(marriedChildrenCountSpinner.getValue().toString());
         int unmarriedSons = Integer.parseInt(unmarriedChildrenCountSpinner.getValue().toString());
         double annualincome = Double.parseDouble(annualIncomeText.getText());
 
-        Client client = new Client(nic, aplicantName, DOB, telephoneNumber, address, annualincome,0,0, isMarried, marriedSons, unmarriedSons);
+        Client client = new Client(nic, aplicantName, DOB, telephoneNumber, address, annualincome, 0, 0, isMarried, marriedSons, unmarriedSons);
         try {
             boolean addNewClient = ClientController.addNewClient(client);
-            if(addNewClient){
-                JOptionPane.showMessageDialog(rootPane,"applicant added successfully");
+            if (addNewClient) {
+                JOptionPane.showMessageDialog(rootPane, "applicant added successfully");
             }
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ApplicantForm.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(ApplicantForm.class.getName()).log(Level.SEVERE, null, ex);
         }
-        ((JPanel) this.jTabbedPane1.getSelectedComponent()).remove(NewApplicantDetailPanel);
-        ((JPanel) this.jTabbedPane1.getComponent(1)).add(CurrentResidencePanel);
-        CurrentResidencePanel.setVisible(true);
-    }//GEN-LAST:event_nextButtonActionPerformed
+
+
+    }//GEN-LAST:event_registerButtonActionPerformed
 
     private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButton3ActionPerformed
 
-    private void bithdayChooserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bithdayChooserActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_bithdayChooserActionPerformed
+    private void addCurrentResidenceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCurrentResidenceButtonActionPerformed
+        new CurrentResidenceDetailForm(null, true,this,nicText.getText(),nameText.getText()).setVisible(true);
+    }//GEN-LAST:event_addCurrentResidenceButtonActionPerformed
 
+    private void nameTextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nameTextKeyReleased
+        if(nameText.getText()!="" && nicText.getText()!=""){
+            addCurrentResidenceButton.setEnabled(true);
+        }
+    }//GEN-LAST:event_nameTextKeyReleased
+
+    private void nicTextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nicTextKeyReleased
+        if(nameText.getText()!="" && nicText.getText()!=""){
+            addCurrentResidenceButton.setEnabled(true);
+        }
+    }//GEN-LAST:event_nicTextKeyReleased
+
+    public void getResidenceData(){ //to accept data from current residence detail form
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel CurrentResidencePanel;
     private javax.swing.JPanel NewApplicantDetailPanel;
+    private javax.swing.JButton addCurrentResidenceButton;
     private javax.swing.JTextArea addressText;
     private javax.swing.JTextField annualIncomeText;
     private javax.swing.JTextField applicantNumberText;
+    private com.toedter.calendar.JDateChooser birthdayChooser;
     private javax.swing.JPanel childrenCountPanel;
     private javax.swing.JLabel currentResidenceLabel;
     private javax.swing.JButton jButton1;
@@ -765,10 +811,10 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
     private javax.swing.JRadioButton marriedStatusRButton;
     private javax.swing.JTextField nameText;
     private javax.swing.JPanel newApplicantTab;
-    private javax.swing.JButton nextButton;
     private javax.swing.JTextField nicText;
     private javax.swing.JTextField occupationText;
     private javax.swing.JPanel personalDetailPanel;
+    private javax.swing.JButton registerButton;
     private javax.swing.JLabel resultLabel;
     private javax.swing.JRadioButton singleStatusRButton;
     private javax.swing.ButtonGroup statusButtonGroup;
