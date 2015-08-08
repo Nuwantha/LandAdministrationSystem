@@ -296,7 +296,7 @@ public class NominateSuccessorForm extends javax.swing.JDialog {
         if(type==1){
             this.permit.setNominatedSuccessor(successor);
         }else{
-            parent_grant.setNominatedSuccessor(successor);
+            this.grant.setNominatedSuccessor(successor);
         }
         
         this.setVisible(false);
