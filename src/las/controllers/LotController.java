@@ -52,6 +52,12 @@ public class LotController {
         return lotList;
     }
     
+     public static boolean updateLot(Lot lot) throws ClassNotFoundException, SQLException {
+        Connection conn = DBConnection.getDBConnection().getConnection();
+        String sql = "Update  Lot Set  NumberOfAcres='"+lot.getNumberOfAcres()+"', NumberOfPerches='"+lot.getNumberOfPerches()+"',NumberofRoods='"+lot.getNumberofRoods()+"' Where  LotNumber='"+lot.getLotNumber()+"'";
+        int res = DBHandler.setData(conn, sql);
+        return res>0;
+    }
     
       public static Lot getLastAddedLot() throws ClassNotFoundException, SQLException {
         Connection conn = DBConnection.getDBConnection().getConnection();

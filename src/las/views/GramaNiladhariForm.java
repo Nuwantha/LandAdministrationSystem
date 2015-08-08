@@ -37,15 +37,12 @@ public class GramaNiladhariForm extends javax.swing.JInternalFrame {
         gnd_search_combo.setMaximumRowCount(10);
         gnd_search_combo.setEditable(true);
         JTextComponent editor = (JTextComponent) gnd_search_combo.getEditor().getEditorComponent();
-       
-        
+
         editor.addKeyListener(new KeyAdapter() {
 
-            
-            
             @Override
             public void keyReleased(KeyEvent e) {
-                
+
                 gnd_search_combo.setPopupVisible(true);
                 String test = String.valueOf(gnd_search_combo.getEditor().getItem());
                 gnd_search_combo.removeAllItems();
@@ -60,8 +57,7 @@ public class GramaNiladhariForm extends javax.swing.JInternalFrame {
                 } catch (SQLException ex) {
                     Logger.getLogger(GramaNiladhariForm.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                
-                
+
             }
 
         });
@@ -500,17 +496,18 @@ public class GramaNiladhariForm extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_gnd_name_testActionPerformed
 
     private void gnd_search_comboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_gnd_search_comboItemStateChanged
-       try {
+        try {
             GramaNiladariDivision searchGND = GramaNiladariDivisionController.searchGND((String) gnd_search_combo.getSelectedItem());
-            gnd_searchName_test.setText(searchGND.getDivisionName());
-            gnd_searchZone_test.setText(searchGND.getZoneName());
-            gnd_searchGramaniladari_name.setText(searchGND.getGramaNilardariName());
+            if (searchGND != null) {
+                gnd_searchName_test.setText(searchGND.getDivisionName());
+                gnd_searchZone_test.setText(searchGND.getZoneName());
+                gnd_searchGramaniladari_name.setText(searchGND.getGramaNilardariName());
+            }
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(GramaNiladhariForm.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
-        
+
+
     }//GEN-LAST:event_gnd_search_comboItemStateChanged
 
     private void gnd_search_comboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gnd_search_comboActionPerformed
