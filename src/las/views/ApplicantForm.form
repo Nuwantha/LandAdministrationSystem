@@ -557,15 +557,12 @@
                                           <Component id="singleStatusRButton" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                  <Component id="nameText" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="jScrollPane1" pref="277" max="32767" attributes="0"/>
-                                                  <Component id="applicantNumberText" min="-2" pref="126" max="-2" attributes="0"/>
-                                                  <Component id="telephoneText" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="nicText" alignment="0" pref="126" max="32767" attributes="0"/>
-                                              </Group>
-                                              <Component id="bithdayChooser" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="nameText" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="jScrollPane1" pref="277" max="32767" attributes="0"/>
+                                              <Component id="applicantNumberText" min="-2" pref="126" max="-2" attributes="0"/>
+                                              <Component id="telephoneText" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="nicText" alignment="0" pref="126" max="32767" attributes="0"/>
                                           </Group>
                                           <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -614,14 +611,11 @@
                                               <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="bithdayChooser" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          </Group>
+                                          <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="marriedStatusRButton" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -831,11 +825,6 @@
                             </Component>
                           </SubComponents>
                         </Container>
-                        <Component class="org.freixas.jcalendar.JCalendarCombo" name="bithdayChooser">
-                          <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bithdayChooserActionPerformed"/>
-                          </Events>
-                        </Component>
                       </SubComponents>
                     </Container>
                     <Container class="javax.swing.JPanel" name="jPanel2">
