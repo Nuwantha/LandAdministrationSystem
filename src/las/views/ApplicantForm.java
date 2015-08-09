@@ -609,6 +609,8 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
                 .addContainerGap(49, Short.MAX_VALUE))
         );
 
+        birthdayChooser.setDateFormatString("yyyy-MM-dd");
+
         addCurrentResidenceButton.setText("Add current residence details");
         addCurrentResidenceButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
