@@ -504,6 +504,8 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
                 .addContainerGap(49, Short.MAX_VALUE))
         );
 
+        birthdayChooser.setDateFormatString("yyyy-MM-dd");
+
         addCurrentResidenceButton.setText("Add current residence details");
         addCurrentResidenceButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -695,18 +697,18 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jRadioButton8ActionPerformed
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
-        boolean isMarried = true;
+        int isMarried = 1;
         String applicantNumber = applicantNumberText.getText();
         String aplicantName = nameText.getText();
         String nic = nicText.getText();
         String telephoneNumber = telephoneText.getText();
         String address = addressText.getText();
         Date date = birthdayChooser.getDate();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY-MM-DD");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String DOB = simpleDateFormat.format(date);
         System.out.println(DOB);
         if (singleStatusRButton.isSelected()) {
-            isMarried = false;
+            isMarried = 0;
         }
         int marriedSons = Integer.parseInt(marriedChildrenCountSpinner.getValue().toString());
         int unmarriedSons = Integer.parseInt(unmarriedChildrenCountSpinner.getValue().toString());
@@ -746,7 +748,7 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_nicTextKeyReleased
 
     public void getResidenceData(){ //to accept data from current residence detail form
-        
+        registerButton.setEnabled(true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

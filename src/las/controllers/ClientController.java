@@ -35,7 +35,7 @@ public class ClientController {
         String sql = "Select * from Client where NIC='" + NIC+ "'";
         ResultSet rst = DBHandler.getData(conn, sql);
         if (rst.next()) {
-            Client client = new Client(rst.getString("NIC"), rst.getString("ClientName"), rst.getString("Birthday"), rst.getString("Telephone"), rst.getString("Address"), rst.getDouble("AnnualIncome"), rst.getInt("GrantOwnershipPosition"),rst.getInt("PermitOwnershipPosition"),rst.getBoolean("MarriedStatus"),rst.getInt("NumberOfMarriedSons"),rst.getInt("NumberOfUnmarriedSons"));
+            Client client = new Client(rst.getString("NIC"), rst.getString("ClientName"), rst.getString("Birthday"), rst.getString("Telephone"), rst.getString("Address"), rst.getDouble("AnnualIncome"), rst.getInt("GrantOwnershipPosition"),rst.getInt("PermitOwnershipPosition"),rst.getInt("MarriedStatus"),rst.getInt("NumberOfMarriedSons"),rst.getInt("NumberOfUnmarriedSons"));
             return client;
         } else {
             return null;
@@ -74,7 +74,7 @@ public class ClientController {
         ResultSet rst = DBHandler.getData(conn, sql);
         ArrayList<Client> clientList = new ArrayList<>();
         while (rst.next()) {
-            Client client = new Client(rst.getString("NIC"), rst.getString("ClientName"), rst.getString("Birthday"), rst.getString("Telephone"), rst.getString("Address"), rst.getDouble("AnnualIncome"), rst.getInt("GrantOwnershipPosition"),rst.getInt("PermitOwnershipPosition"),rst.getBoolean("MarriedStatus"),rst.getInt("NumberOfMarriedSons"),rst.getInt("NumberOfUnmarriedSons"));
+            Client client = new Client(rst.getString("NIC"), rst.getString("ClientName"), rst.getString("Birthday"), rst.getString("Telephone"), rst.getString("Address"), rst.getDouble("AnnualIncome"), rst.getInt("GrantOwnershipPosition"),rst.getInt("PermitOwnershipPosition"),rst.getInt("MarriedStatus"),rst.getInt("NumberOfMarriedSons"),rst.getInt("NumberOfUnmarriedSons"));
             clientList.add(client);
         }
         return clientList;
@@ -85,7 +85,7 @@ public class ClientController {
         String sql = "Select * From Clients order by NIC Desc limit 1";
         ResultSet rst = DBHandler.getData(conn, sql);
         if(rst.next()){
-            Client client = new Client(rst.getString("NIC"), rst.getString("ClientName"), rst.getString("Birthday"), rst.getString("Telephone"), rst.getString("Address"), rst.getDouble("AnnualIncome"), rst.getInt("GrantOwnershipPosition"),rst.getInt("PermitOwnershipPosition"),rst.getBoolean("MarriedStatus"),rst.getInt("NumberOfMarriedSons"),rst.getInt("NumberOfUnmarriedSons"));
+            Client client = new Client(rst.getString("NIC"), rst.getString("ClientName"), rst.getString("Birthday"), rst.getString("Telephone"), rst.getString("Address"), rst.getDouble("AnnualIncome"), rst.getInt("GrantOwnershipPosition"),rst.getInt("PermitOwnershipPosition"),rst.getInt("MarriedStatus"),rst.getInt("NumberOfMarriedSons"),rst.getInt("NumberOfUnmarriedSons"));
            return client;
         }else{
             return null;

@@ -18,7 +18,7 @@ public class Client {
     private double annualIncome;
     private String address;
     
-    private boolean marriedStatus;
+    private int marriedStatus;
     private int numberOfMarriedSons;
     private int numberOfUnmarriedSons;
     
@@ -29,7 +29,7 @@ public class Client {
 
     }
 
-    public Client( String NIC,String clientName, String birthday, String telephone, String address,  double annualIncome, int grantOwnershipPosition, int permitOwnershipPosition,  boolean marriedStatus, int numberOfMarriedSons, int numberOfUnmarriedSons) {
+    public Client( String NIC,String clientName, String birthday, String telephone, String address,  double annualIncome, int grantOwnershipPosition, int permitOwnershipPosition,  int marriedStatus, int numberOfMarriedSons, int numberOfUnmarriedSons) {
         this.clientName = clientName;
         this.NIC = NIC;
         this.birthday = birthday;
@@ -68,11 +68,11 @@ public class Client {
     }
 
   
-    public boolean isMarried() {
+    public int isMarried() {
         return marriedStatus;
     }
 
-    public void setMarriedStatus(boolean marriedStatus) {
+    public void setMarriedStatus(int marriedStatus) {
         this.marriedStatus = marriedStatus;
     }
 

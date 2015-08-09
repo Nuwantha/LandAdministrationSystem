@@ -632,7 +632,7 @@ public class GrantForm extends javax.swing.JInternalFrame {
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 436, Short.MAX_VALUE)
+            .addGap(0, 451, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("View All Grants", jPanel4);
@@ -645,7 +645,7 @@ public class GrantForm extends javax.swing.JInternalFrame {
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 436, Short.MAX_VALUE)
+            .addGap(0, 451, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Search Grant", jPanel5);
@@ -659,7 +659,7 @@ public class GrantForm extends javax.swing.JInternalFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 467, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -673,7 +673,7 @@ public class GrantForm extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         pack();
@@ -744,9 +744,9 @@ public class GrantForm extends javax.swing.JInternalFrame {
         String Add_GND=AddGND.getText();
         String Add_GNDno=AddGNDno.getText();
         String Add_CurrentPermitholder=AddCurreentpermitholder.getText();
-        String Add_GrantHolder=AddGrantHolder.getText();
-        String Add_GrantHolderNIC=AddGrantHolderNIC.getText();
-        String Add_NomintedSuccessor=ADDNominatedSuccessor.getText();
+       // String Add_GrantHolder=AddGrantHolder.getText();
+        //String Add_GrantHolderNIC=AddGrantHolderNIC.getText();
+        //String Add_NomintedSuccessor=ADDNominatedSuccessor.getText();
     }//GEN-LAST:event_ADD_SaveActionPerformed
 
     private void Edit_SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Edit_SaveActionPerformed
@@ -758,9 +758,9 @@ public class GrantForm extends javax.swing.JInternalFrame {
         String Edit_GND=EditGND.getText();
         String Edit_GNDno=EditGND_No.getText();
         String Edit_CurrentPermitholder=EditCurrent_Permit_holder.getText();
-        String Edit_GrantHolder=EditGrant_Holder.getText();
-        String Edit_GrantHolderNIC=EditGrant_Holder_NIC.getText();
-        String Edit_NomintedSuccessor=EditNominated_Succ.getText();
+    //    String Edit_GrantHolder=EditGrant_Holder.getText();
+//        String Edit_GrantHolderNIC=EditGrant_Holder_NIC.getText();
+  //      String Edit_NomintedSuccessor=EditNominated_Succ.getText();
     }//GEN-LAST:event_Edit_SaveActionPerformed
 
     private void AddPermitHolderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddPermitHolderActionPerformed

@@ -59,9 +59,9 @@ CREATE TABLE Client(
 	AnnualIncome DECIMAL(10,2),
 	GrantOwnershipPosition INT(2),
 	PermitOwnershipPosition INT(2),
-        MarriedStatus BOOLEAN,
-	NumberOfMarriedSons INT(1),
-	NumberOfUnmarriedSons INT(1),
+        MarriedStatus INT(1),
+	NumberOfMarriedSons INT(2),
+	NumberOfUnmarriedSons INT(2),
 	CONSTRAINT PRIMARY KEY (NIC)
 );
 
@@ -186,21 +186,21 @@ INSERT INTO NominatedSuccessor values('Jayathilaka','890569211v','no 4');
 INSERT INTO NominatedSuccessor values('Sudipa','940511211v','no 7');
 
 /*client values*/
-INSERT INTO Client values('8002342354v','Sumanadasa','1980/06/06','0710454231','no 45, Galbokka ,Weligama','20000.00','1','1',TRUE,'0','0');
-INSERT INTO Client values('8302532365v','Gunasekara','1983/03/07','0710454456','no 70, Galbokka ,Weligama','25000.00','2','2',TRUE,'2','1');
-INSERT INTO Client values('800134235v','Kalum','1980/04/01','0710874231','no 64, Gammudawa ,Weligama','10000.00','1','1',FALSE,'0','0');
-INSERT INTO Client values('650134235v','Sujatha','1965/04/01','0710454287','no  65, Gammudawa ,Weligama','30000.00','1','1',TRUE,'0','4');
-INSERT INTO Client values('780134243v','Ganga','1978/04/01','0770454245','no 34,Piliwatta ,Weligama','28000.00','1','1',FALSE,'0','0');
-INSERT INTO Client values('770134253v','Ganga','1977/04/01','0720454245','no 65, 5e kanuwa ,Weligama','27000.00','1','1',TRUE,'0','1');
-INSERT INTO Client values('710134253v','Mlinda','1971/04/01','0750454245','no 75, 5e kanuwa ,Weligama','25600.00','1','1',TRUE,'0','1');
-INSERT INTO Client values('740134253v','Pavithra','1974/04/01','0720454257','no 95, 5e kanuwa ,Weligama','25200.00','1','1',TRUE,'0','1');
-INSERT INTO Client values('730134253v','Sujitha','1973/04/05','0720456245','no 65, 6e kanuwa ,Weligama','23000.00','0','1',TRUE,'2','1');
-INSERT INTO Client values('760134253v','Akila','1976/04/22','072012245','no 65, 8e kanuwa ,Weligama','27000.00','0','1',TRUE,'2','1');
-INSERT INTO Client values('790134253v','Madusha','1979/04/26','0720454515','no 65, pansalagoda ,Weligama','27000.00','0','1',TRUE,'1','1');
-INSERT INTO Client values('740134243v','Guanadasa','1974/04/01','0720454279','no 11, 5e kanuwa ,Weligama','25200.00','0','0',TRUE,'0','1');
-INSERT INTO Client values('730134267v','Nimalasena','1973/04/05','0720456321','no 05, 6e kanuwa ,Weligama','23000.00','0','0',TRUE,'2','1');
-INSERT INTO Client values('760134298v','Adikari','1976/04/22','072012211','no 15, 8e kanuwa ,Weligama','27000.00','0','0',TRUE,'0','1');
-INSERT INTO Client values('800134253v','Ranga','1979/04/26','0780454515','no 89, pansalagoda ,Weligama','27000.00','0','0',TRUE,'1','1');
+INSERT INTO Client values('8002342354v','Sumanadasa','1980/06/06','0710454231','no 45, Galbokka ,Weligama','20000.00','1','1','1','0','0');
+INSERT INTO Client values('8302532365v','Gunasekara','1983/03/07','0710454456','no 70, Galbokka ,Weligama','25000.00','2','2','1','2','1');
+INSERT INTO Client values('800134235v','Kalum','1980/04/01','0710874231','no 64, Gammudawa ,Weligama','10000.00','1','1','0','0','0');
+INSERT INTO Client values('650134235v','Sujatha','1965/04/01','0710454287','no  65, Gammudawa ,Weligama','30000.00','1','1','1','0','4');
+INSERT INTO Client values('780134243v','Ganga','1978/04/01','0770454245','no 34,Piliwatta ,Weligama','28000.00','1','1','0','0','0');
+INSERT INTO Client values('770134253v','Ganga','1977/04/01','0720454245','no 65, 5e kanuwa ,Weligama','27000.00','1','1','1','0','1');
+INSERT INTO Client values('710134253v','Mlinda','1971/04/01','0750454245','no 75, 5e kanuwa ,Weligama','25600.00','1','1','1','0','1');
+INSERT INTO Client values('740134253v','Pavithra','1974/04/01','0720454257','no 95, 5e kanuwa ,Weligama','25200.00','1','1','1','0','1');
+INSERT INTO Client values('730134253v','Sujitha','1973/04/05','0720456245','no 65, 6e kanuwa ,Weligama','23000.00','0','1','1','2','1');
+INSERT INTO Client values('760134253v','Akila','1976/04/22','072012245','no 65, 8e kanuwa ,Weligama','27000.00','0','1','1','2','1');
+INSERT INTO Client values('790134253v','Madusha','1979/04/26','0720454515','no 65, pansalagoda ,Weligama','27000.00','0','1','1','1','1');
+INSERT INTO Client values('740134243v','Guanadasa','1974/04/01','0720454279','no 11, 5e kanuwa ,Weligama','25200.00','0','0','1','0','1');
+INSERT INTO Client values('730134267v','Nimalasena','1973/04/05','0720456321','no 05, 6e kanuwa ,Weligama','23000.00','0','0','1','2','1');
+INSERT INTO Client values('760134298v','Adikari','1976/04/22','072012211','no 15, 8e kanuwa ,Weligama','27000.00','0','0','1','0','1');
+INSERT INTO Client values('800134253v','Ranga','1979/04/26','0780454515','no 89, pansalagoda ,Weligama','27000.00','0','0','1','1','1');
 
 
 
