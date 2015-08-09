@@ -617,7 +617,12 @@ public class FrontPage extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        ApplicantForm applicantForm = new ApplicantForm();
+        applicantForm.setSize(desktopPane.getSize());
+        desktopPane.removeAll();
+        desktopPane.add(applicantForm);
+        applicantForm.setVisible(true);
+               
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed

@@ -1660,7 +1660,7 @@ public class PermitForm extends javax.swing.JInternalFrame {
         //String AddPermitNum=AddPermitNo.getText();
         String Add_Village=AddVillage.getText();
         String Add_LandName=AddLandName.getText();
-        String Add_lotNo=AddLotNo.getText();
+//        String Add_lotNo=AddLotNo.getText();
         String Add_PlanNo=AddPlanNo.getText();
         String SurveyedHectares_Acres=AddHectares_Acres.getText();
         String Surveyed_Roods=AddRoods.getText();
@@ -1679,8 +1679,8 @@ public class PermitForm extends javax.swing.JInternalFrame {
         String Add_GND=AddGND.getText();
         String Add_GNDNo=AddGNDNo.getText();
         String Add_PermitHolder=AddPermitHolder.getText();
-        String Add_PermitHolderNIC=AddPermitHolderNIC.getText();
-        String Add_SuccessorName=AddSuccessorName.getText();
+//        String Add_PermitHolderNIC=AddPermitHolderNIC.getText();
+      //  String Add_SuccessorName=AddSuccessorName.getText();
     }//GEN-LAST:event_Add_SaveActionPerformed
 
     private void AddPerches1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddPerches1ActionPerformed

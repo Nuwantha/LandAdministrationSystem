@@ -744,9 +744,9 @@ public class GrantForm extends javax.swing.JInternalFrame {
         String Add_GND=AddGND.getText();
         String Add_GNDno=AddGNDno.getText();
         String Add_CurrentPermitholder=AddCurreentpermitholder.getText();
-        String Add_GrantHolder=AddGrantHolder.getText();
-        String Add_GrantHolderNIC=AddGrantHolderNIC.getText();
-        String Add_NomintedSuccessor=ADDNominatedSuccessor.getText();
+        //String Add_GrantHolder=AddGrantHolder.getText();
+        //String Add_GrantHolderNIC=AddGrantHolderNIC.getText();
+        //String Add_NomintedSuccessor=ADDNominatedSuccessor.getText();
     }//GEN-LAST:event_ADD_SaveActionPerformed
 
     private void Edit_SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Edit_SaveActionPerformed
@@ -758,9 +758,9 @@ public class GrantForm extends javax.swing.JInternalFrame {
         String Edit_GND=EditGND.getText();
         String Edit_GNDno=EditGND_No.getText();
         String Edit_CurrentPermitholder=EditCurrent_Permit_holder.getText();
-        String Edit_GrantHolder=EditGrant_Holder.getText();
-        String Edit_GrantHolderNIC=EditGrant_Holder_NIC.getText();
-        String Edit_NomintedSuccessor=EditNominated_Succ.getText();
+       // String Edit_GrantHolder=EditGrant_Holder.getText();
+        //String Edit_GrantHolderNIC=EditGrant_Holder_NIC.getText();
+       // String Edit_NomintedSuccessor=EditNominated_Succ.getText();
     }//GEN-LAST:event_Edit_SaveActionPerformed
 
     private void AddPermitHolderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddPermitHolderActionPerformed
