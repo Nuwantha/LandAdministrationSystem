@@ -10,9 +10,12 @@ import com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.text.JTextComponent;
 import las.common_classes.ComboItemAdder;
 import las.controllers.ClientController;
@@ -25,6 +28,8 @@ import las.models.Client;
 import las.models.GramaNiladariDivision;
 import las.models.Land;
 import las.models.Lot;
+import las.models.NominatedSuccessor;
+import las.models.Permit;
 
 /**
  *
@@ -1013,9 +1018,20 @@ public class PermitForm extends javax.swing.JInternalFrame {
                 permitNumber+=String.valueOf(permitCountOfDivision+1);
             }
             addpermit_permit_numberTest.setText(permitNumber);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(PermitForm.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
+            NominatedSuccessor nominatedSuccessor = new NominatedSuccessor(addpermit_NOS_nic_test.getText(), addpermit_NOS_name_test.getText(),addpermit_NOS_address_test.getText());
+            Client searchClient = ClientController.searchClient(String.valueOf(add_permit_nic_combo.getSelectedItem()));
+            Lot searchLot = LotController.searchLot(String.valueOf(add_permit_lot_number_Combo.getSelectedItem()));
+            Date date = addpermit_permit_issue_dateChooser.getDate();
+            SimpleDateFormat simpleDateFormat = new  SimpleDateFormat("YYYY-MM-dd");
+            String issueDate=simpleDateFormat.format(date);
+            Permit permit = new Permit(addpermit_permit_numberTest.getText(), issueDate, searchLot, searchClient, nominatedSuccessor);
+            boolean addNewPermit = PermitController.addNewPermit(permit);
+            if(addNewPermit){
+                JOptionPane.showMessageDialog(this, "permit Added successfully");
+            }else{
+                JOptionPane.showMessageDialog(this, "permit does not added successfully");
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(PermitForm.class.getName()).log(Level.SEVERE, null, ex);
         }
         

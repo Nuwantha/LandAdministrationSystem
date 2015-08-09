@@ -32,7 +32,7 @@ public class NominatedSuccessorController {
      public static boolean addNewNominateSuccessor(NominatedSuccessor NOS) throws ClassNotFoundException, SQLException {
 
         Connection conn = DBConnection.getDBConnection().getConnection();
-        String sql = "Insert into nominatedsuccessor Values('" + NOS.getName() + "','" + NOS.getNIC_S() + "','" + NOS.getAddress() + "'";
+        String sql = "Insert into nominatedsuccessor Values('" + NOS.getName() + "','" + NOS.getNIC_S() + "','" + NOS.getAddress() + "')";
         int returnValue = DBHandler.setData(conn, sql);
         return returnValue > 0;
     }

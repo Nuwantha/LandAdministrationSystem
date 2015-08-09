@@ -25,19 +25,28 @@ public class PermitController {
 
     public static boolean addNewPermit(Permit permit) throws ClassNotFoundException, SQLException {
 
-        boolean returnStatue;
+        boolean returnStatue = true;
         Connection conn = DBConnection.getDBConnection().getConnection();
         conn.setAutoCommit(false);
         try {
-            String sql = "Insert into permit Values('" + permit.getPermitNumber() + "','" + permit.getPermitNumber() + "','" + permit.getLot().getLotNumber() + "','" + permit.getClient().getNIC() + "','" + permit.getNominatedSuccessor().getNIC_S() + "')";
-            int returnPermitInsert = DBHandler.setData(conn, sql);
-            if (returnPermitInsert > 0) {
-                Client client = permit.getClient();
-                int position=ClientController.getnextOwnershiPositionPermit(permit.getPermitNumber());       
-                client.setPermitOwnershipPosition(position);
-                int updateClient = ClientController.updateClient(client);
-                if (updateClient > 0) {
-                    returnStatue = true;
+            boolean addNewNominateSuccessor = NominatedSuccessorController.addNewNominateSuccessor(permit.getNominatedSuccessor());
+            if (addNewNominateSuccessor) {
+                System.out.println("nominate succssor added");
+                String sql = "Insert into permit Values('" + permit.getPermitNumber() + "','" + permit.getPermitIssueDate() + "','" + permit.getLot().getLotNumber() + "','" + permit.getClient().getNIC() + "','" + permit.getNominatedSuccessor().getNIC_S() + "')";
+                int returnPermitInsert = DBHandler.setData(conn, sql);
+                if (returnPermitInsert > 0) {
+                    System.out.println("permit added");
+                    Client client = permit.getClient();
+                   // int position = ClientController.getnextOwnershiPositionPermit(permit.getPermitNumber());
+                    client.setPermitOwnershipPosition(1);
+                    int updateClient = ClientController.updateClient(client);
+                    if (updateClient > 0) {
+                        System.out.println("client updated");
+                        returnStatue = true;
+                    } else {
+                        returnStatue = false;
+                        conn.rollback();
+                    }
                 } else {
                     returnStatue = false;
                     conn.rollback();
@@ -49,6 +58,7 @@ public class PermitController {
             if (returnStatue) {
                 conn.commit();
             }
+
         } catch (SQLException sqlExeption) {
             returnStatue = false;
             conn.rollback();
@@ -72,16 +82,16 @@ public class PermitController {
             return null;
         }
     }
-    
-     public static int getPermitCountOfDivision(String divisionNumber) throws ClassNotFoundException, SQLException {
+
+    public static int getPermitCountOfDivision(String divisionNumber) throws ClassNotFoundException, SQLException {
         Connection conn = DBConnection.getDBConnection().getConnection();
-        String sql = "select count(distinct permitNumber) as permitCount from permit natural join lot natural join land where divisionNumber ='"+divisionNumber+"'";
+        String sql = "select count(distinct permitNumber) as permitCount from permit natural join lot natural join land where divisionNumber ='" + divisionNumber + "'";
         ResultSet rst = DBHandler.getData(conn, sql);
-         int permitCount=0;
+        int permitCount = 0;
         if (rst.next()) {
-            permitCount= rst.getInt("permitCount");
-   
-        } 
+            permitCount = rst.getInt("permitCount");
+
+        }
         return permitCount;
     }
 }
