@@ -6,6 +6,23 @@
 
 package las.views;
 
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.text.JTextComponent;
+import las.common_classes.ComboItemAdder;
+import las.controllers.ClientController;
+import las.controllers.GramaNiladariDivisionController;
+import las.controllers.LandController;
+import las.controllers.LotController;
+import las.models.Client;
+import las.models.GramaNiladariDivision;
+import las.models.Land;
+import las.models.Lot;
+
 /**
  *
  * @author H.P. Asela
@@ -17,6 +34,57 @@ public class PermitForm extends javax.swing.JInternalFrame {
      */
     public PermitForm() {
         initComponents();
+        
+        add_permit_nic_combo.setEditable(true);
+        JTextComponent editorAddPemitNICCombo = (JTextComponent) add_permit_nic_combo.getEditor().getEditorComponent();
+        editorAddPemitNICCombo.addKeyListener(new KeyAdapter() {
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                String item = (String) add_permit_nic_combo.getEditor().getItem();
+                ArrayList<Object> list = new ArrayList();
+                try {
+
+                    ArrayList<Client> simmilarNICs = ClientController.getSimmilarNICs(item);
+                    for (int i = 0; i < simmilarNICs.size(); i++) {
+                        list.add(simmilarNICs.get(i).getNIC());
+                    }
+                    ComboItemAdder.addItemToCombo(list, add_permit_nic_combo);
+
+                } catch (ClassNotFoundException | SQLException ex) {
+                    Logger.getLogger(LandForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            }
+
+        });
+        
+        
+         add_permit_division_number_combo.setEditable(true);
+        JTextComponent editorDivisionalNumberCombo = (JTextComponent) add_permit_division_number_combo.getEditor().getEditorComponent();
+
+        editorDivisionalNumberCombo.addKeyListener(new KeyAdapter() {
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+
+                add_permit_division_number_combo.setPopupVisible(true);
+                String test = String.valueOf(add_permit_division_number_combo.getEditor().getItem());
+                add_permit_division_number_combo.removeAllItems();
+                try {
+                    ArrayList<GramaNiladariDivision> simmilarGndDivisionNumbers = GramaNiladariDivisionController.getSimmilarGndDivisionNumbers(test);
+                    for (GramaNiladariDivision simmilarGndDivisionNumber : simmilarGndDivisionNumbers) {
+                        add_permit_division_number_combo.addItem(simmilarGndDivisionNumber.getDivisionNumber());
+                    }
+                    add_permit_division_number_combo.getEditor().setItem(test);
+                } catch (ClassNotFoundException | SQLException ex) {
+                    Logger.getLogger(GramaNiladhariForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            }
+
+        });
+        
     }
 
     /**
@@ -28,6 +96,7 @@ public class PermitForm extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jTabbedPane4 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
@@ -50,25 +119,25 @@ public class PermitForm extends javax.swing.JInternalFrame {
         Add_Save = new javax.swing.JButton();
         Add_Cancel = new javax.swing.JButton();
         jPanel11 = new javax.swing.JPanel();
-        jLabel99 = new javax.swing.JLabel();
-        jLabel100 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jLabel101 = new javax.swing.JLabel();
-        jLabel102 = new javax.swing.JLabel();
-        jLabel103 = new javax.swing.JLabel();
-        jComboBox6 = new javax.swing.JComboBox();
         jLabel14 = new javax.swing.JLabel();
-        nic_text1 = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
-        nic_text2 = new javax.swing.JTextField();
+        add_permit_landName_test = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
-        nic_text3 = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
-        nic_text4 = new javax.swing.JTextField();
+        add_permit_division_name_test = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        add_permit_lot_number_Combo = new javax.swing.JComboBox();
+        jLabel100 = new javax.swing.JLabel();
+        add_permit_acres_test = new javax.swing.JTextField();
+        add_permit_perches_test = new javax.swing.JTextField();
+        add_permit_roods_test = new javax.swing.JTextField();
+        jLabel103 = new javax.swing.JLabel();
+        jLabel102 = new javax.swing.JLabel();
+        jLabel101 = new javax.swing.JLabel();
+        jLabel99 = new javax.swing.JLabel();
+        add_permit_division_number_combo = new javax.swing.JComboBox();
+        add_permit_planNumber_combo = new javax.swing.JComboBox();
         jPanel4 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -81,14 +150,14 @@ public class PermitForm extends javax.swing.JInternalFrame {
         address_text = new javax.swing.JTextArea();
         nicInvalidLabel = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
-        search_nic_combo = new javax.swing.JComboBox();
-        search_nameText = new javax.swing.JTextField();
-        search_telephoneText = new javax.swing.JTextField();
+        add_permit_nic_combo = new javax.swing.JComboBox();
+        add_permit_nameText = new javax.swing.JTextField();
+        add_permit_telephoneText = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
-        search_addressText = new javax.swing.JTextArea();
-        search_DOB_test = new javax.swing.JTextField();
-        search_marriedStatusRButton = new javax.swing.JRadioButton();
-        search_singleStatusRButton = new javax.swing.JRadioButton();
+        add_permit_addressText = new javax.swing.JTextArea();
+        add_permit_no_of_children_test = new javax.swing.JTextField();
+        add_permit_marriedStatusRButton = new javax.swing.JRadioButton();
+        add_permit_singleStatusRButton = new javax.swing.JRadioButton();
         jLabel32 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
@@ -96,8 +165,8 @@ public class PermitForm extends javax.swing.JInternalFrame {
         jLabel35 = new javax.swing.JLabel();
         jLabel36 = new javax.swing.JLabel();
         jLabel39 = new javax.swing.JLabel();
-        search_annualIncome = new javax.swing.JTextField();
-        search_marided_sons = new javax.swing.JTextField();
+        add_permit_annualIncome = new javax.swing.JTextField();
+        add_permit_DOB_test = new javax.swing.JTextField();
         jLabel37 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
@@ -273,53 +342,23 @@ public class PermitForm extends javax.swing.JInternalFrame {
 
         jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Lot Details"));
 
-        jLabel99.setText("Lot No");
+        jLabel14.setText("Plan Number");
 
-        jLabel100.setText("Expected Extent");
+        jLabel15.setText("Land Name");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        add_permit_landName_test.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                add_permit_landName_testActionPerformed(evt);
             }
         });
 
-        jLabel101.setText("Acre / Hectare");
+        jLabel16.setText("Division Number:");
 
-        jLabel102.setText("Perches");
+        jLabel17.setText("Name:");
 
-        jLabel103.setText("Roods");
-
-        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jLabel14.setText("Land Name");
-
-        nic_text1.addActionListener(new java.awt.event.ActionListener() {
+        add_permit_division_name_test.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nic_text1ActionPerformed(evt);
-            }
-        });
-
-        jLabel15.setText("Plan Number");
-
-        nic_text2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nic_text2ActionPerformed(evt);
-            }
-        });
-
-        jLabel16.setText("Division Name:");
-
-        nic_text3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nic_text3ActionPerformed(evt);
-            }
-        });
-
-        jLabel17.setText("Number:");
-
-        nic_text4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nic_text4ActionPerformed(evt);
+                add_permit_division_name_testActionPerformed(evt);
             }
         });
 
@@ -327,73 +366,124 @@ public class PermitForm extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Included Division");
 
+        add_permit_lot_number_Combo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                add_permit_lot_number_ComboItemStateChanged(evt);
+            }
+        });
+        add_permit_lot_number_Combo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                add_permit_lot_number_ComboActionPerformed(evt);
+            }
+        });
+
+        jLabel100.setText("Expected Extent");
+
+        add_permit_perches_test.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                add_permit_perches_testActionPerformed(evt);
+            }
+        });
+
+        jLabel103.setText("Roods");
+
+        jLabel102.setText("Perches");
+
+        jLabel101.setText("Acre / Hectare");
+
+        jLabel99.setText("Lot No");
+
+        add_permit_division_number_combo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                add_permit_division_number_comboItemStateChanged(evt);
+            }
+        });
+        add_permit_division_number_combo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                add_permit_division_number_comboActionPerformed(evt);
+            }
+        });
+
+        add_permit_planNumber_combo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                add_permit_planNumber_comboItemStateChanged(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
-                .addGap(8, 8, 8)
-                .addComponent(jLabel99)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel11Layout.createSequentialGroup()
-                                .addComponent(jLabel100)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel103)
-                            .addComponent(jLabel102)
-                            .addComponent(jLabel101))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addComponent(jComboBox6, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(317, 317, 317))))
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel11Layout.createSequentialGroup()
+                            .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(286, 286, 286)
+                            .addComponent(add_permit_landName_test, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel11Layout.createSequentialGroup()
+                            .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(add_permit_division_name_test, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel11Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel99)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2)
-                            .addGroup(jPanel11Layout.createSequentialGroup()
-                                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(286, 286, 286)
-                                .addComponent(nic_text2, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
-                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel11Layout.createSequentialGroup()
-                                .addGap(47, 47, 47)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jPanel11Layout.createSequentialGroup()
                                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(jPanel11Layout.createSequentialGroup()
-                                        .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel100)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(nic_text3, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(nic_text1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(47, 47, 47)))
-                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel11Layout.createSequentialGroup()
-                                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(nic_text4, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(9, 9, 9))))
+                                        .addComponent(add_permit_acres_test, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(add_permit_roods_test, javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(add_permit_perches_test, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel103)
+                                    .addComponent(jLabel102)
+                                    .addComponent(jLabel101)))
+                            .addComponent(add_permit_lot_number_Combo, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel2)
+                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(add_permit_planNumber_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel11Layout.createSequentialGroup()
+                                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(add_permit_division_number_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(161, Short.MAX_VALUE))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(add_permit_division_name_test, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(add_permit_division_number_combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel1)
+                .addGap(12, 12, 12)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(add_permit_landName_test, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(add_permit_planNumber_combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel99)
-                    .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(add_permit_lot_number_Combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(5, 5, 5)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel11Layout.createSequentialGroup()
@@ -405,27 +495,11 @@ public class PermitForm extends javax.swing.JInternalFrame {
                     .addGroup(jPanel11Layout.createSequentialGroup()
                         .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel100)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(add_permit_acres_test, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(add_permit_perches_test, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
-                .addGap(12, 12, 12)
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nic_text1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nic_text2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(14, 14, 14)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nic_text3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nic_text4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(add_permit_roods_test, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -495,31 +569,33 @@ public class PermitForm extends javax.swing.JInternalFrame {
 
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "owner Detail", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
 
-        search_nic_combo.addItemListener(new java.awt.event.ItemListener() {
+        add_permit_nic_combo.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                search_nic_comboItemStateChanged(evt);
+                add_permit_nic_comboItemStateChanged(evt);
             }
         });
 
-        search_nameText.addKeyListener(new java.awt.event.KeyAdapter() {
+        add_permit_nameText.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                search_nameTextKeyReleased(evt);
+                add_permit_nameTextKeyReleased(evt);
             }
         });
 
-        search_addressText.setColumns(20);
-        search_addressText.setRows(5);
-        jScrollPane3.setViewportView(search_addressText);
+        add_permit_addressText.setColumns(20);
+        add_permit_addressText.setRows(5);
+        jScrollPane3.setViewportView(add_permit_addressText);
 
-        search_DOB_test.addActionListener(new java.awt.event.ActionListener() {
+        add_permit_no_of_children_test.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                search_DOB_testActionPerformed(evt);
+                add_permit_no_of_children_testActionPerformed(evt);
             }
         });
 
-        search_marriedStatusRButton.setText("Married");
+        buttonGroup1.add(add_permit_marriedStatusRButton);
+        add_permit_marriedStatusRButton.setText("Married");
 
-        search_singleStatusRButton.setText("Single");
+        buttonGroup1.add(add_permit_singleStatusRButton);
+        add_permit_singleStatusRButton.setText("Single");
 
         jLabel32.setText("NIC :");
 
@@ -560,32 +636,32 @@ public class PermitForm extends javax.swing.JInternalFrame {
                                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel7Layout.createSequentialGroup()
                                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(search_marided_sons, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(add_permit_DOB_test, javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addGroup(jPanel7Layout.createSequentialGroup()
                                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(search_nameText, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(search_nic_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(add_permit_nameText, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(add_permit_nic_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGroup(jPanel7Layout.createSequentialGroup()
-                                                .addComponent(search_marriedStatusRButton)
+                                                .addComponent(add_permit_marriedStatusRButton)
                                                 .addGap(18, 18, 18)
-                                                .addComponent(search_singleStatusRButton)))
+                                                .addComponent(add_permit_singleStatusRButton)))
                                         .addGap(0, 27, Short.MAX_VALUE))))
                             .addGroup(jPanel7Layout.createSequentialGroup()
                                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(jPanel7Layout.createSequentialGroup()
                                         .addComponent(jLabel39)
                                         .addGap(48, 48, 48)
-                                        .addComponent(search_annualIncome, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(add_permit_annualIncome, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel7Layout.createSequentialGroup()
                                         .addComponent(jLabel37)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(search_DOB_test))
+                                        .addComponent(add_permit_no_of_children_test))
                                     .addGroup(jPanel7Layout.createSequentialGroup()
                                         .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(32, 32, 32)
-                                        .addComponent(search_telephoneText, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(add_permit_telephoneText, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(27, 27, 27))))
         );
@@ -595,14 +671,14 @@ public class PermitForm extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(search_nic_combo))
+                    .addComponent(add_permit_nic_combo))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel18)
-                    .addComponent(search_nameText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(add_permit_nameText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(search_telephoneText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(add_permit_telephoneText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel33))
                 .addGap(13, 13, 13)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -611,20 +687,20 @@ public class PermitForm extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel35)
-                    .addComponent(search_marided_sons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(add_permit_DOB_test, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(search_marriedStatusRButton)
-                    .addComponent(search_singleStatusRButton)
+                    .addComponent(add_permit_marriedStatusRButton)
+                    .addComponent(add_permit_singleStatusRButton)
                     .addComponent(jLabel36))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel39)
-                    .addComponent(search_annualIncome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(add_permit_annualIncome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel37)
-                    .addComponent(search_DOB_test, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(add_permit_no_of_children_test, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -669,7 +745,7 @@ public class PermitForm extends javax.swing.JInternalFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, 491, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addContainerGap(17, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
@@ -685,7 +761,7 @@ public class PermitForm extends javax.swing.JInternalFrame {
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(4, 4, 4)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(193, 193, 193)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -746,12 +822,13 @@ public class PermitForm extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jTabbedPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 889, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 503, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jTabbedPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 503, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         jTabbedPane4.getAccessibleContext().setAccessibleName("Add Permit");
@@ -787,9 +864,9 @@ public class PermitForm extends javax.swing.JInternalFrame {
       //  String Add_SuccessorName=AddSuccessorName.getText();
     }//GEN-LAST:event_Add_SaveActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void add_permit_perches_testActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_permit_perches_testActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_add_permit_perches_testActionPerformed
 
     private void AddPlanNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddPlanNoActionPerformed
         // TODO add your handling code here:
@@ -823,51 +900,102 @@ public class PermitForm extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jCalendarCombo1ActionPerformed
 
-    private void nic_text2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nic_text2ActionPerformed
+    private void add_permit_landName_testActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_permit_landName_testActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_nic_text2ActionPerformed
+    }//GEN-LAST:event_add_permit_landName_testActionPerformed
 
-    private void nic_text3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nic_text3ActionPerformed
+    private void add_permit_division_name_testActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_permit_division_name_testActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_nic_text3ActionPerformed
+    }//GEN-LAST:event_add_permit_division_name_testActionPerformed
 
-    private void nic_text4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nic_text4ActionPerformed
+    private void add_permit_nic_comboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_add_permit_nic_comboItemStateChanged
+     try {
+            Client searchClient = ClientController.searchClient((String) add_permit_nic_combo.getSelectedItem());
+            if (searchClient != null) {
+                add_permit_nameText.setText(searchClient.getClientName());
+                add_permit_DOB_test.setText(searchClient.getBirthday());
+                add_permit_no_of_children_test.setText(String.valueOf(searchClient.getNumberOfMarriedSons()+searchClient.getNumberOfUnmarriedSons()));
+                add_permit_telephoneText.setText(searchClient.getTelephone());
+                if (searchClient.isMarried() == 0) {
+                    add_permit_singleStatusRButton.setSelected(true);
+                } else {
+                    add_permit_marriedStatusRButton.setSelected(true);
+                }
+                add_permit_annualIncome.setText(String.valueOf(searchClient.getAnnualIncome()));
+                add_permit_addressText.setText(searchClient.getAddress());
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(ApplicantForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_add_permit_nic_comboItemStateChanged
+
+    private void add_permit_nameTextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_add_permit_nameTextKeyReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_nic_text4ActionPerformed
+    }//GEN-LAST:event_add_permit_nameTextKeyReleased
 
-    private void search_nic_comboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_search_nic_comboItemStateChanged
-        //try {
-//            Client searchClient = ClientController.searchClient((String) search_nic_combo.getSelectedItem());
-  //          if (searchClient != null) {
-    //            search_nameText.setText(searchClient.getClientName());
-      //          search_DOB_test.setText(searchClient.getBirthday());
-        //        search_marided_sons.setText(String.valueOf(searchClient.getNumberOfMarriedSons()));
-          //      search_telephoneText.setText(searchClient.getTelephone());
-            //    search_unmarried_sons.setText(String.valueOf(searchClient.getNumberOfUnmarriedSons()));
-              //  if (searchClient.isMarried() == 0) {
-                //    search_singleStatusRButton.setSelected(true);
-               // } else {
-                //    search_marriedStatusRButton.setSelected(true);
-               // }
-               // search_annualIncome.setText(String.valueOf(searchClient.getAnnualIncome()));
-               // search_addressText.setText(searchClient.getAddress());
-           // }
-       // } catch (ClassNotFoundException | SQLException ex) {
-         //   Logger.getLogger(ApplicantForm.class.getName()).log(Level.SEVERE, null, ex);
-       // }
-    }//GEN-LAST:event_search_nic_comboItemStateChanged
-
-    private void search_nameTextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_search_nameTextKeyReleased
+    private void add_permit_no_of_children_testActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_permit_no_of_children_testActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_search_nameTextKeyReleased
+    }//GEN-LAST:event_add_permit_no_of_children_testActionPerformed
 
-    private void search_DOB_testActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search_DOB_testActionPerformed
+    private void add_permit_lot_number_ComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_permit_lot_number_ComboActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_search_DOB_testActionPerformed
+    }//GEN-LAST:event_add_permit_lot_number_ComboActionPerformed
 
-    private void nic_text1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nic_text1ActionPerformed
+    private void add_permit_division_number_comboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_permit_division_number_comboActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_nic_text1ActionPerformed
+    }//GEN-LAST:event_add_permit_division_number_comboActionPerformed
+
+    private void add_permit_division_number_comboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_add_permit_division_number_comboItemStateChanged
+        try {
+            GramaNiladariDivision searchGND = GramaNiladariDivisionController.searchGND((String) add_permit_division_number_combo.getSelectedItem());
+            if (searchGND != null) {
+                add_permit_division_name_test.setText(searchGND.getDivisionName());
+                ArrayList<Land> landsOfDivision = LandController.getLandsOfDivision(searchGND.getDivisionNumber());
+                ArrayList<Object> list=new ArrayList();
+                for (Land land : landsOfDivision) {
+                    list.add(land.getPlanNumber());
+                }
+                ComboItemAdder.addItemToCombo(list, add_permit_planNumber_combo);
+                
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(GramaNiladhariForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_add_permit_division_number_comboItemStateChanged
+
+    private void add_permit_planNumber_comboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_add_permit_planNumber_comboItemStateChanged
+         try {
+             Land searchLand = LandController.searchLand(String.valueOf(add_permit_planNumber_combo.getSelectedItem()));
+             if (searchLand != null) {
+                add_permit_landName_test.setText(searchLand.getLandName());
+                 ArrayList<Lot> lotList = searchLand.getLotList();
+                ArrayList<Object> list=new ArrayList();
+                for (Lot lot : lotList) {
+                    list.add(lot.getLotNumber());
+                }
+                ComboItemAdder.addItemToCombo(list, add_permit_lot_number_Combo);
+                
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(GramaNiladhariForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_add_permit_planNumber_comboItemStateChanged
+
+    private void add_permit_lot_number_ComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_add_permit_lot_number_ComboItemStateChanged
+        try {
+            Lot searchLot = LotController.searchLot(String.valueOf(add_permit_lot_number_Combo.getSelectedItem()));
+            if(searchLot!=null){
+                add_permit_acres_test.setText(String.valueOf(searchLot.getNumberOfAcres()));
+                add_permit_perches_test.setText(String.valueOf(searchLot.getNumberOfPerches()));
+                add_permit_roods_test.setText(String.valueOf(searchLot.getNumberofRoods()));
+            }
+        
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(PermitForm.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(PermitForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_add_permit_lot_number_ComboItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -880,11 +1008,28 @@ public class PermitForm extends javax.swing.JInternalFrame {
     private javax.swing.JTextField AddPlanNo;
     private javax.swing.JButton Add_Cancel;
     private javax.swing.JButton Add_Save;
+    private javax.swing.JTextField add_permit_DOB_test;
+    private javax.swing.JTextField add_permit_acres_test;
+    private javax.swing.JTextArea add_permit_addressText;
+    private javax.swing.JTextField add_permit_annualIncome;
+    private javax.swing.JTextField add_permit_division_name_test;
+    private javax.swing.JComboBox add_permit_division_number_combo;
+    private javax.swing.JTextField add_permit_landName_test;
+    private javax.swing.JComboBox add_permit_lot_number_Combo;
+    private javax.swing.JRadioButton add_permit_marriedStatusRButton;
+    private javax.swing.JTextField add_permit_nameText;
+    private javax.swing.JComboBox add_permit_nic_combo;
+    private javax.swing.JTextField add_permit_no_of_children_test;
+    private javax.swing.JTextField add_permit_perches_test;
+    private javax.swing.JComboBox add_permit_planNumber_combo;
+    private javax.swing.JTextField add_permit_roods_test;
+    private javax.swing.JRadioButton add_permit_singleStatusRButton;
+    private javax.swing.JTextField add_permit_telephoneText;
     private javax.swing.JTextArea address_text;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private org.freixas.jcalendar.JCalendarCombo jCalendarCombo1;
     private javax.swing.JComboBox jComboBox2;
-    private javax.swing.JComboBox jComboBox6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel100;
@@ -928,24 +1073,8 @@ public class PermitForm extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane4;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JLabel nicInvalidLabel;
     private javax.swing.JTextField nic_text;
-    private javax.swing.JTextField nic_text1;
-    private javax.swing.JTextField nic_text2;
-    private javax.swing.JTextField nic_text3;
-    private javax.swing.JTextField nic_text4;
     private javax.swing.JTextField ns_name_text;
-    private javax.swing.JTextField search_DOB_test;
-    private javax.swing.JTextArea search_addressText;
-    private javax.swing.JTextField search_annualIncome;
-    private javax.swing.JTextField search_marided_sons;
-    private javax.swing.JRadioButton search_marriedStatusRButton;
-    private javax.swing.JTextField search_nameText;
-    private javax.swing.JComboBox search_nic_combo;
-    private javax.swing.JRadioButton search_singleStatusRButton;
-    private javax.swing.JTextField search_telephoneText;
     // End of variables declaration//GEN-END:variables
 }

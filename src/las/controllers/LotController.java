@@ -19,17 +19,17 @@ import las.models.Lot;
  * @author Gimhani
  */
 public class LotController {
-     public static boolean addNewLot(Lot lot) throws ClassNotFoundException, SQLException {
-        Connection conn=DBConnection.getDBConnection().getConnection();
-        String sql = "Insert into Lot Values('" + lot.getLotNumber() + "','" + lot.getNumberOfAcres() + "','" + lot.getNumberOfPerches() + "','" + lot.getNumberofRoods() + "','" + lot.getLand().getPlanNumber() + "')" ;  
-        int returnValue = DBHandler.setData(conn, sql);         
-        return returnValue>0;
+
+    public static boolean addNewLot(Lot lot) throws ClassNotFoundException, SQLException {
+        Connection conn = DBConnection.getDBConnection().getConnection();
+        String sql = "Insert into Lot Values('" + lot.getLotNumber() + "','" + lot.getNumberOfAcres() + "','" + lot.getNumberOfPerches() + "','" + lot.getNumberofRoods() + "','" + lot.getLand().getPlanNumber() + "')";
+        int returnValue = DBHandler.setData(conn, sql);
+        return returnValue > 0;
     }
-    
-    
+
     public static Lot searchLot(String lotNumber) throws ClassNotFoundException, SQLException {
         Connection conn = DBConnection.getDBConnection().getConnection();
-        String sql = "Select * from Lot where LotNumber='" + lotNumber+ "'";
+        String sql = "Select * from Lot where LotNumber='" + lotNumber + "'";
         ResultSet rst = DBHandler.getData(conn, sql);
         if (rst.next()) {
             Land searchLand = LandController.searchLand(rst.getString("PlanNumber"));
@@ -39,37 +39,40 @@ public class LotController {
             return null;
         }
     }
-    
+
     public static ArrayList<Lot> searchLotOfLand(String planNumber) throws ClassNotFoundException, SQLException {
         Connection conn = DBConnection.getDBConnection().getConnection();
-        String sql = "Select * from Lot where planNumber='" + planNumber+ "'";
+        String sql = "Select * from Lot where planNumber='" + planNumber + "'";
         ResultSet rst = DBHandler.getData(conn, sql);
-        ArrayList<Lot> lotList=new ArrayList();
-        while(rst.next()) {
+        ArrayList<Lot> lotList = new ArrayList();
+        while (rst.next()) {
             Lot lot = new Lot(rst.getString("LotNumber"), rst.getInt("NumberOfAcres"), rst.getInt("NumberOfRoods"), rst.getInt("NumberOfPerches"));
             lotList.add(lot);
-        } 
+        }
         return lotList;
     }
-    
-     public static boolean updateLot(Lot lot) throws ClassNotFoundException, SQLException {
+
+    public static boolean updateLot(Lot lot) throws ClassNotFoundException, SQLException {
         Connection conn = DBConnection.getDBConnection().getConnection();
-        String sql = "Update  Lot Set  NumberOfAcres='"+lot.getNumberOfAcres()+"', NumberOfPerches='"+lot.getNumberOfPerches()+"',NumberofRoods='"+lot.getNumberofRoods()+"' Where  LotNumber='"+lot.getLotNumber()+"'";
+        String sql = "Update  Lot Set  NumberOfAcres='" + lot.getNumberOfAcres() + "', NumberOfPerches='" + lot.getNumberOfPerches() + "',NumberofRoods='" + lot.getNumberofRoods() + "' Where  LotNumber='" + lot.getLotNumber() + "'";
         int res = DBHandler.setData(conn, sql);
-        return res>0;
+        return res > 0;
     }
-    
-      public static Lot getLastAddedLot() throws ClassNotFoundException, SQLException {
+
+    public static Lot getLastAddedLot() throws ClassNotFoundException, SQLException {
         Connection conn = DBConnection.getDBConnection().getConnection();
         String sql = "Select * From Lot order by lotNumber Desc limit 1";
         ResultSet rst = DBHandler.getData(conn, sql);
-        if(rst.next()){
+        if (rst.next()) {
             Land Land = LandController.searchLand(rst.getString("PlanNumber"));
-            Lot lot = new Lot(rst.getString("LotNumber"), rst.getInt("NumberOfAcres"), rst.getInt("NumberOfPerches"), rst.getInt("NumberOfRoods"),Land);
+            Lot lot = new Lot(rst.getString("LotNumber"), rst.getInt("NumberOfAcres"), rst.getInt("NumberOfPerches"), rst.getInt("NumberOfRoods"), Land);
             return lot;
-        }else{
+        } else {
             return null;
         }
-      }
-    
+        
+    }
+   
 }
+
+

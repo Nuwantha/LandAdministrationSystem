@@ -114,6 +114,19 @@ public class LandController {
         }
         return landList;
     }
+    
+    public static ArrayList<Land> getLandsOfDivision(String DivisionNumber) throws ClassNotFoundException, SQLException {
+        Connection conn = DBConnection.getDBConnection().getConnection();
+        String sql = "Select * From land where DivisionNumber = '" + DivisionNumber + "'";
+        ResultSet rst = DBHandler.getData(conn, sql);
+        ArrayList<Land> landList = new ArrayList<>();
+        while (rst.next()) {
+            Land GND = new Land(rst.getString("planNumber"), rst.getString("landName"), rst.getString("DivisionNumber"), rst.getString("WestBound"), rst.getString("EastBound"), rst.getString("NorthBound"), rst.getString("SouthBound"));
+            landList.add(GND);
+        }
+        return landList;
+    }
+
 
     public static boolean updateLand(Land land) throws ClassNotFoundException, SQLException {
         boolean returnValue = true;
