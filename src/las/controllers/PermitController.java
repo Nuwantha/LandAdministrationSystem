@@ -72,4 +72,16 @@ public class PermitController {
             return null;
         }
     }
+    
+     public static int getPermitCountOfDivision(String divisionNumber) throws ClassNotFoundException, SQLException {
+        Connection conn = DBConnection.getDBConnection().getConnection();
+        String sql = "select count(distinct permitNumber) as permitCount from permit natural join lot natural join land where divisionNumber ='"+divisionNumber+"'";
+        ResultSet rst = DBHandler.getData(conn, sql);
+         int permitCount=0;
+        if (rst.next()) {
+            permitCount= rst.getInt("permitCount");
+   
+        } 
+        return permitCount;
+    }
 }

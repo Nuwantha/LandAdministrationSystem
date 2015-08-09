@@ -199,8 +199,8 @@
                                           </Group>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="AddPlanNo" min="-2" pref="112" max="-2" attributes="0"/>
-                                              <Component id="jCalendarCombo1" min="-2" max="-2" attributes="0"/>
+                                              <Component id="addpermit_permit_numberTest" min="-2" pref="112" max="-2" attributes="0"/>
+                                              <Component id="addpermit_permit_issue_dateChooser" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
@@ -217,12 +217,12 @@
                           <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel5" alignment="3" min="-2" pref="17" max="-2" attributes="0"/>
-                              <Component id="AddPlanNo" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="addpermit_permit_numberTest" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel3" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                              <Component id="jCalendarCombo1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="addpermit_permit_issue_dateChooser" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="488" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -330,14 +330,14 @@
                     <Property name="text" type="java.lang.String" value="Issue Date:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="AddPlanNo">
+                <Component class="javax.swing.JTextField" name="addpermit_permit_numberTest">
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AddPlanNoActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addpermit_permit_numberTestActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="org.freixas.jcalendar.JCalendarCombo" name="jCalendarCombo1">
+                <Component class="org.freixas.jcalendar.JCalendarCombo" name="addpermit_permit_issue_dateChooser">
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCalendarCombo1ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addpermit_permit_issue_dateChooserActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -620,9 +620,9 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jComboBox2" alignment="0" min="-2" pref="119" max="-2" attributes="0"/>
-                              <Component id="ns_name_text" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
+                              <Component id="addpermit_NOS_name_test" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="nic_text" min="-2" pref="109" max="-2" attributes="0"/>
+                                  <Component id="addpermit_NOS_nic_test" min="-2" pref="109" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="nicInvalidLabel" min="-2" max="-2" attributes="0"/>
                               </Group>
@@ -638,7 +638,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="ns_name_text" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="addpermit_NOS_name_test" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -648,7 +648,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="nic_text" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="addpermit_NOS_nic_test" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="nicInvalidLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -677,7 +677,7 @@
                     <Property name="text" type="java.lang.String" value="Address:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="ns_name_text">
+                <Component class="javax.swing.JTextField" name="addpermit_NOS_name_test">
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel13">
                   <Properties>
@@ -697,7 +697,7 @@
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="nic_text">
+                <Component class="javax.swing.JTextField" name="addpermit_NOS_nic_test">
                 </Component>
                 <Container class="javax.swing.JScrollPane" name="jScrollPane1">
                   <AuxValues>
@@ -706,7 +706,7 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTextArea" name="address_text">
+                    <Component class="javax.swing.JTextArea" name="addpermit_NOS_address_test">
                       <Properties>
                         <Property name="columns" type="int" value="20"/>
                         <Property name="rows" type="int" value="5"/>
@@ -960,25 +960,28 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="101" max="-2" attributes="0"/>
+                          <Component id="addpermit_add_permit_button" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="addpermit_add_permit_button" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="11" max="32767" attributes="0"/>
-                          <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JButton" name="jButton1">
+                <Component class="javax.swing.JButton" name="addpermit_add_permit_button">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Add Permit"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addpermit_add_permit_buttonActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
