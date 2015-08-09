@@ -610,7 +610,7 @@
                                                   <Component id="telephoneText" alignment="0" max="32767" attributes="0"/>
                                                   <Component id="nicText" alignment="0" pref="126" max="32767" attributes="0"/>
                                               </Group>
-                                              <Component id="birthdayChooser" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="birthdayChooser1" alignment="0" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -661,7 +661,7 @@
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                                              <Component id="birthdayChooser" alignment="1" min="-2" max="-2" attributes="0"/>
+                                              <Component id="birthdayChooser1" alignment="1" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
@@ -896,7 +896,7 @@
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addCurrentResidenceButtonActionPerformed"/>
                           </Events>
                         </Component>
-                        <Component class="org.freixas.jcalendar.JCalendarCombo" name="birthdayChooser">
+                        <Component class="org.freixas.jcalendar.JCalendarCombo" name="birthdayChooser1">
                         </Component>
                       </SubComponents>
                     </Container>
@@ -990,7 +990,6 @@
                                       <EmptySpace max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
-                                      <EmptySpace max="32767" attributes="0"/>
                                       <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                                   </Group>
@@ -1308,17 +1307,12 @@
                                               <Component id="edit_DOB_test" pref="96" max="32767" attributes="0"/>
                                               <EmptySpace min="-2" pref="181" max="-2" attributes="0"/>
                                           </Group>
-                                          <Group type="102" attributes="0">
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                                                      <Component id="edit_nameText" alignment="0" max="32767" attributes="0"/>
-                                                      <Component id="jScrollPane4" alignment="0" pref="277" max="32767" attributes="0"/>
-                                                      <Component id="edit_telephoneText" alignment="0" max="32767" attributes="0"/>
-                                                  </Group>
-                                                  <Component id="edit_nic_combo" min="-2" pref="121" max="-2" attributes="0"/>
-                                              </Group>
-                                              <EmptySpace max="-2" attributes="0"/>
+                                          <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="edit_nameText" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="jScrollPane4" alignment="0" pref="277" max="32767" attributes="0"/>
+                                              <Component id="edit_telephoneText" alignment="0" max="32767" attributes="0"/>
                                           </Group>
+                                          <Component id="edit_nic_combo" min="-2" pref="121" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="edit_marriedStatusRButton" min="-2" max="-2" attributes="0"/>

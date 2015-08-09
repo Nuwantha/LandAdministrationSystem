@@ -446,8 +446,13 @@ public class FrontPage extends javax.swing.JFrame {
         shortcutAccessPanel.add(jButton1);
 
         jButton2.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
-        jButton2.setText("View All clients");
+        jButton2.setText("Add new Permit");
         buttonGroup1.add(jButton2);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         shortcutAccessPanel.add(jButton2);
 
         jButton3.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
@@ -641,6 +646,14 @@ public class FrontPage extends javax.swing.JFrame {
         landForm.setVisible(true);
                
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        PermitForm permitForm = new PermitForm();
+        permitForm.setSize(desktopPane.getSize());
+        desktopPane.removeAll();
+        desktopPane.add(permitForm);
+        permitForm.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

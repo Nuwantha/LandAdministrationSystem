@@ -159,7 +159,7 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
         jLabel11 = new javax.swing.JLabel();
         annualIncomeText = new javax.swing.JTextField();
         addCurrentResidenceButton = new javax.swing.JButton();
-        birthdayChooser = new org.freixas.jcalendar.JCalendarCombo();
+        birthdayChooser1 = new org.freixas.jcalendar.JCalendarCombo();
         jPanel5 = new javax.swing.JPanel();
         personalDetailPanel1 = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
@@ -609,8 +609,6 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
                 .addContainerGap(49, Short.MAX_VALUE))
         );
 
-        birthdayChooser.setDateFormatString("yyyy-MM-dd");
-
         addCurrentResidenceButton.setText("Add current residence details");
         addCurrentResidenceButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -649,7 +647,7 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
                                 .addComponent(applicantNumberText, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(telephoneText)
                                 .addComponent(nicText, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE))
-                            .addComponent(birthdayChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(birthdayChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(36, 36, 36)
                         .addGroup(personalDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -687,7 +685,7 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addGroup(personalDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
-                            .addComponent(birthdayChooser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(birthdayChooser1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(1, 1, 1)
                 .addGroup(personalDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -889,7 +887,6 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
                         .addComponent(childrenCountPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, personalDetailPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(45, 45, 45))))
         );
@@ -1113,14 +1110,11 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
                                 .addGroup(personalDetailPanel2Layout.createSequentialGroup()
                                     .addComponent(edit_DOB_test, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
                                     .addGap(181, 181, 181))
-                                .addGroup(personalDetailPanel2Layout.createSequentialGroup()
-                                    .addGroup(personalDetailPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(personalDetailPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(edit_nameText)
-                                            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
-                                            .addComponent(edit_telephoneText))
-                                        .addComponent(edit_nic_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                .addGroup(personalDetailPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(edit_nameText)
+                                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
+                                    .addComponent(edit_telephoneText))
+                                .addComponent(edit_nic_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(personalDetailPanel2Layout.createSequentialGroup()
                                 .addComponent(edit_marriedStatusRButton)
                                 .addGap(18, 18, 18)
@@ -1311,7 +1305,7 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
         String nic = nicText.getText();
         String telephoneNumber = telephoneText.getText();
         String address = addressText.getText();
-        Date date = birthdayChooser.getDate();
+        Date date = birthdayChooser1.getDate();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY-MM-dd");
         String DOB = simpleDateFormat.format(date);
         System.out.println(DOB);
@@ -1383,7 +1377,7 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
     private javax.swing.JTextArea addressText;
     private javax.swing.JTextField annualIncomeText;
     private javax.swing.JTextField applicantNumberText;
-    private org.freixas.jcalendar.JCalendarCombo birthdayChooser;
+    private org.freixas.jcalendar.JCalendarCombo birthdayChooser1;
     private javax.swing.JPanel childrenCountPanel;
     private javax.swing.JPanel childrenCountPanel1;
     private javax.swing.JPanel childrenCountPanel2;
