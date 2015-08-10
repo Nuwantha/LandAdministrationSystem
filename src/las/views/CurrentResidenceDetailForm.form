@@ -88,14 +88,14 @@
                           <Component id="resultLabel" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jLabel22" min="-2" max="-2" attributes="0"/>
+                          <Component id="AppliedStatusLabel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jRadioButton7" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                           <Component id="jRadioButton8" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jLabel21" min="-2" max="-2" attributes="0"/>
+                          <Component id="Legallity" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jRadioButton5" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
@@ -104,7 +104,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="currentResidenceLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel13" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="ApplicationType" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -135,19 +135,19 @@
                   </Group>
                   <EmptySpace min="7" pref="7" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="ApplicationType" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jRadioButton3" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jRadioButton4" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel21" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="Legallity" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jRadioButton5" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jRadioButton6" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel22" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="AppliedStatusLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jRadioButton7" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jRadioButton8" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -190,7 +190,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JLabel" name="jLabel13">
+        <Component class="javax.swing.JLabel" name="ApplicationType">
           <Properties>
             <Property name="text" type="java.lang.String" value="01. Applicant is "/>
           </Properties>
@@ -232,8 +232,8 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel14" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel15" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="OwnerOfTheLandLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="RelationLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -249,12 +249,12 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="OwnerOfTheLandLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="landOwnerText" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel15" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="RelationLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="relationshipText" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="38" max="32767" attributes="0"/>
@@ -268,12 +268,12 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="landOwnerTextActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel14">
+            <Component class="javax.swing.JLabel" name="OwnerOfTheLandLabel">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Owner of land:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel15">
+            <Component class="javax.swing.JLabel" name="RelationLabel">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Relationship to owner:"/>
               </Properties>
@@ -296,7 +296,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
+                      <Component id="SizeOfLandLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
@@ -326,7 +326,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel16" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="SizeOfLandLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="acreSpinner" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel18" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -346,7 +346,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="jLabel16">
+            <Component class="javax.swing.JLabel" name="SizeOfLandLabel">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Size of land:"/>
               </Properties>
@@ -374,7 +374,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JLabel" name="jLabel21">
+        <Component class="javax.swing.JLabel" name="Legallity">
           <Properties>
             <Property name="text" type="java.lang.String" value="02.Is the land illegal (a government property?)"/>
           </Properties>
@@ -398,7 +398,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButton6ActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel22">
+        <Component class="javax.swing.JLabel" name="AppliedStatusLabel">
           <Properties>
             <Property name="text" type="java.lang.String" value="03.Has applicant applied before to land kachcheri?"/>
           </Properties>

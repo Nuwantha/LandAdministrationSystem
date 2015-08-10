@@ -16,6 +16,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.text.JTextComponent;
 import las.common_classes.ComboItemAdder;
 import las.common_classes.IdGenerator;
+import las.common_classes.PatternChecker;
 import las.controllers.GramaNiladariDivisionController;
 import las.controllers.LandController;
 import las.controllers.LotController;
@@ -165,28 +166,31 @@ public class LandForm extends javax.swing.JInternalFrame {
 
         LandTabbedPane = new javax.swing.JTabbedPane();
         AddNewLand = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        gndnolabel = new javax.swing.JLabel();
+        gndlabel = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        lotnolabel = new javax.swing.JLabel();
+        extentlabel = new javax.swing.JLabel();
         perches_test = new javax.swing.JTextField();
         rood_test = new javax.swing.JTextField();
         acre_test = new javax.swing.JTextField();
         lot_number_test = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
+        acreorhectarelabel = new javax.swing.JLabel();
+        percheslabel = new javax.swing.JLabel();
+        roodslabel = new javax.swing.JLabel();
         add_lot_buttun = new javax.swing.JToggleButton();
+        acresnotvalidlabel = new javax.swing.JLabel();
+        perchesnotvalidlabel = new javax.swing.JLabel();
+        roodsnotvalidlabel = new javax.swing.JLabel();
         gnd_name_test = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
+        plannolabel = new javax.swing.JLabel();
         plan_nummber_test = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        boundedlabel = new javax.swing.JLabel();
+        boundedonnorthlabel = new javax.swing.JLabel();
+        boundedoneastlabel = new javax.swing.JLabel();
+        boundedonwestlabel = new javax.swing.JLabel();
+        boundedonsouthlabel = new javax.swing.JLabel();
         land_north_test = new javax.swing.JTextField();
         land_east_test = new javax.swing.JTextField();
         land_west_test = new javax.swing.JTextField();
@@ -198,7 +202,8 @@ public class LandForm extends javax.swing.JInternalFrame {
         land_save_buttun = new javax.swing.JButton();
         gnd_number_combo = new javax.swing.JComboBox();
         land_name_test = new javax.swing.JTextField();
-        jLabel27 = new javax.swing.JLabel();
+        landnamelabel = new javax.swing.JLabel();
+        landnotvalidlabel = new javax.swing.JLabel();
         EditLandDetails = new javax.swing.JPanel();
         AddNewLand1 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
@@ -257,27 +262,49 @@ public class LandForm extends javax.swing.JInternalFrame {
 
         AddNewLand.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
-        jLabel1.setText("G.N.D No");
+        gndnolabel.setText("G.N.D No");
 
-        jLabel2.setText("Grama Niladhari Division");
+        gndlabel.setText("Grama Niladhari Division");
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Lot Details"));
 
-        jLabel3.setText("Lot No");
+        lotnolabel.setText("Lot No");
 
-        jLabel4.setText("Expected Extent");
+        extentlabel.setText("Expected Extent");
 
         perches_test.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 perches_testActionPerformed(evt);
             }
         });
+        perches_test.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                perches_testKeyReleased(evt);
+            }
+        });
 
-        jLabel11.setText("Acre / Hectare");
+        rood_test.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rood_testActionPerformed(evt);
+            }
+        });
 
-        jLabel12.setText("Perches");
+        acre_test.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                acre_testActionPerformed(evt);
+            }
+        });
+        acre_test.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                acre_testKeyReleased(evt);
+            }
+        });
 
-        jLabel13.setText("Roods");
+        acreorhectarelabel.setText("Acre / Hectare");
+
+        percheslabel.setText("Perches");
+
+        roodslabel.setText("Roods");
 
         add_lot_buttun.setText("Add Lot");
         add_lot_buttun.addActionListener(new java.awt.event.ActionListener() {
@@ -286,17 +313,29 @@ public class LandForm extends javax.swing.JInternalFrame {
             }
         });
 
+        acresnotvalidlabel.setBackground(new java.awt.Color(204, 0, 0));
+        acresnotvalidlabel.setForeground(new java.awt.Color(204, 0, 0));
+        acresnotvalidlabel.setText("Not Valid");
+
+        perchesnotvalidlabel.setBackground(new java.awt.Color(204, 0, 0));
+        perchesnotvalidlabel.setForeground(new java.awt.Color(204, 0, 0));
+        perchesnotvalidlabel.setText("Not Valid");
+
+        roodsnotvalidlabel.setBackground(new java.awt.Color(204, 0, 0));
+        roodsnotvalidlabel.setForeground(new java.awt.Color(204, 0, 0));
+        roodsnotvalidlabel.setText("Not Valid");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(8, 8, 8)
-                .addComponent(jLabel3)
+                .addComponent(lotnolabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lot_number_test, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(79, 79, 79)
-                .addComponent(jLabel4)
+                .addComponent(extentlabel)
                 .addGap(59, 59, 59)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(acre_test)
@@ -305,35 +344,46 @@ public class LandForm extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel12)
-                            .addComponent(jLabel11))
-                        .addGap(176, 176, 176))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel13)
+                        .addComponent(roodslabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(roodsnotvalidlabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(add_lot_buttun)
-                        .addGap(52, 52, 52))))
+                        .addGap(52, 52, 52))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(acreorhectarelabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(acresnotvalidlabel))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(percheslabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(perchesnotvalidlabel)))
+                        .addGap(128, 128, 128))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
+                    .addComponent(lotnolabel)
                     .addComponent(lot_number_test, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
+                    .addComponent(extentlabel)
                     .addComponent(acre_test, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11))
+                    .addComponent(acreorhectarelabel)
+                    .addComponent(acresnotvalidlabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(perches_test, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12))
+                    .addComponent(percheslabel)
+                    .addComponent(perchesnotvalidlabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13)
+                    .addComponent(roodslabel)
                     .addComponent(rood_test, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(add_lot_buttun))
+                    .addComponent(add_lot_buttun)
+                    .addComponent(roodsnotvalidlabel))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -343,34 +393,34 @@ public class LandForm extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel5.setText("Plan No");
+        plannolabel.setText("Plan No");
 
-        jLabel6.setText("Bounded -");
+        boundedlabel.setText("Bounded -");
 
-        jLabel7.setText("On North By");
+        boundedonnorthlabel.setText("On North By");
 
-        jLabel8.setText("On East By");
+        boundedoneastlabel.setText("On East By");
 
-        jLabel9.setText("On West By");
+        boundedonwestlabel.setText("On West By");
 
-        jLabel10.setText("On South By");
+        boundedonsouthlabel.setText("On South By");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel6)
+                .addComponent(boundedlabel)
                 .addGap(13, 13, 13)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8))
+                            .addComponent(boundedonnorthlabel)
+                            .addComponent(boundedoneastlabel))
                         .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel9)
+                            .addComponent(boundedonwestlabel)
                             .addGap(2, 2, 2)))
-                    .addComponent(jLabel10))
+                    .addComponent(boundedonsouthlabel))
                 .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(land_south_test)
@@ -386,20 +436,20 @@ public class LandForm extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7)
+                    .addComponent(boundedlabel)
+                    .addComponent(boundedonnorthlabel)
                     .addComponent(land_north_test, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(6, 6, 6)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
+                    .addComponent(boundedoneastlabel)
                     .addComponent(land_east_test, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
+                    .addComponent(boundedonwestlabel)
                     .addComponent(land_west_test, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
+                    .addComponent(boundedonsouthlabel)
                     .addComponent(land_south_test, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -443,8 +493,23 @@ public class LandForm extends javax.swing.JInternalFrame {
                 gnd_number_comboItemStateChanged(evt);
             }
         });
+        gnd_number_combo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gnd_number_comboActionPerformed(evt);
+            }
+        });
 
-        jLabel27.setText("Land Name");
+        land_name_test.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                land_name_testKeyReleased(evt);
+            }
+        });
+
+        landnamelabel.setText("Land Name");
+
+        landnotvalidlabel.setBackground(new java.awt.Color(204, 0, 0));
+        landnotvalidlabel.setForeground(new java.awt.Color(204, 0, 0));
+        landnotvalidlabel.setText("Not Valid");
 
         javax.swing.GroupLayout AddNewLandLayout = new javax.swing.GroupLayout(AddNewLand);
         AddNewLand.setLayout(AddNewLandLayout);
@@ -457,20 +522,22 @@ public class LandForm extends javax.swing.JInternalFrame {
                         .addGroup(AddNewLandLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(AddNewLandLayout.createSequentialGroup()
                                 .addGroup(AddNewLandLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5)
+                                    .addComponent(plannolabel)
                                     .addGroup(AddNewLandLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(gndnolabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(gndlabel, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(AddNewLandLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(plan_nummber_test, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(gnd_name_test, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(gnd_number_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(AddNewLandLayout.createSequentialGroup()
-                                .addComponent(jLabel27)
+                                .addComponent(landnamelabel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(land_name_test, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(114, 114, 114)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(landnotvalidlabel)
+                                .addGap(68, 68, 68)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(125, 125, 125))
@@ -494,25 +561,26 @@ public class LandForm extends javax.swing.JInternalFrame {
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(AddNewLandLayout.createSequentialGroup()
                         .addGroup(AddNewLandLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
+                            .addComponent(plannolabel)
                             .addComponent(plan_nummber_test, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(AddNewLandLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel27)
-                            .addComponent(land_name_test, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(landnamelabel)
+                            .addComponent(land_name_test, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(landnotvalidlabel))
                         .addGap(21, 21, 21)
                         .addGroup(AddNewLandLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
+                            .addComponent(gndnolabel)
                             .addComponent(gnd_number_combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(AddNewLandLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
+                            .addComponent(gndlabel)
                             .addComponent(gnd_name_test, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addGroup(AddNewLandLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(land_save_buttun))
@@ -1084,6 +1152,69 @@ public class LandForm extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_view_all_load_buttunActionPerformed
 
+    private void land_name_testKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_land_name_testKeyReleased
+        // TODO add your handling code here:
+        landnotvalidlabel.setVisible(false);
+        
+    }//GEN-LAST:event_land_name_testKeyReleased
+
+    private void gnd_number_comboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gnd_number_comboActionPerformed
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_gnd_number_comboActionPerformed
+
+    private void acre_testActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acre_testActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_acre_testActionPerformed
+
+    private void acre_testKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_acre_testKeyReleased
+        // TODO add your handling code here:
+        acresnotvalidlabel.setVisible(false);
+        String newtext=PatternChecker.checkDecimal(acre_test.getText());
+        acre_test.setText(newtext);
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            if(){
+                
+            }
+            else{
+                acresnotvalidlabel.setVisible(true);
+            }
+        }
+        else if(evt.getKeyCode()==KeyEvent.VK_DOWN){
+            perches_test.requestFocus();
+        }
+        else if(evt.getKeyCode()==KeyEvent.VK_UP){
+            lot_number_test.requestFocus();
+        }
+    }//GEN-LAST:event_acre_testKeyReleased
+
+    private void perches_testKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_perches_testKeyReleased
+        // TODO add your handling code here:
+        perchesnotvalidlabel.setVisible(false);
+        String newtext=PatternChecker.checkDecimal(perches_test.getText());
+        acre_test.setText(newtext);
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            if(){
+                
+            }
+            else{
+                 perchesnotvalidlabel.setVisible(true);
+            }
+        }
+        else if(evt.getKeyCode()==KeyEvent.VK_DOWN){
+            rood_test.requestFocus();
+        }
+        else if(evt.getKeyCode()==KeyEvent.VK_UP){
+            acre_test.requestFocus();
+        }
+    }//GEN-LAST:event_perches_testKeyReleased
+
+    private void rood_testActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rood_testActionPerformed
+        // TODO add your handling code here:
+         
+    }//GEN-LAST:event_rood_testActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AddNewLand;
@@ -1093,42 +1224,38 @@ public class LandForm extends javax.swing.JInternalFrame {
     private javax.swing.JTabbedPane LandTabbedPane;
     private javax.swing.JPanel ViewAllLands;
     private javax.swing.JTextField acre_test;
+    private javax.swing.JLabel acreorhectarelabel;
+    private javax.swing.JLabel acresnotvalidlabel;
     private javax.swing.JToggleButton add_lot_buttun;
+    private javax.swing.JLabel boundedlabel;
+    private javax.swing.JLabel boundedoneastlabel;
+    private javax.swing.JLabel boundedonnorthlabel;
+    private javax.swing.JLabel boundedonsouthlabel;
+    private javax.swing.JLabel boundedonwestlabel;
+    private javax.swing.JLabel extentlabel;
     private javax.swing.JTextField gnd_name_test;
     private javax.swing.JComboBox gnd_number_combo;
+    private javax.swing.JLabel gndlabel;
+    private javax.swing.JLabel gndnolabel;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -1147,11 +1274,19 @@ public class LandForm extends javax.swing.JInternalFrame {
     private javax.swing.JButton land_save_buttun;
     private javax.swing.JTextField land_south_test;
     private javax.swing.JTextField land_west_test;
+    private javax.swing.JLabel landnamelabel;
+    private javax.swing.JLabel landnotvalidlabel;
     private javax.swing.JTextField lot_number_test;
     private javax.swing.JTable lot_table;
+    private javax.swing.JLabel lotnolabel;
     private javax.swing.JTextField perches_test;
+    private javax.swing.JLabel percheslabel;
+    private javax.swing.JLabel perchesnotvalidlabel;
     private javax.swing.JTextField plan_nummber_test;
+    private javax.swing.JLabel plannolabel;
     private javax.swing.JTextField rood_test;
+    private javax.swing.JLabel roodslabel;
+    private javax.swing.JLabel roodsnotvalidlabel;
     private javax.swing.JTextField search_east_test1;
     private javax.swing.JTextField search_gnd_test;
     private javax.swing.JTextField search_land_name;

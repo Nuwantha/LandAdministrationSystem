@@ -76,10 +76,10 @@
                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                   <Group type="102" alignment="1" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="plannolabel" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jLabel1" alignment="1" min="-2" pref="123" max="-2" attributes="0"/>
-                                              <Component id="jLabel2" alignment="0" min="-2" pref="123" max="-2" attributes="0"/>
+                                              <Component id="gndnolabel" alignment="1" min="-2" pref="123" max="-2" attributes="0"/>
+                                              <Component id="gndlabel" alignment="0" min="-2" pref="123" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
@@ -90,10 +90,12 @@
                                       </Group>
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
-                                      <Component id="jLabel27" min="-2" max="-2" attributes="0"/>
+                                      <Component id="landnamelabel" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="32767" attributes="0"/>
                                       <Component id="land_name_test" min="-2" pref="90" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="114" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="landnotvalidlabel" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
@@ -126,31 +128,32 @@
                           <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="plannolabel" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="plan_nummber_test" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel27" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="landnamelabel" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="land_name_test" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="landnotvalidlabel" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="gndnolabel" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="gnd_number_combo" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="gndlabel" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="gnd_name_test" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="22" max="32767" attributes="0"/>
                       <Component id="jPanel2" min="-2" pref="116" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="23" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="land_save_buttun" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -161,12 +164,12 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="jLabel1">
+            <Component class="javax.swing.JLabel" name="gndnolabel">
               <Properties>
                 <Property name="text" type="java.lang.String" value="G.N.D No"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel2">
+            <Component class="javax.swing.JLabel" name="gndlabel">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Grama Niladhari Division"/>
               </Properties>
@@ -189,11 +192,11 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-                          <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lotnolabel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="lot_number_test" min="-2" pref="73" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
-                          <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                          <Component id="extentlabel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Component id="acre_test" max="32767" attributes="0"/>
@@ -203,17 +206,27 @@
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="176" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
+                                  <Component id="roodslabel" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="roodsnotvalidlabel" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Component id="add_lot_buttun" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Component id="acreorhectarelabel" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="acresnotvalidlabel" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="percheslabel" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="perchesnotvalidlabel" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="128" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -224,22 +237,25 @@
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lotnolabel" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="lot_number_test" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="extentlabel" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="acre_test" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="acreorhectarelabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="acresnotvalidlabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="perches_test" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="percheslabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="perchesnotvalidlabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="roodslabel" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="rood_test" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="add_lot_buttun" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="roodsnotvalidlabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
@@ -247,12 +263,12 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JLabel" name="jLabel3">
+                <Component class="javax.swing.JLabel" name="lotnolabel">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Lot No"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel4">
+                <Component class="javax.swing.JLabel" name="extentlabel">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Expected Extent"/>
                   </Properties>
@@ -260,25 +276,33 @@
                 <Component class="javax.swing.JTextField" name="perches_test">
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="perches_testActionPerformed"/>
+                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="perches_testKeyReleased"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="rood_test">
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rood_testActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="acre_test">
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="acre_testActionPerformed"/>
+                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="acre_testKeyReleased"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="lot_number_test">
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel11">
+                <Component class="javax.swing.JLabel" name="acreorhectarelabel">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Acre / Hectare"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel12">
+                <Component class="javax.swing.JLabel" name="percheslabel">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Perches"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel13">
+                <Component class="javax.swing.JLabel" name="roodslabel">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Roods"/>
                   </Properties>
@@ -291,6 +315,39 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="add_lot_buttunActionPerformed"/>
                   </Events>
                 </Component>
+                <Component class="javax.swing.JLabel" name="acresnotvalidlabel">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="cc" type="rgb"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="cc" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Not Valid"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="perchesnotvalidlabel">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="cc" type="rgb"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="cc" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Not Valid"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="roodsnotvalidlabel">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="cc" type="rgb"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="cc" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Not Valid"/>
+                  </Properties>
+                </Component>
               </SubComponents>
             </Container>
             <Component class="javax.swing.JTextField" name="gnd_name_test">
@@ -298,7 +355,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="gnd_name_testActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel5">
+            <Component class="javax.swing.JLabel" name="plannolabel">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Plan No"/>
               </Properties>
@@ -311,20 +368,20 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                          <Component id="boundedlabel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="103" alignment="0" groupAlignment="1" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="boundedonnorthlabel" min="-2" max="-2" attributes="0"/>
+                                      <Component id="boundedoneastlabel" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
-                                      <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
+                                      <Component id="boundedonwestlabel" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <Component id="jLabel10" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="boundedonsouthlabel" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -345,23 +402,23 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="boundedlabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="boundedonnorthlabel" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="land_north_test" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="boundedoneastlabel" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="land_east_test" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="boundedonwestlabel" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="land_west_test" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="boundedonsouthlabel" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="land_south_test" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
@@ -370,27 +427,27 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JLabel" name="jLabel6">
+                <Component class="javax.swing.JLabel" name="boundedlabel">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Bounded -"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel7">
+                <Component class="javax.swing.JLabel" name="boundedonnorthlabel">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="On North By"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel8">
+                <Component class="javax.swing.JLabel" name="boundedoneastlabel">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="On East By"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel9">
+                <Component class="javax.swing.JLabel" name="boundedonwestlabel">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="On West By"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel10">
+                <Component class="javax.swing.JLabel" name="boundedonsouthlabel">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="On South By"/>
                   </Properties>
@@ -497,13 +554,28 @@
               </Properties>
               <Events>
                 <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="gnd_number_comboItemStateChanged"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="gnd_number_comboActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="land_name_test">
+              <Events>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="land_name_testKeyReleased"/>
+              </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel27">
+            <Component class="javax.swing.JLabel" name="landnamelabel">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Land Name"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="landnotvalidlabel">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="0" green="0" red="cc" type="rgb"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="0" green="0" red="cc" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Not Valid"/>
               </Properties>
             </Component>
           </SubComponents>

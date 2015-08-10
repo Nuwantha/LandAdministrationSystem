@@ -108,7 +108,7 @@ public class GrantForm extends javax.swing.JInternalFrame {
         jPanel6 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         AddGND = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
+        grantnolabel = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         AddGNDNo = new javax.swing.JTextField();
         jLabel27 = new javax.swing.JLabel();
@@ -119,12 +119,12 @@ public class GrantForm extends javax.swing.JInternalFrame {
         AddNotSurveyedEast = new javax.swing.JTextField();
         AddNotSurveyedSouth = new javax.swing.JTextField();
         AddNotSurveyedWest = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
+        issuedatelabel = new javax.swing.JLabel();
         Add_Grant_Grant_No = new javax.swing.JTextField();
         jPanel7 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         AddGND1 = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
+        permitnolabel = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         AddGNDNo1 = new javax.swing.JTextField();
         jLabel31 = new javax.swing.JLabel();
@@ -303,7 +303,7 @@ public class GrantForm extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel5.setText("Grant No:");
+        grantnolabel.setText("Grant No:");
 
         jLabel7.setText("Grama Niladari Division No:");
 
@@ -345,7 +345,7 @@ public class GrantForm extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel3.setText("Issue Date:");
+        issuedatelabel.setText("Issue Date:");
 
         Add_Grant_Grant_No.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -388,8 +388,8 @@ public class GrantForm extends javax.swing.JInternalFrame {
                                     .addComponent(AddGND)))
                             .addGroup(jPanel6Layout.createSequentialGroup()
                                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(grantnolabel, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(issuedatelabel, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addComponent(Add_Grant_Grant_No, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(2, 2, 2)))
@@ -400,10 +400,10 @@ public class GrantForm extends javax.swing.JInternalFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(grantnolabel, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Add_Grant_Grant_No, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(issuedatelabel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(488, 488, 488)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -442,7 +442,7 @@ public class GrantForm extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel10.setText("Permit No:");
+        permitnolabel.setText("Permit No:");
 
         jLabel18.setText("Grama Niladari Division No:");
 
@@ -527,7 +527,7 @@ public class GrantForm extends javax.swing.JInternalFrame {
                                     .addComponent(AddGND1)))
                             .addGroup(jPanel7Layout.createSequentialGroup()
                                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(permitnolabel, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addComponent(Add_Grant_PermitNo, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -539,7 +539,7 @@ public class GrantForm extends javax.swing.JInternalFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(permitnolabel, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Add_Grant_PermitNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -963,8 +963,6 @@ public class GrantForm extends javax.swing.JInternalFrame {
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
-
-        jPanel6.getAccessibleContext().setAccessibleName("Grant Information");
 
         jTabbedPane1.addTab("Add Grant", jPanel2);
 
@@ -2027,9 +2025,10 @@ public class GrantForm extends javax.swing.JInternalFrame {
     private javax.swing.JTextArea editgrant_NOS_address_test;
     private javax.swing.JTextField editgrant_NOS_name_test;
     private javax.swing.JTextField editgrant_NOS_nic_test1;
+    private javax.swing.JLabel grantnolabel;
+    private javax.swing.JLabel issuedatelabel;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel100;
     private javax.swing.JLabel jLabel101;
     private javax.swing.JLabel jLabel102;
@@ -2051,7 +2050,6 @@ public class GrantForm extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
@@ -2073,7 +2071,6 @@ public class GrantForm extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel jLabel48;
     private javax.swing.JLabel jLabel49;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel50;
     private javax.swing.JLabel jLabel51;
     private javax.swing.JLabel jLabel52;
@@ -2128,5 +2125,6 @@ public class GrantForm extends javax.swing.JInternalFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel nicInvalidLabel;
     private javax.swing.JLabel nicInvalidLabel1;
+    private javax.swing.JLabel permitnolabel;
     // End of variables declaration//GEN-END:variables
 }

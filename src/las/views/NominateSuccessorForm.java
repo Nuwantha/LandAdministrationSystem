@@ -77,16 +77,16 @@ public class NominateSuccessorForm extends javax.swing.JDialog {
         jPanel2 = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
         numberLabel = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        ownerlabel = new javax.swing.JLabel();
         ownerText = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
+        currentnominatedsucclabel = new javax.swing.JLabel();
         currentSuccessorText = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        namelabel = new javax.swing.JLabel();
+        niclabel = new javax.swing.JLabel();
+        addresslabel = new javax.swing.JLabel();
         ns_name_text = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
+        relationshiplabel = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox();
         nic_text = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -107,10 +107,10 @@ public class NominateSuccessorForm extends javax.swing.JDialog {
         numberLabel.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         numberLabel.setText("Grant number:");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel2.setText("Owner:");
+        ownerlabel.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        ownerlabel.setText("Owner:");
 
-        jLabel3.setText("Currently nominated successor:");
+        currentnominatedsucclabel.setText("Currently nominated successor:");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -122,13 +122,13 @@ public class NominateSuccessorForm extends javax.swing.JDialog {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(numberLabel)
-                            .addComponent(jLabel2))
+                            .addComponent(ownerlabel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(ownerText, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
+                        .addComponent(currentnominatedsucclabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(currentSuccessorText, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(14, Short.MAX_VALUE))
@@ -142,24 +142,24 @@ public class NominateSuccessorForm extends javax.swing.JDialog {
                     .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
+                    .addComponent(ownerlabel)
                     .addComponent(ownerText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(currentSuccessorText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                    .addComponent(currentnominatedsucclabel))
                 .addGap(26, 26, 26))
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("New successor details"));
 
-        jLabel4.setText("Name:");
+        namelabel.setText("Name:");
 
-        jLabel5.setText("NIC:");
+        niclabel.setText("NIC:");
 
-        jLabel6.setText("Address:");
+        addresslabel.setText("Address:");
 
-        jLabel7.setText("Relationship:");
+        relationshiplabel.setText("Relationship:");
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Son", "Spouse", "Daughter", "Brother", "Other relation" }));
 
@@ -209,10 +209,10 @@ public class NominateSuccessorForm extends javax.swing.JDialog {
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6))
+                            .addComponent(relationshiplabel)
+                            .addComponent(namelabel)
+                            .addComponent(niclabel)
+                            .addComponent(addresslabel))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -230,20 +230,20 @@ public class NominateSuccessorForm extends javax.swing.JDialog {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
+                    .addComponent(namelabel)
                     .addComponent(ns_name_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
+                    .addComponent(relationshiplabel)
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
+                    .addComponent(niclabel)
                     .addComponent(nic_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nicInvalidLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
+                    .addComponent(addresslabel)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -349,16 +349,12 @@ public class NominateSuccessorForm extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton add_button;
     private javax.swing.JTextArea address_text;
+    private javax.swing.JLabel addresslabel;
     private javax.swing.JButton cancel_button;
     private javax.swing.JTextField currentSuccessorText;
+    private javax.swing.JLabel currentnominatedsucclabel;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -366,10 +362,14 @@ public class NominateSuccessorForm extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField6;
+    private javax.swing.JLabel namelabel;
     private javax.swing.JLabel nicInvalidLabel;
     private javax.swing.JTextField nic_text;
+    private javax.swing.JLabel niclabel;
     private javax.swing.JTextField ns_name_text;
     private javax.swing.JLabel numberLabel;
     private javax.swing.JTextField ownerText;
+    private javax.swing.JLabel ownerlabel;
+    private javax.swing.JLabel relationshiplabel;
     // End of variables declaration//GEN-END:variables
 }

@@ -91,11 +91,11 @@ public class GramaNiladhariForm extends javax.swing.JInternalFrame {
         jPanel7 = new javax.swing.JPanel();
         gnd_load_buttun = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        gndnolabel = new javax.swing.JLabel();
+        gndnamelabel = new javax.swing.JLabel();
         gnd_update_combo = new javax.swing.JComboBox();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        zonelabel = new javax.swing.JLabel();
+        gnnamelabel = new javax.swing.JLabel();
         gnd_name_test = new javax.swing.JTextField();
         gnd_zone_test = new javax.swing.JTextField();
         gnd_gramaniladari_name = new javax.swing.JTextField();
@@ -200,11 +200,11 @@ public class GramaNiladhariForm extends javax.swing.JInternalFrame {
 
         jTabbedPane1.addTab("View All GNDs", jPanel2);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel1.setText("Grama Niladhari Division No");
+        gndnolabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        gndnolabel.setText("Grama Niladhari Division No");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel2.setText("Grama Niladhari Division Name");
+        gndnamelabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        gndnamelabel.setText("Grama Niladhari Division Name");
 
         gnd_update_combo.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -217,11 +217,11 @@ public class GramaNiladhariForm extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel3.setText("Zone");
+        zonelabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        zonelabel.setText("Zone");
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel4.setText("Grama Niladhari Name");
+        gnnamelabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        gnnamelabel.setText("Grama Niladhari Name");
 
         gnd_name_test.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -253,10 +253,10 @@ public class GramaNiladhariForm extends javax.swing.JInternalFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))
+                            .addComponent(gndnolabel, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(gndnamelabel)
+                            .addComponent(zonelabel)
+                            .addComponent(gnnamelabel))
                         .addGap(32, 32, 32)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(gnd_zone_test)
@@ -277,19 +277,19 @@ public class GramaNiladhariForm extends javax.swing.JInternalFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(gndnolabel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(gnd_update_combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
+                    .addComponent(gndnamelabel)
                     .addComponent(gnd_name_test, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
+                    .addComponent(zonelabel)
                     .addComponent(gnd_zone_test, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
+                    .addComponent(gnnamelabel)
                     .addComponent(gnd_gramaniladari_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -544,11 +544,10 @@ public class GramaNiladhariForm extends javax.swing.JInternalFrame {
     private javax.swing.JButton gnd_update_button;
     private javax.swing.JComboBox gnd_update_combo;
     private javax.swing.JTextField gnd_zone_test;
+    private javax.swing.JLabel gndnamelabel;
+    private javax.swing.JLabel gndnolabel;
+    private javax.swing.JLabel gnnamelabel;
     private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -563,5 +562,6 @@ public class GramaNiladhariForm extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JLabel zonelabel;
     // End of variables declaration//GEN-END:variables
 }

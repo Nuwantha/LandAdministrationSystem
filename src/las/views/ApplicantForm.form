@@ -583,43 +583,54 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel4" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="jLabel5" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="RegNo" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="NIC" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="Name" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="PhoneNo" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="Address" alignment="0" max="32767" attributes="0"/>
                                       </Group>
-                                      <Component id="jLabel6" min="-2" pref="57" max="-2" attributes="0"/>
-                                      <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="Birthday" min="-2" pref="57" max="-2" attributes="0"/>
+                                      <Component id="Status" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
                                           <Component id="marriedStatusRButton" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Component id="singleStatusRButton" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="32767" attributes="0"/>
-                                          <Component id="addCurrentResidenceButton" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <Group type="102" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                  <Component id="nameText" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="jScrollPane1" pref="277" max="32767" attributes="0"/>
-                                                  <Component id="applicantNumberText" min="-2" pref="126" max="-2" attributes="0"/>
-                                                  <Component id="telephoneText" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="nicText" alignment="0" pref="126" max="32767" attributes="0"/>
+                                              <Group type="102" attributes="0">
+                                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                                      <Component id="telephoneText" alignment="0" max="32767" attributes="0"/>
+                                                      <Component id="nicText" alignment="0" max="32767" attributes="0"/>
+                                                      <Component id="nameText" alignment="0" max="32767" attributes="0"/>
+                                                      <Component id="applicantNumberText" alignment="0" pref="126" max="32767" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Component id="namenotvalidlabel" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="nicnotvalidlabel" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="phonenumnotvalidlabel" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
                                               </Group>
-                                              <Component id="birthdayChooser1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jScrollPane1" min="-2" pref="295" max="-2" attributes="0"/>
                                           </Group>
-                                          <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="jPanel3" max="32767" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="childrenCountPanel" max="32767" attributes="0"/>
+                                              <Component id="jPanel3" max="32767" attributes="0"/>
                                           </Group>
+                                          <EmptySpace max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <EmptySpace pref="75" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="addCurrentResidenceButton" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -630,23 +641,26 @@
                                       <Group type="102" attributes="0">
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="RegNo" alignment="3" min="-2" max="-2" attributes="0"/>
                                               <Component id="applicantNumberText" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="Name" alignment="3" min="-2" max="-2" attributes="0"/>
                                               <Component id="nameText" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="namenotvalidlabel" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="NIC" alignment="3" min="-2" max="-2" attributes="0"/>
                                               <Component id="nicText" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="nicnotvalidlabel" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="1" attributes="0">
-                                              <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                                              <Component id="PhoneNo" min="-2" max="-2" attributes="0"/>
                                               <Component id="telephoneText" min="-2" max="-2" attributes="0"/>
+                                              <Component id="phonenumnotvalidlabel" alignment="0" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <Component id="childrenCountPanel" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -656,44 +670,38 @@
                                       <Component id="jPanel3" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                                              <Component id="Address" min="-2" max="-2" attributes="0"/>
                                               <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                                              <Component id="birthdayChooser1" min="-2" max="-2" attributes="0"/>
-                                          </Group>
+                                          <Component id="Birthday" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="marriedStatusRButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="singleStatusRButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
-                                          <Component id="addCurrentResidenceButton" min="-2" max="-2" attributes="0"/>
-                                      </Group>
+                                  <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="Status" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="marriedStatusRButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="singleStatusRButton" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace pref="52" max="32767" attributes="0"/>
+                                  <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                                  <Component id="addCurrentResidenceButton" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace pref="39" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
                       </Layout>
                       <SubComponents>
-                        <Component class="javax.swing.JLabel" name="jLabel1">
+                        <Component class="javax.swing.JLabel" name="RegNo">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Reg No:"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JLabel" name="jLabel2">
+                        <Component class="javax.swing.JLabel" name="Name">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Name:"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JLabel" name="jLabel3">
+                        <Component class="javax.swing.JLabel" name="NIC">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="NIC :"/>
                           </Properties>
@@ -702,22 +710,27 @@
                         </Component>
                         <Component class="javax.swing.JTextField" name="nameText">
                           <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nameTextActionPerformed"/>
                             <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="nameTextKeyReleased"/>
                           </Events>
                         </Component>
                         <Component class="javax.swing.JTextField" name="nicText">
                           <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nicTextActionPerformed"/>
                             <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="nicTextKeyReleased"/>
                           </Events>
                         </Component>
                         <Component class="javax.swing.JTextField" name="telephoneText">
+                          <Events>
+                            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="telephoneTextKeyReleased"/>
+                          </Events>
                         </Component>
-                        <Component class="javax.swing.JLabel" name="jLabel4">
+                        <Component class="javax.swing.JLabel" name="PhoneNo">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Phone Number:"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JLabel" name="jLabel5">
+                        <Component class="javax.swing.JLabel" name="Address">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Address:"/>
                           </Properties>
@@ -734,15 +747,18 @@
                                 <Property name="columns" type="int" value="20"/>
                                 <Property name="rows" type="int" value="5"/>
                               </Properties>
+                              <Events>
+                                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="addressTextKeyReleased"/>
+                              </Events>
                             </Component>
                           </SubComponents>
                         </Container>
-                        <Component class="javax.swing.JLabel" name="jLabel6">
+                        <Component class="javax.swing.JLabel" name="Birthday">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Birthday:"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JLabel" name="jLabel7">
+                        <Component class="javax.swing.JLabel" name="Status">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Status:"/>
                           </Properties>
@@ -778,8 +794,8 @@
                                   <Group type="102" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="jLabel9" pref="140" max="32767" attributes="0"/>
-                                          <Component id="jLabel8" max="32767" attributes="0"/>
+                                          <Component id="NoOfUnmarriedChildren" pref="140" max="32767" attributes="0"/>
+                                          <Component id="NumberOfMarriedChildren" max="32767" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
@@ -795,12 +811,12 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="NumberOfMarriedChildren" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="marriedChildrenCountSpinner" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="NoOfUnmarriedChildren" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="unmarriedChildrenCountSpinner" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="32767" attributes="0"/>
@@ -809,12 +825,12 @@
                             </DimensionLayout>
                           </Layout>
                           <SubComponents>
-                            <Component class="javax.swing.JLabel" name="jLabel8">
+                            <Component class="javax.swing.JLabel" name="NumberOfMarriedChildren">
                               <Properties>
                                 <Property name="text" type="java.lang.String" value="No. of married children:"/>
                               </Properties>
                             </Component>
-                            <Component class="javax.swing.JLabel" name="jLabel9">
+                            <Component class="javax.swing.JLabel" name="NoOfUnmarriedChildren">
                               <Properties>
                                 <Property name="text" type="java.lang.String" value="No. of  unmarried children:"/>
                               </Properties>
@@ -840,15 +856,23 @@
                                   <Group type="102" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabel11" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel10" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="AnnualIncome" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="Occupation" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="occupationText" min="-2" pref="94" max="-2" attributes="0"/>
-                                          <Component id="annualIncomeText" min="-2" pref="94" max="-2" attributes="0"/>
+                                          <Group type="102" attributes="0">
+                                              <Component id="occupationText" min="-2" pref="94" max="-2" attributes="0"/>
+                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                              <Component id="occupationnotvalidlabel" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" attributes="0">
+                                              <Component id="annualIncomeText" min="-2" pref="94" max="-2" attributes="0"/>
+                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                              <Component id="incomenotvalidlabel" min="-2" max="-2" attributes="0"/>
+                                          </Group>
                                       </Group>
-                                      <EmptySpace pref="19" max="32767" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
@@ -857,13 +881,19 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
-                                          <Component id="occupationText" min="-2" max="-2" attributes="0"/>
+                                          <Component id="Occupation" min="-2" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="occupationText" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="occupationnotvalidlabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="annualIncomeText" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="AnnualIncome" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="annualIncomeText" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="incomenotvalidlabel" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace pref="49" max="32767" attributes="0"/>
                                   </Group>
@@ -871,19 +901,35 @@
                             </DimensionLayout>
                           </Layout>
                           <SubComponents>
-                            <Component class="javax.swing.JLabel" name="jLabel10">
+                            <Component class="javax.swing.JLabel" name="Occupation">
                               <Properties>
                                 <Property name="text" type="java.lang.String" value="Occupation:"/>
                               </Properties>
                             </Component>
                             <Component class="javax.swing.JTextField" name="occupationText">
                             </Component>
-                            <Component class="javax.swing.JLabel" name="jLabel11">
+                            <Component class="javax.swing.JLabel" name="AnnualIncome">
                               <Properties>
                                 <Property name="text" type="java.lang.String" value="Estimated Annual Income: Rs."/>
                               </Properties>
                             </Component>
                             <Component class="javax.swing.JTextField" name="annualIncomeText">
+                            </Component>
+                            <Component class="javax.swing.JLabel" name="occupationnotvalidlabel">
+                              <Properties>
+                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                  <Color blue="0" green="0" red="cc" type="rgb"/>
+                                </Property>
+                                <Property name="text" type="java.lang.String" value="Not Valid"/>
+                              </Properties>
+                            </Component>
+                            <Component class="javax.swing.JLabel" name="incomenotvalidlabel">
+                              <Properties>
+                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                  <Color blue="0" green="0" red="cc" type="rgb"/>
+                                </Property>
+                                <Property name="text" type="java.lang.String" value="Not Valid"/>
+                              </Properties>
                             </Component>
                           </SubComponents>
                         </Container>
@@ -895,7 +941,29 @@
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addCurrentResidenceButtonActionPerformed"/>
                           </Events>
                         </Component>
-                        <Component class="org.freixas.jcalendar.JCalendarCombo" name="birthdayChooser1">
+                        <Component class="javax.swing.JLabel" name="namenotvalidlabel">
+                          <Properties>
+                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="0" green="0" red="cc" type="rgb"/>
+                            </Property>
+                            <Property name="text" type="java.lang.String" value="Not Valid"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="nicnotvalidlabel">
+                          <Properties>
+                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="0" green="0" red="cc" type="rgb"/>
+                            </Property>
+                            <Property name="text" type="java.lang.String" value="Not Valid"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="phonenumnotvalidlabel">
+                          <Properties>
+                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="0" green="0" red="cc" type="rgb"/>
+                            </Property>
+                            <Property name="text" type="java.lang.String" value="Not Valid"/>
+                          </Properties>
                         </Component>
                       </SubComponents>
                     </Container>

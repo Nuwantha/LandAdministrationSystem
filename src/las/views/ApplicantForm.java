@@ -16,6 +16,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.text.JTextComponent;
 import las.common_classes.ComboItemAdder;
+import las.common_classes.PatternChecker;
 import las.controllers.ClientController;
 import las.models.Client;
 
@@ -30,6 +31,7 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
      */
     public ApplicantForm() {
         initComponents();
+        nameText.requestFocus(); 
         //registerButton.setEnabled(false);
         addCurrentResidenceButton.setEnabled(false);
 
@@ -133,33 +135,37 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
         registerButton = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         personalDetailPanel = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        RegNo = new javax.swing.JLabel();
+        Name = new javax.swing.JLabel();
+        NIC = new javax.swing.JLabel();
         applicantNumberText = new javax.swing.JTextField();
         nameText = new javax.swing.JTextField();
         nicText = new javax.swing.JTextField();
         telephoneText = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        PhoneNo = new javax.swing.JLabel();
+        Address = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         addressText = new javax.swing.JTextArea();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        Birthday = new javax.swing.JLabel();
+        Status = new javax.swing.JLabel();
         marriedStatusRButton = new javax.swing.JRadioButton();
         singleStatusRButton = new javax.swing.JRadioButton();
         childrenCountPanel = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        NumberOfMarriedChildren = new javax.swing.JLabel();
+        NoOfUnmarriedChildren = new javax.swing.JLabel();
         marriedChildrenCountSpinner = new javax.swing.JSpinner();
         unmarriedChildrenCountSpinner = new javax.swing.JSpinner();
         jPanel3 = new javax.swing.JPanel();
-        jLabel10 = new javax.swing.JLabel();
+        Occupation = new javax.swing.JLabel();
         occupationText = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
+        AnnualIncome = new javax.swing.JLabel();
         annualIncomeText = new javax.swing.JTextField();
+        occupationnotvalidlabel = new javax.swing.JLabel();
+        incomenotvalidlabel = new javax.swing.JLabel();
         addCurrentResidenceButton = new javax.swing.JButton();
-        birthdayChooser1 = new org.freixas.jcalendar.JCalendarCombo();
+        namenotvalidlabel = new javax.swing.JLabel();
+        nicnotvalidlabel = new javax.swing.JLabel();
+        phonenumnotvalidlabel = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         personalDetailPanel1 = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
@@ -503,35 +509,56 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
 
         personalDetailPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Personal Details"));
 
-        jLabel1.setText("Reg No:");
+        RegNo.setText("Reg No:");
 
-        jLabel2.setText("Name:");
+        Name.setText("Name:");
 
-        jLabel3.setText("NIC :");
+        NIC.setText("NIC :");
 
+        nameText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nameTextActionPerformed(evt);
+            }
+        });
         nameText.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 nameTextKeyReleased(evt);
             }
         });
 
+        nicText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nicTextActionPerformed(evt);
+            }
+        });
         nicText.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 nicTextKeyReleased(evt);
             }
         });
 
-        jLabel4.setText("Phone Number:");
+        telephoneText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                telephoneTextKeyReleased(evt);
+            }
+        });
 
-        jLabel5.setText("Address:");
+        PhoneNo.setText("Phone Number:");
+
+        Address.setText("Address:");
 
         addressText.setColumns(20);
         addressText.setRows(5);
+        addressText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                addressTextKeyReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(addressText);
 
-        jLabel6.setText("Birthday:");
+        Birthday.setText("Birthday:");
 
-        jLabel7.setText("Status:");
+        Status.setText("Status:");
 
         statusButtonGroup.add(marriedStatusRButton);
         marriedStatusRButton.setText("Married");
@@ -541,9 +568,9 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
 
         childrenCountPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Number of children"));
 
-        jLabel8.setText("No. of married children:");
+        NumberOfMarriedChildren.setText("No. of married children:");
 
-        jLabel9.setText("No. of  unmarried children:");
+        NoOfUnmarriedChildren.setText("No. of  unmarried children:");
 
         javax.swing.GroupLayout childrenCountPanelLayout = new javax.swing.GroupLayout(childrenCountPanel);
         childrenCountPanel.setLayout(childrenCountPanelLayout);
@@ -552,8 +579,8 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
             .addGroup(childrenCountPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(childrenCountPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(NoOfUnmarriedChildren, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                    .addComponent(NumberOfMarriedChildren, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(childrenCountPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(marriedChildrenCountSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -565,20 +592,26 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
             .addGroup(childrenCountPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(childrenCountPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
+                    .addComponent(NumberOfMarriedChildren)
                     .addComponent(marriedChildrenCountSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(childrenCountPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
+                    .addComponent(NoOfUnmarriedChildren)
                     .addComponent(unmarriedChildrenCountSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Income Details"));
 
-        jLabel10.setText("Occupation:");
+        Occupation.setText("Occupation:");
 
-        jLabel11.setText("Estimated Annual Income: Rs.");
+        AnnualIncome.setText("Estimated Annual Income: Rs.");
+
+        occupationnotvalidlabel.setForeground(new java.awt.Color(204, 0, 0));
+        occupationnotvalidlabel.setText("Not Valid");
+
+        incomenotvalidlabel.setForeground(new java.awt.Color(204, 0, 0));
+        incomenotvalidlabel.setText("Not Valid");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -587,25 +620,35 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel11)
-                    .addComponent(jLabel10))
+                    .addComponent(AnnualIncome)
+                    .addComponent(Occupation))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(occupationText, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(annualIncomeText, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(19, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(occupationText, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(occupationnotvalidlabel))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(annualIncomeText, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(incomenotvalidlabel)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel10)
-                    .addComponent(occupationText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Occupation)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(occupationText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(occupationnotvalidlabel)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(annualIncomeText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(AnnualIncome)
+                        .addComponent(annualIncomeText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(incomenotvalidlabel))
                 .addContainerGap(49, Short.MAX_VALUE))
         );
 
@@ -616,6 +659,15 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
             }
         });
 
+        namenotvalidlabel.setForeground(new java.awt.Color(204, 0, 0));
+        namenotvalidlabel.setText("Not Valid");
+
+        nicnotvalidlabel.setForeground(new java.awt.Color(204, 0, 0));
+        nicnotvalidlabel.setText("Not Valid");
+
+        phonenumnotvalidlabel.setForeground(new java.awt.Color(204, 0, 0));
+        phonenumnotvalidlabel.setText("Not Valid");
+
         javax.swing.GroupLayout personalDetailPanelLayout = new javax.swing.GroupLayout(personalDetailPanel);
         personalDetailPanel.setLayout(personalDetailPanelLayout);
         personalDetailPanelLayout.setHorizontalGroup(
@@ -624,35 +676,43 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(personalDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(personalDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel1)
-                        .addComponent(jLabel3)
-                        .addComponent(jLabel2)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
+                        .addComponent(RegNo)
+                        .addComponent(NIC)
+                        .addComponent(Name)
+                        .addComponent(PhoneNo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Address, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(Birthday, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Status))
                 .addGap(18, 18, 18)
-                .addGroup(personalDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(personalDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(personalDetailPanelLayout.createSequentialGroup()
                         .addComponent(marriedStatusRButton)
                         .addGap(18, 18, 18)
                         .addComponent(singleStatusRButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(addCurrentResidenceButton))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(personalDetailPanelLayout.createSequentialGroup()
                         .addGroup(personalDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(personalDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(nameText)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
-                                .addComponent(applicantNumberText, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(telephoneText)
-                                .addComponent(nicText, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE))
-                            .addComponent(birthdayChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(36, 36, 36)
-                        .addGroup(personalDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(childrenCountPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(75, Short.MAX_VALUE))
+                            .addGroup(personalDetailPanelLayout.createSequentialGroup()
+                                .addGroup(personalDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(telephoneText, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(nicText, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(nameText, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(applicantNumberText, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addGroup(personalDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(namenotvalidlabel)
+                                    .addComponent(nicnotvalidlabel)
+                                    .addComponent(phonenumnotvalidlabel)))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(personalDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(childrenCountPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, personalDetailPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(addCurrentResidenceButton)
+                .addContainerGap())
         );
         personalDetailPanelLayout.setVerticalGroup(
             personalDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -661,41 +721,41 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
                     .addGroup(personalDetailPanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(personalDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
+                            .addComponent(RegNo)
                             .addComponent(applicantNumberText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(personalDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(nameText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Name)
+                            .addComponent(nameText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(namenotvalidlabel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(personalDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(nicText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(NIC)
+                            .addComponent(nicText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nicnotvalidlabel))
                         .addGap(9, 9, 9)
                         .addGroup(personalDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4)
-                            .addComponent(telephoneText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(PhoneNo)
+                            .addComponent(telephoneText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(phonenumnotvalidlabel, javax.swing.GroupLayout.Alignment.LEADING)))
                     .addComponent(childrenCountPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(personalDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(personalDetailPanelLayout.createSequentialGroup()
                         .addGroup(personalDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
+                            .addComponent(Address)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(personalDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(birthdayChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGroup(personalDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(personalDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel7)
-                        .addComponent(marriedStatusRButton)
-                        .addComponent(singleStatusRButton))
-                    .addGroup(personalDetailPanelLayout.createSequentialGroup()
-                        .addGap(13, 13, 13)
-                        .addComponent(addCurrentResidenceButton)))
-                .addContainerGap(52, Short.MAX_VALUE))
+                        .addComponent(Birthday)))
+                .addGap(1, 1, 1)
+                .addGroup(personalDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Status)
+                    .addComponent(marriedStatusRButton)
+                    .addComponent(singleStatusRButton))
+                .addGap(3, 3, 3)
+                .addComponent(addCurrentResidenceButton)
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout NewApplicantDetailPanelLayout = new javax.swing.GroupLayout(NewApplicantDetailPanel);
@@ -1288,6 +1348,23 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
         if (nameText.getText() != "" && nicText.getText() != "") {
             addCurrentResidenceButton.setEnabled(true);
         }
+         nicnotvalidlabel.setVisible(false);
+        String newtext=PatternChecker.checkNIC(nicText.getText());
+        nicText.setText(newtext);
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            if (nicText.getText().length()==10){
+                telephoneText.requestFocus();
+       }
+            else{
+                nicnotvalidlabel.setVisible(true);
+            }
+        }
+        else if(evt.getKeyCode()==KeyEvent.VK_DOWN){
+            telephoneText.requestFocus();
+        }
+        else if(evt.getKeyCode()==KeyEvent.VK_UP){
+            nameText.requestFocus();
+        }
     }//GEN-LAST:event_nicTextKeyReleased
 
     private void nameTextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nameTextKeyReleased
@@ -1364,18 +1441,73 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_edit_update_buttunActionPerformed
 
+    private void nameTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameTextActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_nameTextActionPerformed
+
+    private void nicTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nicTextActionPerformed
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_nicTextActionPerformed
+
+    private void telephoneTextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_telephoneTextKeyReleased
+        // TODO add your handling code here:
+         phonenumnotvalidlabel.setVisible(false);
+        String newtext=PatternChecker.checkTelNum(telephoneText.getText());
+        nicText.setText(newtext);
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            if (telephoneText.getText().length()==10){
+                addressText.requestFocus();
+       }
+            else{
+                phonenumnotvalidlabel.setVisible(true);
+        }}
+        else if(evt.getKeyCode()==KeyEvent.VK_DOWN){
+            addressText.requestFocus();
+        }
+        else if(evt.getKeyCode()==KeyEvent.VK_UP){
+            nicText.requestFocus();
+        }
+    }//GEN-LAST:event_telephoneTextKeyReleased
+
+    private void addressTextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_addressTextKeyReleased
+        // TODO add your handling code here:
+         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            
+                birthdayText.requestFocus();
+       }
+            
+        else if(evt.getKeyCode()==KeyEvent.VK_DOWN){          
+            birthdayText.requestFocus();
+        }
+        else if(evt.getKeyCode()==KeyEvent.VK_UP){
+            addressText.requestFocus();
+        }
+    }//GEN-LAST:event_addressTextKeyReleased
+
     public void getResidenceData() { //to accept data from current residence detail form
 
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Address;
+    private javax.swing.JLabel AnnualIncome;
+    private javax.swing.JLabel Birthday;
     private javax.swing.JPanel CurrentResidencePanel;
+    private javax.swing.JLabel NIC;
+    private javax.swing.JLabel Name;
     private javax.swing.JPanel NewApplicantDetailPanel;
+    private javax.swing.JLabel NoOfUnmarriedChildren;
+    private javax.swing.JLabel NumberOfMarriedChildren;
+    private javax.swing.JLabel Occupation;
+    private javax.swing.JLabel PhoneNo;
+    private javax.swing.JLabel RegNo;
+    private javax.swing.JLabel Status;
     private javax.swing.JButton addCurrentResidenceButton;
     private javax.swing.JTextArea addressText;
     private javax.swing.JTextField annualIncomeText;
     private javax.swing.JTextField applicantNumberText;
-    private org.freixas.jcalendar.JCalendarCombo birthdayChooser1;
     private javax.swing.JPanel childrenCountPanel;
     private javax.swing.JPanel childrenCountPanel1;
     private javax.swing.JPanel childrenCountPanel2;
@@ -1391,14 +1523,12 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
     private javax.swing.JTextField edit_telephoneText;
     private javax.swing.JTextField edit_unmarried_sons;
     private javax.swing.JButton edit_update_buttun;
+    private javax.swing.JLabel incomenotvalidlabel;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
@@ -1406,7 +1536,6 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
@@ -1417,7 +1546,6 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
@@ -1428,15 +1556,9 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel39;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
@@ -1467,14 +1589,18 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
     private javax.swing.JSpinner marriedChildrenCountSpinner;
     private javax.swing.JRadioButton marriedStatusRButton;
     private javax.swing.JTextField nameText;
+    private javax.swing.JLabel namenotvalidlabel;
     private javax.swing.JPanel newApplicantTab;
     private javax.swing.JTextField nicText;
+    private javax.swing.JLabel nicnotvalidlabel;
     private javax.swing.JTextField occupationText;
     private javax.swing.JTextField occupationText1;
     private javax.swing.JTextField occupationText2;
+    private javax.swing.JLabel occupationnotvalidlabel;
     private javax.swing.JPanel personalDetailPanel;
     private javax.swing.JPanel personalDetailPanel1;
     private javax.swing.JPanel personalDetailPanel2;
+    private javax.swing.JLabel phonenumnotvalidlabel;
     private javax.swing.JButton registerButton;
     private javax.swing.JLabel resultLabel;
     private javax.swing.JTextField search_DOB_test;

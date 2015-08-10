@@ -50,39 +50,39 @@ public class FrontPage extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         userLogPanel = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
+        LogOutButton = new javax.swing.JButton();
+        ExitButton = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jButton10 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
+        CalenderButton = new javax.swing.JButton();
+        REminderButton = new javax.swing.JButton();
         jButton17 = new javax.swing.JButton();
         searchPanel = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jComboBox2 = new javax.swing.JComboBox();
-        jButton12 = new javax.swing.JButton();
+        clientsearchbutton = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jComboBox3 = new javax.swing.JComboBox();
-        jButton13 = new javax.swing.JButton();
+        permitnosearchbutton = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jComboBox4 = new javax.swing.JComboBox();
-        jButton14 = new javax.swing.JButton();
+        nicsearchbutton = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jComboBox5 = new javax.swing.JComboBox();
-        jButton15 = new javax.swing.JButton();
+        grantnumbersearchbutton = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
-        jButton16 = new javax.swing.JButton();
+        gramaniladaridivisionsearchbutton = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox();
         jTextField1 = new javax.swing.JTextField();
         internalFrameAreaPanel = new javax.swing.JPanel();
         desktopPane = new javax.swing.JDesktopPane();
         shortcutAccessPanel = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        AddNewApplicantButton = new javax.swing.JButton();
+        addnewpermitbutton = new javax.swing.JButton();
+        changepermitbutton = new javax.swing.JButton();
+        GramaNiladariDivisionInfoButton = new javax.swing.JButton();
+        changegrantownershipbutton = new javax.swing.JButton();
+        addnewlandbutton = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -149,16 +149,16 @@ public class FrontPage extends javax.swing.JFrame {
 
         jLabel5.setText("User Name and Icon");
 
-        jButton8.setText("Log out");
+        LogOutButton.setText("Log out");
 
-        jButton9.setText("Exit");
+        ExitButton.setText("Exit");
 
-        jButton10.setText("Calender");
+        CalenderButton.setText("Calender");
 
-        jButton11.setText("Reminders");
-        jButton11.addActionListener(new java.awt.event.ActionListener() {
+        REminderButton.setText("Reminders");
+        REminderButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton11ActionPerformed(evt);
+                REminderButtonActionPerformed(evt);
             }
         });
 
@@ -170,9 +170,9 @@ public class FrontPage extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(CalenderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton11)
+                .addComponent(REminderButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton17)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -182,8 +182,8 @@ public class FrontPage extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
-                    .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(CalenderButton, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
+                    .addComponent(REminderButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -198,24 +198,21 @@ public class FrontPage extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton8)
+                .addComponent(LogOutButton)
                 .addGap(18, 18, 18)
-                .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ExitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(53, 53, 53))
         );
         userLogPanelLayout.setVerticalGroup(
             userLogPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userLogPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(userLogPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(userLogPanelLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(userLogPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userLogPanelLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userLogPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(LogOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(ExitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -228,7 +225,7 @@ public class FrontPage extends javax.swing.JFrame {
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " " }));
 
-        jButton12.setText("Search");
+        clientsearchbutton.setText("Search");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -236,7 +233,7 @@ public class FrontPage extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton12)
+                .addComponent(clientsearchbutton)
                 .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
@@ -249,7 +246,7 @@ public class FrontPage extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton12)
+                .addComponent(clientsearchbutton)
                 .addContainerGap())
         );
 
@@ -257,7 +254,7 @@ public class FrontPage extends javax.swing.JFrame {
 
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " " }));
 
-        jButton13.setText("Search");
+        permitnosearchbutton.setText("Search");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -265,7 +262,7 @@ public class FrontPage extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton13)
+                .addComponent(permitnosearchbutton)
                 .addContainerGap())
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
@@ -278,7 +275,7 @@ public class FrontPage extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton13)
+                .addComponent(permitnosearchbutton)
                 .addContainerGap())
         );
 
@@ -286,7 +283,7 @@ public class FrontPage extends javax.swing.JFrame {
 
         jComboBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " " }));
 
-        jButton14.setText("Search");
+        nicsearchbutton.setText("Search");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -294,7 +291,7 @@ public class FrontPage extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton14)
+                .addComponent(nicsearchbutton)
                 .addContainerGap())
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
@@ -307,7 +304,7 @@ public class FrontPage extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton14)
+                .addComponent(nicsearchbutton)
                 .addContainerGap())
         );
 
@@ -315,7 +312,7 @@ public class FrontPage extends javax.swing.JFrame {
 
         jComboBox5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " " }));
 
-        jButton15.setText("Search");
+        grantnumbersearchbutton.setText("Search");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -323,7 +320,7 @@ public class FrontPage extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton15)
+                .addComponent(grantnumbersearchbutton)
                 .addContainerGap())
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
@@ -336,13 +333,13 @@ public class FrontPage extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton15)
+                .addComponent(grantnumbersearchbutton)
                 .addContainerGap())
         );
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder("Other"));
 
-        jButton16.setText("Search");
+        gramaniladaridivisionsearchbutton.setText("Search");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Grama Niladari Division", "Land name" }));
 
@@ -355,7 +352,7 @@ public class FrontPage extends javax.swing.JFrame {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton16))
+                        .addComponent(gramaniladaridivisionsearchbutton))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -369,7 +366,7 @@ public class FrontPage extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton16))
+                .addComponent(gramaniladaridivisionsearchbutton))
         );
 
         javax.swing.GroupLayout searchPanelLayout = new javax.swing.GroupLayout(searchPanel);
@@ -436,55 +433,55 @@ public class FrontPage extends javax.swing.JFrame {
         shortcutAccessPanel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         shortcutAccessPanel.setLayout(new java.awt.GridLayout(7, 1, 50, 10));
 
-        jButton1.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
-        jButton1.setText("Add new applicant");
-        buttonGroup1.add(jButton1);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        AddNewApplicantButton.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
+        AddNewApplicantButton.setText("Add new applicant");
+        buttonGroup1.add(AddNewApplicantButton);
+        AddNewApplicantButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                AddNewApplicantButtonActionPerformed(evt);
             }
         });
-        shortcutAccessPanel.add(jButton1);
+        shortcutAccessPanel.add(AddNewApplicantButton);
 
-        jButton2.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
-        jButton2.setText("Add new Permit");
-        buttonGroup1.add(jButton2);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        addnewpermitbutton.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
+        addnewpermitbutton.setText("Add new Permit");
+        buttonGroup1.add(addnewpermitbutton);
+        addnewpermitbutton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                addnewpermitbuttonActionPerformed(evt);
             }
         });
-        shortcutAccessPanel.add(jButton2);
+        shortcutAccessPanel.add(addnewpermitbutton);
 
-        jButton3.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
-        jButton3.setText("Change Permit Ownership");
-        buttonGroup1.add(jButton3);
-        shortcutAccessPanel.add(jButton3);
+        changepermitbutton.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
+        changepermitbutton.setText("Change Permit Ownership");
+        buttonGroup1.add(changepermitbutton);
+        shortcutAccessPanel.add(changepermitbutton);
 
-        jButton5.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
-        jButton5.setText("Grama Niladari Division Info");
-        buttonGroup1.add(jButton5);
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        GramaNiladariDivisionInfoButton.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
+        GramaNiladariDivisionInfoButton.setText("Grama Niladari Division Info");
+        buttonGroup1.add(GramaNiladariDivisionInfoButton);
+        GramaNiladariDivisionInfoButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                GramaNiladariDivisionInfoButtonActionPerformed(evt);
             }
         });
-        shortcutAccessPanel.add(jButton5);
+        shortcutAccessPanel.add(GramaNiladariDivisionInfoButton);
 
-        jButton6.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
-        jButton6.setText("Change Grant ownership");
-        buttonGroup1.add(jButton6);
-        shortcutAccessPanel.add(jButton6);
+        changegrantownershipbutton.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
+        changegrantownershipbutton.setText("Change Grant ownership");
+        buttonGroup1.add(changegrantownershipbutton);
+        shortcutAccessPanel.add(changegrantownershipbutton);
 
-        jButton7.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
-        jButton7.setText("Add New Land");
-        buttonGroup1.add(jButton7);
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        addnewlandbutton.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
+        addnewlandbutton.setText("Add New Land");
+        buttonGroup1.add(addnewlandbutton);
+        addnewlandbutton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                addnewlandbuttonActionPerformed(evt);
             }
         });
-        shortcutAccessPanel.add(jButton7);
+        shortcutAccessPanel.add(addnewlandbutton);
 
         javax.swing.GroupLayout desktopJPanelLayout = new javax.swing.GroupLayout(desktopJPanel);
         desktopJPanel.setLayout(desktopJPanelLayout);
@@ -606,43 +603,43 @@ public class FrontPage extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+    private void REminderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_REminderButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton11ActionPerformed
+    }//GEN-LAST:event_REminderButtonActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void AddNewApplicantButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddNewApplicantButtonActionPerformed
         ApplicantForm applicantForm = new ApplicantForm();
         applicantForm.setSize(desktopPane.getSize());
         desktopPane.removeAll();
         desktopPane.add(applicantForm);
         applicantForm.setVisible(true);
                
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_AddNewApplicantButtonActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void GramaNiladariDivisionInfoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GramaNiladariDivisionInfoButtonActionPerformed
         GramaNiladhariForm gramaNiladhariForm = new GramaNiladhariForm();
         gramaNiladhariForm.setSize(desktopPane.getSize());
         desktopPane.removeAll();     
         desktopPane.add(gramaNiladhariForm);
         gramaNiladhariForm.setVisible(true);
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_GramaNiladariDivisionInfoButtonActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    private void addnewlandbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addnewlandbuttonActionPerformed
         LandForm landForm = new LandForm();
         landForm.setSize(desktopPane.getSize());
         desktopPane.removeAll();
         desktopPane.add(landForm);
         landForm.setVisible(true);
                
-    }//GEN-LAST:event_jButton7ActionPerformed
+    }//GEN-LAST:event_addnewlandbuttonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void addnewpermitbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addnewpermitbuttonActionPerformed
         PermitForm permitForm = new PermitForm();
         permitForm.setSize(desktopPane.getSize());
         desktopPane.removeAll();
         desktopPane.add(permitForm);
         permitForm.setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_addnewpermitbuttonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -680,27 +677,25 @@ public class FrontPage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AddNewApplicantButton;
+    private javax.swing.JButton CalenderButton;
+    private javax.swing.JButton ExitButton;
+    private javax.swing.JButton GramaNiladariDivisionInfoButton;
     private javax.swing.JMenu Grant;
+    private javax.swing.JButton LogOutButton;
+    private javax.swing.JButton REminderButton;
+    private javax.swing.JButton addnewlandbutton;
+    private javax.swing.JButton addnewpermitbutton;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JButton changegrantownershipbutton;
+    private javax.swing.JButton changepermitbutton;
+    private javax.swing.JButton clientsearchbutton;
     private javax.swing.JPanel desktopJPanel;
     private javax.swing.JDesktopPane desktopPane;
+    private javax.swing.JButton gramaniladaridivisionsearchbutton;
+    private javax.swing.JButton grantnumbersearchbutton;
     private javax.swing.JPanel internalFrameAreaPanel;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton14;
-    private javax.swing.JButton jButton15;
-    private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton17;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JComboBox jComboBox3;
@@ -739,6 +734,8 @@ public class FrontPage extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton nicsearchbutton;
+    private javax.swing.JButton permitnosearchbutton;
     private javax.swing.JPanel searchPanel;
     private javax.swing.JPanel shortcutAccessPanel;
     private javax.swing.JPanel titlePanel;

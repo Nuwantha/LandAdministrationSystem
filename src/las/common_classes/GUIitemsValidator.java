@@ -38,6 +38,15 @@ public class GUIitemsValidator {
         }
 
     }
+    public static void limitminimumSpinnerValue(JSpinner spinner, int min) {
+        if (Integer.parseInt(spinner.getValue().toString()) <= min) {
+            spinner.setValue(min);
+
+        } else {
+            spinner.setEnabled(true);
+        }
+
+    }
 
     public static void limitTextFieldValue(JTextField textField, int max) {
          if (textField.getText().length() > max) {

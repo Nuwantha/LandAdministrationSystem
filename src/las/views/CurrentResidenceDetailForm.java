@@ -48,26 +48,26 @@ public class CurrentResidenceDetailForm extends javax.swing.JDialog {
         currentResidenceLabel = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         currentAddress = new javax.swing.JTextArea();
-        jLabel13 = new javax.swing.JLabel();
+        ApplicationType = new javax.swing.JLabel();
         jRadioButton3 = new javax.swing.JRadioButton();
         jRadioButton4 = new javax.swing.JRadioButton();
         jPanel6 = new javax.swing.JPanel();
         landOwnerText = new javax.swing.JTextField();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
+        OwnerOfTheLandLabel = new javax.swing.JLabel();
+        RelationLabel = new javax.swing.JLabel();
         relationshipText = new javax.swing.JTextField();
         jPanel7 = new javax.swing.JPanel();
-        jLabel16 = new javax.swing.JLabel();
+        SizeOfLandLabel = new javax.swing.JLabel();
         acreSpinner = new javax.swing.JSpinner();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         roodSpinner = new javax.swing.JSpinner();
         jLabel20 = new javax.swing.JLabel();
         perchSpinner = new javax.swing.JSpinner();
-        jLabel21 = new javax.swing.JLabel();
+        Legallity = new javax.swing.JLabel();
         jRadioButton5 = new javax.swing.JRadioButton();
         jRadioButton6 = new javax.swing.JRadioButton();
-        jLabel22 = new javax.swing.JLabel();
+        AppliedStatusLabel = new javax.swing.JLabel();
         jRadioButton7 = new javax.swing.JRadioButton();
         jRadioButton8 = new javax.swing.JRadioButton();
         jLabel23 = new javax.swing.JLabel();
@@ -88,7 +88,7 @@ public class CurrentResidenceDetailForm extends javax.swing.JDialog {
         currentAddress.setRows(5);
         jScrollPane2.setViewportView(currentAddress);
 
-        jLabel13.setText("01. Applicant is ");
+        ApplicationType.setText("01. Applicant is ");
 
         que1ButtonGroup.add(jRadioButton3);
         jRadioButton3.setText("the owner of this land above");
@@ -114,9 +114,9 @@ public class CurrentResidenceDetailForm extends javax.swing.JDialog {
             }
         });
 
-        jLabel14.setText("Owner of land:");
+        OwnerOfTheLandLabel.setText("Owner of land:");
 
-        jLabel15.setText("Relationship to owner:");
+        RelationLabel.setText("Relationship to owner:");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -125,8 +125,8 @@ public class CurrentResidenceDetailForm extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel14)
-                    .addComponent(jLabel15))
+                    .addComponent(OwnerOfTheLandLabel)
+                    .addComponent(RelationLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(relationshipText, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
@@ -138,18 +138,18 @@ public class CurrentResidenceDetailForm extends javax.swing.JDialog {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14)
+                    .addComponent(OwnerOfTheLandLabel)
                     .addComponent(landOwnerText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel15)
+                    .addComponent(RelationLabel)
                     .addComponent(relationshipText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(38, Short.MAX_VALUE))
         );
 
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder("If applicant is the owner"));
 
-        jLabel16.setText("Size of land:");
+        SizeOfLandLabel.setText("Size of land:");
 
         jLabel18.setText("acres");
 
@@ -163,7 +163,7 @@ public class CurrentResidenceDetailForm extends javax.swing.JDialog {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel16)
+                .addComponent(SizeOfLandLabel)
                 .addGap(47, 47, 47)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel7Layout.createSequentialGroup()
@@ -186,7 +186,7 @@ public class CurrentResidenceDetailForm extends javax.swing.JDialog {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel16)
+                    .addComponent(SizeOfLandLabel)
                     .addComponent(acreSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel18))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -200,7 +200,7 @@ public class CurrentResidenceDetailForm extends javax.swing.JDialog {
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
-        jLabel21.setText("02.Is the land illegal (a government property?)");
+        Legallity.setText("02.Is the land illegal (a government property?)");
 
         que2ButtonGroup.add(jRadioButton5);
         jRadioButton5.setText("Yes");
@@ -213,7 +213,7 @@ public class CurrentResidenceDetailForm extends javax.swing.JDialog {
             }
         });
 
-        jLabel22.setText("03.Has applicant applied before to land kachcheri?");
+        AppliedStatusLabel.setText("03.Has applicant applied before to land kachcheri?");
 
         que3ButtonGroup.add(jRadioButton7);
         jRadioButton7.setText("Yes");
@@ -282,13 +282,13 @@ public class CurrentResidenceDetailForm extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(resultLabel))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, CurrentResidencePanelLayout.createSequentialGroup()
-                        .addComponent(jLabel22)
+                        .addComponent(AppliedStatusLabel)
                         .addGap(18, 18, 18)
                         .addComponent(jRadioButton7)
                         .addGap(10, 10, 10)
                         .addComponent(jRadioButton8))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, CurrentResidencePanelLayout.createSequentialGroup()
-                        .addComponent(jLabel21)
+                        .addComponent(Legallity)
                         .addGap(18, 18, 18)
                         .addComponent(jRadioButton5)
                         .addGap(10, 10, 10)
@@ -296,7 +296,7 @@ public class CurrentResidenceDetailForm extends javax.swing.JDialog {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, CurrentResidencePanelLayout.createSequentialGroup()
                         .addGroup(CurrentResidencePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(currentResidenceLabel)
-                            .addComponent(jLabel13))
+                            .addComponent(ApplicationType))
                         .addGap(18, 18, 18)
                         .addGroup(CurrentResidencePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(CurrentResidencePanelLayout.createSequentialGroup()
@@ -318,17 +318,17 @@ public class CurrentResidenceDetailForm extends javax.swing.JDialog {
                     .addComponent(currentResidenceLabel))
                 .addGap(7, 7, 7)
                 .addGroup(CurrentResidencePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13)
+                    .addComponent(ApplicationType)
                     .addComponent(jRadioButton3)
                     .addComponent(jRadioButton4))
                 .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(CurrentResidencePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel21)
+                    .addComponent(Legallity)
                     .addComponent(jRadioButton5)
                     .addComponent(jRadioButton6))
                 .addGap(18, 18, 18)
                 .addGroup(CurrentResidencePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel22)
+                    .addComponent(AppliedStatusLabel)
                     .addComponent(jRadioButton7)
                     .addComponent(jRadioButton8))
                 .addGap(18, 18, 18)
@@ -456,7 +456,13 @@ public class CurrentResidenceDetailForm extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel ApplicationType;
+    private javax.swing.JLabel AppliedStatusLabel;
     private javax.swing.JPanel CurrentResidencePanel;
+    private javax.swing.JLabel Legallity;
+    private javax.swing.JLabel OwnerOfTheLandLabel;
+    private javax.swing.JLabel RelationLabel;
+    private javax.swing.JLabel SizeOfLandLabel;
     private javax.swing.JSpinner acreSpinner;
     private javax.swing.JButton applicantAvailabilityButton;
     private javax.swing.JTextArea currentAddress;
@@ -464,15 +470,9 @@ public class CurrentResidenceDetailForm extends javax.swing.JDialog {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
