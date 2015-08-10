@@ -16,7 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.text.JTextComponent;
-import las.common_classes.ComboItemAdder;
+import las.common_classes.GUIitemsValidator;
 import las.controllers.ClientController;
 import las.controllers.GramaNiladariDivisionController;
 import las.controllers.LandController;
@@ -52,11 +52,11 @@ public class PermitForm extends javax.swing.JInternalFrame {
                 String item = (String) editpermit_permit_number_combo.getEditor().getItem();
                 ArrayList<Object> list = new ArrayList();
                 try {
-                    ArrayList<Permit> simmilarPlanNumbers = PermitController.getSimmilarPlanNumbers(item);
+                    ArrayList<Permit> simmilarPlanNumbers = PermitController.getSimilarPermitNumbers(item);
                     for (int i = 0; i < simmilarPlanNumbers.size(); i++) {
                         list.add(simmilarPlanNumbers.get(i).getPermitNumber());
                     }
-                    ComboItemAdder.addItemToCombo(list, editpermit_permit_number_combo);
+                    GUIitemsValidator.addItemToCombo(list, editpermit_permit_number_combo);
                     
                 } catch (ClassNotFoundException | SQLException ex) {
                     Logger.getLogger(LandForm.class.getName()).log(Level.SEVERE, null, ex);
@@ -80,7 +80,7 @@ public class PermitForm extends javax.swing.JInternalFrame {
                     for (int i = 0; i < simmilarNICs.size(); i++) {
                         list.add(simmilarNICs.get(i).getNIC());
                     }
-                    ComboItemAdder.addItemToCombo(list, add_permit_nic_combo);
+                    GUIitemsValidator.addItemToCombo(list, add_permit_nic_combo);
                     
                 } catch (ClassNotFoundException | SQLException ex) {
                     Logger.getLogger(LandForm.class.getName()).log(Level.SEVERE, null, ex);
@@ -145,6 +145,7 @@ public class PermitForm extends javax.swing.JInternalFrame {
         AddNotSurveyedWest = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         addpermit_permit_numberTest = new javax.swing.JTextField();
+        addpermit_permit_issue_dateChooser = new org.freixas.jcalendar.JCalendarCombo();
         Add_Save = new javax.swing.JButton();
         Add_Cancel = new javax.swing.JButton();
         jPanel11 = new javax.swing.JPanel();
@@ -381,7 +382,9 @@ public class PermitForm extends javax.swing.JInternalFrame {
                                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
-                                .addComponent(addpermit_permit_numberTest, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(addpermit_permit_numberTest, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(addpermit_permit_issue_dateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(2, 2, 2)))
                 .addGap(18, 18, 18))
         );
@@ -393,7 +396,9 @@ public class PermitForm extends javax.swing.JInternalFrame {
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(addpermit_permit_numberTest, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addpermit_permit_issue_dateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(488, 488, 488)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1621,7 +1626,7 @@ public class PermitForm extends javax.swing.JInternalFrame {
                 for (Land land : landsOfDivision) {
                     list.add(land.getPlanNumber());
                 }
-                ComboItemAdder.addItemToCombo(list, add_permit_planNumber_combo);
+                GUIitemsValidator.addItemToCombo(list, add_permit_planNumber_combo);
                 
             }
         } catch (ClassNotFoundException | SQLException ex) {
@@ -1639,7 +1644,7 @@ public class PermitForm extends javax.swing.JInternalFrame {
                 for (Lot lot : lotList) {
                     list.add(lot.getLotNumber());
                 }
-                ComboItemAdder.addItemToCombo(list, add_permit_lot_number_Combo);
+                GUIitemsValidator.addItemToCombo(list, add_permit_lot_number_Combo);
                 
             }
         } catch (ClassNotFoundException | SQLException ex) {
@@ -1790,7 +1795,7 @@ public class PermitForm extends javax.swing.JInternalFrame {
                 int month = Integer.parseInt(permitIssueDate.substring(5, 6));
                 int date = Integer.parseInt(permitIssueDate.substring(8, 9));
                 Date issueDate = new Date(year, month, date);
-                editpermit_CalendarCombo.setDate(issueDate);
+//                editpermit_CalendarCombo.setDate(issueDate);
                 editpermit_NOS_address_test.setText(nominatedSuccessor.getAddress());
                 editpermit_NOS_name_test.setText(nominatedSuccessor.getAddress());
                 editpermit_NOS_nic_test.setText(nominatedSuccessor.getNIC_S());
@@ -1865,6 +1870,7 @@ public class PermitForm extends javax.swing.JInternalFrame {
     private javax.swing.JTextField addpermit_NOS_nic_test;
     private javax.swing.JButton addpermit_add_permit_button;
     private javax.swing.JButton addpermit_add_permit_button1;
+    private org.freixas.jcalendar.JCalendarCombo addpermit_permit_issue_dateChooser;
     private javax.swing.JTextField addpermit_permit_numberTest;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox editPermit_nic_combo;

@@ -198,7 +198,10 @@
                                               <Component id="jLabel3" alignment="0" min="-2" pref="63" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="addpermit_permit_numberTest" min="-2" pref="112" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="addpermit_permit_numberTest" min="-2" pref="112" max="-2" attributes="0"/>
+                                              <Component id="addpermit_permit_issue_dateChooser" min="-2" max="-2" attributes="0"/>
+                                          </Group>
                                       </Group>
                                   </Group>
                                   <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
@@ -217,7 +220,10 @@
                               <Component id="addpermit_permit_numberTest" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jLabel3" min="-2" pref="20" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabel3" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                              <Component id="addpermit_permit_issue_dateChooser" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
                           <EmptySpace min="-2" pref="488" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel27" alignment="3" min="-2" pref="21" max="-2" attributes="0"/>
@@ -328,6 +334,8 @@
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addpermit_permit_numberTestActionPerformed"/>
                   </Events>
+                </Component>
+                <Component class="org.freixas.jcalendar.JCalendarCombo" name="addpermit_permit_issue_dateChooser">
                 </Component>
               </SubComponents>
             </Container>

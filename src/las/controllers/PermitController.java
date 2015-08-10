@@ -96,7 +96,7 @@ public class PermitController {
         return permitCount;
     }
     
-    public static ArrayList<Permit> getSimmilarPlanNumbers(String permitNumberPart) throws ClassNotFoundException, SQLException {
+    public static ArrayList<Permit> getSimilarPermitNumbers(String permitNumberPart) throws ClassNotFoundException, SQLException {
         Connection conn = DBConnection.getDBConnection().getConnection();
         String sql = "Select * From permit where permitNumber like '" + permitNumberPart + "%'  order by permitNumber limit 10";
         ResultSet rst = DBHandler.getData(conn, sql);
