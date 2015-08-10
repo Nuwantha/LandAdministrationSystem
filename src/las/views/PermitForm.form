@@ -198,10 +198,7 @@
                                               <Component id="jLabel3" alignment="0" min="-2" pref="63" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="addpermit_permit_numberTest" min="-2" pref="112" max="-2" attributes="0"/>
-                                              <Component id="addpermit_permit_issue_dateChooser" min="-2" max="-2" attributes="0"/>
-                                          </Group>
+                                          <Component id="addpermit_permit_numberTest" min="-2" pref="112" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
@@ -220,10 +217,7 @@
                               <Component id="addpermit_permit_numberTest" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLabel3" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                              <Component id="addpermit_permit_issue_dateChooser" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="jLabel3" min="-2" pref="20" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="488" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel27" alignment="3" min="-2" pref="21" max="-2" attributes="0"/>
@@ -333,11 +327,6 @@
                 <Component class="javax.swing.JTextField" name="addpermit_permit_numberTest">
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addpermit_permit_numberTestActionPerformed"/>
-                  </Events>
-                </Component>
-                <Component class="org.freixas.jcalendar.JCalendarCombo" name="addpermit_permit_issue_dateChooser">
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addpermit_permit_issue_dateChooserActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -1168,10 +1157,7 @@
                                                   <Component id="jLabel19" alignment="0" min="-2" pref="63" max="-2" attributes="0"/>
                                               </Group>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="editpermit_permit_number_combo" min="-2" pref="121" max="-2" attributes="0"/>
-                                                  <Component id="editpermit_CalendarCombo" min="-2" max="-2" attributes="0"/>
-                                              </Group>
+                                              <Component id="editpermit_permit_number_combo" min="-2" pref="121" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
@@ -1190,10 +1176,7 @@
                                   <Component id="editpermit_permit_number_combo" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel19" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                                  <Component id="editpermit_CalendarCombo" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="jLabel19" min="-2" pref="20" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="488" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel31" alignment="3" min="-2" pref="21" max="-2" attributes="0"/>
@@ -1309,8 +1292,6 @@
                       <Events>
                         <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="editpermit_permit_number_comboItemStateChanged"/>
                       </Events>
-                    </Component>
-                    <Component class="org.freixas.jcalendar.JCalendarCombo" name="editpermit_CalendarCombo">
                     </Component>
                   </SubComponents>
                 </Container>

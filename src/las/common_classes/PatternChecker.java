@@ -5,6 +5,9 @@
  */
 package las.common_classes;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -62,5 +65,26 @@ public class PatternChecker {
             telText = telText.substring(0, telText.length() - 1);
         }
         return telText;
+    }
+    public static boolean emailChecker(String email){
+        String defaultModel="^[w-_\\.+]*[\\w-_@([\\w]+\\.)+[\\w]$";
+        boolean status=email.matches(defaultModel);
+        return status;
+    }
+    public static boolean birthdayChecker(String birthday){
+        SimpleDateFormat sdf=new SimpleDateFormat("MM/d/yyyy");
+        Date testdate=null;
+        try{
+            testdate=sdf.parse(birthday);
+                   }
+        catch(ParseException e){
+            System.out.println("Invalid Date Format");
+            return false;
+        }
+        if(!sdf.format(testdate).equals(birthday)){
+            System.out.println("Invalid Date Format");
+            return false;
+        }
+        return true;
     }
 }
