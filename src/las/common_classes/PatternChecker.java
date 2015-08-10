@@ -87,4 +87,78 @@ public class PatternChecker {
         }
         return true;
     }
+        public static String checkDecimal(String text) {
+        int result;
+        for (int i = 1; i < text.length() + 1; i++) {
+            Character c = text.charAt(i - 1);
+            Pattern pattern = Pattern.compile("[0-9.]");
+            Matcher matcher = pattern.matcher(c.toString());
+            if (matcher.find()) {
+                result = 1;
+            } else {
+                result = 0;
+            }
+            if (result == 0) {
+                text = text.substring(0, i - 1);
+            }
+        }
+        return text;
+
+    }
+    public static String checkPrice(String text) {
+        int result = 0;
+        for (int i = 1; i < text.length() + 1; i++) {
+            Character c = text.charAt(i - 1);
+            Pattern pattern = Pattern.compile("[.]");
+            Matcher matcher = pattern.matcher(c.toString());
+            if (matcher.find()) {
+                result = 1;
+            } else {
+                result = 0;
+            }    
+        }
+         if (result == 0) {
+                text = text.concat(".00");
+            }
+        return text;
+    }
+
+    public static String checkInteger(String text) {
+        int result;
+        for (int i = 1; i < text.length() + 1; i++) {
+            Character c = text.charAt(i - 1);
+            Pattern pattern = Pattern.compile("[0-9]");
+            Matcher matcher = pattern.matcher(c.toString());
+            if (matcher.find()) {
+                result = 1;
+            } else {
+                result = 0;
+            }
+            if (result == 0) {
+                text = text.substring(0, i - 1);
+
+            }
+        }
+        return text;
+
+    }
+    public static String checkDate(String text) {
+        int result;
+        for (int i = 1; i < text.length() + 1; i++) {
+            Character c = text.charAt(i - 1);
+            Pattern pattern = Pattern.compile("[0-9]");
+            Matcher matcher = pattern.matcher(c.toString());
+            if (matcher.find()) {
+                result = 1;
+            } else {
+                result = 0;
+            }
+            if (result == 0) {
+                text = text.substring(0, i - 1);
+
+            }
+        }
+        return text;
+
+    }
 }
