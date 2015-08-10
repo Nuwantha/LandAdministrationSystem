@@ -1820,20 +1820,27 @@ public class PermitForm extends javax.swing.JInternalFrame {
                 editpermit_NOS_name_test.setText(nominatedSuccessor.getAddress());
                 editpermit_NOS_nic_test.setText(nominatedSuccessor.getNIC_S());
                 
+                editpermit_lot_number_Combo.removeAllItems();
+                editpermit_lot_number_Combo.addItem(lot.getLotNumber());
                 editpermit_lot_number_Combo.setSelectedItem(lot.getLotNumber());
+                
                 editpermit_acres_test.setText(String.valueOf(lot.getNumberOfAcres()));
                 editpermit_perches_test.setText(String.valueOf(lot.getNumberOfPerches()));
                 editpermit_roods_test.setText(String.valueOf(lot.getNumberofRoods()));
                 
                 Land land = lot.getLand();
                 
+                editpermit_planNumber_combo.removeAllItems();
+                editpermit_planNumber_combo.addItem(land.getPlanNumber());
                 editpermit_planNumber_combo.setSelectedItem(land.getPlanNumber());
                 editpermit_landName_test.setText(land.getLandName());
                 
-                editpermit_division_number_combo.setSelectedItem(land.getDivisionNumber());
-                GramaNiladariDivision searchGND = GramaNiladariDivisionController.searchGND(land.getDivisionNumber());
+                editpermit_planNumber_combo.removeAllItems();
+                editpermit_division_number_combo.addItem(land.getDivisionNumber());
+                editpermit_planNumber_combo.setSelectedItem(land.getDivisionNumber());
                 
-                editpermit_division_number_combo.setSelectedItem(searchGND);
+                GramaNiladariDivision searchGND = GramaNiladariDivisionController.searchGND(land.getDivisionNumber());
+                editpermit_division_name_test.setText(searchGND.getDivisionName());
                 
                 
             }

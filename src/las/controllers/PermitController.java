@@ -76,7 +76,7 @@ public class PermitController {
         if (rst.next()) {
             Client client = ClientController.searchClient(rst.getString("NIC"));
             Lot searchLot = LotController.searchLot(rst.getString("LotNumber"));
-            NominatedSuccessor searchNominateSuccessor = NominatedSuccessorController.searchNominateSuccessor("NIC_Successor");
+            NominatedSuccessor searchNominateSuccessor = NominatedSuccessorController.searchNominateSuccessor(rst.getString("NIC_Successor"));
             Permit permit = new Permit(rst.getString("PermitNumber"), rst.getString("PermitIssueDate"), searchLot, client, searchNominateSuccessor);
             return permit;
         } else {
