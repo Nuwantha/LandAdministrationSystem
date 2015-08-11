@@ -40,6 +40,23 @@ public class PatternChecker {
         }
         return nicText;
     }
+public static boolean checkNICdirect(String nicText) {
+        
+        if (nicText.length() == 10) {
+            Pattern pattern = Pattern.compile("[0-9]{9}[VX]");
+            Matcher matcher = pattern.matcher(nicText);
+            if (matcher.find()) {
+                return true;
+            } else {
+                return false;
+            }
+        } else if (nicText.length() != 10) {
+           return false;
+        }
+        else{
+            return false;
+        }
+    }
 
     public static String checkTelNum(String telText) {
         int result;
@@ -67,11 +84,23 @@ public class PatternChecker {
         }
         return telText;
     }
-    public static boolean emailChecker(String email){
-        String defaultModel="^[w-_\\.+]*[\\w-_@([\\w]+\\.)+[\\w]$";
-        boolean status=email.matches(defaultModel);
-        return status;
-    }
+     public static boolean checkTelNumdirect(String telText) {
+        if (telText.length()== 10) {
+            Pattern pattern2 = Pattern.compile("[0][1-9]{2}[0-9]{" + (telText.length() - 3) + "}");
+            Matcher matcher2 = pattern2.matcher(telText);
+            if (!matcher2.find()) {
+                return false;
+            }
+            else{
+                return true;
+            }
+        }
+       
+        else{
+            return false;
+            }
+        
+     }
     public static boolean birthdayChecker(String birthday){
         SimpleDateFormat sdf=new SimpleDateFormat("MM/d/yyyy");
         Date testdate=null;
@@ -93,6 +122,42 @@ public class PatternChecker {
         for (int i = 1; i < text.length() + 1; i++) {
             Character c = text.charAt(i - 1);
             Pattern pattern = Pattern.compile("[0-9.]");//[a-z A-Z]
+            Matcher matcher = pattern.matcher(c.toString());
+            if (matcher.find()) {
+                result = 1;
+            } else {
+                result = 0;
+            }
+            if (result == 0) {
+                text = text.substring(0, i - 1);
+            }
+        }
+        return text;
+
+    }
+        public static boolean checkDecimaldirect(String text) {
+        
+            Pattern pattern = Pattern.compile("[0-9.]");//[a-z A-Z]
+            Matcher matcher = pattern.matcher(text);
+        return matcher.find();               
+    }
+        public static boolean checkIntegerdirect(String text) {
+        
+            Pattern pattern = Pattern.compile("[0-9]");//[a-z A-Z]
+            Matcher matcher = pattern.matcher(text);
+        return matcher.find();               
+    }
+         public static boolean checkStringdirect(String text) {
+        
+            Pattern pattern = Pattern.compile("^[\\p{L} .'-]+$");//[a-z A-Z]
+            Matcher matcher = pattern.matcher(text);
+        return matcher.find();               
+    }
+        public static String checkstring(String text) {
+        int result;
+        for (int i = 1; i < text.length() + 1; i++) {
+            Character c = text.charAt(i - 1);
+            Pattern pattern = Pattern.compile("^[\\p{L} .'-]+$");//
             Matcher matcher = pattern.matcher(c.toString());
             if (matcher.find()) {
                 result = 1;

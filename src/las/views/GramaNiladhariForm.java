@@ -18,6 +18,7 @@ import javax.swing.ComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.JTextComponent;
+import las.common_classes.PatternChecker;
 import las.controllers.GramaNiladariDivisionController;
 import las.db_utilities.DBHandler;
 import las.models.GramaNiladariDivision;
@@ -34,6 +35,8 @@ public class GramaNiladhariForm extends javax.swing.JInternalFrame {
     public GramaNiladhariForm() {
 
         initComponents();
+        gnnamenotvalidlabel.setVisible(false);
+        gnd_update_combo.requestFocus();
         gnd_search_combo.setMaximumRowCount(10);
         gnd_search_combo.setEditable(true);
         JTextComponent editor = (JTextComponent) gnd_search_combo.getEditor().getEditorComponent();
@@ -100,7 +103,8 @@ public class GramaNiladhariForm extends javax.swing.JInternalFrame {
         gnd_zone_test = new javax.swing.JTextField();
         gnd_gramaniladari_name = new javax.swing.JTextField();
         gnd_update_button = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        gnd_cancel_button = new javax.swing.JButton();
+        gnnamenotvalidlabel = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         gnd_search_combo = new javax.swing.JComboBox();
@@ -200,10 +204,10 @@ public class GramaNiladhariForm extends javax.swing.JInternalFrame {
 
         jTabbedPane1.addTab("View All GNDs", jPanel2);
 
-        gndnolabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        gndnolabel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         gndnolabel.setText("Grama Niladhari Division No");
 
-        gndnamelabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        gndnamelabel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         gndnamelabel.setText("Grama Niladhari Division Name");
 
         gnd_update_combo.addItemListener(new java.awt.event.ItemListener() {
@@ -216,11 +220,16 @@ public class GramaNiladhariForm extends javax.swing.JInternalFrame {
                 gnd_update_comboActionPerformed(evt);
             }
         });
+        gnd_update_combo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                gnd_update_comboKeyReleased(evt);
+            }
+        });
 
-        zonelabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        zonelabel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         zonelabel.setText("Zone");
 
-        gnnamelabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        gnnamelabel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         gnnamelabel.setText("Grama Niladhari Name");
 
         gnd_name_test.addActionListener(new java.awt.event.ActionListener() {
@@ -228,10 +237,26 @@ public class GramaNiladhariForm extends javax.swing.JInternalFrame {
                 gnd_name_testActionPerformed(evt);
             }
         });
+        gnd_name_test.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                gnd_name_testKeyReleased(evt);
+            }
+        });
+
+        gnd_zone_test.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                gnd_zone_testKeyReleased(evt);
+            }
+        });
 
         gnd_gramaniladari_name.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 gnd_gramaniladari_nameActionPerformed(evt);
+            }
+        });
+        gnd_gramaniladari_name.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                gnd_gramaniladari_nameKeyReleased(evt);
             }
         });
 
@@ -241,8 +266,22 @@ public class GramaNiladhariForm extends javax.swing.JInternalFrame {
                 gnd_update_buttonActionPerformed(evt);
             }
         });
+        gnd_update_button.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                gnd_update_buttonKeyReleased(evt);
+            }
+        });
 
-        jButton2.setText("Cancel");
+        gnd_cancel_button.setText("Cancel");
+        gnd_cancel_button.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                gnd_cancel_buttonKeyReleased(evt);
+            }
+        });
+
+        gnnamenotvalidlabel.setBackground(new java.awt.Color(204, 0, 0));
+        gnnamenotvalidlabel.setForeground(new java.awt.Color(204, 0, 0));
+        gnnamenotvalidlabel.setText("Not Valid");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -258,18 +297,19 @@ public class GramaNiladhariForm extends javax.swing.JInternalFrame {
                             .addComponent(zonelabel)
                             .addComponent(gnnamelabel))
                         .addGap(32, 32, 32)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(gnd_zone_test)
-                            .addComponent(gnd_name_test)
-                            .addComponent(gnd_gramaniladari_name)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(gnd_update_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 539, Short.MAX_VALUE))))
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(gnd_zone_test, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
+                            .addComponent(gnd_update_combo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(gnd_name_test, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(gnd_gramaniladari_name))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(gnnamenotvalidlabel)
+                        .addGap(0, 387, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(gnd_update_button)
                         .addGap(42, 42, 42)
-                        .addComponent(jButton2)))
+                        .addComponent(gnd_cancel_button)))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -277,7 +317,7 @@ public class GramaNiladhariForm extends javax.swing.JInternalFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(gndnolabel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(gndnolabel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(gnd_update_combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -290,12 +330,13 @@ public class GramaNiladhariForm extends javax.swing.JInternalFrame {
                 .addGap(32, 32, 32)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(gnnamelabel)
-                    .addComponent(gnd_gramaniladari_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(gnd_gramaniladari_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(gnnamenotvalidlabel))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(gnd_update_button)
-                    .addComponent(jButton2))
-                .addContainerGap(231, Short.MAX_VALUE))
+                    .addComponent(gnd_cancel_button))
+                .addContainerGap(245, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Update GND Details", jPanel4);
@@ -531,9 +572,72 @@ public class GramaNiladhariForm extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_gnd_search_comboKeyReleased
 
+    private void gnd_update_comboKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_gnd_update_comboKeyReleased
+        // TODO add your handling code here:
+        if(evt.getKeyCode()==KeyEvent.VK_DOWN){
+            gnd_name_test.requestFocus();
+        }
+    }//GEN-LAST:event_gnd_update_comboKeyReleased
+
+    private void gnd_name_testKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_gnd_name_testKeyReleased
+        // TODO add your handling code here:
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER || evt.getKeyCode()==KeyEvent.VK_DOWN){
+            gnd_zone_test.requestFocus();
+        }
+        else if(evt.getKeyCode()==KeyEvent.VK_UP){
+            gnd_update_combo.requestFocus();}
+        
+    }//GEN-LAST:event_gnd_name_testKeyReleased
+
+    private void gnd_zone_testKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_gnd_zone_testKeyReleased
+        // TODO add your handling code here:
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER || evt.getKeyCode()==KeyEvent.VK_DOWN){
+            gnd_gramaniladari_name.requestFocus();
+        }
+        else if(evt.getKeyCode()==KeyEvent.VK_UP){
+            gnd_name_test.requestFocus();}
+    }//GEN-LAST:event_gnd_zone_testKeyReleased
+
+    private void gnd_gramaniladari_nameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_gnd_gramaniladari_nameKeyReleased
+        // TODO add your handling code here:
+        gnnamenotvalidlabel.setVisible(false);
+        String newtext=PatternChecker.checkstring(gnd_gramaniladari_name.getText());
+        gnd_gramaniladari_name.setText(newtext);
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            if(PatternChecker.checkStringdirect(gnd_gramaniladari_name.getText())){
+                gnd_update_button.requestFocus();
+            }
+            else{
+                gnnamenotvalidlabel.setVisible(true);
+            }
+           
+        }
+        else if(evt.getKeyCode()==KeyEvent.VK_UP){
+            gnd_zone_test.requestFocus();}
+        else if(evt.getKeyCode()==KeyEvent.VK_DOWN){
+            gnd_update_button.requestFocus();}
+    }//GEN-LAST:event_gnd_gramaniladari_nameKeyReleased
+
+    private void gnd_update_buttonKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_gnd_update_buttonKeyReleased
+        // TODO add your handling code here:
+        if(evt.getKeyCode()==KeyEvent.VK_UP){
+            gnd_gramaniladari_name.requestFocus();}
+        else if(evt.getKeyCode()==KeyEvent.VK_RIGHT){
+            gnd_cancel_button.requestFocus();}
+    }//GEN-LAST:event_gnd_update_buttonKeyReleased
+
+    private void gnd_cancel_buttonKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_gnd_cancel_buttonKeyReleased
+        // TODO add your handling code here:
+        if(evt.getKeyCode()==KeyEvent.VK_UP){
+            gnd_gramaniladari_name.requestFocus();}
+        else if(evt.getKeyCode()==KeyEvent.VK_LEFT){
+            gnd_update_button.requestFocus();}
+    }//GEN-LAST:event_gnd_cancel_buttonKeyReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable allGNDDetailTable;
+    private javax.swing.JButton gnd_cancel_button;
     private javax.swing.JTextField gnd_gramaniladari_name;
     private javax.swing.JButton gnd_load_buttun;
     private javax.swing.JTextField gnd_name_test;
@@ -547,7 +651,7 @@ public class GramaNiladhariForm extends javax.swing.JInternalFrame {
     private javax.swing.JLabel gndnamelabel;
     private javax.swing.JLabel gndnolabel;
     private javax.swing.JLabel gnnamelabel;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel gnnamenotvalidlabel;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;

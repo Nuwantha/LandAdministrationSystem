@@ -26,6 +26,16 @@ public class GUIitemsValidator {
                 
     
     };
+    public static void incermentSpinnerValue(JSpinner spinner) {
+        int i=(int)spinner.getValue()+1;
+        spinner.setValue((Object)i);
+
+    }
+    public static void decrementSpinnerValue(JSpinner spinner) {
+        int i=(int)spinner.getValue()-1;
+        spinner.setValue((Object)i);
+
+    }
     public static void limitSpinnerValue(JSpinner spinner, int min, int max) {
         if (Integer.parseInt(spinner.getValue().toString()) <= min) {
             spinner.setValue(min);

@@ -15,7 +15,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.text.JTextComponent;
-import las.common_classes.ComboItemAdder;
+//import las.common_classes.ComboItemAdder;
+import las.common_classes.GUIitemsValidator;
 import las.common_classes.PatternChecker;
 import las.controllers.ClientController;
 import las.models.Client;
@@ -32,8 +33,20 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
     public ApplicantForm() {
         initComponents();
         nameText.requestFocus(); 
+        namenotvalidlabel.setVisible(false);
+       nicnotvalidlabel.setVisible(false);
+       phonenumnotvalidlabel.setVisible(false);
+       occupationnotvalidlabel.setVisible(false);
+       incomenotvalidlabel.setVisible(false);
         //registerButton.setEnabled(false);
         addCurrentResidenceButton.setEnabled(false);
+        editnamenotvalidlabel.setVisible(false);
+        editphonenonotvalidlabel.setVisible(false);
+        editbirthdaynotvalidlabel.setVisible(false);
+        editmarriedchildrennotvalidlabel.setVisible(false);
+        editunmarriedchildrennotvalidlabel.setVisible(false);
+        editoccupationnotvalidlabel.setVisible(false);
+        editincomenotvalidlabel.setVisible(false);
 
         search_nic_combo.setEditable(true);
         JTextComponent editorSearchNICCombo = (JTextComponent) search_nic_combo.getEditor().getEditorComponent();
@@ -49,7 +62,7 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
                     for (int i = 0; i < simmilarNICs.size(); i++) {
                         list.add(simmilarNICs.get(i).getNIC());
                     }
-                    ComboItemAdder.addItemToCombo(list, search_nic_combo);
+                    GUIitemsValidator.addItemToCombo(list, search_nic_combo);
 
                 } catch (ClassNotFoundException | SQLException ex) {
                     Logger.getLogger(LandForm.class.getName()).log(Level.SEVERE, null, ex);
@@ -73,7 +86,7 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
                     for (int i = 0; i < simmilarNICs.size(); i++) {
                         list.add(simmilarNICs.get(i).getNIC());
                     }
-                    ComboItemAdder.addItemToCombo(list, edit_nic_combo);
+                    GUIitemsValidator.addItemToCombo(list, edit_nic_combo);
 
                 } catch (ClassNotFoundException | SQLException ex) {
                     Logger.getLogger(LandForm.class.getName()).log(Level.SEVERE, null, ex);
@@ -166,6 +179,7 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
         namenotvalidlabel = new javax.swing.JLabel();
         nicnotvalidlabel = new javax.swing.JLabel();
         phonenumnotvalidlabel = new javax.swing.JLabel();
+        birthdayChooser1 = new org.freixas.jcalendar.JCalendarCombo();
         jPanel5 = new javax.swing.JPanel();
         personalDetailPanel1 = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
@@ -210,15 +224,22 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
         jLabel40 = new javax.swing.JLabel();
         edit_marided_sons = new javax.swing.JTextField();
         edit_unmarried_sons = new javax.swing.JTextField();
+        editmarriedchildrennotvalidlabel = new javax.swing.JLabel();
+        editunmarriedchildrennotvalidlabel = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         jLabel41 = new javax.swing.JLabel();
         occupationText2 = new javax.swing.JTextField();
         jLabel42 = new javax.swing.JLabel();
         edit_annualIncome = new javax.swing.JTextField();
+        editoccupationnotvalidlabel = new javax.swing.JLabel();
+        editincomenotvalidlabel = new javax.swing.JLabel();
         edit_DOB_test = new javax.swing.JTextField();
         edit_nic_combo = new javax.swing.JComboBox();
         jPanel10 = new javax.swing.JPanel();
         edit_update_buttun = new javax.swing.JButton();
+        editnamenotvalidlabel = new javax.swing.JLabel();
+        editphonenonotvalidlabel = new javax.swing.JLabel();
+        editbirthdaynotvalidlabel = new javax.swing.JLabel();
 
         currentResidenceLabel.setText("Current Residence : ");
 
@@ -491,7 +512,7 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(596, Short.MAX_VALUE)
+                .addContainerGap(605, Short.MAX_VALUE)
                 .addComponent(registerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
@@ -562,15 +583,57 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
 
         statusButtonGroup.add(marriedStatusRButton);
         marriedStatusRButton.setText("Married");
+        marriedStatusRButton.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                marriedStatusRButtonStateChanged(evt);
+            }
+        });
+        marriedStatusRButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                marriedStatusRButtonActionPerformed(evt);
+            }
+        });
+        marriedStatusRButton.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                marriedStatusRButtonKeyReleased(evt);
+            }
+        });
 
         statusButtonGroup.add(singleStatusRButton);
         singleStatusRButton.setText("Single");
+        singleStatusRButton.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                singleStatusRButtonKeyReleased(evt);
+            }
+        });
 
         childrenCountPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Number of children"));
 
         NumberOfMarriedChildren.setText("No. of married children:");
 
         NoOfUnmarriedChildren.setText("No. of  unmarried children:");
+
+        marriedChildrenCountSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                marriedChildrenCountSpinnerStateChanged(evt);
+            }
+        });
+        marriedChildrenCountSpinner.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                marriedChildrenCountSpinnerKeyReleased(evt);
+            }
+        });
+
+        unmarriedChildrenCountSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                unmarriedChildrenCountSpinnerStateChanged(evt);
+            }
+        });
+        unmarriedChildrenCountSpinner.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                unmarriedChildrenCountSpinnerKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout childrenCountPanelLayout = new javax.swing.GroupLayout(childrenCountPanel);
         childrenCountPanel.setLayout(childrenCountPanelLayout);
@@ -605,7 +668,24 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
 
         Occupation.setText("Occupation:");
 
+        occupationText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                occupationTextActionPerformed(evt);
+            }
+        });
+        occupationText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                occupationTextKeyReleased(evt);
+            }
+        });
+
         AnnualIncome.setText("Estimated Annual Income: Rs.");
+
+        annualIncomeText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                annualIncomeTextKeyReleased(evt);
+            }
+        });
 
         occupationnotvalidlabel.setForeground(new java.awt.Color(204, 0, 0));
         occupationnotvalidlabel.setText("Not Valid");
@@ -658,6 +738,11 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
                 addCurrentResidenceButtonActionPerformed(evt);
             }
         });
+        addCurrentResidenceButton.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                addCurrentResidenceButtonKeyReleased(evt);
+            }
+        });
 
         namenotvalidlabel.setForeground(new java.awt.Color(204, 0, 0));
         namenotvalidlabel.setText("Not Valid");
@@ -668,6 +753,17 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
         phonenumnotvalidlabel.setForeground(new java.awt.Color(204, 0, 0));
         phonenumnotvalidlabel.setText("Not Valid");
 
+        birthdayChooser1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                birthdayChooser1ActionPerformed(evt);
+            }
+        });
+        birthdayChooser1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                birthdayChooser1KeyReleased(evt);
+            }
+        });
+
         javax.swing.GroupLayout personalDetailPanelLayout = new javax.swing.GroupLayout(personalDetailPanel);
         personalDetailPanel.setLayout(personalDetailPanelLayout);
         personalDetailPanelLayout.setHorizontalGroup(
@@ -675,43 +771,45 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
             .addGroup(personalDetailPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(personalDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(personalDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(RegNo)
-                        .addComponent(NIC)
-                        .addComponent(Name)
-                        .addComponent(PhoneNo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Address, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(Birthday, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Status))
-                .addGap(18, 18, 18)
-                .addGroup(personalDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(personalDetailPanelLayout.createSequentialGroup()
-                        .addComponent(marriedStatusRButton)
+                        .addGroup(personalDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(personalDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(RegNo)
+                                .addComponent(NIC)
+                                .addComponent(Name)
+                                .addComponent(PhoneNo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(Address, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(Birthday, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Status))
                         .addGap(18, 18, 18)
-                        .addComponent(singleStatusRButton)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(personalDetailPanelLayout.createSequentialGroup()
                         .addGroup(personalDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(personalDetailPanelLayout.createSequentialGroup()
-                                .addGroup(personalDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(telephoneText, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(nicText, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(nameText, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(applicantNumberText, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE))
+                                .addComponent(marriedStatusRButton)
+                                .addGap(18, 18, 18)
+                                .addComponent(singleStatusRButton)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(personalDetailPanelLayout.createSequentialGroup()
+                                .addGroup(personalDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(personalDetailPanelLayout.createSequentialGroup()
+                                        .addGroup(personalDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(telephoneText, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(nicText, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(nameText, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(applicantNumberText, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(personalDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(namenotvalidlabel)
+                                            .addComponent(nicnotvalidlabel)
+                                            .addComponent(phonenumnotvalidlabel)))
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(birthdayChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(personalDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(namenotvalidlabel)
-                                    .addComponent(nicnotvalidlabel)
-                                    .addComponent(phonenumnotvalidlabel)))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(personalDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(childrenCountPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap())))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, personalDetailPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(addCurrentResidenceButton)
+                                    .addComponent(childrenCountPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, personalDetailPanelLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(addCurrentResidenceButton)))
                 .addContainerGap())
         );
         personalDetailPanelLayout.setVerticalGroup(
@@ -747,7 +845,9 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
                             .addComponent(Address)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(Birthday)))
+                        .addGroup(personalDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Birthday)
+                            .addComponent(birthdayChooser1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(1, 1, 1)
                 .addGroup(personalDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Status)
@@ -1014,9 +1114,20 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
 
         jLabel34.setText("NIC :");
 
+        edit_nameText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                edit_nameTextActionPerformed(evt);
+            }
+        });
         edit_nameText.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 edit_nameTextKeyReleased(evt);
+            }
+        });
+
+        edit_telephoneText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                edit_telephoneTextKeyReleased(evt);
             }
         });
 
@@ -1026,6 +1137,11 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
 
         edit_addressText.setColumns(20);
         edit_addressText.setRows(5);
+        edit_addressText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                edit_addressTextKeyReleased(evt);
+            }
+        });
         jScrollPane4.setViewportView(edit_addressText);
 
         jLabel37.setText("Birthday:");
@@ -1034,15 +1150,43 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
 
         statusButtonGroup.add(edit_marriedStatusRButton);
         edit_marriedStatusRButton.setText("Married");
+        edit_marriedStatusRButton.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                edit_marriedStatusRButtonKeyReleased(evt);
+            }
+        });
 
         statusButtonGroup.add(edit_singleStatusRButton);
         edit_singleStatusRButton.setText("Single");
+        edit_singleStatusRButton.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                edit_singleStatusRButtonKeyReleased(evt);
+            }
+        });
 
         childrenCountPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Number of children"));
 
         jLabel39.setText("No. of married children:");
 
         jLabel40.setText("No. of  unmarried children:");
+
+        edit_marided_sons.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                edit_marided_sonsKeyReleased(evt);
+            }
+        });
+
+        edit_unmarried_sons.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                edit_unmarried_sonsKeyReleased(evt);
+            }
+        });
+
+        editmarriedchildrennotvalidlabel.setForeground(new java.awt.Color(204, 0, 0));
+        editmarriedchildrennotvalidlabel.setText("Not Valid");
+
+        editunmarriedchildrennotvalidlabel.setForeground(new java.awt.Color(204, 0, 0));
+        editunmarriedchildrennotvalidlabel.setText("Not Valid");
 
         javax.swing.GroupLayout childrenCountPanel2Layout = new javax.swing.GroupLayout(childrenCountPanel2);
         childrenCountPanel2.setLayout(childrenCountPanel2Layout);
@@ -1057,7 +1201,11 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
                 .addGroup(childrenCountPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(edit_unmarried_sons, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
                     .addComponent(edit_marided_sons))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(childrenCountPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(editmarriedchildrennotvalidlabel)
+                    .addComponent(editunmarriedchildrennotvalidlabel))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         childrenCountPanel2Layout.setVerticalGroup(
             childrenCountPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1065,11 +1213,13 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(childrenCountPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel39)
-                    .addComponent(edit_marided_sons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(edit_marided_sons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(editmarriedchildrennotvalidlabel))
                 .addGap(18, 18, 18)
                 .addGroup(childrenCountPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel40)
-                    .addComponent(edit_unmarried_sons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(edit_unmarried_sons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(editunmarriedchildrennotvalidlabel))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
@@ -1077,7 +1227,25 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
 
         jLabel41.setText("Occupation:");
 
+        occupationText2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                occupationText2KeyReleased(evt);
+            }
+        });
+
         jLabel42.setText("Estimated Annual Income: Rs.");
+
+        edit_annualIncome.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                edit_annualIncomeKeyReleased(evt);
+            }
+        });
+
+        editoccupationnotvalidlabel.setForeground(new java.awt.Color(204, 0, 0));
+        editoccupationnotvalidlabel.setText("Not Valid");
+
+        editincomenotvalidlabel.setForeground(new java.awt.Color(204, 0, 0));
+        editincomenotvalidlabel.setText("Not Valid");
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -1090,9 +1258,15 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
                     .addComponent(jLabel41))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(occupationText2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(edit_annualIncome, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(19, Short.MAX_VALUE))
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addComponent(occupationText2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(editoccupationnotvalidlabel))
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addComponent(edit_annualIncome, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(editincomenotvalidlabel)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1100,11 +1274,14 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel41)
-                    .addComponent(occupationText2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(occupationText2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(editoccupationnotvalidlabel)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel42)
-                    .addComponent(edit_annualIncome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(edit_annualIncome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(editincomenotvalidlabel))
                 .addContainerGap(49, Short.MAX_VALUE))
         );
 
@@ -1113,10 +1290,20 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
                 edit_DOB_testActionPerformed(evt);
             }
         });
+        edit_DOB_test.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                edit_DOB_testKeyReleased(evt);
+            }
+        });
 
         edit_nic_combo.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 edit_nic_comboItemStateChanged(evt);
+            }
+        });
+        edit_nic_combo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                edit_nic_comboActionPerformed(evt);
             }
         });
 
@@ -1124,6 +1311,11 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
         edit_update_buttun.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 edit_update_buttunActionPerformed(evt);
+            }
+        });
+        edit_update_buttun.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                edit_update_buttunKeyReleased(evt);
             }
         });
 
@@ -1143,6 +1335,15 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
                 .addComponent(edit_update_buttun)
                 .addGap(33, 33, 33))
         );
+
+        editnamenotvalidlabel.setForeground(new java.awt.Color(204, 0, 0));
+        editnamenotvalidlabel.setText("Not Valid");
+
+        editphonenonotvalidlabel.setForeground(new java.awt.Color(204, 0, 0));
+        editphonenonotvalidlabel.setText("Not Valid");
+
+        editbirthdaynotvalidlabel.setForeground(new java.awt.Color(204, 0, 0));
+        editbirthdaynotvalidlabel.setText("Not Valid");
 
         javax.swing.GroupLayout personalDetailPanel2Layout = new javax.swing.GroupLayout(personalDetailPanel2);
         personalDetailPanel2.setLayout(personalDetailPanel2Layout);
@@ -1165,20 +1366,26 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
                             .addComponent(jLabel38))
                         .addGap(18, 18, 18)
                         .addGroup(personalDetailPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(personalDetailPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(personalDetailPanel2Layout.createSequentialGroup()
-                                    .addComponent(edit_DOB_test, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
-                                    .addGap(181, 181, 181))
-                                .addComponent(edit_nameText)
-                                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
-                                .addComponent(edit_telephoneText)
-                                .addComponent(edit_nic_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(personalDetailPanel2Layout.createSequentialGroup()
+                                .addGroup(personalDetailPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(personalDetailPanel2Layout.createSequentialGroup()
+                                        .addComponent(edit_DOB_test, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(editbirthdaynotvalidlabel)
+                                        .addGap(129, 129, 129))
+                                    .addComponent(edit_nameText)
+                                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
+                                    .addComponent(edit_telephoneText)
+                                    .addComponent(edit_nic_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(personalDetailPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(editnamenotvalidlabel)
+                                    .addComponent(editphonenonotvalidlabel)))
                             .addGroup(personalDetailPanel2Layout.createSequentialGroup()
                                 .addComponent(edit_marriedStatusRButton)
                                 .addGap(18, 18, 18)
-                                .addComponent(edit_singleStatusRButton)
-                                .addGap(211, 211, 211)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                                .addComponent(edit_singleStatusRButton)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(personalDetailPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(childrenCountPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1199,11 +1406,13 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(personalDetailPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel33)
-                            .addComponent(edit_nameText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(edit_nameText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(editnamenotvalidlabel))
                         .addGap(18, 18, 18)
                         .addGroup(personalDetailPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel35)
-                            .addComponent(edit_telephoneText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(edit_telephoneText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(editphonenonotvalidlabel, javax.swing.GroupLayout.Alignment.LEADING)))
                     .addComponent(childrenCountPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(personalDetailPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1214,14 +1423,15 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addGroup(personalDetailPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel37)
-                            .addComponent(edit_DOB_test, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(edit_DOB_test, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(editbirthdaynotvalidlabel)))
                     .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(4, 4, 4)
                 .addGroup(personalDetailPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel38)
                     .addComponent(edit_marriedStatusRButton)
                     .addComponent(edit_singleStatusRButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28))
         );
@@ -1308,6 +1518,21 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
 
     private void edit_nameTextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edit_nameTextKeyReleased
         // TODO add your handling code here:
+        editnamenotvalidlabel.setVisible(false);
+        String newtext=PatternChecker.checkstring(edit_nameText.getText());
+        edit_nameText.setText(newtext);
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            if(PatternChecker.checkStringdirect(edit_nameText.getText())){
+            
+               edit_telephoneText.requestFocus();}
+            else{
+                editnamenotvalidlabel.setVisible(true);
+            }
+       }
+            
+        else if(evt.getKeyCode()==KeyEvent.VK_DOWN){          
+            edit_telephoneText.requestFocus();
+        }
     }//GEN-LAST:event_edit_nameTextKeyReleased
 
     private void search_nic_comboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_search_nic_comboItemStateChanged
@@ -1352,7 +1577,7 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
         String newtext=PatternChecker.checkNIC(nicText.getText());
         nicText.setText(newtext);
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
-            if (nicText.getText().length()==10){
+            if (PatternChecker.checkNICdirect(nicText.getText())){
                 telephoneText.requestFocus();
        }
             else{
@@ -1371,6 +1596,21 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
         if (nameText.getText() != "" && nicText.getText() != "") {
             addCurrentResidenceButton.setEnabled(true);
         }
+        namenotvalidlabel.setVisible(false);
+        String newtext=PatternChecker.checkstring(nameText.getText());
+        nameText.setText(newtext);
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            if(PatternChecker.checkStringdirect(nameText.getText())){
+               nicText.requestFocus();}
+            else{
+               namenotvalidlabel.setVisible(true); 
+            }
+       }
+            
+        else if(evt.getKeyCode()==KeyEvent.VK_DOWN){          
+            nicText.requestFocus();
+        }
+        
     }//GEN-LAST:event_nameTextKeyReleased
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
@@ -1455,7 +1695,7 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
          phonenumnotvalidlabel.setVisible(false);
         String newtext=PatternChecker.checkTelNum(telephoneText.getText());
-        nicText.setText(newtext);
+        telephoneText.setText(newtext);
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
             if (telephoneText.getText().length()==10){
                 addressText.requestFocus();
@@ -1473,18 +1713,378 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
 
     private void addressTextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_addressTextKeyReleased
         // TODO add your handling code here:
-         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+         if(evt.getKeyCode()==KeyEvent.VK_ENTER && addressText.getText().trim().length()!=0){
             
-                birthdayText.requestFocus();
+                birthdayChooser1.requestFocus();
        }
             
         else if(evt.getKeyCode()==KeyEvent.VK_DOWN){          
-            birthdayText.requestFocus();
+           birthdayChooser1.requestFocus();
         }
         else if(evt.getKeyCode()==KeyEvent.VK_UP){
             addressText.requestFocus();
         }
     }//GEN-LAST:event_addressTextKeyReleased
+
+    private void marriedChildrenCountSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_marriedChildrenCountSpinnerStateChanged
+        // TODO add your handling code here:
+        GUIitemsValidator.limitminimumSpinnerValue(marriedChildrenCountSpinner,0);
+    }//GEN-LAST:event_marriedChildrenCountSpinnerStateChanged
+
+    private void unmarriedChildrenCountSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_unmarriedChildrenCountSpinnerStateChanged
+        // TODO add your handling code here:
+         GUIitemsValidator.limitminimumSpinnerValue(unmarriedChildrenCountSpinner,0);
+    }//GEN-LAST:event_unmarriedChildrenCountSpinnerStateChanged
+
+    private void marriedStatusRButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_marriedStatusRButtonActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_marriedStatusRButtonActionPerformed
+
+    private void marriedStatusRButtonStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_marriedStatusRButtonStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_marriedStatusRButtonStateChanged
+
+    private void marriedStatusRButtonKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_marriedStatusRButtonKeyReleased
+        // TODO add your handling code here:
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            
+                marriedStatusRButton.isSelected();
+       }
+            
+        else if(evt.getKeyCode()==KeyEvent.VK_DOWN){          
+            marriedChildrenCountSpinner.requestFocus();
+        }
+        else if(evt.getKeyCode()==KeyEvent.VK_UP){
+            birthdayChooser1.requestFocus();
+            
+        }
+        
+         else if(evt.getKeyCode()==KeyEvent.VK_RIGHT){
+           singleStatusRButton.requestFocus();
+            
+        }
+    }//GEN-LAST:event_marriedStatusRButtonKeyReleased
+
+    private void singleStatusRButtonKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_singleStatusRButtonKeyReleased
+        // TODO add your handling code here:
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            
+                singleStatusRButton.isSelected();
+       }
+            
+        else if(evt.getKeyCode()==KeyEvent.VK_DOWN){          
+            marriedChildrenCountSpinner.requestFocus();
+        }
+        else if(evt.getKeyCode()==KeyEvent.VK_UP){
+            birthdayChooser1.requestFocus();
+            
+        }
+       
+         else if(evt.getKeyCode()==KeyEvent.VK_LEFT){
+           marriedStatusRButton.requestFocus();
+            
+        }
+    }//GEN-LAST:event_singleStatusRButtonKeyReleased
+
+    private void marriedChildrenCountSpinnerKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_marriedChildrenCountSpinnerKeyReleased
+        // TODO add your handling code here:
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            
+                unmarriedChildrenCountSpinner.requestFocus();
+       }
+            
+        else if(evt.getKeyCode()==KeyEvent.VK_DOWN){          
+            GUIitemsValidator.decrementSpinnerValue(marriedChildrenCountSpinner);
+        }
+        else if(evt.getKeyCode()==KeyEvent.VK_UP){
+            GUIitemsValidator.incermentSpinnerValue(marriedChildrenCountSpinner);
+            
+        }
+    
+    }//GEN-LAST:event_marriedChildrenCountSpinnerKeyReleased
+
+    private void unmarriedChildrenCountSpinnerKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_unmarriedChildrenCountSpinnerKeyReleased
+        // TODO add your handling code here:
+         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            
+               occupationText.requestFocus();
+       }
+            
+        else if(evt.getKeyCode()==KeyEvent.VK_DOWN){          
+            GUIitemsValidator.decrementSpinnerValue(unmarriedChildrenCountSpinner);
+        }
+        else if(evt.getKeyCode()==KeyEvent.VK_UP){
+            GUIitemsValidator.incermentSpinnerValue(unmarriedChildrenCountSpinner);
+            
+        }
+    }//GEN-LAST:event_unmarriedChildrenCountSpinnerKeyReleased
+
+    private void occupationTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_occupationTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_occupationTextActionPerformed
+
+    private void occupationTextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_occupationTextKeyReleased
+        // TODO add your handling code here:
+        occupationnotvalidlabel.setVisible(false);
+        String newtext=PatternChecker.checkstring(occupationText.getText());
+        occupationText.setText(newtext);
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            if(PatternChecker.checkStringdirect(occupationText.getText())){
+               annualIncomeText.requestFocus();}
+            else{
+                occupationnotvalidlabel.setVisible(true);
+            }
+       }
+            
+        else if(evt.getKeyCode()==KeyEvent.VK_DOWN){          
+            annualIncomeText.requestFocus();
+        }
+        else if(evt.getKeyCode()==KeyEvent.VK_UP){
+            unmarriedChildrenCountSpinner.requestFocus();
+            
+        }
+    }//GEN-LAST:event_occupationTextKeyReleased
+
+    private void annualIncomeTextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_annualIncomeTextKeyReleased
+        // TODO add your handling code here:
+       incomenotvalidlabel.setVisible(false);
+        String newtext=PatternChecker.checkDecimal(annualIncomeText.getText());
+        annualIncomeText.setText(newtext);
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            if(PatternChecker.checkDecimaldirect(annualIncomeText.getText())){
+               addCurrentResidenceButton.requestFocus();}
+            else{
+               incomenotvalidlabel.setVisible(true);  
+            }
+       }
+            
+        else if(evt.getKeyCode()==KeyEvent.VK_DOWN){          
+             addCurrentResidenceButton.requestFocus();
+        }
+        else if(evt.getKeyCode()==KeyEvent.VK_UP){
+           occupationText.requestFocus();
+            
+        }
+    }//GEN-LAST:event_annualIncomeTextKeyReleased
+
+    private void birthdayChooser1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_birthdayChooser1ActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_birthdayChooser1ActionPerformed
+
+    private void birthdayChooser1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_birthdayChooser1KeyReleased
+        // TODO add your handling code here:
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            
+               marriedStatusRButton.requestFocus();
+       }
+            
+        else if(evt.getKeyCode()==KeyEvent.VK_DOWN){          
+             marriedStatusRButton.requestFocus();
+        }
+        else if(evt.getKeyCode()==KeyEvent.VK_UP){
+           addressText.requestFocus();
+            
+        }
+    }//GEN-LAST:event_birthdayChooser1KeyReleased
+
+    private void edit_nic_comboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edit_nic_comboActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_edit_nic_comboActionPerformed
+
+    private void edit_nameTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edit_nameTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_edit_nameTextActionPerformed
+
+    private void edit_telephoneTextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edit_telephoneTextKeyReleased
+        // TODO add your handling code here:
+        editphonenonotvalidlabel.setVisible(false);
+         String newtext=PatternChecker.checkTelNum(edit_telephoneText.getText());
+        edit_telephoneText.setText(newtext);
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            if (PatternChecker.checkTelNumdirect(edit_telephoneText.getText())){
+                edit_addressText.requestFocus();
+       }
+            else{
+              editphonenonotvalidlabel.setVisible(true);
+        }}
+        else if(evt.getKeyCode()==KeyEvent.VK_DOWN){
+            edit_addressText.requestFocus();
+        }
+        else if(evt.getKeyCode()==KeyEvent.VK_UP){
+            edit_nameText.requestFocus();
+        }
+        
+    }//GEN-LAST:event_edit_telephoneTextKeyReleased
+
+    private void edit_addressTextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edit_addressTextKeyReleased
+        // TODO add your handling code here:
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER && edit_addressText.getText().trim().length()!=0){
+            
+                edit_DOB_test.requestFocus();
+       }
+            
+        else if(evt.getKeyCode()==KeyEvent.VK_DOWN){          
+            edit_DOB_test.requestFocus();
+        }
+        else if(evt.getKeyCode()==KeyEvent.VK_UP){
+           edit_telephoneText.requestFocus();
+        }
+    }//GEN-LAST:event_edit_addressTextKeyReleased
+
+    private void edit_DOB_testKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edit_DOB_testKeyReleased
+         // TODO add your handling code here:
+        editbirthdaynotvalidlabel.setVisible(false);
+        String newtext=PatternChecker.checkDate(edit_DOB_test.getText());
+        edit_DOB_test.setText(newtext);
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            if(PatternChecker.birthdayChecker(edit_DOB_test.getText())){
+            edit_marriedStatusRButton.requestFocus();}
+            else{
+               editbirthdaynotvalidlabel.setVisible(true); 
+            }}
+        else if(evt.getKeyCode()==KeyEvent.VK_DOWN){
+            edit_marriedStatusRButton.requestFocus();
+        }
+        else if(evt.getKeyCode()==KeyEvent.VK_UP){
+            edit_addressText.requestFocus();
+        }
+    }//GEN-LAST:event_edit_DOB_testKeyReleased
+
+    private void edit_marriedStatusRButtonKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edit_marriedStatusRButtonKeyReleased
+        // TODO add your handling code here:
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            
+                edit_marriedStatusRButton.isSelected();
+       }
+            
+        else if(evt.getKeyCode()==KeyEvent.VK_DOWN){          
+            edit_marided_sons.requestFocus();
+        }
+        else if(evt.getKeyCode()==KeyEvent.VK_UP){
+            edit_DOB_test.requestFocus();
+            
+        }
+        
+         else if(evt.getKeyCode()==KeyEvent.VK_RIGHT){
+           edit_singleStatusRButton.requestFocus();
+            
+        }
+    }//GEN-LAST:event_edit_marriedStatusRButtonKeyReleased
+
+    private void edit_singleStatusRButtonKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edit_singleStatusRButtonKeyReleased
+        // TODO add your handling code here:
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            
+                edit_singleStatusRButton.isSelected();
+       }
+            
+        else if(evt.getKeyCode()==KeyEvent.VK_DOWN){          
+            edit_marided_sons.requestFocus();
+        }
+        else if(evt.getKeyCode()==KeyEvent.VK_UP){
+            edit_DOB_test.requestFocus();
+            
+        }
+        
+         else if(evt.getKeyCode()==KeyEvent.VK_LEFT){
+           edit_marriedStatusRButton.requestFocus();
+            
+        }
+    }//GEN-LAST:event_edit_singleStatusRButtonKeyReleased
+
+    private void edit_marided_sonsKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edit_marided_sonsKeyReleased
+        // TODO add your handling code here:
+        editmarriedchildrennotvalidlabel.setVisible(false);
+         String newtext=PatternChecker.checkInteger(edit_marided_sons.getText());
+        edit_marided_sons.setText(newtext);
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            if (PatternChecker.checkIntegerdirect(edit_marided_sons.getText())){
+                edit_unmarried_sons.requestFocus();
+       }
+            else{
+              editmarriedchildrennotvalidlabel.setVisible(false);
+        }
+           }
+        else if(evt.getKeyCode()==KeyEvent.VK_DOWN){
+            edit_unmarried_sons.requestFocus();
+        }
+        else if(evt.getKeyCode()==KeyEvent.VK_UP){
+            edit_singleStatusRButton.requestFocus();
+        }
+    }//GEN-LAST:event_edit_marided_sonsKeyReleased
+
+    private void edit_unmarried_sonsKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edit_unmarried_sonsKeyReleased
+        // TODO add your handling code here:
+        editunmarriedchildrennotvalidlabel.setVisible(false);
+         String newtext=PatternChecker.checkInteger(edit_unmarried_sons.getText());
+        edit_unmarried_sons.setText(newtext);
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            if(PatternChecker.checkIntegerdirect(edit_unmarried_sons.getText())){
+          occupationText2.requestFocus();}
+            else{
+             editunmarriedchildrennotvalidlabel.setVisible(true);   
+            }}
+        else if(evt.getKeyCode()==KeyEvent.VK_DOWN){
+            occupationText2.requestFocus();
+        }
+        else if(evt.getKeyCode()==KeyEvent.VK_UP){
+            edit_marided_sons.requestFocus();
+        }
+    }//GEN-LAST:event_edit_unmarried_sonsKeyReleased
+
+    private void occupationText2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_occupationText2KeyReleased
+        // TODO add your handling code here:
+        editoccupationnotvalidlabel.setVisible(false);
+         String newtext=PatternChecker.checkstring(occupationText2.getText());
+        occupationText2.setText(newtext);
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            if(PatternChecker.checkStringdirect(occupationText2.getText())){
+          edit_annualIncome.requestFocus();}
+            else{
+                 editoccupationnotvalidlabel.setVisible(true);
+            }}
+        else if(evt.getKeyCode()==KeyEvent.VK_DOWN){
+            edit_annualIncome.requestFocus();
+        }
+        else if(evt.getKeyCode()==KeyEvent.VK_UP){
+            edit_unmarried_sons.requestFocus();
+        }
+    }//GEN-LAST:event_occupationText2KeyReleased
+
+    private void edit_annualIncomeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edit_annualIncomeKeyReleased
+        // TODO add your handling code here:
+        editincomenotvalidlabel.setVisible(false);
+        String newtext=PatternChecker.checkInteger(edit_annualIncome.getText());
+        edit_annualIncome.setText(newtext);
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            if(PatternChecker.checkDecimaldirect(edit_annualIncome.getText())){
+          edit_update_buttun.requestFocus();}
+        else{
+            editincomenotvalidlabel.setVisible(true);
+        }}
+        else if(evt.getKeyCode()==KeyEvent.VK_DOWN){
+           edit_update_buttun.requestFocus();
+        }
+        else if(evt.getKeyCode()==KeyEvent.VK_UP){
+            occupationText2.requestFocus();
+        }
+    }//GEN-LAST:event_edit_annualIncomeKeyReleased
+
+    private void edit_update_buttunKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edit_update_buttunKeyReleased
+        // TODO add your handling code here:
+         if(evt.getKeyCode()==KeyEvent.VK_UP){
+            edit_annualIncome.requestFocus();
+        }
+    }//GEN-LAST:event_edit_update_buttunKeyReleased
+
+    private void addCurrentResidenceButtonKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_addCurrentResidenceButtonKeyReleased
+        // TODO add your handling code here:
+        if(evt.getKeyCode()==KeyEvent.VK_UP){
+            annualIncomeText.requestFocus();
+        }
+    }//GEN-LAST:event_addCurrentResidenceButtonKeyReleased
 
     public void getResidenceData() { //to accept data from current residence detail form
 
@@ -1508,6 +2108,7 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
     private javax.swing.JTextArea addressText;
     private javax.swing.JTextField annualIncomeText;
     private javax.swing.JTextField applicantNumberText;
+    private org.freixas.jcalendar.JCalendarCombo birthdayChooser1;
     private javax.swing.JPanel childrenCountPanel;
     private javax.swing.JPanel childrenCountPanel1;
     private javax.swing.JPanel childrenCountPanel2;
@@ -1523,6 +2124,13 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
     private javax.swing.JTextField edit_telephoneText;
     private javax.swing.JTextField edit_unmarried_sons;
     private javax.swing.JButton edit_update_buttun;
+    private javax.swing.JLabel editbirthdaynotvalidlabel;
+    private javax.swing.JLabel editincomenotvalidlabel;
+    private javax.swing.JLabel editmarriedchildrennotvalidlabel;
+    private javax.swing.JLabel editnamenotvalidlabel;
+    private javax.swing.JLabel editoccupationnotvalidlabel;
+    private javax.swing.JLabel editphonenonotvalidlabel;
+    private javax.swing.JLabel editunmarriedchildrennotvalidlabel;
     private javax.swing.JLabel incomenotvalidlabel;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;

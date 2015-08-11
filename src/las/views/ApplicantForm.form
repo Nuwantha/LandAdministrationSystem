@@ -530,7 +530,7 @@
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace pref="596" max="32767" attributes="0"/>
+                                  <EmptySpace pref="605" max="32767" attributes="0"/>
                                   <Component id="registerButton" min="-2" pref="81" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="jButton1" min="-2" max="-2" attributes="0"/>
@@ -579,57 +579,61 @@
                       <Layout>
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
+                              <Group type="102" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="RegNo" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="NIC" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="Name" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="PhoneNo" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="Address" alignment="0" max="32767" attributes="0"/>
-                                      </Group>
-                                      <Component id="Birthday" min="-2" pref="57" max="-2" attributes="0"/>
-                                      <Component id="Status" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="marriedStatusRButton" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="singleStatusRButton" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="32767" attributes="0"/>
-                                      </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="102" attributes="0">
-                                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                                      <Component id="telephoneText" alignment="0" max="32767" attributes="0"/>
-                                                      <Component id="nicText" alignment="0" max="32767" attributes="0"/>
-                                                      <Component id="nameText" alignment="0" max="32767" attributes="0"/>
-                                                      <Component id="applicantNumberText" alignment="0" pref="126" max="32767" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                  <Component id="RegNo" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="NIC" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="Name" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="PhoneNo" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="Address" alignment="0" max="32767" attributes="0"/>
+                                              </Group>
+                                              <Component id="Birthday" min="-2" pref="57" max="-2" attributes="0"/>
+                                              <Component id="Status" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="marriedStatusRButton" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                  <Component id="singleStatusRButton" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                              </Group>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Group type="102" attributes="0">
+                                                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                                              <Component id="telephoneText" alignment="0" max="32767" attributes="0"/>
+                                                              <Component id="nicText" alignment="0" max="32767" attributes="0"/>
+                                                              <Component id="nameText" alignment="0" max="32767" attributes="0"/>
+                                                              <Component id="applicantNumberText" alignment="0" pref="126" max="32767" attributes="0"/>
+                                                          </Group>
+                                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                          <Group type="103" groupAlignment="0" attributes="0">
+                                                              <Component id="namenotvalidlabel" min="-2" max="-2" attributes="0"/>
+                                                              <Component id="nicnotvalidlabel" min="-2" max="-2" attributes="0"/>
+                                                              <Component id="phonenumnotvalidlabel" min="-2" max="-2" attributes="0"/>
+                                                          </Group>
+                                                      </Group>
+                                                      <Component id="jScrollPane1" min="-2" pref="295" max="-2" attributes="0"/>
+                                                      <Component id="birthdayChooser1" min="-2" max="-2" attributes="0"/>
                                                   </Group>
                                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                                   <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Component id="namenotvalidlabel" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="nicnotvalidlabel" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="phonenumnotvalidlabel" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="childrenCountPanel" max="32767" attributes="0"/>
+                                                      <Component id="jPanel3" max="32767" attributes="0"/>
                                                   </Group>
                                               </Group>
-                                              <Component id="jScrollPane1" min="-2" pref="295" max="-2" attributes="0"/>
                                           </Group>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="childrenCountPanel" max="32767" attributes="0"/>
-                                              <Component id="jPanel3" max="32767" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                          <Component id="addCurrentResidenceButton" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                              </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="addCurrentResidenceButton" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -674,7 +678,10 @@
                                               <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="Birthday" min="-2" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="Birthday" min="-2" max="-2" attributes="0"/>
+                                              <Component id="birthdayChooser1" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          </Group>
                                       </Group>
                                   </Group>
                                   <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
@@ -770,6 +777,11 @@
                             </Property>
                             <Property name="text" type="java.lang.String" value="Married"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="marriedStatusRButtonStateChanged"/>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="marriedStatusRButtonActionPerformed"/>
+                            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="marriedStatusRButtonKeyReleased"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JRadioButton" name="singleStatusRButton">
                           <Properties>
@@ -778,6 +790,9 @@
                             </Property>
                             <Property name="text" type="java.lang.String" value="Single"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="singleStatusRButtonKeyReleased"/>
+                          </Events>
                         </Component>
                         <Container class="javax.swing.JPanel" name="childrenCountPanel">
                           <Properties>
@@ -836,8 +851,16 @@
                               </Properties>
                             </Component>
                             <Component class="javax.swing.JSpinner" name="marriedChildrenCountSpinner">
+                              <Events>
+                                <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="marriedChildrenCountSpinnerStateChanged"/>
+                                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="marriedChildrenCountSpinnerKeyReleased"/>
+                              </Events>
                             </Component>
                             <Component class="javax.swing.JSpinner" name="unmarriedChildrenCountSpinner">
+                              <Events>
+                                <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="unmarriedChildrenCountSpinnerStateChanged"/>
+                                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="unmarriedChildrenCountSpinnerKeyReleased"/>
+                              </Events>
                             </Component>
                           </SubComponents>
                         </Container>
@@ -907,6 +930,10 @@
                               </Properties>
                             </Component>
                             <Component class="javax.swing.JTextField" name="occupationText">
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="occupationTextActionPerformed"/>
+                                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="occupationTextKeyReleased"/>
+                              </Events>
                             </Component>
                             <Component class="javax.swing.JLabel" name="AnnualIncome">
                               <Properties>
@@ -914,6 +941,9 @@
                               </Properties>
                             </Component>
                             <Component class="javax.swing.JTextField" name="annualIncomeText">
+                              <Events>
+                                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="annualIncomeTextKeyReleased"/>
+                              </Events>
                             </Component>
                             <Component class="javax.swing.JLabel" name="occupationnotvalidlabel">
                               <Properties>
@@ -939,6 +969,7 @@
                           </Properties>
                           <Events>
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addCurrentResidenceButtonActionPerformed"/>
+                            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="addCurrentResidenceButtonKeyReleased"/>
                           </Events>
                         </Component>
                         <Component class="javax.swing.JLabel" name="namenotvalidlabel">
@@ -964,6 +995,12 @@
                             </Property>
                             <Property name="text" type="java.lang.String" value="Not Valid"/>
                           </Properties>
+                        </Component>
+                        <Component class="org.freixas.jcalendar.JCalendarCombo" name="birthdayChooser1">
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="birthdayChooser1ActionPerformed"/>
+                            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="birthdayChooser1KeyReleased"/>
+                          </Events>
                         </Component>
                       </SubComponents>
                     </Container>
@@ -1369,24 +1406,32 @@
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="edit_DOB_test" pref="96" max="32767" attributes="0"/>
-                                              <EmptySpace min="-2" pref="181" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="edit_DOB_test" pref="96" max="32767" attributes="0"/>
+                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                  <Component id="editbirthdaynotvalidlabel" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="129" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Component id="edit_nameText" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="jScrollPane4" alignment="0" pref="277" max="32767" attributes="0"/>
+                                              <Component id="edit_telephoneText" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="edit_nic_combo" min="-2" pref="121" max="-2" attributes="0"/>
                                           </Group>
-                                          <Component id="edit_nameText" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="jScrollPane4" alignment="0" pref="277" max="32767" attributes="0"/>
-                                          <Component id="edit_telephoneText" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="edit_nic_combo" min="-2" pref="121" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="editnamenotvalidlabel" min="-2" max="-2" attributes="0"/>
+                                              <Component id="editphonenonotvalidlabel" min="-2" max="-2" attributes="0"/>
+                                          </Group>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="edit_marriedStatusRButton" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Component id="edit_singleStatusRButton" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="211" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <EmptySpace pref="20" max="32767" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="childrenCountPanel2" alignment="1" min="-2" max="-2" attributes="0"/>
                                       <Component id="jPanel9" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -1416,11 +1461,13 @@
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel33" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="edit_nameText" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="editnamenotvalidlabel" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="1" attributes="0">
                                       <Component id="jLabel35" alignment="1" min="-2" max="-2" attributes="0"/>
                                       <Component id="edit_telephoneText" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="editphonenonotvalidlabel" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <Component id="childrenCountPanel2" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -1436,6 +1483,7 @@
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel37" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="edit_DOB_test" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="editbirthdaynotvalidlabel" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <Component id="jPanel9" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -1446,7 +1494,7 @@
                               <Component id="edit_marriedStatusRButton" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="edit_singleStatusRButton" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="40" max="32767" attributes="0"/>
+                          <EmptySpace pref="36" max="32767" attributes="0"/>
                           <Component id="jPanel10" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                       </Group>
@@ -1466,10 +1514,14 @@
                 </Component>
                 <Component class="javax.swing.JTextField" name="edit_nameText">
                   <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="edit_nameTextActionPerformed"/>
                     <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="edit_nameTextKeyReleased"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="edit_telephoneText">
+                  <Events>
+                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="edit_telephoneTextKeyReleased"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel35">
                   <Properties>
@@ -1493,6 +1545,9 @@
                         <Property name="columns" type="int" value="20"/>
                         <Property name="rows" type="int" value="5"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="edit_addressTextKeyReleased"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -1513,6 +1568,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Married"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="edit_marriedStatusRButtonKeyReleased"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JRadioButton" name="edit_singleStatusRButton">
                   <Properties>
@@ -1521,6 +1579,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Single"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="edit_singleStatusRButtonKeyReleased"/>
+                  </Events>
                 </Component>
                 <Container class="javax.swing.JPanel" name="childrenCountPanel2">
                   <Properties>
@@ -1545,7 +1606,12 @@
                                   <Component id="edit_unmarried_sons" alignment="0" pref="88" max="32767" attributes="0"/>
                                   <Component id="edit_marided_sons" alignment="0" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="21" max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="editmarriedchildrennotvalidlabel" min="-2" max="-2" attributes="0"/>
+                                  <Component id="editunmarriedchildrennotvalidlabel" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace pref="20" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1556,11 +1622,13 @@
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel39" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="edit_marided_sons" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="editmarriedchildrennotvalidlabel" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel40" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="edit_unmarried_sons" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="editunmarriedchildrennotvalidlabel" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace pref="14" max="32767" attributes="0"/>
                           </Group>
@@ -1579,8 +1647,30 @@
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="edit_marided_sons">
+                      <Events>
+                        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="edit_marided_sonsKeyReleased"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JTextField" name="edit_unmarried_sons">
+                      <Events>
+                        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="edit_unmarried_sonsKeyReleased"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="editmarriedchildrennotvalidlabel">
+                      <Properties>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="0" green="0" red="cc" type="rgb"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Not Valid"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="editunmarriedchildrennotvalidlabel">
+                      <Properties>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="0" green="0" red="cc" type="rgb"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Not Valid"/>
+                      </Properties>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -1604,10 +1694,18 @@
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="occupationText2" alignment="0" min="-2" pref="94" max="-2" attributes="0"/>
-                                  <Component id="edit_annualIncome" alignment="0" min="-2" pref="94" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="occupationText2" min="-2" pref="94" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="editoccupationnotvalidlabel" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="edit_annualIncome" min="-2" pref="94" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="editincomenotvalidlabel" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
-                              <EmptySpace pref="19" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1617,12 +1715,16 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel41" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="occupationText2" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                      <Component id="occupationText2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="editoccupationnotvalidlabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel42" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="edit_annualIncome" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="editincomenotvalidlabel" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace pref="49" max="32767" attributes="0"/>
                           </Group>
@@ -1636,6 +1738,9 @@
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="occupationText2">
+                      <Events>
+                        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="occupationText2KeyReleased"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel42">
                       <Properties>
@@ -1643,12 +1748,32 @@
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="edit_annualIncome">
+                      <Events>
+                        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="edit_annualIncomeKeyReleased"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="editoccupationnotvalidlabel">
+                      <Properties>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="0" green="0" red="cc" type="rgb"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Not Valid"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="editincomenotvalidlabel">
+                      <Properties>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="0" green="0" red="cc" type="rgb"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Not Valid"/>
+                      </Properties>
                     </Component>
                   </SubComponents>
                 </Container>
                 <Component class="javax.swing.JTextField" name="edit_DOB_test">
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="edit_DOB_testActionPerformed"/>
+                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="edit_DOB_testKeyReleased"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JComboBox" name="edit_nic_combo">
@@ -1659,6 +1784,7 @@
                   </Properties>
                   <Events>
                     <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="edit_nic_comboItemStateChanged"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="edit_nic_comboActionPerformed"/>
                   </Events>
                 </Component>
                 <Container class="javax.swing.JPanel" name="jPanel10">
@@ -1690,10 +1816,35 @@
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="edit_update_buttunActionPerformed"/>
+                        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="edit_update_buttunKeyReleased"/>
                       </Events>
                     </Component>
                   </SubComponents>
                 </Container>
+                <Component class="javax.swing.JLabel" name="editnamenotvalidlabel">
+                  <Properties>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="cc" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Not Valid"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="editphonenonotvalidlabel">
+                  <Properties>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="cc" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Not Valid"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="editbirthdaynotvalidlabel">
+                  <Properties>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="cc" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Not Valid"/>
+                  </Properties>
+                </Component>
               </SubComponents>
             </Container>
           </SubComponents>

@@ -16,7 +16,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.text.JTextComponent;
-import las.common_classes.ComboItemAdder;
+import las.common_classes.GUIitemsValidator;
+//import las.common_classes.ComboItemAdder;
 import las.controllers.ClientController;
 import las.controllers.GramaNiladariDivisionController;
 import las.controllers.LandController;
@@ -55,7 +56,7 @@ public class GrantForm extends javax.swing.JInternalFrame {
                     for (int i = 0; i < simmilarNICs.size(); i++) {
                         list.add(simmilarNICs.get(i).getNIC());
                     }
-                    ComboItemAdder.addItemToCombo(list, add_grant_nic_combo);
+                    GUIitemsValidator.addItemToCombo(list, add_grant_nic_combo);
 
                 } catch (ClassNotFoundException | SQLException ex) {
                     Logger.getLogger(LandForm.class.getName()).log(Level.SEVERE, null, ex);
@@ -1821,7 +1822,7 @@ public class GrantForm extends javax.swing.JInternalFrame {
                 for (Land land : landsOfDivision) {
                     list.add(land.getPlanNumber());
                 }
-                ComboItemAdder.addItemToCombo(list, add_grant_planNumber_combo);
+                GUIitemsValidator.addItemToCombo(list, add_grant_planNumber_combo);
 
             }
         } catch (ClassNotFoundException | SQLException ex) {
@@ -1843,7 +1844,7 @@ public class GrantForm extends javax.swing.JInternalFrame {
                 for (Lot lot : lotList) {
                     list.add(lot.getLotNumber());
                 }
-                ComboItemAdder.addItemToCombo(list, add_grant_lot_number_Combo);
+                GUIitemsValidator.addItemToCombo(list, add_grant_lot_number_Combo);
 
             }
         } catch (ClassNotFoundException | SQLException ex) {
