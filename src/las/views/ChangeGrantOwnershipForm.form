@@ -88,8 +88,8 @@
                       </Group>
                       <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jTextField1" alignment="0" min="-2" pref="134" max="-2" attributes="0"/>
-                          <Component id="ownerText" alignment="0" min="-2" pref="225" max="-2" attributes="0"/>
+                          <Component id="grantno_changeOwnerCombo" min="-2" pref="136" max="-2" attributes="0"/>
+                          <Component id="ownerText" min="-2" pref="253" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -101,7 +101,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="grantno_changeOwnerCombo" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -130,9 +130,17 @@
                 <Property name="text" type="java.lang.String" value="Grant No"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField1">
-            </Component>
             <Component class="javax.swing.JTextField" name="ownerText">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="grantno_changeOwnerCombo">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="0"/>
+                </Property>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>
@@ -169,7 +177,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="ns_name_text" alignment="0" min="-2" pref="248" max="-2" attributes="0"/>
+                                  <Component id="newowner_name_text" alignment="0" min="-2" pref="248" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="nic_text" min="-2" pref="125" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
@@ -216,7 +224,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="namelabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="ns_name_text" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="newowner_name_text" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -273,7 +281,7 @@
                 <Property name="text" type="java.lang.String" value="Phone Number:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="ns_name_text">
+            <Component class="javax.swing.JTextField" name="newowner_name_text">
             </Component>
             <Component class="javax.swing.JLabel" name="niclabel">
               <Properties>

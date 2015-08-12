@@ -5,14 +5,20 @@
  */
 package las.views;
 
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.text.JTextComponent;
 import las.common_classes.GUIitemsValidator;
 import las.common_classes.PatternChecker;
 import las.controllers.ClientController;
+import las.controllers.PermitController;
 import las.models.Client;
 import las.models.Permit;
 
@@ -28,9 +34,11 @@ public class ChangePermitOwnershipForm extends javax.swing.JDialog {
     /**
      * Creates new form ChangePermitOwnershipForm
      */
-    public ChangePermitOwnershipForm(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    
+    public ChangePermitOwnershipForm() {
+        
         initComponents();
+        this.permitNo_changeOwner.setEditable(true);
     }
 
     /**
@@ -46,8 +54,8 @@ public class ChangePermitOwnershipForm extends javax.swing.JDialog {
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
         ownerText = new javax.swing.JTextField();
+        permitNo_changeOwner = new javax.swing.JComboBox();
         jPanel3 = new javax.swing.JPanel();
         namelabel = new javax.swing.JLabel();
         telephoneText = new javax.swing.JTextField();
@@ -91,6 +99,14 @@ public class ChangePermitOwnershipForm extends javax.swing.JDialog {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel1.setText("Permit No");
 
+        ownerText.setEditable(false);
+
+        permitNo_changeOwner.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                permitNo_changeOwnerItemStateChanged(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -102,8 +118,8 @@ public class ChangePermitOwnershipForm extends javax.swing.JDialog {
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(33, 33, 33)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ownerText, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(permitNo_changeOwner, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ownerText, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -112,7 +128,7 @@ public class ChangePermitOwnershipForm extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(permitNo_changeOwner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
@@ -463,7 +479,7 @@ public class ChangePermitOwnershipForm extends javax.swing.JDialog {
                 address_text.requestFocus();
             }
             else if(evt.getKeyCode()==KeyEvent.VK_UP){
-                nic_text.requestFocus();
+                po_name_text.requestFocus();
             }
     }//GEN-LAST:event_telephoneTextKeyReleased
 
@@ -631,7 +647,7 @@ public class ChangePermitOwnershipForm extends javax.swing.JDialog {
     }//GEN-LAST:event_annualIncomeTextKeyReleased
 
     private void add_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_buttonActionPerformed
-       int isMarried = 1;
+        int isMarried = 1;
         String permitOwnerName = po_name_text.getText();
         String nic = nic_text.getText();
         String telephoneNumber = telephoneText.getText();
@@ -647,17 +663,53 @@ public class ChangePermitOwnershipForm extends javax.swing.JDialog {
         int unmarriedSons = Integer.parseInt(unmarriedChildrenCountSpinner.getValue().toString());
         double annualincome = Double.parseDouble(annualIncomeText.getText());
 
-        Client client = new Client(nic, permitOwnerName, DOB, telephoneNumber, address, annualincome, 0, 1, isMarried, marriedSons, unmarriedSons);
+        int cur_PermitOwnership=this.permit.getClient().getPermitOwnershipPosition();
+        int cur_GrantOwnership=this.permit.getClient().getGrantOwnershipPosition();
+            
+        Client newclient = new Client(nic, permitOwnerName, DOB, telephoneNumber, address, annualincome, ++cur_PermitOwnership, cur_GrantOwnership, isMarried, marriedSons, unmarriedSons);
         try {
-            boolean addNewClient = ClientController.addNewClient(client);
+            boolean addNewClient = ClientController.addNewClient(newclient);
             if (addNewClient) {
-                JOptionPane.showMessageDialog(rootPane, "applicant added successfully");
+                JOptionPane.showMessageDialog(rootPane, "new permit owner added as a new client successfully");
+                try{
+                    permit.setClient(newclient);
+                    int editPermit = PermitController.updatePermit(permit);
+                    if (editPermit>0){
+                        JOptionPane.showMessageDialog(this,"permit update successfully");
+                    
+                    }else {
+                        JOptionPane.showMessageDialog(this,"permit could not updated");
+                    }
+                
+                }
+                catch(ClassNotFoundException|SQLException ex){
+                
+                }
+                
             }
         } catch (ClassNotFoundException | SQLException ex) {
 
-        this.setVisible(false);
+            this.setVisible(false);
     }//GEN-LAST:event_add_buttonActionPerformed
-    }
+}
+    
+    
+    
+    private void permitNo_changeOwnerItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_permitNo_changeOwnerItemStateChanged
+        try {
+            this.permit=PermitController.searchPermit((String) permitNo_changeOwner.getSelectedItem());
+            if (permit!=null){
+                this.ownerText.setText((String)permit.getClient().getClientName());
+            }
+                        
+        } catch (ClassNotFoundException |SQLException ex) {
+            Logger.getLogger(ChangePermitOwnershipForm.class.getName()).log(Level.SEVERE, null, ex);
+        }     
+        
+    }//GEN-LAST:event_permitNo_changeOwnerItemStateChanged
+    
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -688,7 +740,7 @@ public class ChangePermitOwnershipForm extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ChangePermitOwnershipForm dialog = new ChangePermitOwnershipForm(new javax.swing.JFrame(), true);
+                ChangePermitOwnershipForm dialog = new ChangePermitOwnershipForm();
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -723,7 +775,6 @@ public class ChangePermitOwnershipForm extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JSpinner marriedChildrenCountSpinner;
     private javax.swing.JRadioButton marriedStatusRButton;
     private javax.swing.JLabel namelabel;
@@ -733,6 +784,7 @@ public class ChangePermitOwnershipForm extends javax.swing.JDialog {
     private javax.swing.JTextField occupationText;
     private javax.swing.JLabel occupationnotvalidlabel;
     private javax.swing.JTextField ownerText;
+    private javax.swing.JComboBox permitNo_changeOwner;
     private javax.swing.JLabel phonenumnotvalidlabel;
     private javax.swing.JTextField po_name_text;
     private javax.swing.JRadioButton singleStatusRButton;

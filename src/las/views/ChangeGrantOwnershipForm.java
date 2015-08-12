@@ -6,8 +6,17 @@
 package las.views;
 
 import java.awt.event.KeyEvent;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JOptionPane;
 import las.common_classes.GUIitemsValidator;
 import las.common_classes.PatternChecker;
+import las.controllers.ClientController;
+import las.controllers.GrantController;
+import las.controllers.PermitController;
+import las.models.Client;
+import las.models.Grant;
 import las.models.NominatedSuccessor;
 
 /**
@@ -15,13 +24,13 @@ import las.models.NominatedSuccessor;
  * @author Gimhani
  */
 public class ChangeGrantOwnershipForm extends javax.swing.JDialog {
-
+    private Grant grant;
     /**
      * Creates new form ChangeGrantOwnershipForm
      */
-    public ChangeGrantOwnershipForm(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public ChangeGrantOwnershipForm() {
         initComponents();
+        this.grantno_changeOwnerCombo.setEditable(true);
     }
 
     /**
@@ -37,13 +46,13 @@ public class ChangeGrantOwnershipForm extends javax.swing.JDialog {
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
         ownerText = new javax.swing.JTextField();
+        grantno_changeOwnerCombo = new javax.swing.JComboBox();
         jPanel3 = new javax.swing.JPanel();
         namelabel = new javax.swing.JLabel();
         telephoneText = new javax.swing.JTextField();
         PhoneNo = new javax.swing.JLabel();
-        ns_name_text = new javax.swing.JTextField();
+        newowner_name_text = new javax.swing.JTextField();
         niclabel = new javax.swing.JLabel();
         nic_text = new javax.swing.JTextField();
         addresslabel = new javax.swing.JLabel();
@@ -81,6 +90,8 @@ public class ChangeGrantOwnershipForm extends javax.swing.JDialog {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel1.setText("Grant No");
 
+        ownerText.setEditable(false);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -92,8 +103,8 @@ public class ChangeGrantOwnershipForm extends javax.swing.JDialog {
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(33, 33, 33)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ownerText, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(grantno_changeOwnerCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ownerText, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -102,7 +113,7 @@ public class ChangeGrantOwnershipForm extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(grantno_changeOwnerCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
@@ -331,7 +342,7 @@ public class ChangeGrantOwnershipForm extends javax.swing.JDialog {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ns_name_text, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(newowner_name_text, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(nic_text, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(15, 15, 15)
@@ -367,7 +378,7 @@ public class ChangeGrantOwnershipForm extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(namelabel)
-                            .addComponent(ns_name_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(newowner_name_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(telephoneText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -618,15 +629,53 @@ public class ChangeGrantOwnershipForm extends javax.swing.JDialog {
     }//GEN-LAST:event_annualIncomeTextKeyReleased
 
     private void add_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_buttonActionPerformed
-        NominatedSuccessor successor=new NominatedSuccessor(nic_text.getText(), ns_name_text.getText(), address_text.getText());
-        //add this to database
-      //  if(type==1){
-        //    this.permit.setNominatedSuccessor(successor);
-       // }else{
-         //   this.grant.setNominatedSuccessor(successor);
-       // }
+        int isMarried = 1;
+        String grantOwnerName = newowner_name_text.getText();
+        String nic = nic_text.getText();
+        String telephoneNumber = telephoneText.getText();
+        String address = address_text.getText();
+        Date date = birthdayChooser1.getDate();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY-MM-dd");
+        String DOB = simpleDateFormat.format(date);
+        System.out.println(DOB);
+        if (singleStatusRButton.isSelected()) {
+            isMarried = 0;
+        }
+        int marriedSons = Integer.parseInt(marriedChildrenCountSpinner.getValue().toString());
+        int unmarriedSons = Integer.parseInt(unmarriedChildrenCountSpinner.getValue().toString());
+        double annualincome = Double.parseDouble(annualIncomeText.getText());
 
-        this.setVisible(false);
+        int cur_PermitOwnership=this.grant.getClient().getPermitOwnershipPosition();
+        int cur_GrantOwnership=this.grant.getClient().getGrantOwnershipPosition();
+            
+        Client newclient = new Client(nic, grantOwnerName, DOB, telephoneNumber, address, annualincome, cur_PermitOwnership, ++cur_GrantOwnership, isMarried, marriedSons, unmarriedSons);
+        try {
+            boolean addNewClient = ClientController.addNewClient(newclient);
+            if (addNewClient) {
+                JOptionPane.showMessageDialog(rootPane, "new grant owner added as a new client successfully");
+                try{
+                    grant.setClient(newclient);
+                    int editGrant = GrantController.updateGrant(grant);
+                    if (editGrant>0){
+                        JOptionPane.showMessageDialog(this,"grant update successfully");
+                    
+                    }else {
+                        JOptionPane.showMessageDialog(this,"grant could not updated");
+                    }
+                
+                }
+                catch(ClassNotFoundException|SQLException ex){
+                
+                }
+                
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+
+            this.setVisible(false);
+    }                    
+        
+        
+        
     }//GEN-LAST:event_add_buttonActionPerformed
 
     /**
@@ -659,7 +708,7 @@ public class ChangeGrantOwnershipForm extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ChangeGrantOwnershipForm dialog = new ChangeGrantOwnershipForm(new javax.swing.JFrame(), true);
+                ChangeGrantOwnershipForm dialog = new ChangeGrantOwnershipForm();
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -686,6 +735,7 @@ public class ChangeGrantOwnershipForm extends javax.swing.JDialog {
     private org.freixas.jcalendar.JCalendarCombo birthdayChooser1;
     private javax.swing.JButton cancel_button;
     private javax.swing.JPanel childrenCountPanel;
+    private javax.swing.JComboBox grantno_changeOwnerCombo;
     private javax.swing.JLabel incomenotvalidlabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -694,14 +744,13 @@ public class ChangeGrantOwnershipForm extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JSpinner marriedChildrenCountSpinner;
     private javax.swing.JRadioButton marriedStatusRButton;
     private javax.swing.JLabel namelabel;
+    private javax.swing.JTextField newowner_name_text;
     private javax.swing.JLabel nicInvalidLabel;
     private javax.swing.JTextField nic_text;
     private javax.swing.JLabel niclabel;
-    private javax.swing.JTextField ns_name_text;
     private javax.swing.JTextField occupationText;
     private javax.swing.JLabel occupationnotvalidlabel;
     private javax.swing.JTextField ownerText;

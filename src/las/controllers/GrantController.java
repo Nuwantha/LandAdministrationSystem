@@ -102,4 +102,18 @@ public class GrantController {
         return permitList;
     }
 
+      //*******************************************//
+    public static int updateGrant(Grant grant)throws ClassNotFoundException, SQLException {
+        //updateGrant in database
+        Connection conn = DBConnection.getDBConnection().getConnection();
+      /*  String sql = "Update  Grant Set  grantNo='" +permit.getPermitNumber() + "','" + permit.getPermitIssueDate() + "','" + permit.getLot().getLotNumber() + "','" + permit.getClient().getNIC() + "','" + permit.getNominatedSuccessor().getNIC_S() + "')";
+        int res = DBHandler.setData(conn, sql);
+         */
+        int res=0;
+        return res;
+    }
+    
+    
+    
+      
 }

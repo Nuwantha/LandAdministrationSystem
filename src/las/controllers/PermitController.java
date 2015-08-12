@@ -176,4 +176,23 @@ public class PermitController {
         return permitList;
     }
 
+    //*******************************************//
+    public static int updatePermit(Permit permit)throws ClassNotFoundException, SQLException {
+        //updatePermit in database
+        Connection conn = DBConnection.getDBConnection().getConnection();
+      /*  String sql = "Update  Permit Set  permitNo='" +permit.getPermitNumber() + "','" + permit.getPermitIssueDate() + "','" + permit.getLot().getLotNumber() + "','" + permit.getClient().getNIC() + "','" + permit.getNominatedSuccessor().getNIC_S() + "')";
+        int res = DBHandler.setData(conn, sql);
+         */
+        int res=0;
+        return res;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
