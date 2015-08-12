@@ -31,7 +31,6 @@ CREATE TABLE Land(
 	SouthBound VARCHAR(30),
 	CONSTRAINT PRIMARY KEY (PlanNumber),
 	CONSTRAINT FOREIGN KEY(DivisionNumber) REFERENCES  GND(DivisionNumber)
-	ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 
@@ -41,10 +40,10 @@ CREATE TABLE Lot(
 	NumberOfAcres INT(3),
 	NumberOfRoods INT(3),
 	NumberOfPerches INT(13),
-	PlanNumber VARCHAR(10) NOT NULL,
+        PlanNumber VARCHAR(10) NOT NULL,
+        isAvailabal INT(2),
 	CONSTRAINT PRIMARY KEY (LotNumber),
 	CONSTRAINT FOREIGN KEY(PlanNumber) REFERENCES  Land(PlanNumber)
-	ON UPDATE CASCADE ON DELETE CASCADE
 	
 );
 
@@ -65,9 +64,6 @@ CREATE TABLE Client(
 	CONSTRAINT PRIMARY KEY (NIC)
 );
 
-
-
-
 CREATE TABLE Permit(
 	PermitNumber VARCHAR(50) NOT NULL,
 	PermitIssueDate DATE,
@@ -79,7 +75,6 @@ CREATE TABLE Permit(
 	CONSTRAINT FOREIGN KEY(NIC_Successor) REFERENCES  NominatedSuccessor(NIC_S)
 	ON UPDATE CASCADE ON DELETE CASCADE,
 	CONSTRAINT FOREIGN KEY(LotNumber) REFERENCES  Lot(LotNumber)
-	ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE Grant1(
@@ -93,8 +88,7 @@ CREATE TABLE Grant1(
 	CONSTRAINT FOREIGN KEY(NIC) REFERENCES  Client(NIC),
 	CONSTRAINT FOREIGN KEY(NIC_Successor) REFERENCES  NominatedSuccessor(NIC_S)
 	ON UPDATE CASCADE ON DELETE CASCADE,
-	CONSTRAINT FOREIGN KEY(LotNumber) REFERENCES  Lot(LotNumber)
-	ON UPDATE CASCADE ON DELETE CASCADE,
+	CONSTRAINT FOREIGN KEY(LotNumber) REFERENCES  Lot(LotNumber),
 	CONSTRAINT FOREIGN KEY(PermitNumber) REFERENCES  Permit(PermitNumber)
 );
 
@@ -144,33 +138,33 @@ INSERT INTO Land values("PL06","Suriyawatta","486B","Rathu Kubura","Maligawathth
 
 /*inset lot values*/
 
-INSERT INTO Lot values('L001','4','5','3','PL01');
-INSERT INTO Lot values('L002','0','5','1','PL02');
-INSERT INTO Lot values('L003','4','0','3','PL03');
-INSERT INTO Lot values('L004','1','5','3','PL01');
-INSERT INTO Lot values('L005','0','10','0','PL01');
-INSERT INTO Lot values('L006','0','5','0','PL01');
-INSERT INTO Lot values('L007','7','0','0','PL01');
-INSERT INTO Lot values('L008','10','0','0','PL01');
-INSERT INTO Lot values('L009','0','0','7','PL01');
-INSERT INTO Lot values('L010','0','0','20','PL01');
-INSERT INTO Lot values('L011','8','0','0','PL02');
-INSERT INTO Lot values('L012','0','0','34','PL03');
-INSERT INTO Lot values('L013','0','8','0','PL04');
-INSERT INTO Lot values('L014','6','0','0','PL04');
-INSERT INTO Lot values('L015','0','5','0','PL05');
-INSERT INTO Lot values('L016','12','5','0','PL05');
-INSERT INTO Lot values('L017','7','5','0','PL02');
-INSERT INTO Lot values('L018','0','8','3','PL03');
-INSERT INTO Lot values('L019','0','0','22','PL04');
-INSERT INTO Lot values('L020','0','10','0','PL05');
-INSERT INTO Lot values('L021','14','0','0','PL02');
-INSERT INTO Lot values('L022','0','15','0','PL03');
-INSERT INTO Lot values('L023','0','0','17','PL04');
-INSERT INTO Lot values('L024','0','0','21','PL05');
-INSERT INTO Lot values('L025','32','5','3','PL05');
-INSERT INTO Lot values('L026','32','5','7','PL05');
-INSERT INTO Lot values('L027','0','6','3','PL03');
+INSERT INTO Lot values('L001','4','5','3','PL01','1');
+INSERT INTO Lot values('L002','0','5','1','PL02','1');
+INSERT INTO Lot values('L003','4','0','3','PL03','1');
+INSERT INTO Lot values('L004','1','5','3','PL01','1');
+INSERT INTO Lot values('L005','0','10','0','PL01','0');
+INSERT INTO Lot values('L006','0','5','0','PL01','0');
+INSERT INTO Lot values('L007','7','0','0','PL01','0');
+INSERT INTO Lot values('L008','10','0','0','PL01','0');
+INSERT INTO Lot values('L009','0','0','7','PL01','1');
+INSERT INTO Lot values('L010','0','0','20','PL01','1');
+INSERT INTO Lot values('L011','8','0','0','PL02','0');
+INSERT INTO Lot values('L012','0','0','34','PL03','1');
+INSERT INTO Lot values('L013','0','8','0','PL04','1');
+INSERT INTO Lot values('L014','6','0','0','PL04','0');
+INSERT INTO Lot values('L015','0','5','0','PL05','0');
+INSERT INTO Lot values('L016','12','5','0','PL05','0');
+INSERT INTO Lot values('L017','7','5','0','PL02','0');
+INSERT INTO Lot values('L018','0','8','3','PL03','0');
+INSERT INTO Lot values('L019','0','0','22','PL04','0');
+INSERT INTO Lot values('L020','0','10','0','PL05','0');
+INSERT INTO Lot values('L021','14','0','0','PL02','0');
+INSERT INTO Lot values('L022','0','15','0','PL03','0');
+INSERT INTO Lot values('L023','0','0','17','PL04','1');
+INSERT INTO Lot values('L024','0','0','21','PL05','1');
+INSERT INTO Lot values('L025','32','5','3','PL05','0');
+INSERT INTO Lot values('L026','32','5','7','PL05','0');
+INSERT INTO Lot values('L027','0','6','3','PL03','0');
 
 /*nominate successor values*/
 

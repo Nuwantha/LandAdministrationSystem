@@ -91,6 +91,21 @@ public class LandController {
 
     }
 
+    
+      public static Land getAvailableLotOfLand(String PlanNumber) throws ClassNotFoundException, SQLException {
+        Connection conn = DBConnection.getDBConnection().getConnection();
+        String sql = "Select * From Land where PlanNumber = '" + PlanNumber + "'";
+        ResultSet rst = DBHandler.getData(conn, sql);
+        if (rst.next()) {
+            ArrayList<Lot> searchLotOfLand = LotController.getAvailableLotOfLand(PlanNumber);
+            Land land = new Land(rst.getString("PlanNumber"), rst.getString("LandName"), rst.getString("DivisionNumber"), rst.getString("WestBound"), rst.getString("EastBound"), rst.getString("NorthBound"), rst.getString("SouthBound"), searchLotOfLand);
+            return land;
+        } else {
+            return null;
+        }
+
+    }
+
     public static ArrayList<Land> getAllLandDetail() throws ClassNotFoundException, SQLException {
         Connection conn = DBConnection.getDBConnection().getConnection();
         String sql = "Select PlanNumber,LandName,DivisionNumber,WestBound,EastBound,SouthBound,NorthBound,count(LotNumber) as NumberOfLots  From Land natural join lot group by PlanNumber";

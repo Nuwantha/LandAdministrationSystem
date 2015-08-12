@@ -36,5 +36,14 @@ public class NominatedSuccessorController {
         int returnValue = DBHandler.setData(conn, sql);
         return returnValue > 0;
     }
+     
+         public static boolean updateNiminateSuccessor(NominatedSuccessor nominateSuccessor) throws ClassNotFoundException, SQLException {
+        Connection conn = DBConnection.getDBConnection().getConnection();
+        String sql = "Update  nominatedsuccessor Set  Name='" + nominateSuccessor.getName() + "', Address='" + nominateSuccessor.getAddress() + "' Where NIC_S ='" + nominateSuccessor.getNIC_S() + "'";
+        int res = DBHandler.setData(conn, sql);
+        return res>0;
+    }
+
+
 
 }

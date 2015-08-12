@@ -12,6 +12,7 @@ package las.models;
 public class Lot {
     private String lotNumber;
     private int numberOfAcres;
+    private int isAvilable=0;
     private int numberofRoods;
     private int numberOfPerches; 
     private Land land;
@@ -35,6 +36,14 @@ public class Lot {
     
     public String getLotNumber() {
         return lotNumber;
+    }
+
+    public int getIsAvilable() {
+        return isAvilable;
+    }
+
+    public void setIsAvilable(int isAvilable) {
+        this.isAvilable = isAvilable;
     }
 
     public void setLotNumber(String lotNumber) {

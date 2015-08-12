@@ -52,9 +52,23 @@ public class LotController {
         return lotList;
     }
 
+    public static ArrayList<Lot> getAvailableLotOfLand(String planNumber) throws ClassNotFoundException, SQLException {
+        Connection conn = DBConnection.getDBConnection().getConnection();
+        String sql = "Select * from Lot where planNumber='" + planNumber + "' and isAvailabal = 0 ";
+        ResultSet rst = DBHandler.getData(conn, sql);
+        ArrayList<Lot> lotList = new ArrayList();
+        while (rst.next()) {
+            Lot lot = new Lot(rst.getString("LotNumber"), rst.getInt("NumberOfAcres"), rst.getInt("NumberOfRoods"), rst.getInt("NumberOfPerches"));
+            lotList.add(lot);
+        }
+        return lotList;
+    }
+
+    
+    
     public static boolean updateLot(Lot lot) throws ClassNotFoundException, SQLException {
         Connection conn = DBConnection.getDBConnection().getConnection();
-        String sql = "Update  Lot Set  NumberOfAcres='" + lot.getNumberOfAcres() + "', NumberOfPerches='" + lot.getNumberOfPerches() + "',NumberofRoods='" + lot.getNumberofRoods() + "' Where  LotNumber='" + lot.getLotNumber() + "'";
+        String sql = "Update  Lot Set  NumberOfAcres='" + lot.getNumberOfAcres() + "', NumberOfPerches='" + lot.getNumberOfPerches() + "',NumberofRoods='" + lot.getNumberofRoods() + "',isAvailabal='"+lot.getIsAvilable()+"' Where  LotNumber='" + lot.getLotNumber() + "'";
         int res = DBHandler.setData(conn, sql);
         return res > 0;
     }

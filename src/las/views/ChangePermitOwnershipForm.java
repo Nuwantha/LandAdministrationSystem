@@ -5,10 +5,13 @@
  */
 package las.views;
 
+import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import las.common_classes.GUIitemsValidator;
+import las.common_classes.PatternChecker;
 import las.controllers.ClientController;
 import las.models.Client;
 import las.models.Permit;
@@ -75,6 +78,7 @@ public class ChangePermitOwnershipForm extends javax.swing.JDialog {
         incomenotvalidlabel = new javax.swing.JLabel();
         add_button = new javax.swing.JButton();
         cancel_button = new javax.swing.JButton();
+        phonenumnotvalidlabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(400, 300));
@@ -311,6 +315,9 @@ public class ChangePermitOwnershipForm extends javax.swing.JDialog {
 
         cancel_button.setText("Cancel");
 
+        phonenumnotvalidlabel.setForeground(new java.awt.Color(255, 0, 0));
+        phonenumnotvalidlabel.setText("NIC is invalid");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -343,6 +350,8 @@ public class ChangePermitOwnershipForm extends javax.swing.JDialog {
                         .addComponent(childrenCountPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(telephoneText, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(phonenumnotvalidlabel)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -372,7 +381,8 @@ public class ChangePermitOwnershipForm extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(telephoneText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(PhoneNo))
+                            .addComponent(PhoneNo)
+                            .addComponent(phonenumnotvalidlabel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(addresslabel)
@@ -444,16 +454,16 @@ public class ChangePermitOwnershipForm extends javax.swing.JDialog {
         telephoneText.setText(newtext);
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
             if (telephoneText.getText().length()==10){
-                addressText.requestFocus();
+                address_text.requestFocus();
             }
             else{
                 phonenumnotvalidlabel.setVisible(true);
             }}
             else if(evt.getKeyCode()==KeyEvent.VK_DOWN){
-                addressText.requestFocus();
+                address_text.requestFocus();
             }
             else if(evt.getKeyCode()==KeyEvent.VK_UP){
-                nicText.requestFocus();
+                nic_text.requestFocus();
             }
     }//GEN-LAST:event_telephoneTextKeyReleased
 
@@ -473,7 +483,7 @@ public class ChangePermitOwnershipForm extends javax.swing.JDialog {
             marriedStatusRButton.requestFocus();
         }
         else if(evt.getKeyCode()==KeyEvent.VK_UP){
-            addressText.requestFocus();
+            address_text.requestFocus();
 
         }
     }//GEN-LAST:event_birthdayChooser1KeyReleased
@@ -605,14 +615,14 @@ public class ChangePermitOwnershipForm extends javax.swing.JDialog {
         annualIncomeText.setText(newtext);
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
             if(PatternChecker.checkDecimaldirect(annualIncomeText.getText())){
-                addCurrentResidenceButton.requestFocus();}
-            else{
+                //addCurrentResidenceButton.requestFocus();
+            }else{
                 incomenotvalidlabel.setVisible(true);
             }
         }
 
         else if(evt.getKeyCode()==KeyEvent.VK_DOWN){
-            addCurrentResidenceButton.requestFocus();
+            //addCurrentResidenceButton.requestFocus();
         }
         else if(evt.getKeyCode()==KeyEvent.VK_UP){
             occupationText.requestFocus();
@@ -723,6 +733,7 @@ public class ChangePermitOwnershipForm extends javax.swing.JDialog {
     private javax.swing.JTextField occupationText;
     private javax.swing.JLabel occupationnotvalidlabel;
     private javax.swing.JTextField ownerText;
+    private javax.swing.JLabel phonenumnotvalidlabel;
     private javax.swing.JTextField po_name_text;
     private javax.swing.JRadioButton singleStatusRButton;
     private javax.swing.JTextField telephoneText;
