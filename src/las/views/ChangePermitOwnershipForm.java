@@ -5,12 +5,23 @@
  */
 package las.views;
 
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JOptionPane;
+import las.controllers.ClientController;
+import las.models.Client;
+import las.models.Permit;
+
+
+
 /**
  *
  * @author Gimhani
  */
 public class ChangePermitOwnershipForm extends javax.swing.JDialog {
-
+    private Permit permit;
+    
     /**
      * Creates new form ChangePermitOwnershipForm
      */
@@ -28,22 +39,615 @@ public class ChangePermitOwnershipForm extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        ownerText = new javax.swing.JTextField();
+        jPanel3 = new javax.swing.JPanel();
+        namelabel = new javax.swing.JLabel();
+        telephoneText = new javax.swing.JTextField();
+        PhoneNo = new javax.swing.JLabel();
+        po_name_text = new javax.swing.JTextField();
+        niclabel = new javax.swing.JLabel();
+        nic_text = new javax.swing.JTextField();
+        addresslabel = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        address_text = new javax.swing.JTextArea();
+        nicInvalidLabel = new javax.swing.JLabel();
+        Birthday = new javax.swing.JLabel();
+        birthdayChooser1 = new org.freixas.jcalendar.JCalendarCombo();
+        Status = new javax.swing.JLabel();
+        marriedStatusRButton = new javax.swing.JRadioButton();
+        singleStatusRButton = new javax.swing.JRadioButton();
+        childrenCountPanel = new javax.swing.JPanel();
+        NumberOfMarriedChildren = new javax.swing.JLabel();
+        NoOfUnmarriedChildren = new javax.swing.JLabel();
+        marriedChildrenCountSpinner = new javax.swing.JSpinner();
+        unmarriedChildrenCountSpinner = new javax.swing.JSpinner();
+        jPanel4 = new javax.swing.JPanel();
+        Occupation = new javax.swing.JLabel();
+        occupationText = new javax.swing.JTextField();
+        AnnualIncome = new javax.swing.JLabel();
+        annualIncomeText = new javax.swing.JTextField();
+        occupationnotvalidlabel = new javax.swing.JLabel();
+        incomenotvalidlabel = new javax.swing.JLabel();
+        add_button = new javax.swing.JButton();
+        cancel_button = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(400, 300));
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel2.setText("Current Owner");
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel1.setText("Permit No");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ownerText, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(ownerText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(19, Short.MAX_VALUE))
+        );
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("New Ownership Details"));
+
+        namelabel.setText("Name:");
+
+        telephoneText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                telephoneTextKeyReleased(evt);
+            }
+        });
+
+        PhoneNo.setText("Phone Number:");
+
+        niclabel.setText("NIC:");
+
+        addresslabel.setText("Address:");
+
+        address_text.setColumns(20);
+        address_text.setRows(5);
+        jScrollPane1.setViewportView(address_text);
+
+        nicInvalidLabel.setForeground(new java.awt.Color(255, 0, 0));
+        nicInvalidLabel.setText("NIC is invalid");
+
+        Birthday.setText("Birthday:");
+
+        birthdayChooser1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                birthdayChooser1ActionPerformed(evt);
+            }
+        });
+        birthdayChooser1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                birthdayChooser1KeyReleased(evt);
+            }
+        });
+
+        Status.setText("Status:");
+
+        marriedStatusRButton.setText("Married");
+        marriedStatusRButton.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                marriedStatusRButtonStateChanged(evt);
+            }
+        });
+        marriedStatusRButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                marriedStatusRButtonActionPerformed(evt);
+            }
+        });
+        marriedStatusRButton.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                marriedStatusRButtonKeyReleased(evt);
+            }
+        });
+
+        singleStatusRButton.setText("Single");
+        singleStatusRButton.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                singleStatusRButtonKeyReleased(evt);
+            }
+        });
+
+        childrenCountPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Number of children"));
+
+        NumberOfMarriedChildren.setText("No. of married children:");
+
+        NoOfUnmarriedChildren.setText("No. of  unmarried children:");
+
+        marriedChildrenCountSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                marriedChildrenCountSpinnerStateChanged(evt);
+            }
+        });
+        marriedChildrenCountSpinner.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                marriedChildrenCountSpinnerKeyReleased(evt);
+            }
+        });
+
+        unmarriedChildrenCountSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                unmarriedChildrenCountSpinnerStateChanged(evt);
+            }
+        });
+        unmarriedChildrenCountSpinner.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                unmarriedChildrenCountSpinnerKeyReleased(evt);
+            }
+        });
+
+        javax.swing.GroupLayout childrenCountPanelLayout = new javax.swing.GroupLayout(childrenCountPanel);
+        childrenCountPanel.setLayout(childrenCountPanelLayout);
+        childrenCountPanelLayout.setHorizontalGroup(
+            childrenCountPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(childrenCountPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(childrenCountPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(NoOfUnmarriedChildren, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                    .addComponent(NumberOfMarriedChildren, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(childrenCountPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(marriedChildrenCountSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(unmarriedChildrenCountSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        childrenCountPanelLayout.setVerticalGroup(
+            childrenCountPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(childrenCountPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(childrenCountPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(NumberOfMarriedChildren)
+                    .addComponent(marriedChildrenCountSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(childrenCountPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(NoOfUnmarriedChildren)
+                    .addComponent(unmarriedChildrenCountSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Income Details"));
+
+        Occupation.setText("Occupation:");
+
+        occupationText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                occupationTextActionPerformed(evt);
+            }
+        });
+        occupationText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                occupationTextKeyReleased(evt);
+            }
+        });
+
+        AnnualIncome.setText("Estimated Annual Income: Rs.");
+
+        annualIncomeText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                annualIncomeTextKeyReleased(evt);
+            }
+        });
+
+        occupationnotvalidlabel.setForeground(new java.awt.Color(204, 0, 0));
+        occupationnotvalidlabel.setText("Not Valid");
+
+        incomenotvalidlabel.setForeground(new java.awt.Color(204, 0, 0));
+        incomenotvalidlabel.setText("Not Valid");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(AnnualIncome)
+                    .addComponent(Occupation))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(occupationText, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(occupationnotvalidlabel))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(annualIncomeText, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(incomenotvalidlabel))))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Occupation)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(occupationText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(occupationnotvalidlabel)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(AnnualIncome)
+                        .addComponent(annualIncomeText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(incomenotvalidlabel))
+                .addContainerGap(49, Short.MAX_VALUE))
+        );
+
+        add_button.setText("Add");
+        add_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                add_buttonActionPerformed(evt);
+            }
+        });
+
+        cancel_button.setText("Cancel");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(add_button, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cancel_button)
+                .addGap(19, 19, 19))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(PhoneNo)
+                    .addComponent(addresslabel)
+                    .addComponent(Birthday, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Status)
+                    .addComponent(namelabel)
+                    .addComponent(niclabel))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(po_name_text, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(nic_text, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(15, 15, 15)
+                                .addComponent(nicInvalidLabel)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(childrenCountPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(telephoneText, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(marriedStatusRButton)
+                                .addGap(18, 18, 18)
+                                .addComponent(singleStatusRButton))
+                            .addComponent(birthdayChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(nic_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nicInvalidLabel)
+                            .addComponent(niclabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(namelabel)
+                            .addComponent(po_name_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(telephoneText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(PhoneNo))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(addresslabel)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(13, 13, 13)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Birthday)
+                            .addComponent(birthdayChooser1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(1, 1, 1)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Status)
+                            .addComponent(marriedStatusRButton)
+                            .addComponent(singleStatusRButton)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(childrenCountPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(25, 25, 25)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cancel_button)
+                            .addComponent(add_button))))
+                .addContainerGap(12, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void telephoneTextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_telephoneTextKeyReleased
+        // TODO add your handling code here:
+        phonenumnotvalidlabel.setVisible(false);
+        String newtext=PatternChecker.checkTelNum(telephoneText.getText());
+        telephoneText.setText(newtext);
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            if (telephoneText.getText().length()==10){
+                addressText.requestFocus();
+            }
+            else{
+                phonenumnotvalidlabel.setVisible(true);
+            }}
+            else if(evt.getKeyCode()==KeyEvent.VK_DOWN){
+                addressText.requestFocus();
+            }
+            else if(evt.getKeyCode()==KeyEvent.VK_UP){
+                nicText.requestFocus();
+            }
+    }//GEN-LAST:event_telephoneTextKeyReleased
+
+    private void birthdayChooser1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_birthdayChooser1ActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_birthdayChooser1ActionPerformed
+
+    private void birthdayChooser1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_birthdayChooser1KeyReleased
+        // TODO add your handling code here:
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+
+            marriedStatusRButton.requestFocus();
+        }
+
+        else if(evt.getKeyCode()==KeyEvent.VK_DOWN){
+            marriedStatusRButton.requestFocus();
+        }
+        else if(evt.getKeyCode()==KeyEvent.VK_UP){
+            addressText.requestFocus();
+
+        }
+    }//GEN-LAST:event_birthdayChooser1KeyReleased
+
+    private void marriedStatusRButtonStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_marriedStatusRButtonStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_marriedStatusRButtonStateChanged
+
+    private void marriedStatusRButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_marriedStatusRButtonActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_marriedStatusRButtonActionPerformed
+
+    private void marriedStatusRButtonKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_marriedStatusRButtonKeyReleased
+        // TODO add your handling code here:
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+
+            marriedStatusRButton.isSelected();
+        }
+
+        else if(evt.getKeyCode()==KeyEvent.VK_DOWN){
+            marriedChildrenCountSpinner.requestFocus();
+        }
+        else if(evt.getKeyCode()==KeyEvent.VK_UP){
+            birthdayChooser1.requestFocus();
+
+        }
+
+        else if(evt.getKeyCode()==KeyEvent.VK_RIGHT){
+            singleStatusRButton.requestFocus();
+
+        }
+    }//GEN-LAST:event_marriedStatusRButtonKeyReleased
+
+    private void singleStatusRButtonKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_singleStatusRButtonKeyReleased
+        // TODO add your handling code here:
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+
+            singleStatusRButton.isSelected();
+        }
+
+        else if(evt.getKeyCode()==KeyEvent.VK_DOWN){
+            marriedChildrenCountSpinner.requestFocus();
+        }
+        else if(evt.getKeyCode()==KeyEvent.VK_UP){
+            birthdayChooser1.requestFocus();
+
+        }
+
+        else if(evt.getKeyCode()==KeyEvent.VK_LEFT){
+            marriedStatusRButton.requestFocus();
+
+        }
+    }//GEN-LAST:event_singleStatusRButtonKeyReleased
+
+    private void marriedChildrenCountSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_marriedChildrenCountSpinnerStateChanged
+        // TODO add your handling code here:
+        GUIitemsValidator.limitminimumSpinnerValue(marriedChildrenCountSpinner,0);
+    }//GEN-LAST:event_marriedChildrenCountSpinnerStateChanged
+
+    private void marriedChildrenCountSpinnerKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_marriedChildrenCountSpinnerKeyReleased
+        // TODO add your handling code here:
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+
+            unmarriedChildrenCountSpinner.requestFocus();
+        }
+
+        else if(evt.getKeyCode()==KeyEvent.VK_DOWN){
+            GUIitemsValidator.decrementSpinnerValue(marriedChildrenCountSpinner);
+        }
+        else if(evt.getKeyCode()==KeyEvent.VK_UP){
+            GUIitemsValidator.incermentSpinnerValue(marriedChildrenCountSpinner);
+
+        }
+
+    }//GEN-LAST:event_marriedChildrenCountSpinnerKeyReleased
+
+    private void unmarriedChildrenCountSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_unmarriedChildrenCountSpinnerStateChanged
+        // TODO add your handling code here:
+        GUIitemsValidator.limitminimumSpinnerValue(unmarriedChildrenCountSpinner,0);
+    }//GEN-LAST:event_unmarriedChildrenCountSpinnerStateChanged
+
+    private void unmarriedChildrenCountSpinnerKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_unmarriedChildrenCountSpinnerKeyReleased
+        // TODO add your handling code here:
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+
+            occupationText.requestFocus();
+        }
+
+        else if(evt.getKeyCode()==KeyEvent.VK_DOWN){
+            GUIitemsValidator.decrementSpinnerValue(unmarriedChildrenCountSpinner);
+        }
+        else if(evt.getKeyCode()==KeyEvent.VK_UP){
+            GUIitemsValidator.incermentSpinnerValue(unmarriedChildrenCountSpinner);
+
+        }
+    }//GEN-LAST:event_unmarriedChildrenCountSpinnerKeyReleased
+
+    private void occupationTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_occupationTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_occupationTextActionPerformed
+
+    private void occupationTextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_occupationTextKeyReleased
+        // TODO add your handling code here:
+        occupationnotvalidlabel.setVisible(false);
+        String newtext=PatternChecker.checkstring(occupationText.getText());
+        occupationText.setText(newtext);
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            if(PatternChecker.checkStringdirect(occupationText.getText())){
+                annualIncomeText.requestFocus();}
+            else{
+                occupationnotvalidlabel.setVisible(true);
+            }
+        }
+
+        else if(evt.getKeyCode()==KeyEvent.VK_DOWN){
+            annualIncomeText.requestFocus();
+        }
+        else if(evt.getKeyCode()==KeyEvent.VK_UP){
+            unmarriedChildrenCountSpinner.requestFocus();
+
+        }
+    }//GEN-LAST:event_occupationTextKeyReleased
+
+    private void annualIncomeTextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_annualIncomeTextKeyReleased
+        // TODO add your handling code here:
+        incomenotvalidlabel.setVisible(false);
+        String newtext=PatternChecker.checkDecimal(annualIncomeText.getText());
+        annualIncomeText.setText(newtext);
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            if(PatternChecker.checkDecimaldirect(annualIncomeText.getText())){
+                addCurrentResidenceButton.requestFocus();}
+            else{
+                incomenotvalidlabel.setVisible(true);
+            }
+        }
+
+        else if(evt.getKeyCode()==KeyEvent.VK_DOWN){
+            addCurrentResidenceButton.requestFocus();
+        }
+        else if(evt.getKeyCode()==KeyEvent.VK_UP){
+            occupationText.requestFocus();
+
+        }
+    }//GEN-LAST:event_annualIncomeTextKeyReleased
+
+    private void add_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_buttonActionPerformed
+       int isMarried = 1;
+        String permitOwnerName = po_name_text.getText();
+        String nic = nic_text.getText();
+        String telephoneNumber = telephoneText.getText();
+        String address = address_text.getText();
+        Date date = birthdayChooser1.getDate();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY-MM-dd");
+        String DOB = simpleDateFormat.format(date);
+        System.out.println(DOB);
+        if (singleStatusRButton.isSelected()) {
+            isMarried = 0;
+        }
+        int marriedSons = Integer.parseInt(marriedChildrenCountSpinner.getValue().toString());
+        int unmarriedSons = Integer.parseInt(unmarriedChildrenCountSpinner.getValue().toString());
+        double annualincome = Double.parseDouble(annualIncomeText.getText());
+
+        Client client = new Client(nic, permitOwnerName, DOB, telephoneNumber, address, annualincome, 0, 1, isMarried, marriedSons, unmarriedSons);
+        try {
+            boolean addNewClient = ClientController.addNewClient(client);
+            if (addNewClient) {
+                JOptionPane.showMessageDialog(rootPane, "applicant added successfully");
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+
+        this.setVisible(false);
+    }//GEN-LAST:event_add_buttonActionPerformed
+    }
     /**
      * @param args the command line arguments
      */
@@ -87,5 +691,41 @@ public class ChangePermitOwnershipForm extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel AnnualIncome;
+    private javax.swing.JLabel Birthday;
+    private javax.swing.JLabel NoOfUnmarriedChildren;
+    private javax.swing.JLabel NumberOfMarriedChildren;
+    private javax.swing.JLabel Occupation;
+    private javax.swing.JLabel PhoneNo;
+    private javax.swing.JLabel Status;
+    private javax.swing.JButton add_button;
+    private javax.swing.JTextArea address_text;
+    private javax.swing.JLabel addresslabel;
+    private javax.swing.JTextField annualIncomeText;
+    private org.freixas.jcalendar.JCalendarCombo birthdayChooser1;
+    private javax.swing.JButton cancel_button;
+    private javax.swing.JPanel childrenCountPanel;
+    private javax.swing.JLabel incomenotvalidlabel;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JSpinner marriedChildrenCountSpinner;
+    private javax.swing.JRadioButton marriedStatusRButton;
+    private javax.swing.JLabel namelabel;
+    private javax.swing.JLabel nicInvalidLabel;
+    private javax.swing.JTextField nic_text;
+    private javax.swing.JLabel niclabel;
+    private javax.swing.JTextField occupationText;
+    private javax.swing.JLabel occupationnotvalidlabel;
+    private javax.swing.JTextField ownerText;
+    private javax.swing.JTextField po_name_text;
+    private javax.swing.JRadioButton singleStatusRButton;
+    private javax.swing.JTextField telephoneText;
+    private javax.swing.JSpinner unmarriedChildrenCountSpinner;
     // End of variables declaration//GEN-END:variables
 }
