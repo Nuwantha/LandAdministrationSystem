@@ -45,7 +45,7 @@ public class GrantController {
         Connection conn = DBConnection.getDBConnection().getConnection();
         conn.setAutoCommit(false);
         try {
-            String sql = "Insert into permit Values('" + grant.getGrantNumber() + "','" + grant.getGrantIssueDate() + "','" + grant.getPermit().getPermitNumber() + "','" + grant.getLot().getLotNumber() + "','" + grant.getClient().getNIC() + "','" + grant.getNominatedSuccessor().getNIC_S() + "')";
+            String sql = "Insert into GRANT Values('" + grant.getGrantNumber() + "','" + grant.getGrantIssueDate() + "','" + grant.getPermit().getPermitNumber() + "','" + grant.getLot().getLotNumber() + "','" + grant.getClient().getNIC() + "','" + grant.getNominatedSuccessor().getNIC_S() + "')";
             int returnGrantInsert = DBHandler.setData(conn, sql);
             if (returnGrantInsert > 0) {
                 Client client = grant.getClient();
@@ -75,42 +75,37 @@ public class GrantController {
     }
 
     
-    public static int getPermitCountOfDivision(String divisionNumber) throws ClassNotFoundException, SQLException {
+    public static int getGrantCountOfDivision(String divisionNumber) throws ClassNotFoundException, SQLException {
         Connection conn = DBConnection.getDBConnection().getConnection();
-        String sql = "select count(distinct permitNumber) as permitCount from permit natural join lot natural join land where divisionNumber ='" + divisionNumber + "'";
+        String sql = "select count(distinct grantNumber) as grantCount from grant natural join lot natural join land where divisionNumber ='" + divisionNumber + "'";
         ResultSet rst = DBHandler.getData(conn, sql);
-        int permitCount = 0;
+        int grantCount = 0;
         if (rst.next()) {
-            permitCount = rst.getInt("permitCount");
+            grantCount = rst.getInt("grantCount");
 
         }
-        return permitCount;
+        return grantCount;
     }
 
-    public static ArrayList<Permit> getSimmilarPlanNumbers(String permitNumberPart) throws ClassNotFoundException, SQLException {
+    public static ArrayList<Grant> getSimilarPlanNumbers(String grantNumberPart) throws ClassNotFoundException, SQLException {
         Connection conn = DBConnection.getDBConnection().getConnection();
-        String sql = "Select * From permit where permitNumber like '" + permitNumberPart + "%'  order by permitNumber limit 10";
+        String sql = "Select * From grant where grantNumber like '" + grantNumberPart + "%'  order by grantNumber limit 10";
         ResultSet rst = DBHandler.getData(conn, sql);
-        ArrayList<Permit> permitList = new ArrayList<>();
+        ArrayList<Grant> grantList = new ArrayList<>();
         while (rst.next()) {
+            Permit searchPermit=PermitController.searchPermit(rst.getString("PermitNumber"));
             Client searchClient = ClientController.searchClient(rst.getString("NIC"));
             Lot searchLot = LotController.searchLot(rst.getString("LotNumber"));
             NominatedSuccessor searchNominateSuccessor = NominatedSuccessorController.searchNominateSuccessor(rst.getString("NIC_Successor"));
-            Permit permit = new Permit(rst.getString("PermitNumber"), rst.getString("PermitIssueDate"), searchLot, searchClient, searchNominateSuccessor);
-            permitList.add(permit);
+            Grant grant = new Grant(rst.getString("GrantNumber"), rst.getString("GrantIssueDate"),searchPermit, searchLot, searchClient, searchNominateSuccessor);
+            grantList.add(grant);
         }
-        return permitList;
+        return grantList;
     }
 
       //*******************************************//
-    public static int updateGrant(Grant grant)throws ClassNotFoundException, SQLException {
-        //updateGrant in database
-        Connection conn = DBConnection.getDBConnection().getConnection();
-      /*  String sql = "Update  Grant Set  grantNo='" +permit.getPermitNumber() + "','" + permit.getPermitIssueDate() + "','" + permit.getLot().getLotNumber() + "','" + permit.getClient().getNIC() + "','" + permit.getNominatedSuccessor().getNIC_S() + "')";
-        int res = DBHandler.setData(conn, sql);
-         */
-        int res=0;
-        return res;
+    public static boolean changeGrantOwnership(Grant grant)throws ClassNotFoundException, SQLException {
+        return addNewGrant(grant);
     }
     
     

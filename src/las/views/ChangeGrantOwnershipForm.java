@@ -646,7 +646,7 @@ public class ChangeGrantOwnershipForm extends javax.swing.JDialog {
         double annualincome = Double.parseDouble(annualIncomeText.getText());
 
         int cur_PermitOwnership=this.grant.getClient().getPermitOwnershipPosition();
-        int cur_GrantOwnership=this.grant.getClient().getGrantOwnershipPosition();
+        int cur_GrantOwnership=this.grant.getClient().getGrantOwnershipPosition()+1;//as grant ownership is changed
             
         Client newclient = new Client(nic, grantOwnerName, DOB, telephoneNumber, address, annualincome, cur_PermitOwnership, ++cur_GrantOwnership, isMarried, marriedSons, unmarriedSons);
         try {
@@ -655,8 +655,8 @@ public class ChangeGrantOwnershipForm extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(rootPane, "new grant owner added as a new client successfully");
                 try{
                     grant.setClient(newclient);
-                    int editGrant = GrantController.updateGrant(grant);
-                    if (editGrant>0){
+                    boolean editGrant = GrantController.changeGrantOwnership(grant);
+                    if (editGrant){
                         JOptionPane.showMessageDialog(this,"grant update successfully");
                     
                     }else {

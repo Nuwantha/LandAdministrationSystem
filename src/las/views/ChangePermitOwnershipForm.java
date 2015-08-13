@@ -673,8 +673,8 @@ public class ChangePermitOwnershipForm extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(rootPane, "new permit owner added as a new client successfully");
                 try{
                     permit.setClient(newclient);
-                    int editPermit = PermitController.updatePermit(permit);
-                    if (editPermit>0){
+                    boolean editPermit = PermitController.updatePermit(permit);
+                    if (editPermit){
                         JOptionPane.showMessageDialog(this,"permit update successfully");
                     
                     }else {
