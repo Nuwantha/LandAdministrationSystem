@@ -92,6 +92,13 @@ CREATE TABLE Grant1(
 	CONSTRAINT FOREIGN KEY(PermitNumber) REFERENCES  Permit(PermitNumber)
 );
 
+create table User (
+name VARCHAR(20) not null,
+password VARCHAR(400) not null,
+power int(1) not null,
+constraint PRIMARY KEY(user)
+);
+
 
 
 /*kaburugamuwa kalapaya*/
