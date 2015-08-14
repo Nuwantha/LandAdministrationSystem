@@ -729,6 +729,7 @@
                         </Component>
                         <Component class="javax.swing.JTextField" name="telephoneText">
                           <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="telephoneTextActionPerformed"/>
                             <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="telephoneTextKeyReleased"/>
                           </Events>
                         </Component>
@@ -791,6 +792,7 @@
                             <Property name="text" type="java.lang.String" value="Single"/>
                           </Properties>
                           <Events>
+                            <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="singleStatusRButtonStateChanged"/>
                             <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="singleStatusRButtonKeyReleased"/>
                           </Events>
                         </Component>

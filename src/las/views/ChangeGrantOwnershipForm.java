@@ -31,6 +31,12 @@ public class ChangeGrantOwnershipForm extends javax.swing.JDialog {
     public ChangeGrantOwnershipForm() {
         initComponents();
         this.grantno_changeOwnerCombo.setEditable(true);
+        nic_text.requestFocus();
+        namenotvalidlabel.setVisible(false);
+        nicInvalidLabel.setVisible(false);
+        phonenumnotvalidlabel.setVisible(false);
+        occupationnotvalidlabel.setVisible(false);
+        incomenotvalidlabel.setVisible(false);
     }
 
     /**
@@ -79,6 +85,7 @@ public class ChangeGrantOwnershipForm extends javax.swing.JDialog {
         add_button = new javax.swing.JButton();
         cancel_button = new javax.swing.JButton();
         phonenumnotvalidlabel = new javax.swing.JLabel();
+        namenotvalidlabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -133,12 +140,29 @@ public class ChangeGrantOwnershipForm extends javax.swing.JDialog {
 
         PhoneNo.setText("Phone Number:");
 
+        newowner_name_text.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                newowner_name_textKeyReleased(evt);
+            }
+        });
+
         niclabel.setText("NIC:");
+
+        nic_text.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                nic_textKeyReleased(evt);
+            }
+        });
 
         addresslabel.setText("Address:");
 
         address_text.setColumns(20);
         address_text.setRows(5);
+        address_text.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                address_textKeyReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(address_text);
 
         nicInvalidLabel.setForeground(new java.awt.Color(255, 0, 0));
@@ -313,11 +337,24 @@ public class ChangeGrantOwnershipForm extends javax.swing.JDialog {
                 add_buttonActionPerformed(evt);
             }
         });
+        add_button.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                add_buttonKeyReleased(evt);
+            }
+        });
 
         cancel_button.setText("Cancel");
+        cancel_button.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cancel_buttonKeyReleased(evt);
+            }
+        });
 
         phonenumnotvalidlabel.setForeground(new java.awt.Color(255, 0, 0));
         phonenumnotvalidlabel.setText("NIC is invalid");
+
+        namenotvalidlabel.setForeground(new java.awt.Color(255, 0, 0));
+        namenotvalidlabel.setText("NIC is invalid");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -341,13 +378,17 @@ public class ChangeGrantOwnershipForm extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(newowner_name_text, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(nic_text, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(15, 15, 15)
-                                .addComponent(nicInvalidLabel)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(nicInvalidLabel)
+                                .addGap(53, 53, 53))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(newowner_name_text)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(namenotvalidlabel)
+                                .addGap(58, 58, 58)))
                         .addComponent(childrenCountPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(telephoneText, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -378,7 +419,8 @@ public class ChangeGrantOwnershipForm extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(namelabel)
-                            .addComponent(newowner_name_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(newowner_name_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(namenotvalidlabel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(telephoneText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -620,7 +662,7 @@ public class ChangeGrantOwnershipForm extends javax.swing.JDialog {
         }
 
         else if(evt.getKeyCode()==KeyEvent.VK_DOWN){
-            //addCurrentResidenceButton.requestFocus();
+            add_button.requestFocus();
         }
         else if(evt.getKeyCode()==KeyEvent.VK_UP){
             occupationText.requestFocus();
@@ -677,6 +719,77 @@ public class ChangeGrantOwnershipForm extends javax.swing.JDialog {
         
         
     }//GEN-LAST:event_add_buttonActionPerformed
+
+    private void nic_textKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nic_textKeyReleased
+        // TODO add your handling code here:
+       nicInvalidLabel.setVisible(false);
+       String newtext=PatternChecker.checkNIC(nic_text.getText());
+       nic_text.setText(newtext);
+       if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+           if(PatternChecker.checkNICdirect(nic_text.getText())){
+               newowner_name_text.requestFocus();
+           }
+           else{
+               nicInvalidLabel.setVisible(true);
+           }
+       }
+       else if(evt.getKeyCode()==KeyEvent.VK_DOWN){
+           newowner_name_text.requestFocus();
+       }
+        
+    }//GEN-LAST:event_nic_textKeyReleased
+
+    private void newowner_name_textKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_newowner_name_textKeyReleased
+        // TODO add your handling code here:
+        namenotvalidlabel.setVisible(false);
+       String newtext=PatternChecker.checkstring(newowner_name_text.getText());
+       newowner_name_text.setText(newtext);
+       if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+           if(PatternChecker.checkStringdirect(newowner_name_text.getText())){
+               telephoneText.requestFocus();
+           }
+           else{
+               namenotvalidlabel.setVisible(true);
+           }
+       }
+       else if(evt.getKeyCode()==KeyEvent.VK_DOWN){
+          telephoneText.requestFocus();
+       }
+       else if(evt.getKeyCode()==KeyEvent.VK_UP){
+          nic_text.requestFocus();
+       }
+    }//GEN-LAST:event_newowner_name_textKeyReleased
+
+    private void add_buttonKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_add_buttonKeyReleased
+        // TODO add your handling code here:
+         if(evt.getKeyCode()==KeyEvent.VK_RIGHT){
+            cancel_button.requestFocus();
+        }
+        else if(evt.getKeyCode()==KeyEvent.VK_UP){
+            annualIncomeText.requestFocus();
+
+        }
+    }//GEN-LAST:event_add_buttonKeyReleased
+
+    private void cancel_buttonKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cancel_buttonKeyReleased
+        // TODO add your handling code here:
+        if(evt.getKeyCode()==KeyEvent.VK_LEFT){
+            add_button.requestFocus();
+        }
+        else if(evt.getKeyCode()==KeyEvent.VK_UP){
+            annualIncomeText.requestFocus();
+        }
+    }//GEN-LAST:event_cancel_buttonKeyReleased
+
+    private void address_textKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_address_textKeyReleased
+        // TODO add your handling code here:
+        if(evt.getKeyCode()==KeyEvent.VK_DOWN){
+            marriedStatusRButton.requestFocus();
+        }
+        else if(evt.getKeyCode()==KeyEvent.VK_UP){
+            telephoneText.requestFocus();
+        }
+    }//GEN-LAST:event_address_textKeyReleased
 
     /**
      * @param args the command line arguments
@@ -747,6 +860,7 @@ public class ChangeGrantOwnershipForm extends javax.swing.JDialog {
     private javax.swing.JSpinner marriedChildrenCountSpinner;
     private javax.swing.JRadioButton marriedStatusRButton;
     private javax.swing.JLabel namelabel;
+    private javax.swing.JLabel namenotvalidlabel;
     private javax.swing.JTextField newowner_name_text;
     private javax.swing.JLabel nicInvalidLabel;
     private javax.swing.JTextField nic_text;

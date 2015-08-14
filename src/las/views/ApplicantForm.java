@@ -558,6 +558,11 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
             }
         });
 
+        telephoneText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                telephoneTextActionPerformed(evt);
+            }
+        });
         telephoneText.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 telephoneTextKeyReleased(evt);
@@ -601,6 +606,11 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
 
         statusButtonGroup.add(singleStatusRButton);
         singleStatusRButton.setText("Single");
+        singleStatusRButton.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                singleStatusRButtonStateChanged(evt);
+            }
+        });
         singleStatusRButton.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 singleStatusRButtonKeyReleased(evt);
@@ -1627,19 +1637,54 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
         if (singleStatusRButton.isSelected()) {
             isMarried = 0;
         }
-        int marriedSons = Integer.parseInt(marriedChildrenCountSpinner.getValue().toString());
-        int unmarriedSons = Integer.parseInt(unmarriedChildrenCountSpinner.getValue().toString());
-        double annualincome = Double.parseDouble(annualIncomeText.getText());
+        int marriedSons = 0,unmarriedSons = 0;
+        double annualincome = 0;
+        try{
+         marriedSons = Integer.parseInt(marriedChildrenCountSpinner.getValue().toString());
+         unmarriedSons = Integer.parseInt(unmarriedChildrenCountSpinner.getValue().toString());
+         annualincome = Double.parseDouble(annualIncomeText.getText());}
+        catch (Exception e){         
+            JOptionPane.showMessageDialog(rootPane, "OOps! Something Went Wrong!");
+        
+        }
 
+        if(nameText.getText().trim().length()!=0 && nicText.getText().trim().length()!=0 && telephoneText.getText().trim().length()!=0 && addressText.getText().trim().length()!=0 && annualIncomeText.getText().trim().length()!=0 &&(marriedStatusRButton.isSelected()|| singleStatusRButton.isSelected()) ){
+        if(!PatternChecker.checkStringdirect(nameText.getText())){
+               namenotvalidlabel.setVisible(true);}
+        else if (!PatternChecker.checkNICdirect(nicText.getText())){
+                nicnotvalidlabel.setVisible(true);}
+        else if (!PatternChecker.checkTelNumdirect(telephoneText.getText())){
+                phonenumnotvalidlabel.setVisible(true);     }
+        else if(!PatternChecker.checkStringdirect(occupationText.getText())){
+               occupationnotvalidlabel.setVisible(true);}
+         else if(!PatternChecker.checkDecimaldirect(annualIncomeText.getText())){
+               incomenotvalidlabel.setVisible(true);}
+        else{
         Client client = new Client(nic, aplicantName, DOB, telephoneNumber, address, annualincome, 0, 0, isMarried, marriedSons, unmarriedSons);
         try {
             boolean addNewClient = ClientController.addNewClient(client);
             if (addNewClient) {
                 JOptionPane.showMessageDialog(rootPane, "applicant added successfully");
+                applicantNumberText.setText(null);
+                nameText.setText(null);
+                nicText.setText(null);
+                telephoneText.setText(null);
+                addressText.setText(null);
+                annualIncomeText.setText(null);
+                marriedStatusRButton.setSelected(false);
+                singleStatusRButton.setSelected(false);
+                occupationText.setText(null);
+                marriedChildrenCountSpinner.setValue(0);
+                unmarriedChildrenCountSpinner.setValue(0);
             }
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(ApplicantForm.class.getName()).log(Level.SEVERE, null, ex);
+            
+        }}}
+        else{
+            JOptionPane.showMessageDialog(rootPane, "Please Fill The Blanks in The Form");
         }
+        
 
     }//GEN-LAST:event_registerButtonActionPerformed
 
@@ -1697,7 +1742,7 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
         String newtext=PatternChecker.checkTelNum(telephoneText.getText());
         telephoneText.setText(newtext);
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
-            if (telephoneText.getText().length()==10){
+            if (PatternChecker.checkTelNumdirect(telephoneText.getText())){
                 addressText.requestFocus();
        }
             else{
@@ -1743,6 +1788,9 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
 
     private void marriedStatusRButtonStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_marriedStatusRButtonStateChanged
         // TODO add your handling code here:
+        if(marriedStatusRButton.isSelected()){
+            singleStatusRButton.setSelected(false);
+        }
     }//GEN-LAST:event_marriedStatusRButtonStateChanged
 
     private void marriedStatusRButtonKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_marriedStatusRButtonKeyReleased
@@ -2085,6 +2133,17 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
             annualIncomeText.requestFocus();
         }
     }//GEN-LAST:event_addCurrentResidenceButtonKeyReleased
+
+    private void telephoneTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_telephoneTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_telephoneTextActionPerformed
+
+    private void singleStatusRButtonStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_singleStatusRButtonStateChanged
+        // TODO add your handling code here:
+        if(singleStatusRButton.isSelected()){
+            marriedStatusRButton.setSelected(false);
+        }
+    }//GEN-LAST:event_singleStatusRButtonStateChanged
 
     public void getResidenceData() { //to accept data from current residence detail form
 
