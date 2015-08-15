@@ -5,7 +5,6 @@
  */
 package las.views;
 
-import com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
@@ -22,7 +21,6 @@ import las.controllers.ClientController;
 import las.controllers.GramaNiladariDivisionController;
 import las.controllers.LandController;
 import las.controllers.LotController;
-import las.controllers.NominatedSuccessorController;
 import las.controllers.PermitController;
 import las.models.Client;
 import las.models.GramaNiladariDivision;
@@ -1009,6 +1007,11 @@ public class PermitForm extends javax.swing.JInternalFrame {
         searchpermit_permit_number_combo.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 searchpermit_permit_number_comboItemStateChanged(evt);
+            }
+        });
+        searchpermit_permit_number_combo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchpermit_permit_number_comboActionPerformed(evt);
             }
         });
         searchpermit_permit_number_combo.addActionListener(new java.awt.event.ActionListener() {

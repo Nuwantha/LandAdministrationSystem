@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package las.views;
 
 import java.awt.Toolkit;
@@ -21,15 +20,12 @@ public class FrontPage extends javax.swing.JFrame {
         initComponents();
         setSize(Toolkit.getDefaultToolkit().getScreenSize());
         desktopPane.removeAll();
-     ApplicantForm sg = new ApplicantForm();
+        ApplicantForm sg = new ApplicantForm();
         sg.setSize(desktopPane.getSize());
         desktopPane.add(sg);
         sg.setVisible(true);
        // sg.requestFocusForm();
-   
-             
-         
- 
+
     }
 
     /**
@@ -47,6 +43,25 @@ public class FrontPage extends javax.swing.JFrame {
         permitSearchSet = new javax.swing.ButtonGroup();
         grantSearchSet = new javax.swing.ButtonGroup();
         landSearchSet = new javax.swing.ButtonGroup();
+        searchPanel1 = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        jRadioButton6 = new javax.swing.JRadioButton();
+        jRadioButton7 = new javax.swing.JRadioButton();
+        jRadioButton8 = new javax.swing.JRadioButton();
+        jRadioButton9 = new javax.swing.JRadioButton();
+        jRadioButton10 = new javax.swing.JRadioButton();
+        jCheckBox13 = new javax.swing.JCheckBox();
+        jCheckBox14 = new javax.swing.JCheckBox();
+        jCheckBox15 = new javax.swing.JCheckBox();
+        jCheckBox16 = new javax.swing.JCheckBox();
+        jCheckBox17 = new javax.swing.JCheckBox();
+        jCheckBox18 = new javax.swing.JCheckBox();
+        jCheckBox19 = new javax.swing.JCheckBox();
+        jCheckBox20 = new javax.swing.JCheckBox();
+        jCheckBox21 = new javax.swing.JCheckBox();
+        jCheckBox22 = new javax.swing.JCheckBox();
+        jCheckBox23 = new javax.swing.JCheckBox();
+        jCheckBox24 = new javax.swing.JCheckBox();
         desktopJPanel = new javax.swing.JPanel();
         titlePanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -67,23 +82,9 @@ public class FrontPage extends javax.swing.JFrame {
         clockPanel = new javax.swing.JPanel();
         searchPanel = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
-        jRadioButton5 = new javax.swing.JRadioButton();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jCheckBox4 = new javax.swing.JCheckBox();
-        jCheckBox5 = new javax.swing.JCheckBox();
-        jCheckBox6 = new javax.swing.JCheckBox();
-        jCheckBox7 = new javax.swing.JCheckBox();
-        jCheckBox8 = new javax.swing.JCheckBox();
-        jCheckBox9 = new javax.swing.JCheckBox();
-        jCheckBox10 = new javax.swing.JCheckBox();
-        jCheckBox11 = new javax.swing.JCheckBox();
-        jCheckBox12 = new javax.swing.JCheckBox();
+        searchSetCombo = new javax.swing.JComboBox();
+        searchByWhatCombo = new javax.swing.JComboBox();
+        goButton = new javax.swing.JButton();
         internalFrameAreaPanel = new javax.swing.JPanel();
         desktopPane = new javax.swing.JDesktopPane();
         shortcutAccessPanel = new javax.swing.JPanel();
@@ -93,6 +94,7 @@ public class FrontPage extends javax.swing.JFrame {
         GramaNiladariDivisionInfoButton = new javax.swing.JButton();
         changegrantownershipbutton = new javax.swing.JButton();
         addnewlandbutton = new javax.swing.JButton();
+        addnewlandbutton1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -114,6 +116,148 @@ public class FrontPage extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jMenuItem13 = new javax.swing.JMenuItem();
         jMenuItem14 = new javax.swing.JMenuItem();
+
+        searchPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel8.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel8.setText("Search ");
+
+        searchButtonSet.add(jRadioButton6);
+        jRadioButton6.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        jRadioButton6.setText("1.Applicant");
+
+        searchButtonSet.add(jRadioButton7);
+        jRadioButton7.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        jRadioButton7.setText("2.Permit");
+
+        searchButtonSet.add(jRadioButton8);
+        jRadioButton8.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        jRadioButton8.setText("3.Grant");
+
+        searchButtonSet.add(jRadioButton9);
+        jRadioButton9.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        jRadioButton9.setText("4.Grama Niladari Division");
+
+        searchButtonSet.add(jRadioButton10);
+        jRadioButton10.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        jRadioButton10.setText("5.Available lands");
+
+        applicantSearchSet.add(jCheckBox13);
+        jCheckBox13.setText("By name");
+
+        applicantSearchSet.add(jCheckBox14);
+        jCheckBox14.setText("By NIC");
+
+        applicantSearchSet.add(jCheckBox15);
+        jCheckBox15.setText("By GND");
+
+        permitSearchSet.add(jCheckBox16);
+        jCheckBox16.setText("By permit number");
+
+        permitSearchSet.add(jCheckBox17);
+        jCheckBox17.setText("By applicant name");
+
+        permitSearchSet.add(jCheckBox18);
+        jCheckBox18.setText("By NIC");
+
+        grantSearchSet.add(jCheckBox19);
+        jCheckBox19.setText("By permit number");
+
+        grantSearchSet.add(jCheckBox20);
+        jCheckBox20.setText("By grant number");
+
+        grantSearchSet.add(jCheckBox21);
+        jCheckBox21.setText("By applicant name");
+
+        grantSearchSet.add(jCheckBox22);
+        jCheckBox22.setText("By NIC");
+
+        landSearchSet.add(jCheckBox23);
+        jCheckBox23.setText("All lands");
+
+        landSearchSet.add(jCheckBox24);
+        jCheckBox24.setText("By A Division");
+
+        javax.swing.GroupLayout searchPanel1Layout = new javax.swing.GroupLayout(searchPanel1);
+        searchPanel1.setLayout(searchPanel1Layout);
+        searchPanel1Layout.setHorizontalGroup(
+            searchPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(searchPanel1Layout.createSequentialGroup()
+                .addGroup(searchPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(searchPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(searchPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jRadioButton6)
+                            .addComponent(jRadioButton7)
+                            .addComponent(jRadioButton8)
+                            .addComponent(jRadioButton9)
+                            .addGroup(searchPanel1Layout.createSequentialGroup()
+                                .addGap(21, 21, 21)
+                                .addGroup(searchPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jCheckBox14)
+                                    .addComponent(jCheckBox13)
+                                    .addComponent(jCheckBox15)
+                                    .addComponent(jCheckBox18)
+                                    .addComponent(jCheckBox16)
+                                    .addComponent(jCheckBox17)
+                                    .addComponent(jCheckBox19)
+                                    .addComponent(jCheckBox20)
+                                    .addComponent(jCheckBox21)
+                                    .addComponent(jCheckBox22))))
+                        .addGap(0, 13, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(searchPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(searchPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jRadioButton10)
+                    .addGroup(searchPanel1Layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addGroup(searchPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jCheckBox23)
+                            .addComponent(jCheckBox24))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        searchPanel1Layout.setVerticalGroup(
+            searchPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(searchPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jRadioButton6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jCheckBox13)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jCheckBox14)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jCheckBox15)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jRadioButton7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jCheckBox16)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jCheckBox17)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jCheckBox18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jRadioButton8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jCheckBox19)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jCheckBox20)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jCheckBox21)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jCheckBox22)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jRadioButton9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jRadioButton10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jCheckBox23)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jCheckBox24)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -157,9 +301,11 @@ public class FrontPage extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        LogOutButton.setText("Log out");
+        LogOutButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/las/icons/logOff.png"))); // NOI18N
+        LogOutButton.setToolTipText("Log-off");
 
-        ExitButton.setText("Exit");
+        ExitButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/las/icons/exit.png"))); // NOI18N
+        ExitButton.setToolTipText("Exit");
 
         jLabel5.setText("User Name and Icon");
 
@@ -169,20 +315,22 @@ public class FrontPage extends javax.swing.JFrame {
             userpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userpanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(userpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(userpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(userpanelLayout.createSequentialGroup()
-                        .addComponent(LogOutButton)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(38, 38, 38))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userpanelLayout.createSequentialGroup()
+                        .addComponent(LogOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ExitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                        .addComponent(ExitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         userpanelLayout.setVerticalGroup(
             userpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(userpanelLayout.createSequentialGroup()
-                .addGroup(userpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ExitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LogOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(userpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(ExitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LogOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -278,66 +426,21 @@ public class FrontPage extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        searchPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        searchPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel6.setText("Search ");
 
-        searchButtonSet.add(jRadioButton1);
-        jRadioButton1.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
-        jRadioButton1.setText("1.Applicant");
+        searchSetCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Applicant", "Grant", "Permit", "GramaNiladariDivision", "Lands" }));
 
-        searchButtonSet.add(jRadioButton2);
-        jRadioButton2.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
-        jRadioButton2.setText("2.Permit");
+        searchByWhatCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "By name", "By NIC", "BY Division", " " }));
 
-        searchButtonSet.add(jRadioButton3);
-        jRadioButton3.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
-        jRadioButton3.setText("3.Grant");
-
-        searchButtonSet.add(jRadioButton4);
-        jRadioButton4.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
-        jRadioButton4.setText("4.Grama Niladari Division");
-
-        searchButtonSet.add(jRadioButton5);
-        jRadioButton5.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
-        jRadioButton5.setText("5.Available lands");
-
-        applicantSearchSet.add(jCheckBox1);
-        jCheckBox1.setText("By name");
-
-        applicantSearchSet.add(jCheckBox2);
-        jCheckBox2.setText("By NIC");
-
-        applicantSearchSet.add(jCheckBox3);
-        jCheckBox3.setText("By GND");
-
-        permitSearchSet.add(jCheckBox4);
-        jCheckBox4.setText("By permit number");
-
-        permitSearchSet.add(jCheckBox5);
-        jCheckBox5.setText("By applicant name");
-
-        permitSearchSet.add(jCheckBox6);
-        jCheckBox6.setText("By NIC");
-
-        grantSearchSet.add(jCheckBox7);
-        jCheckBox7.setText("By permit number");
-
-        grantSearchSet.add(jCheckBox8);
-        jCheckBox8.setText("By grant number");
-
-        grantSearchSet.add(jCheckBox9);
-        jCheckBox9.setText("By applicant name");
-
-        grantSearchSet.add(jCheckBox10);
-        jCheckBox10.setText("By NIC");
-
-        landSearchSet.add(jCheckBox11);
-        jCheckBox11.setText("All lands");
-
-        landSearchSet.add(jCheckBox12);
-        jCheckBox12.setText("By A Division");
+        goButton.setText("Go ");
+        goButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                goButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout searchPanelLayout = new javax.swing.GroupLayout(searchPanel);
         searchPanel.setLayout(searchPanelLayout);
@@ -347,85 +450,26 @@ public class FrontPage extends javax.swing.JFrame {
                 .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(searchPanelLayout.createSequentialGroup()
-                        .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(searchPanelLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jRadioButton1)
-                                    .addComponent(jRadioButton2)
-                                    .addGroup(searchPanelLayout.createSequentialGroup()
-                                        .addGap(21, 21, 21)
-                                        .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jCheckBox2)
-                                            .addComponent(jCheckBox1)
-                                            .addComponent(jCheckBox3)
-                                            .addComponent(jCheckBox6)
-                                            .addComponent(jCheckBox4)
-                                            .addComponent(jCheckBox5)))))
-                            .addGroup(searchPanelLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jRadioButton3)
-                                    .addGroup(searchPanelLayout.createSequentialGroup()
-                                        .addGap(21, 21, 21)
-                                        .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jCheckBox7)
-                                            .addComponent(jCheckBox8)
-                                            .addComponent(jCheckBox9)
-                                            .addComponent(jCheckBox10)))
-                                    .addComponent(jRadioButton4))))
-                        .addGap(0, 13, Short.MAX_VALUE)))
+                        .addContainerGap()
+                        .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(searchSetCombo, 0, 162, Short.MAX_VALUE)
+                                .addComponent(searchByWhatCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(goButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(searchPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jRadioButton5)
-                    .addGroup(searchPanelLayout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckBox11)
-                            .addComponent(jCheckBox12))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         searchPanelLayout.setVerticalGroup(
             searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(searchPanelLayout.createSequentialGroup()
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jRadioButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCheckBox1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCheckBox2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jRadioButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCheckBox6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadioButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCheckBox7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox10)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadioButton4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jRadioButton5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox11)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox12)
-                .addContainerGap(88, Short.MAX_VALUE))
+                .addGap(26, 26, 26)
+                .addComponent(searchSetCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(searchByWhatCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(goButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         desktopPane.setOpaque(false);
@@ -435,11 +479,11 @@ public class FrontPage extends javax.swing.JFrame {
         desktopPane.setLayout(desktopPaneLayout);
         desktopPaneLayout.setHorizontalGroup(
             desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 941, Short.MAX_VALUE)
         );
         desktopPaneLayout.setVerticalGroup(
             desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 546, Short.MAX_VALUE)
+            .addGap(0, 494, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout internalFrameAreaPanelLayout = new javax.swing.GroupLayout(internalFrameAreaPanel);
@@ -447,14 +491,14 @@ public class FrontPage extends javax.swing.JFrame {
         internalFrameAreaPanelLayout.setHorizontalGroup(
             internalFrameAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(internalFrameAreaPanelLayout.createSequentialGroup()
-                .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 938, Short.MAX_VALUE)
+                .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 941, Short.MAX_VALUE)
                 .addContainerGap())
         );
         internalFrameAreaPanelLayout.setVerticalGroup(
             internalFrameAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(internalFrameAreaPanelLayout.createSequentialGroup()
-                .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 546, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(desktopPane, javax.swing.GroupLayout.PREFERRED_SIZE, 494, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         shortcutAccessPanel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -510,6 +554,16 @@ public class FrontPage extends javax.swing.JFrame {
         });
         shortcutAccessPanel.add(addnewlandbutton);
 
+        addnewlandbutton1.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
+        addnewlandbutton1.setText("Add Certification");
+        importantButtonSet.add(addnewlandbutton1);
+        addnewlandbutton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addnewlandbutton1ActionPerformed(evt);
+            }
+        });
+        shortcutAccessPanel.add(addnewlandbutton1);
+
         javax.swing.GroupLayout desktopJPanelLayout = new javax.swing.GroupLayout(desktopJPanel);
         desktopJPanel.setLayout(desktopJPanelLayout);
         desktopJPanelLayout.setHorizontalGroup(
@@ -519,15 +573,15 @@ public class FrontPage extends javax.swing.JFrame {
                     .addGroup(desktopJPanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(searchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(32, 32, 32)
                         .addComponent(internalFrameAreaPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(shortcutAccessPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(shortcutAccessPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(desktopJPanelLayout.createSequentialGroup()
                         .addComponent(titlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(userLogPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 6, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         desktopJPanelLayout.setVerticalGroup(
             desktopJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -536,10 +590,10 @@ public class FrontPage extends javax.swing.JFrame {
                     .addComponent(userLogPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(titlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(desktopJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(internalFrameAreaPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(shortcutAccessPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 496, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(searchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(desktopJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(internalFrameAreaPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(searchPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(shortcutAccessPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -620,8 +674,8 @@ public class FrontPage extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(desktopJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 695, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(desktopJPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -637,13 +691,13 @@ public class FrontPage extends javax.swing.JFrame {
         desktopPane.removeAll();
         desktopPane.add(applicantForm);
         applicantForm.setVisible(true);
-               
+
     }//GEN-LAST:event_AddNewApplicantButtonActionPerformed
 
     private void GramaNiladariDivisionInfoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GramaNiladariDivisionInfoButtonActionPerformed
         GramaNiladhariForm gramaNiladhariForm = new GramaNiladhariForm();
         gramaNiladhariForm.setSize(desktopPane.getSize());
-        desktopPane.removeAll();     
+        desktopPane.removeAll();
         desktopPane.add(gramaNiladhariForm);
         gramaNiladhariForm.setVisible(true);
     }//GEN-LAST:event_GramaNiladariDivisionInfoButtonActionPerformed
@@ -654,7 +708,7 @@ public class FrontPage extends javax.swing.JFrame {
         desktopPane.removeAll();
         desktopPane.add(landForm);
         landForm.setVisible(true);
-               
+
     }//GEN-LAST:event_addnewlandbuttonActionPerformed
 
     private void addnewpermitbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addnewpermitbuttonActionPerformed
@@ -664,6 +718,29 @@ public class FrontPage extends javax.swing.JFrame {
         desktopPane.add(permitForm);
         permitForm.setVisible(true);
     }//GEN-LAST:event_addnewpermitbuttonActionPerformed
+
+    private void addnewlandbutton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addnewlandbutton1ActionPerformed
+        SearchClientForm searchClientForm = new SearchClientForm();
+        searchClientForm.setSize(desktopPane.getSize());
+        desktopPane.removeAll();
+        desktopPane.add(searchClientForm);
+        searchClientForm.setVisible(true);
+    }//GEN-LAST:event_addnewlandbutton1ActionPerformed
+
+    private void goButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goButtonActionPerformed
+        switch (String.valueOf(searchSetCombo.getSelectedItem())) {
+            case "Applicant":
+                switch ((String) searchByWhatCombo.getSelectedItem()) {
+                    case "By name":
+                        SearchClientForm searchClientForm = new SearchClientForm();
+                        searchClientForm.setSize(desktopPane.getSize());
+                        desktopPane.removeAll();
+                        desktopPane.add(searchClientForm);
+                        searchClientForm.setVisible(true);
+                }
+        }
+
+    }//GEN-LAST:event_goButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -709,6 +786,7 @@ public class FrontPage extends javax.swing.JFrame {
     private javax.swing.JButton LogOutButton;
     private javax.swing.JButton REminderButton;
     private javax.swing.JButton addnewlandbutton;
+    private javax.swing.JButton addnewlandbutton1;
     private javax.swing.JButton addnewpermitbutton;
     private javax.swing.ButtonGroup applicantSearchSet;
     private javax.swing.JButton changegrantownershipbutton;
@@ -717,22 +795,23 @@ public class FrontPage extends javax.swing.JFrame {
     private javax.swing.JLabel dateLabel;
     private javax.swing.JPanel desktopJPanel;
     private javax.swing.JDesktopPane desktopPane;
+    private javax.swing.JButton goButton;
     private javax.swing.ButtonGroup grantSearchSet;
     private javax.swing.ButtonGroup importantButtonSet;
     private javax.swing.JPanel internalFrameAreaPanel;
     private javax.swing.JButton jButton17;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox10;
-    private javax.swing.JCheckBox jCheckBox11;
-    private javax.swing.JCheckBox jCheckBox12;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JCheckBox jCheckBox4;
-    private javax.swing.JCheckBox jCheckBox5;
-    private javax.swing.JCheckBox jCheckBox6;
-    private javax.swing.JCheckBox jCheckBox7;
-    private javax.swing.JCheckBox jCheckBox8;
-    private javax.swing.JCheckBox jCheckBox9;
+    private javax.swing.JCheckBox jCheckBox13;
+    private javax.swing.JCheckBox jCheckBox14;
+    private javax.swing.JCheckBox jCheckBox15;
+    private javax.swing.JCheckBox jCheckBox16;
+    private javax.swing.JCheckBox jCheckBox17;
+    private javax.swing.JCheckBox jCheckBox18;
+    private javax.swing.JCheckBox jCheckBox19;
+    private javax.swing.JCheckBox jCheckBox20;
+    private javax.swing.JCheckBox jCheckBox21;
+    private javax.swing.JCheckBox jCheckBox22;
+    private javax.swing.JCheckBox jCheckBox23;
+    private javax.swing.JCheckBox jCheckBox24;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -740,6 +819,7 @@ public class FrontPage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -760,16 +840,19 @@ public class FrontPage extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
-    private javax.swing.JRadioButton jRadioButton5;
+    private javax.swing.JRadioButton jRadioButton10;
+    private javax.swing.JRadioButton jRadioButton6;
+    private javax.swing.JRadioButton jRadioButton7;
+    private javax.swing.JRadioButton jRadioButton8;
+    private javax.swing.JRadioButton jRadioButton9;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.ButtonGroup landSearchSet;
     private javax.swing.ButtonGroup permitSearchSet;
     private javax.swing.ButtonGroup searchButtonSet;
+    private javax.swing.JComboBox searchByWhatCombo;
     private javax.swing.JPanel searchPanel;
+    private javax.swing.JPanel searchPanel1;
+    private javax.swing.JComboBox searchSetCombo;
     private javax.swing.JPanel shortcutAccessPanel;
     private javax.swing.JPanel titlePanel;
     private javax.swing.JPanel userLogPanel;
