@@ -14,6 +14,7 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.text.JTextComponent;
 import las.common_classes.GUIitemsValidator;
 import las.common_classes.PatternChecker;
@@ -45,6 +46,13 @@ public class ChangePermitOwnershipForm extends javax.swing.JDialog {
         phonenumnotvalidlabel.setVisible(false);
         occupationnotvalidlabel.setVisible(false);
         incomenotvalidlabel.setVisible(false);
+    }
+    
+    
+    public ChangePermitOwnershipForm(GrantForm grant ){
+        initComponents();
+      //  this.permitNo_changeOwner.setSelectedItem();
+    
     }
 
     /**
