@@ -105,7 +105,23 @@ public class GrantController {
 
     public static ArrayList<Grant> getSimilarPlanNumbers(String grantNumberPart) throws ClassNotFoundException, SQLException {
         Connection conn = DBConnection.getDBConnection().getConnection();
-        String sql = "Select * From grant1 where grantNumber like '" + grantNumberPart + "%'  order by grantNumber limit 10";
+        String sql = "Select * From grant1 where grantNumber like '%" + grantNumberPart + "%'  order by grantNumber limit 10";
+        ResultSet rst = DBHandler.getData(conn, sql);
+        ArrayList<Grant> grantList = new ArrayList<>();
+        while (rst.next()) {
+            Permit searchPermit=PermitController.searchPermit(rst.getString("PermitNumber"));
+            Client searchClient = ClientController.searchClient(rst.getString("NIC"));
+            Lot searchLot = LotController.searchLot(rst.getString("LotNumber"));
+            NominatedSuccessor searchNominateSuccessor = NominatedSuccessorController.searchNominateSuccessor(rst.getString("NIC_Successor"));
+            Grant grant = new Grant(rst.getString("GrantNumber"), rst.getString("GrantIssueDate"),searchPermit, searchLot, searchClient, searchNominateSuccessor);
+            grantList.add(grant);
+        }
+        return grantList;
+    }
+    
+    public static ArrayList<Grant> getSimilarPermitNumberGrants(String permitNumberPart) throws ClassNotFoundException, SQLException {
+        Connection conn = DBConnection.getDBConnection().getConnection();
+        String sql = "Select * From grant1 left join permit on grant1.permitnumber=permit.permitnumber where permitnumber like '%" + permitNumberPart + "%'  order by grantNumber";
         ResultSet rst = DBHandler.getData(conn, sql);
         ArrayList<Grant> grantList = new ArrayList<>();
         while (rst.next()) {
@@ -119,7 +135,40 @@ public class GrantController {
         return grantList;
     }
 
-      //*******************************************//
+    public static ArrayList<Grant> getSimilarGrantsByName(String namepart) throws ClassNotFoundException, SQLException {
+        Connection conn = DBConnection.getDBConnection().getConnection();
+        String sql = "Select * from client right join grant1 on client.NIC=grant1.NIC where ClientName like '%"+namepart+"%'";
+        ResultSet rst = DBHandler.getData(conn, sql);
+        ArrayList<Grant> grantList = new ArrayList<>();
+        while (rst.next()) {
+            Client searchClient = ClientController.searchClient(rst.getString("NIC"));
+            Lot searchLot = LotController.searchLot(rst.getString("LotNumber"));
+            NominatedSuccessor searchNominateSuccessor = NominatedSuccessorController.searchNominateSuccessor(rst.getString("NIC_Successor"));
+            Permit searchPermit = new Permit(rst.getString("PermitNumber"), rst.getString("PermitIssueDate"), searchLot, searchClient, searchNominateSuccessor);
+            Grant grant = new Grant(rst.getString("GrantNumber"), rst.getString("GrantIssueDate"),searchPermit, searchLot, searchClient, searchNominateSuccessor);
+            grantList.add(grant);
+        }
+        return grantList;
+    }
+    
+    public static ArrayList<Grant> getSimilarPermitsByNIC(String nicpart) throws ClassNotFoundException, SQLException {
+        Connection conn = DBConnection.getDBConnection().getConnection();
+        String sql = "Select * from client right join grant1 on client.NIC=grant1.NIC where grant1.NIC like '%"+nicpart+"%'";
+        ResultSet rst = DBHandler.getData(conn, sql);
+        ArrayList<Grant> grantList = new ArrayList<>();
+        while (rst.next()) {
+            Client searchClient = ClientController.searchClient(rst.getString("NIC"));
+            Lot searchLot = LotController.searchLot(rst.getString("LotNumber"));
+            NominatedSuccessor searchNominateSuccessor = NominatedSuccessorController.searchNominateSuccessor(rst.getString("NIC_Successor"));
+            Permit searchPermit = new Permit(rst.getString("PermitNumber"), rst.getString("PermitIssueDate"), searchLot, searchClient, searchNominateSuccessor);
+            Grant grant = new Grant(rst.getString("GrantNumber"), rst.getString("GrantIssueDate"),searchPermit, searchLot, searchClient, searchNominateSuccessor);
+            grantList.add(grant);
+        }
+        return grantList;
+    }
+    
+    
+    
     public static boolean changeGrantOwnership(Grant grant)throws ClassNotFoundException, SQLException {
         return addNewGrant(grant);
     }

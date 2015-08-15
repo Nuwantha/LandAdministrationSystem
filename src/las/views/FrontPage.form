@@ -812,18 +812,22 @@
                   </StringArray>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="searchSetComboItemStateChanged"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JComboBox" name="searchByWhatCombo">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="4">
+                  <StringArray count="2">
                     <StringItem index="0" value="By name"/>
                     <StringItem index="1" value="By NIC"/>
-                    <StringItem index="2" value="BY Division"/>
-                    <StringItem index="3" value=" "/>
                   </StringArray>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchByWhatComboActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="goButton">
               <Properties>

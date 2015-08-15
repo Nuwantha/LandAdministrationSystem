@@ -6,6 +6,7 @@
  */
 package las.common_classes;
 
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -227,4 +228,12 @@ public static boolean checkNICdirect(String nicText) {
         return text;
 
     }
+    
+    public static String formatDeciamltoTwo(double number) {
+        
+        DecimalFormat df2 = new DecimalFormat(".##");
+        return df2.format(number);
+
+    }
+    
 }

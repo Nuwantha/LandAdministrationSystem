@@ -6,6 +6,13 @@
 package las.views;
 
 import java.awt.Toolkit;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import las.common_classes.GUIitemsValidator;
+import las.common_classes.PatternChecker;
 
 /**
  *
@@ -24,8 +31,14 @@ public class FrontPage extends javax.swing.JFrame {
         sg.setSize(desktopPane.getSize());
         desktopPane.add(sg);
         sg.setVisible(true);
-       // sg.requestFocusForm();
+        setDate();
+        // sg.requestFocusForm();
+    }
 
+    private void setDate() {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        dateLabel.setText(dateFormat.format(date));
     }
 
     /**
@@ -432,8 +445,18 @@ public class FrontPage extends javax.swing.JFrame {
         jLabel6.setText("Search ");
 
         searchSetCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Applicant", "Grant", "Permit", "GramaNiladariDivision", "Lands" }));
+        searchSetCombo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                searchSetComboItemStateChanged(evt);
+            }
+        });
 
-        searchByWhatCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "By name", "By NIC", "BY Division", " " }));
+        searchByWhatCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "By name", "By NIC" }));
+        searchByWhatCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchByWhatComboActionPerformed(evt);
+            }
+        });
 
         goButton.setText("Go ");
         goButton.addActionListener(new java.awt.event.ActionListener() {
@@ -728,19 +751,75 @@ public class FrontPage extends javax.swing.JFrame {
     }//GEN-LAST:event_addnewlandbutton1ActionPerformed
 
     private void goButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goButtonActionPerformed
+        SearchForm searchForm = null;
         switch (String.valueOf(searchSetCombo.getSelectedItem())) {
             case "Applicant":
                 switch ((String) searchByWhatCombo.getSelectedItem()) {
                     case "By name":
-                        SearchClientForm searchClientForm = new SearchClientForm();
-                        searchClientForm.setSize(desktopPane.getSize());
-                        desktopPane.removeAll();
-                        desktopPane.add(searchClientForm);
-                        searchClientForm.setVisible(true);
+                        searchForm = new SearchClientForm("Applicant", "By name");
+                        break;
+                    case "By NIC":
+                        searchForm = new SearchClientForm("Applicant", "By NIC");
+                        break;
+
                 }
+                break;
+            case "Permit":
+                switch ((String) searchByWhatCombo.getSelectedItem()) {
+                    case "By permit number":
+                        searchForm = new SearchPermitForm("Permit", "By permit number");
+                        break;
+                    case "By applicant name":
+                        searchForm = new SearchPermitForm("Permit", "By applicant name");
+                        break;
+                    case "By NIC":
+                        searchForm = new SearchPermitForm("Permit", "By NIC");
+                        break;
+                }
+                break;
+            case "Grant":
+                switch ((String) searchByWhatCombo.getSelectedItem()) {
+                    case "By permit number":
+                        searchForm = new SearchGrantForm("Grant", "By permit number");
+                        break;
+                    case "By applicant name":
+                        searchForm = new SearchGrantForm("Grant", "By applicant name");
+                        break;
+                    case "By NIC":
+                        searchForm = new SearchGrantForm("Grant", "By NIC");
+                        break;
+                    case "By grant number":
+                        searchForm = new SearchGrantForm("Grant", "By grant number");
+                        break;
+                }
+                break;
         }
+        searchForm.setSize(desktopPane.getSize());
+        desktopPane.removeAll();
+        desktopPane.add(searchForm);
+        searchForm.setVisible(true);
 
     }//GEN-LAST:event_goButtonActionPerformed
+
+    private void searchSetComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_searchSetComboItemStateChanged
+        String selected = String.valueOf(searchSetCombo.getSelectedItem());
+
+        ArrayList<String> applicantlist = new ArrayList<>(Arrays.asList("By name", "By NIC"));
+        ArrayList<String> permitlist = new ArrayList<>(Arrays.asList("By permit number", "By applicant name", "By NIC"));
+        ArrayList<String> grantlist = new ArrayList<>(Arrays.asList("By grant number", "By permit number", "By applicant name", "By NIC"));
+
+        if (selected == "Applicant") {
+            GUIitemsValidator.addItemToCombo(applicantlist, searchByWhatCombo);
+        } else if (selected == "Permit") {
+            GUIitemsValidator.addItemToCombo(permitlist, searchByWhatCombo);
+        } else if (selected == "Grant") {
+            GUIitemsValidator.addItemToCombo(grantlist, searchByWhatCombo);
+        }
+    }//GEN-LAST:event_searchSetComboItemStateChanged
+
+    private void searchByWhatComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchByWhatComboActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchByWhatComboActionPerformed
 
     /**
      * @param args the command line arguments
@@ -772,7 +851,9 @@ public class FrontPage extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrontPage().setVisible(true);
+                FrontPage fp = new FrontPage();
+                fp.setVisible(true);
+
             }
         });
     }

@@ -6,6 +6,7 @@
 package las.common_classes;
 
 import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
@@ -15,27 +16,31 @@ import javax.swing.JTextField;
  * @author Gimhani
  */
 public class GUIitemsValidator {
-    public static void addItemToCombo(ArrayList list,JComboBox combo){
-                combo.setPopupVisible(true);
-                String test = String.valueOf(combo.getEditor().getItem());
-                combo.removeAllItems();
-                for (int i=0;i<list.size();i++) {
-                        combo.addItem(list.get(i));
-                  }
-                combo.getEditor().setItem(test);
-                
-    
-    };
+
+    public static void addItemToCombo(ArrayList list, JComboBox combo) {
+       
+        combo.setPopupVisible(true);
+        ((DefaultComboBoxModel) combo.getModel()).removeAllElements();
+        combo.revalidate();
+        for (int i = 0; i < list.size(); i++) {
+            combo.addItem(list.get(i));
+        }
+
+    }
+
+    ;
     public static void incermentSpinnerValue(JSpinner spinner) {
-        int i=(int)spinner.getValue()+1;
-        spinner.setValue((Object)i);
+        int i = (int) spinner.getValue() + 1;
+        spinner.setValue((Object) i);
 
     }
+
     public static void decrementSpinnerValue(JSpinner spinner) {
-        int i=(int)spinner.getValue()-1;
-        spinner.setValue((Object)i);
+        int i = (int) spinner.getValue() - 1;
+        spinner.setValue((Object) i);
 
     }
+
     public static void limitSpinnerValue(JSpinner spinner, int min, int max) {
         if (Integer.parseInt(spinner.getValue().toString()) <= min) {
             spinner.setValue(min);
@@ -48,6 +53,7 @@ public class GUIitemsValidator {
         }
 
     }
+
     public static void limitminimumSpinnerValue(JSpinner spinner, int min) {
         if (Integer.parseInt(spinner.getValue().toString()) <= min) {
             spinner.setValue(min);
@@ -59,11 +65,11 @@ public class GUIitemsValidator {
     }
 
     public static void limitTextFieldValue(JTextField textField, int max) {
-         if (textField.getText().length() > max) {
+        if (textField.getText().length() > max) {
             String newtext = textField.getText().substring(0, max - 1);
             textField.setText(newtext);
         }
-      
+
     }
-    
+
 }

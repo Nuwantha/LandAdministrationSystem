@@ -10,31 +10,25 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
-import las.controllers.ClientController;
+import las.controllers.GramaNiladariDivisionController;
 import las.controllers.GrantController;
-import las.controllers.PermitController;
-import las.models.Client;
-import las.models.GramaNiladariDivision;
 import las.models.Grant;
-import las.models.Permit;
 
 /**
  *
  * @author Gimhani
  */
-public class SearchClientForm extends SearchForm {
-
-    
+public class SearchGrantForm extends SearchForm {
 
     /**
      * Creates new form SearchClientForm
      */
-    public SearchClientForm() {
+    public SearchGrantForm() {
         initComponents();
         model = (DefaultTableModel) jTable1.getModel();
     }
 
-    public SearchClientForm(String search, String bywhat) {
+    public SearchGrantForm(String search, String bywhat) {
         initComponents();
         model = (DefaultTableModel) jTable1.getModel();
         this.bywhat = bywhat;
@@ -69,11 +63,11 @@ public class SearchClientForm extends SearchForm {
 
             },
             new String [] {
-                "NIC", "Name", "Birthday", "Telephone", "Address", "Permit ", "Grant"
+                "Grant number", "Issued Date", "Permit number", "Owner", "NIC", "Telephone", "Division", "Land", "Lot"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -90,6 +84,8 @@ public class SearchClientForm extends SearchForm {
             jTable1.getColumnModel().getColumn(4).setResizable(false);
             jTable1.getColumnModel().getColumn(5).setResizable(false);
             jTable1.getColumnModel().getColumn(6).setResizable(false);
+            jTable1.getColumnModel().getColumn(7).setResizable(false);
+            jTable1.getColumnModel().getColumn(8).setResizable(false);
         }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -146,67 +142,39 @@ public class SearchClientForm extends SearchForm {
             revalidate();
 
             String text = typeText.getText();
-            if (search == "Applicant" && bywhat == "By name") {
-                ArrayList<Client> clientlist = ClientController.getSimilarNames(text);
-                if (!clientlist.isEmpty()) {
-
-                    for (Client client : clientlist) {
-                        Permit permit = PermitController.searchPermitByClient(client.getNIC());
-                        String permitNumber;
-                        if (permit != null) {
-                            permitNumber = permit.getPermitNumber();
-                        } else {
-                            permitNumber = "Not given";
-                        }
-
-                        Grant grant = GrantController.searchGrantByClient(client.getNIC());
-                        String grantNumber;
-                        if (grant != null) {
-                            grantNumber = grant.getGrantNumber();
-                        } else {
-                            grantNumber = "Not given";
-                        }
-                        Object[] rowdata = {client.getNIC(), client.getClientName(), client.getBirthday(), client.getTelephone(), client.getAddress(), permitNumber, grantNumber};
-                        model.addRow(rowdata);
-                    }
-                } else {
-                    jTable1.removeAll();
-                }
+            if (search == "Grant" && bywhat == "By permit number") {
+                ArrayList<Grant> grantlist = GrantController.getSimilarPlanNumbers(text);
+                addDataToTable(grantlist);
             }
-            if (search == "Applicant" && bywhat == "By NIC") {
-                ArrayList<Client> clientlist = ClientController.getSimmilarNICs(text);
-                if (!clientlist.isEmpty()) {
-
-                    for (Client client : clientlist) {
-                        Permit permit = PermitController.searchPermitByClient(client.getNIC());
-                        String permitNumber;
-                        if (permit != null) {
-                            permitNumber = permit.getPermitNumber();
-                        } else {
-                            permitNumber = "Not given";
-                        }
-
-                        Grant grant = GrantController.searchGrantByClient(client.getNIC());
-                        String grantNumber;
-                        if (grant != null) {
-                            grantNumber = grant.getGrantNumber();
-                        } else {
-                            grantNumber = "Not given";
-                        }
-                        Object[] rowdata = {client.getNIC(), client.getClientName(), client.getBirthday(), client.getTelephone(), client.getAddress(), permitNumber, grantNumber};
-                        model.addRow(rowdata);
-                    }
-                } else {
-                    jTable1.removeAll();
-                }
+            if (search == "Grant" && bywhat == "By applicant name") {
+                ArrayList<Grant> grantlist = GrantController.getSimilarGrantsByName(text);
+                addDataToTable(grantlist);
             }
-            
-            
+            if (search == "Grant" && bywhat == "By NIC") {
+                ArrayList<Grant> grantlist = GrantController.getSimilarPermitsByNIC(text);
+                addDataToTable(grantlist);
+            }
+            if (search == "Grant" && bywhat == "By grant number") {
+                ArrayList<Grant> grantlist = GrantController.getSimilarPlanNumbers(text);
+                addDataToTable(grantlist);
+            }
+
         } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(SearchClientForm.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SearchGrantForm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_typeTextKeyReleased
-
+    private void addDataToTable(ArrayList<Grant> grantlist) throws ClassNotFoundException, SQLException {
+        if (!grantlist.isEmpty()) {
+            for (Grant grant : grantlist) {
+                String division = GramaNiladariDivisionController.searchGND(grant.getLot().getLand().getDivisionNumber()).getDivisionName();
+                String land = grant.getLot().getLand().getLandName();
+                Object[] rowdata = {grant.getGrantNumber(),grant.getGrantIssueDate(),grant.getPermit().getPermitNumber(), grant.getClient().getClientName(), grant.getClient().getNIC(), grant.getClient().getTelephone(), division, land, grant.getLot().getLotNumber()};
+                model.addRow(rowdata);
+            }
+        } else {
+            jTable1.removeAll();
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -215,4 +183,6 @@ public class SearchClientForm extends SearchForm {
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField typeText;
     // End of variables declaration//GEN-END:variables
+
+   
 }
