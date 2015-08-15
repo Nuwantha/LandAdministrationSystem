@@ -133,6 +133,21 @@ public class PermitController {
             return null;
         }
     }
+    
+    public static Permit searchPermitByClient(String NIC) throws ClassNotFoundException, SQLException {
+        Connection conn = DBConnection.getDBConnection().getConnection();
+        String sql = "Select * from Permit where NIC='" +NIC + "'";
+        ResultSet rst = DBHandler.getData(conn, sql);
+        if (rst.next()) {
+            Client client = ClientController.searchClient(rst.getString("NIC"));
+            Lot searchLot = LotController.searchLot(rst.getString("LotNumber"));
+            NominatedSuccessor searchNominateSuccessor = NominatedSuccessorController.searchNominateSuccessor(rst.getString("NIC_Successor"));
+            Permit permit = new Permit(rst.getString("PermitNumber"), rst.getString("PermitIssueDate"), searchLot, client, searchNominateSuccessor);
+            return permit;
+        } else {
+            return null;
+        }
+    }
 
     public static int getPermitCountOfDivision(String divisionNumber) throws ClassNotFoundException, SQLException {
         Connection conn = DBConnection.getDBConnection().getConnection();

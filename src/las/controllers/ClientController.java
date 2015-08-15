@@ -64,6 +64,23 @@ public class ClientController {
         return clientList;
     }
     
+    public static ArrayList<Client> getSimilarNames(String namePart) throws ClassNotFoundException, SQLException {
+        Connection conn = DBConnection.getDBConnection().getConnection();
+        String sql = "Select * From client where ClientName like '" + namePart + "%'  order by NIC ";
+        ResultSet rst = DBHandler.getData(conn, sql);
+        ArrayList<Client> clientList = new ArrayList<>();
+        while (rst.next()) {
+            int marriedStatus = 1;
+            boolean aBoolean = rst.getBoolean("MarriedStatus");
+            if (!aBoolean) {
+                marriedStatus = 0;
+            }
+            Client client = new Client(rst.getString("NIC"), rst.getString("ClientName"), rst.getString("Birthday"), rst.getString("Telephone"), rst.getString("Address"), rst.getDouble("AnnualIncome"), rst.getInt("GrantOwnershipPosition"), rst.getInt("PermitOwnershipPosition"), marriedStatus, rst.getInt("NumberOfMarriedSons"), rst.getInt("NumberOfUnmarriedSons"));
+            clientList.add(client);
+        }
+        return clientList;
+    }
+    
     public static ArrayList<Client> getNoPermitOwners(String nicPart) throws ClassNotFoundException, SQLException {
         Connection conn = DBConnection.getDBConnection().getConnection();
         String sql = "Select * From client where permitownershipPosition = '0' and NIC like '" + nicPart + "%'  order by NIC limit 10";
