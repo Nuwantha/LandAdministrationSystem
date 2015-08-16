@@ -353,9 +353,10 @@ public class FrontPage extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        userpanel.setBackground(new java.awt.Color(0, 102, 51));
+        userpanel.setBackground(new java.awt.Color(102, 0, 0));
 
         username.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        username.setForeground(new java.awt.Color(255, 255, 255));
         username.setText("User Name and Icon");
 
         jPanel2.setOpaque(false);
@@ -380,9 +381,9 @@ public class FrontPage extends javax.swing.JFrame {
             .addGroup(userpanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(userpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(username, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
+                    .addComponent(username, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(userpanelLayout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
                         .addContainerGap())))
         );
         userpanelLayout.setVerticalGroup(
@@ -395,11 +396,14 @@ public class FrontPage extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel1.setBackground(new java.awt.Color(0, 102, 51));
+        jPanel1.setBackground(new java.awt.Color(102, 0, 0));
 
         jLabel7.setBackground(new java.awt.Color(204, 204, 255));
         jLabel7.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Today:");
+
+        dateLabel.setForeground(new java.awt.Color(255, 255, 255));
 
         CalenderButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/las/icons/Calendar68.png"))); // NOI18N
         CalenderButton.setToolTipText("Calender");
@@ -436,7 +440,7 @@ public class FrontPage extends javax.swing.JFrame {
                         .addComponent(jLabel7)
                         .addGap(18, 18, 18)
                         .addComponent(dateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                         .addComponent(CalenderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -462,9 +466,9 @@ public class FrontPage extends javax.swing.JFrame {
         userLogPanelLayout.setHorizontalGroup(
             userLogPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userLogPanelLayout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(userpanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(userpanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(2, 2, 2))
         );
         userLogPanelLayout.setVerticalGroup(
@@ -476,11 +480,12 @@ public class FrontPage extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        searchPanel.setBackground(new java.awt.Color(0, 102, 51));
+        searchPanel.setBackground(new java.awt.Color(102, 0, 0));
         searchPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         searchPanel.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Search ");
 
         searchSetCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Applicant", "Grant", "Permit", "GramaNiladariDivision", "Lands" }));
@@ -586,7 +591,7 @@ public class FrontPage extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        shortcutAccessPanel.setBackground(new java.awt.Color(0, 102, 51));
+        shortcutAccessPanel.setBackground(new java.awt.Color(102, 0, 0));
         shortcutAccessPanel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         shortcutAccessPanel.setLayout(new java.awt.GridLayout(7, 1, 50, 10));
 
