@@ -32,6 +32,7 @@ public class SearchPermitForm extends SearchForm {
      */
     public SearchPermitForm() {
         initComponents();
+        typeText.requestFocus();
         model = (DefaultTableModel) jTable1.getModel();
     }
 
@@ -59,6 +60,11 @@ public class SearchPermitForm extends SearchForm {
 
         jLabel1.setText("Type text:");
 
+        typeText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                typeTextActionPerformed(evt);
+            }
+        });
         typeText.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 typeTextKeyReleased(evt);
@@ -200,6 +206,10 @@ public class SearchPermitForm extends SearchForm {
             Logger.getLogger(SearchPermitForm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_typeTextKeyReleased
+
+    private void typeTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_typeTextActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

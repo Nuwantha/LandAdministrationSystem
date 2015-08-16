@@ -32,6 +32,7 @@ public class SearchClientForm extends SearchForm {
      */
     public SearchClientForm() {
         initComponents();
+        typeText.requestFocus();
         model = (DefaultTableModel) jTable1.getModel();
     }
 

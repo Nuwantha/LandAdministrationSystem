@@ -783,6 +783,7 @@ public class FrontPage extends javax.swing.JFrame {
                 switch ((String) searchByWhatCombo.getSelectedItem()) {
                     case "By name":
                         searchForm = new SearchClientForm("Applicant", "By name");
+                        
                         break;
                     case "By NIC":
                         searchForm = new SearchClientForm("Applicant", "By NIC");

@@ -26,6 +26,7 @@ public class SearchGrantForm extends SearchForm {
      */
     public SearchGrantForm() {
         initComponents();
+        typeText.requestFocus();
         model = (DefaultTableModel) jTable1.getModel();
     }
 
