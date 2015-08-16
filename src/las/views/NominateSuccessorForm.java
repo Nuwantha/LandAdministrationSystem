@@ -28,6 +28,25 @@ public class NominateSuccessorForm extends javax.swing.JDialog {
         initComponents();
         nicInvalidLabel.setVisible(false);
     }
+    
+    public NominateSuccessorForm(GrantForm parent,Permit choosenpermit){
+        this.permit=choosenpermit;
+        this.parent_grant=parent;
+        this.setTitle("Nominate a successor to Grant");
+        this.type=3;
+        numberLabel.setText("Permit number:");
+        ownerText.setText(permit.getClient().getClientName());
+        NominatedSuccessor successor=permit.getNominatedSuccessor();
+        if(successor!=null){
+            currentSuccessorText.setText(successor.getName());
+        }else{
+            currentSuccessorText.setText("No Successor nomination yet!");
+        }
+            
+    }
+    
+    
+    
     //to view gui for grant successor nomination
     public NominateSuccessorForm(GrantForm parent, boolean modal,Grant grant) { 
         //this(parent, modal);
@@ -295,12 +314,17 @@ public class NominateSuccessorForm extends javax.swing.JDialog {
         //add this to database
         if(type==1){
             this.permit.setNominatedSuccessor(successor);
-        }else{
+        }else if (type==2){
             this.grant.setNominatedSuccessor(successor);
+        }else if (type==3){
+            this.parent_grant.UpdateSuccessor(successor);
         }
+  
         
         this.setVisible(false);
     }//GEN-LAST:event_add_buttonActionPerformed
+    
+    
     public String sendNIC_S(){
         return nic_text.getText();
     }

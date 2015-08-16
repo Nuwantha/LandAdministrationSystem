@@ -15,16 +15,20 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.text.JTextComponent;
 import las.common_classes.GUIitemsValidator;
 //import las.common_classes.ComboItemAdder;
 import las.controllers.ClientController;
 import las.controllers.GramaNiladariDivisionController;
+import las.controllers.GrantController;
 import las.controllers.LandController;
 import las.controllers.LotController;
 import las.controllers.NominatedSuccessorController;
+import las.controllers.PermitController;
 import las.models.Client;
 import las.models.GramaNiladariDivision;
+import las.models.Grant;
 import las.models.Land;
 import las.models.Lot;
 import las.models.NominatedSuccessor;
@@ -35,28 +39,31 @@ import las.models.Permit;
  * @author H.P. Asela
  */
 public class GrantForm extends javax.swing.JInternalFrame {
-
+    private Permit choosenPermit;
+    private Grant choosenGrant;
     /**
      * Creates new form GrantForm
      */
     public GrantForm() {
         initComponents();
         
-        add_grant_nic_combo.setEditable(true);
-        JTextComponent editorAddPemitNICCombo = (JTextComponent) add_grant_nic_combo.getEditor().getEditorComponent();
-        editorAddPemitNICCombo.addKeyListener(new KeyAdapter() {
+        //add grant
+        
+        this.Add_Grant_Grant_No.setEditable(true);
+        this.add_grant_permit_no_combo.setEditable(true);
+        JTextComponent editorSearchPemitPNCombo = (JTextComponent) add_grant_permit_no_combo.getEditor().getEditorComponent();
+        editorSearchPemitPNCombo.addKeyListener(new KeyAdapter() {
 
             @Override
             public void keyReleased(KeyEvent e) {
-                String item = (String) add_grant_nic_combo.getEditor().getItem();
+                String item = (String) add_grant_permit_no_combo.getEditor().getItem();
                 ArrayList<Object> list = new ArrayList();
                 try {
-
-                    ArrayList<Client> simmilarNICs = ClientController.getSimmilarNICs(item);
-                    for (int i = 0; i < simmilarNICs.size(); i++) {
-                        list.add(simmilarNICs.get(i).getNIC());
+                    ArrayList<Permit> simmilarPlanNumbers = PermitController.getSimilarPermitNumbers(item);
+                    for (int i = 0; i < simmilarPlanNumbers.size(); i++) {
+                        list.add(simmilarPlanNumbers.get(i).getPermitNumber());
                     }
-                    GUIitemsValidator.addItemToCombo(list, add_grant_nic_combo);
+                    GUIitemsValidator.addItemToCombo(list, add_grant_permit_no_combo);
 
                 } catch (ClassNotFoundException | SQLException ex) {
                     Logger.getLogger(LandForm.class.getName()).log(Level.SEVERE, null, ex);
@@ -66,31 +73,36 @@ public class GrantForm extends javax.swing.JInternalFrame {
 
         });
         
+        //search grant
         
-         Add_Grant_Division_No.setEditable(true);
-        JTextComponent editorDivisionalNumberCombo = (JTextComponent) Add_Grant_Division_No.getEditor().getEditorComponent();
-
-        editorDivisionalNumberCombo.addKeyListener(new KeyAdapter() {
+        this.search_grant_grantnoCombo.setEditable(true);
+        JTextComponent editorSearchGrantPNCombo = (JTextComponent) this.search_grant_grantnoCombo.getEditor().getEditorComponent();
+        editorSearchPemitPNCombo.addKeyListener(new KeyAdapter() {
 
             @Override
             public void keyReleased(KeyEvent e) {
-
-                Add_Grant_Division_No.setPopupVisible(true);
-                String test = String.valueOf(Add_Grant_Division_No.getEditor().getItem());
-                Add_Grant_Division_No.removeAllItems();
+                String item = (String) search_grant_grantnoCombo.getEditor().getItem();
+                ArrayList<Object> list = new ArrayList();
                 try {
-                    ArrayList<GramaNiladariDivision> simmilarGndDivisionNumbers = GramaNiladariDivisionController.getSimmilarGndDivisionNumbers(test);
-                    for (GramaNiladariDivision simmilarGndDivisionNumber : simmilarGndDivisionNumbers) {
-                        Add_Grant_Division_No.addItem(simmilarGndDivisionNumber.getDivisionNumber());
+                    ArrayList<Grant> simmilarPlanNumbers = GrantController.getSimilarPlanNumbers(item);
+                    for (int i = 0; i < simmilarPlanNumbers.size(); i++) {
+                        list.add(simmilarPlanNumbers.get(i).getGrantNumber());
                     }
-                    Add_Grant_Division_No.getEditor().setItem(test);
+                    GUIitemsValidator.addItemToCombo(list,search_grant_grantnoCombo );
+
                 } catch (ClassNotFoundException | SQLException ex) {
-                    Logger.getLogger(GramaNiladhariForm.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(LandForm.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
             }
 
         });
+                
+        
+        
+        
+        
+        
     }
 
     /**
@@ -107,46 +119,23 @@ public class GrantForm extends javax.swing.JInternalFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        AddGND = new javax.swing.JTextField();
         grantnolabel = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        AddGNDNo = new javax.swing.JTextField();
-        jLabel27 = new javax.swing.JLabel();
-        AddNotSurveyedNorth = new javax.swing.JTextField();
-        jLabel28 = new javax.swing.JLabel();
-        jLabel29 = new javax.swing.JLabel();
-        jLabel30 = new javax.swing.JLabel();
-        AddNotSurveyedEast = new javax.swing.JTextField();
-        AddNotSurveyedSouth = new javax.swing.JTextField();
-        AddNotSurveyedWest = new javax.swing.JTextField();
         issuedatelabel = new javax.swing.JLabel();
         Add_Grant_Grant_No = new javax.swing.JTextField();
+        addgrant_grant_issue_dateChooser = new org.freixas.jcalendar.JCalendarCombo();
         jPanel7 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        AddGND1 = new javax.swing.JTextField();
         permitnolabel = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        AddGNDNo1 = new javax.swing.JTextField();
-        jLabel31 = new javax.swing.JLabel();
-        AddNotSurveyedNorth1 = new javax.swing.JTextField();
-        jLabel32 = new javax.swing.JLabel();
-        jLabel33 = new javax.swing.JLabel();
-        jLabel34 = new javax.swing.JLabel();
-        AddNotSurveyedEast1 = new javax.swing.JTextField();
-        AddNotSurveyedSouth1 = new javax.swing.JTextField();
-        AddNotSurveyedWest1 = new javax.swing.JTextField();
-        jLabel19 = new javax.swing.JLabel();
-        Add_Grant_PermitNo = new javax.swing.JTextField();
+        add_grant_issuedate_label = new javax.swing.JLabel();
+        add_grant_permit_no_combo = new javax.swing.JComboBox();
+        addgrant_permit_issueDate = new javax.swing.JTextField();
         jPanel9 = new javax.swing.JPanel();
-        add_grant_nic_combo = new javax.swing.JComboBox();
-        add_grant_nameText = new javax.swing.JTextField();
-        add_grant_telephoneText = new javax.swing.JTextField();
+        add_grant_ownernameText = new javax.swing.JTextField();
+        add_grantowner_telephoneText = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
-        add_grant_addressText = new javax.swing.JTextArea();
-        add_grant_no_of_children_test = new javax.swing.JTextField();
-        add_grant_marriedStatusRButton = new javax.swing.JRadioButton();
-        add_grant_singleStatusRButton = new javax.swing.JRadioButton();
+        add_grantowner_addressText = new javax.swing.JTextArea();
+        add_grant_owner_no_of_children_test = new javax.swing.JTextField();
+        add_grant_owner_marriedStatusRButton = new javax.swing.JRadioButton();
+        add_grant_owner_singleStatusRButton = new javax.swing.JRadioButton();
         jLabel35 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         jLabel36 = new javax.swing.JLabel();
@@ -154,127 +143,103 @@ public class GrantForm extends javax.swing.JInternalFrame {
         jLabel38 = new javax.swing.JLabel();
         jLabel39 = new javax.swing.JLabel();
         jLabel40 = new javax.swing.JLabel();
-        add_grant_annualIncome = new javax.swing.JTextField();
-        add_grant_DOB_test = new javax.swing.JTextField();
+        add_grant_owner_annualIncome = new javax.swing.JTextField();
+        add_grantowner_DOB_test = new javax.swing.JTextField();
         jLabel41 = new javax.swing.JLabel();
+        add_grant_changeOwner = new javax.swing.JButton();
+        add_grant_owner_nic_text = new javax.swing.JTextField();
         jPanel11 = new javax.swing.JPanel();
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
-        add_grant_landName_test = new javax.swing.JTextField();
+        add_grant_landName_text = new javax.swing.JTextField();
         jLabel24 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
-        add_grant_division_name_test = new javax.swing.JTextField();
+        add_grant_division_name_text = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        add_grant_lot_number_Combo = new javax.swing.JComboBox();
         jLabel100 = new javax.swing.JLabel();
-        add_grant_acres_test = new javax.swing.JTextField();
-        add_grant_perches_test = new javax.swing.JTextField();
-        add_grant_roods_test = new javax.swing.JTextField();
+        add_grant_acres_text = new javax.swing.JTextField();
+        add_grant_perches_text = new javax.swing.JTextField();
+        add_grant_roods_text = new javax.swing.JTextField();
         jLabel103 = new javax.swing.JLabel();
         jLabel102 = new javax.swing.JLabel();
         jLabel101 = new javax.swing.JLabel();
         jLabel99 = new javax.swing.JLabel();
-        Add_Grant_Division_No = new javax.swing.JComboBox();
-        add_grant_planNumber_combo = new javax.swing.JComboBox();
+        add_grant_division_no_text = new javax.swing.JTextField();
+        add_grant_plan_no_text = new javax.swing.JTextField();
+        add_grant_lotno_text = new javax.swing.JTextField();
         jPanel8 = new javax.swing.JPanel();
         jLabel26 = new javax.swing.JLabel();
         jLabel42 = new javax.swing.JLabel();
         jLabel43 = new javax.swing.JLabel();
-        addgrant_NOS_name_test = new javax.swing.JTextField();
+        addgrant_S_name_test = new javax.swing.JTextField();
         jLabel44 = new javax.swing.JLabel();
-        Addgrant_successor_relationship = new javax.swing.JComboBox();
-        addgrant_NOS_nic_test = new javax.swing.JTextField();
+        addgrant_S_nic_test = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        addgrant_NOS_address_test = new javax.swing.JTextArea();
-        nicInvalidLabel = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
+        addgrant_S_address_test = new javax.swing.JTextArea();
+        addgrant_S_relationText = new javax.swing.JTextField();
+        nominateSuccessorButton = new javax.swing.JButton();
+        add_grant_button = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        viewAll_table = new javax.swing.JTable();
+        jPanel16 = new javax.swing.JPanel();
+        viewAll_load_buttun = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
-        AddGND2 = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
+        search_grantnolabel = new javax.swing.JLabel();
+        search_grant_issuedatelabel = new javax.swing.JLabel();
+        search_grant_issuedateText = new javax.swing.JTextField();
+        search_grant_grantnoCombo = new javax.swing.JComboBox();
+        jPanel12 = new javax.swing.JPanel();
+        search_grant_ownernameText = new javax.swing.JTextField();
+        search_grantowner_telephoneText = new javax.swing.JTextField();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        search_grantowner_addressText = new javax.swing.JTextArea();
+        search_grant_owner_no_of_children_text = new javax.swing.JTextField();
+        search_grant_owner_marriedStatusRButton = new javax.swing.JRadioButton();
+        search_grant_owner_singleStatusRButton = new javax.swing.JRadioButton();
         jLabel45 = new javax.swing.JLabel();
-        AddGNDNo2 = new javax.swing.JTextField();
+        jLabel21 = new javax.swing.JLabel();
         jLabel46 = new javax.swing.JLabel();
-        AddNotSurveyedNorth2 = new javax.swing.JTextField();
         jLabel47 = new javax.swing.JLabel();
         jLabel48 = new javax.swing.JLabel();
         jLabel49 = new javax.swing.JLabel();
-        AddNotSurveyedEast2 = new javax.swing.JTextField();
-        AddNotSurveyedSouth2 = new javax.swing.JTextField();
-        AddNotSurveyedWest2 = new javax.swing.JTextField();
         jLabel50 = new javax.swing.JLabel();
-        edit_Grant_Grant_No = new javax.swing.JTextField();
-        jPanel12 = new javax.swing.JPanel();
-        edit_grant_nic_combo = new javax.swing.JComboBox();
-        edit_grant_nameText = new javax.swing.JTextField();
-        edit_grant_telephoneText = new javax.swing.JTextField();
-        edit_grant_owneraddress = new javax.swing.JScrollPane();
-        add_grant_addressText1 = new javax.swing.JTextArea();
-        edit_grant_no_of_children_test = new javax.swing.JTextField();
-        edit_grant_marriedStatusRButton = new javax.swing.JRadioButton();
-        edit_grant_singleStatusRButton = new javax.swing.JRadioButton();
+        search_grant_owner_annualIncome = new javax.swing.JTextField();
+        search_grantowner_DOB_text = new javax.swing.JTextField();
         jLabel51 = new javax.swing.JLabel();
+        search_grant_owner_nic_text = new javax.swing.JTextField();
+        jPanel14 = new javax.swing.JPanel();
+        jLabel27 = new javax.swing.JLabel();
         jLabel52 = new javax.swing.JLabel();
         jLabel53 = new javax.swing.JLabel();
+        searchgrant_S_name_text = new javax.swing.JTextField();
         jLabel54 = new javax.swing.JLabel();
-        jLabel55 = new javax.swing.JLabel();
-        jLabel56 = new javax.swing.JLabel();
-        jLabel57 = new javax.swing.JLabel();
-        edit_grant_annualIncome = new javax.swing.JTextField();
-        edit_grant_DOB_test = new javax.swing.JTextField();
-        jLabel58 = new javax.swing.JLabel();
+        searchgrant_S_nic_text = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        searchgrant_S_address_text = new javax.swing.JTextArea();
+        searchgrant_S_relationText = new javax.swing.JTextField();
         jPanel15 = new javax.swing.JPanel();
-        jLabel59 = new javax.swing.JLabel();
-        AddGND3 = new javax.swing.JTextField();
-        jLabel60 = new javax.swing.JLabel();
-        jLabel61 = new javax.swing.JLabel();
-        AddGNDNo3 = new javax.swing.JTextField();
-        jLabel62 = new javax.swing.JLabel();
-        AddNotSurveyedNorth3 = new javax.swing.JTextField();
-        jLabel63 = new javax.swing.JLabel();
-        jLabel64 = new javax.swing.JLabel();
-        jLabel65 = new javax.swing.JLabel();
-        AddNotSurveyedEast3 = new javax.swing.JTextField();
-        AddNotSurveyedSouth3 = new javax.swing.JTextField();
-        AddNotSurveyedWest3 = new javax.swing.JTextField();
-        jLabel66 = new javax.swing.JLabel();
-        edit_Grant_PermitNo = new javax.swing.JTextField();
-        jPanel17 = new javax.swing.JPanel();
-        jLabel67 = new javax.swing.JLabel();
-        jLabel68 = new javax.swing.JLabel();
-        edit_grant_landName_test = new javax.swing.JTextField();
-        jLabel69 = new javax.swing.JLabel();
-        jLabel70 = new javax.swing.JLabel();
-        edit_grant_division_name_test = new javax.swing.JTextField();
-        jLabel71 = new javax.swing.JLabel();
-        jLabel72 = new javax.swing.JLabel();
-        edit_grant_lot_number_Combo = new javax.swing.JComboBox();
+        jLabel28 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
+        search_grant_landName_text = new javax.swing.JTextField();
+        jLabel30 = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
+        search_grant_division_name_text = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         jLabel104 = new javax.swing.JLabel();
-        edit_grant_acres_test = new javax.swing.JTextField();
-        edit_grant_perches_test = new javax.swing.JTextField();
-        edit_grant_roods_test = new javax.swing.JTextField();
+        search_grant_acres_text = new javax.swing.JTextField();
+        search_grant_perches_text = new javax.swing.JTextField();
+        search_grant_roods_text = new javax.swing.JTextField();
+        jLabel105 = new javax.swing.JLabel();
         jLabel106 = new javax.swing.JLabel();
         jLabel107 = new javax.swing.JLabel();
         jLabel108 = new javax.swing.JLabel();
-        jLabel109 = new javax.swing.JLabel();
-        edit_Grant_Division_No = new javax.swing.JComboBox();
-        edit_grant_planNumber_combo1 = new javax.swing.JComboBox();
-        jPanel19 = new javax.swing.JPanel();
-        jLabel73 = new javax.swing.JLabel();
-        jLabel74 = new javax.swing.JLabel();
-        jLabel75 = new javax.swing.JLabel();
-        editgrant_NOS_name_test = new javax.swing.JTextField();
-        jLabel76 = new javax.swing.JLabel();
-        EditGrant_successor_relationship = new javax.swing.JComboBox();
-        editgrant_NOS_nic_test1 = new javax.swing.JTextField();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        editgrant_NOS_address_test = new javax.swing.JTextArea();
-        nicInvalidLabel1 = new javax.swing.JLabel();
-        edit_Grant = new javax.swing.JButton();
-        jPanel4 = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel();
+        search_grant_division_no_text = new javax.swing.JTextField();
+        search_grant_plan_no_text = new javax.swing.JTextField();
+        search_grant_lotno_text = new javax.swing.JTextField();
 
         jPanel13.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Successor Information"));
 
@@ -296,63 +261,11 @@ public class GrantForm extends javax.swing.JInternalFrame {
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Grant Information"));
         jPanel6.setPreferredSize(new java.awt.Dimension(581, 581));
 
-        jLabel4.setText("Grama Niladari Division:");
-
-        AddGND.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddGNDActionPerformed(evt);
-            }
-        });
-
         grantnolabel.setText("Grant No:");
-
-        jLabel7.setText("Grama Niladari Division No:");
-
-        AddGNDNo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddGNDNoActionPerformed(evt);
-            }
-        });
-
-        jLabel27.setText("On The North By:");
-
-        AddNotSurveyedNorth.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddNotSurveyedNorthActionPerformed(evt);
-            }
-        });
-
-        jLabel28.setText("On The East  By:");
-
-        jLabel29.setText("On The South By:");
-
-        jLabel30.setText("On The West By:");
-
-        AddNotSurveyedEast.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddNotSurveyedEastActionPerformed(evt);
-            }
-        });
-
-        AddNotSurveyedSouth.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddNotSurveyedSouthActionPerformed(evt);
-            }
-        });
-
-        AddNotSurveyedWest.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddNotSurveyedWestActionPerformed(evt);
-            }
-        });
 
         issuedatelabel.setText("Issue Date:");
 
-        Add_Grant_Grant_No.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Add_Grant_Grant_NoActionPerformed(evt);
-            }
-        });
+        addgrant_grant_issue_dateChooser.setEditable(true);
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -360,41 +273,13 @@ public class GrantForm extends javax.swing.JInternalFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGap(77, 77, 77)
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addComponent(jLabel30)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(AddNotSurveyedWest))
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel29)
-                                    .addComponent(jLabel28)
-                                    .addComponent(jLabel27))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(AddNotSurveyedEast)
-                                    .addComponent(AddNotSurveyedSouth)
-                                    .addComponent(AddNotSurveyedNorth)))))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(21, 21, 21)
-                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(AddGNDNo, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
-                                    .addComponent(AddGND)))
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(grantnolabel, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(issuedatelabel, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addComponent(Add_Grant_Grant_No, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(2, 2, 2)))
-                .addGap(18, 18, 18))
+                    .addComponent(grantnolabel, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(issuedatelabel, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Add_Grant_Grant_No, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addgrant_grant_issue_dateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(296, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -404,92 +289,28 @@ public class GrantForm extends javax.swing.JInternalFrame {
                     .addComponent(grantnolabel, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Add_Grant_Grant_No, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(issuedatelabel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(488, 488, 488)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AddNotSurveyedNorth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AddNotSurveyedEast, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AddNotSurveyedSouth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AddNotSurveyedWest, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(AddGND, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(AddGNDNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
-                .addGap(13, 13, 13))
+                    .addComponent(issuedatelabel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addgrant_grant_issue_dateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Permit Information"));
         jPanel7.setPreferredSize(new java.awt.Dimension(581, 581));
 
-        jLabel6.setText("Grama Niladari Division:");
-
-        AddGND1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddGND1ActionPerformed(evt);
-            }
-        });
-
         permitnolabel.setText("Permit No:");
 
-        jLabel18.setText("Grama Niladari Division No:");
+        add_grant_issuedate_label.setText("Issue Date:");
 
-        AddGNDNo1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddGNDNo1ActionPerformed(evt);
+        add_grant_permit_no_combo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                add_grant_permit_no_comboItemStateChanged(evt);
             }
         });
 
-        jLabel31.setText("On The North By:");
-
-        AddNotSurveyedNorth1.addActionListener(new java.awt.event.ActionListener() {
+        addgrant_permit_issueDate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddNotSurveyedNorth1ActionPerformed(evt);
-            }
-        });
-
-        jLabel32.setText("On The East  By:");
-
-        jLabel33.setText("On The South By:");
-
-        jLabel34.setText("On The West By:");
-
-        AddNotSurveyedEast1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddNotSurveyedEast1ActionPerformed(evt);
-            }
-        });
-
-        AddNotSurveyedSouth1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddNotSurveyedSouth1ActionPerformed(evt);
-            }
-        });
-
-        AddNotSurveyedWest1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddNotSurveyedWest1ActionPerformed(evt);
-            }
-        });
-
-        jLabel19.setText("Issue Date:");
-
-        Add_Grant_PermitNo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Add_Grant_PermitNoActionPerformed(evt);
+                addgrant_permit_issueDateActionPerformed(evt);
             }
         });
 
@@ -499,41 +320,13 @@ public class GrantForm extends javax.swing.JInternalFrame {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGap(77, 77, 77)
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addComponent(jLabel34)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(AddNotSurveyedWest1))
-                            .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel33)
-                                    .addComponent(jLabel32)
-                                    .addComponent(jLabel31))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(AddNotSurveyedEast1)
-                                    .addComponent(AddNotSurveyedSouth1)
-                                    .addComponent(AddNotSurveyedNorth1)))))
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(21, 21, 21)
-                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(AddGNDNo1, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
-                                    .addComponent(AddGND1)))
-                            .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(permitnolabel, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addComponent(Add_Grant_PermitNo, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(2, 2, 2)))
-                .addGap(18, 18, 18))
+                    .addComponent(permitnolabel, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(add_grant_issuedate_label, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(add_grant_permit_no_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addgrant_permit_issueDate, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -541,63 +334,35 @@ public class GrantForm extends javax.swing.JInternalFrame {
                 .addGap(12, 12, 12)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(permitnolabel, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Add_Grant_PermitNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(488, 488, 488)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AddNotSurveyedNorth1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(add_grant_permit_no_combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AddNotSurveyedEast1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AddNotSurveyedSouth1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AddNotSurveyedWest1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(AddGND1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(AddGNDNo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel18))
-                .addGap(13, 13, 13))
+                    .addComponent(add_grant_issuedate_label, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addgrant_permit_issueDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Owner Information", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
 
-        add_grant_nic_combo.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                add_grant_nic_comboItemStateChanged(evt);
-            }
-        });
-
-        add_grant_nameText.addKeyListener(new java.awt.event.KeyAdapter() {
+        add_grant_ownernameText.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                add_grant_nameTextKeyReleased(evt);
+                add_grant_ownernameTextKeyReleased(evt);
             }
         });
 
-        add_grant_addressText.setColumns(20);
-        add_grant_addressText.setRows(5);
-        jScrollPane3.setViewportView(add_grant_addressText);
+        add_grantowner_addressText.setColumns(20);
+        add_grantowner_addressText.setRows(5);
+        jScrollPane3.setViewportView(add_grantowner_addressText);
 
-        add_grant_no_of_children_test.addActionListener(new java.awt.event.ActionListener() {
+        add_grant_owner_no_of_children_test.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                add_grant_no_of_children_testActionPerformed(evt);
+                add_grant_owner_no_of_children_testActionPerformed(evt);
             }
         });
 
-        add_grant_marriedStatusRButton.setText("Married");
+        add_grant_owner_marriedStatusRButton.setText("Married");
 
-        add_grant_singleStatusRButton.setText("Single");
+        add_grant_owner_singleStatusRButton.setText("Single");
 
         jLabel35.setText("NIC :");
 
@@ -613,7 +378,15 @@ public class GrantForm extends javax.swing.JInternalFrame {
 
         jLabel40.setText("Annual Income:");
 
+        jLabel41.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel41.setText("No. of married children:");
+
+        add_grant_changeOwner.setText("Change Ownership");
+        add_grant_changeOwner.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                add_grant_changeOwnerActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -622,120 +395,107 @@ public class GrantForm extends javax.swing.JInternalFrame {
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel39)
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGap(126, 126, 126)
+                        .addComponent(add_grant_owner_annualIncome, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel37, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jLabel20, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
-                                .addComponent(jLabel35, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jLabel38, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(49, 49, 49)
-                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(add_grant_DOB_test, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE))
-                            .addComponent(add_grant_nameText, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(add_grant_nic_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel9Layout.createSequentialGroup()
-                                .addComponent(add_grant_marriedStatusRButton)
-                                .addGap(18, 18, 18)
-                                .addComponent(add_grant_singleStatusRButton))))
-                    .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jPanel9Layout.createSequentialGroup()
-                            .addComponent(jLabel40)
-                            .addGap(48, 48, 48)
-                            .addComponent(add_grant_annualIncome, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel9Layout.createSequentialGroup()
-                            .addComponent(jLabel41)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(add_grant_no_of_children_test))
-                        .addGroup(jPanel9Layout.createSequentialGroup()
-                            .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(32, 32, 32)
-                            .addComponent(add_grant_telephoneText, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(jLabel41)
+                                .addGap(13, 13, 13)
+                                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(add_grant_changeOwner)
+                                    .addComponent(add_grant_owner_no_of_children_test, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel9Layout.createSequentialGroup()
+                                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel37, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jLabel20, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+                                        .addComponent(jLabel35, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel38, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel39)
+                                    .addComponent(jLabel40))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(add_grant_ownernameText, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
+                                    .addGroup(jPanel9Layout.createSequentialGroup()
+                                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(add_grantowner_DOB_test, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(jPanel9Layout.createSequentialGroup()
+                                                .addComponent(add_grant_owner_marriedStatusRButton)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(add_grant_owner_singleStatusRButton))
+                                            .addComponent(add_grantowner_telephoneText, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(add_grant_owner_nic_text, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(0, 0, Short.MAX_VALUE)))))
+                        .addContainerGap())))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(add_grant_nic_combo))
-                .addGap(18, 18, 18)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel20)
-                    .addComponent(add_grant_nameText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(add_grant_owner_nic_text, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                        .addComponent(jLabel37)
+                        .addGap(76, 76, 76))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(add_grant_ownernameText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel20))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(add_grantowner_telephoneText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel36))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(add_grantowner_DOB_test, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel38))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(add_grant_owner_marriedStatusRButton)
+                            .addComponent(add_grant_owner_singleStatusRButton)
+                            .addComponent(jLabel39))))
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(add_grant_owner_annualIncome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel40, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(add_grant_telephoneText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel36))
-                .addGap(13, 13, 13)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel37)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel38)
-                    .addComponent(add_grant_DOB_test, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(add_grant_marriedStatusRButton)
-                    .addComponent(add_grant_singleStatusRButton)
-                    .addComponent(jLabel39))
+                    .addComponent(add_grant_owner_no_of_children_test, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel41, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel40)
-                    .addComponent(add_grant_annualIncome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel41)
-                    .addComponent(add_grant_no_of_children_test, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(add_grant_changeOwner)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Lot Information"));
 
-        jLabel22.setText("Plan Number");
+        jLabel22.setText("Plan Number:");
 
-        jLabel23.setText("Land Name");
-
-        add_grant_landName_test.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                add_grant_landName_testActionPerformed(evt);
-            }
-        });
+        jLabel23.setText("Land Name:");
 
         jLabel24.setText("Division Number:");
 
-        jLabel25.setText("Name:");
-
-        add_grant_division_name_test.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                add_grant_division_name_testActionPerformed(evt);
-            }
-        });
+        jLabel25.setText("Division Name:");
 
         jLabel1.setText("Included Land");
 
         jLabel2.setText("Included Division");
 
-        add_grant_lot_number_Combo.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                add_grant_lot_number_ComboItemStateChanged(evt);
-            }
-        });
-        add_grant_lot_number_Combo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                add_grant_lot_number_ComboActionPerformed(evt);
-            }
-        });
+        jLabel100.setText("Expected Extent:");
 
-        jLabel100.setText("Expected Extent");
-
-        add_grant_perches_test.addActionListener(new java.awt.event.ActionListener() {
+        add_grant_perches_text.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                add_grant_perches_testActionPerformed(evt);
+                add_grant_perches_textActionPerformed(evt);
             }
         });
 
@@ -745,74 +505,48 @@ public class GrantForm extends javax.swing.JInternalFrame {
 
         jLabel101.setText("Acre / Hectare");
 
-        jLabel99.setText("Lot No");
-
-        Add_Grant_Division_No.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                Add_Grant_Division_NoItemStateChanged(evt);
-            }
-        });
-        Add_Grant_Division_No.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Add_Grant_Division_NoActionPerformed(evt);
-            }
-        });
-
-        add_grant_planNumber_combo.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                add_grant_planNumber_comboItemStateChanged(evt);
-            }
-        });
+        jLabel99.setText("Lot No:");
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel11Layout.createSequentialGroup()
-                            .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(286, 286, 286)
-                            .addComponent(add_grant_landName_test, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel11Layout.createSequentialGroup()
-                            .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(add_grant_division_name_test, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanel11Layout.createSequentialGroup()
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel99)
+                    .addComponent(jLabel2)
                     .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel99)
+                        .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(add_grant_division_no_text, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(add_grant_lotno_text, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(add_grant_plan_no_text, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(30, 30, 30)
+                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(add_grant_landName_text, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
+                            .addComponent(add_grant_division_name_text)))
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addGap(100, 100, 100)
+                        .addComponent(jLabel100)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(add_grant_roods_text, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(add_grant_perches_text, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
+                            .addComponent(add_grant_acres_text))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel11Layout.createSequentialGroup()
-                                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jPanel11Layout.createSequentialGroup()
-                                        .addComponent(jLabel100)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(add_grant_acres_test, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(add_grant_roods_test, javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(add_grant_perches_test, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel103)
-                                    .addComponent(jLabel102)
-                                    .addComponent(jLabel101)))
-                            .addComponent(add_grant_lot_number_Combo, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jLabel2)
-                    .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(add_grant_planNumber_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel11Layout.createSequentialGroup()
-                            .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(Add_Grant_Division_No, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(161, Short.MAX_VALUE))
+                            .addComponent(jLabel103)
+                            .addComponent(jLabel102)
+                            .addComponent(jLabel101))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -822,41 +556,38 @@ public class GrantForm extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(add_grant_division_name_test, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Add_Grant_Division_No, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(add_grant_division_no_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(add_grant_division_name_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel1)
                 .addGap(12, 12, 12)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(add_grant_landName_test, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(add_grant_planNumber_combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(add_grant_landName_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(add_grant_plan_no_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel99)
-                    .addComponent(add_grant_lot_number_Combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(5, 5, 5)
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addComponent(jLabel101)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel102)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel103))
-                    .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel100)
-                            .addComponent(add_grant_acres_test, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(add_grant_perches_test, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(add_grant_roods_test, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(add_grant_lotno_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel100)
+                    .addComponent(add_grant_acres_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel101))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(add_grant_perches_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel102))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(add_grant_roods_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel103))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
-        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "New successor Information"));
+        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Nominated Successor Information"));
 
         jLabel26.setText("Name:");
 
@@ -866,14 +597,16 @@ public class GrantForm extends javax.swing.JInternalFrame {
 
         jLabel44.setText("Relationship:");
 
-        Addgrant_successor_relationship.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Son", "Spouse", "Daughter", "Brother", "Other relation" }));
+        addgrant_S_address_test.setColumns(20);
+        addgrant_S_address_test.setRows(5);
+        jScrollPane1.setViewportView(addgrant_S_address_test);
 
-        addgrant_NOS_address_test.setColumns(20);
-        addgrant_NOS_address_test.setRows(5);
-        jScrollPane1.setViewportView(addgrant_NOS_address_test);
-
-        nicInvalidLabel.setForeground(new java.awt.Color(255, 0, 0));
-        nicInvalidLabel.setText("NIC is invalid");
+        nominateSuccessorButton.setText("Nominate New Successor");
+        nominateSuccessorButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nominateSuccessorButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -883,44 +616,55 @@ public class GrantForm extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel44)
-                    .addComponent(jLabel26)
                     .addComponent(jLabel42)
-                    .addComponent(jLabel43))
-                .addGap(18, 18, 18)
+                    .addComponent(jLabel43)
+                    .addComponent(jLabel26))
+                .addGap(29, 29, 29)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Addgrant_successor_relationship, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(addgrant_NOS_name_test, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1)
                     .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addComponent(addgrant_NOS_nic_test, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(nicInvalidLabel))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nominateSuccessorButton)
+                            .addComponent(addgrant_S_relationText, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(addgrant_S_nic_test, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(addgrant_S_name_test))
+                .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel26)
-                    .addComponent(addgrant_NOS_name_test, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addgrant_S_name_test, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel44)
-                    .addComponent(Addgrant_successor_relationship, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(addgrant_S_relationText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel42)
-                    .addComponent(addgrant_NOS_nic_test, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nicInvalidLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(addgrant_S_nic_test, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel43)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel43)
+                        .addGap(64, 64, 64))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                        .addComponent(nominateSuccessorButton)
+                        .addContainerGap())))
         );
 
-        jButton1.setText("Add Grant");
+        add_grant_button.setText("Add Grant");
+        add_grant_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                add_grant_buttonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -929,102 +673,113 @@ public class GrantForm extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 491, Short.MAX_VALUE)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 491, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(53, 53, 53))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 555, Short.MAX_VALUE)
+                            .addComponent(jPanel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 555, Short.MAX_VALUE)
+                            .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(add_grant_button, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(19, 19, 19)
-                        .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(add_grant_button, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Add Grant", jPanel2);
 
+        viewAll_table.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "GrantNumber", "IssueDate", "Clientname", "ClientNic", "DivisionalNumber", "PlanNumber", "LandName", "LotNumber", "NominateSuccesor", "OwnarshipPosition"
+            }
+        ));
+        jScrollPane5.setViewportView(viewAll_table);
+
+        viewAll_load_buttun.setText("Load");
+        viewAll_load_buttun.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewAll_load_buttunActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
+        jPanel16.setLayout(jPanel16Layout);
+        jPanel16Layout.setHorizontalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel16Layout.createSequentialGroup()
+                .addContainerGap(760, Short.MAX_VALUE)
+                .addComponent(viewAll_load_buttun, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(42, 42, 42))
+        );
+        jPanel16Layout.setVerticalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel16Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(viewAll_load_buttun)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 919, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(140, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("View All Grants", jPanel4);
+
         jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Grant Information"));
         jPanel10.setPreferredSize(new java.awt.Dimension(581, 581));
 
-        jLabel8.setText("Grama Niladari Division:");
+        search_grantnolabel.setText("Grant No:");
 
-        AddGND2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddGND2ActionPerformed(evt);
-            }
-        });
+        search_grant_issuedatelabel.setText("Issue Date:");
 
-        jLabel9.setText("Grant No:");
+        search_grant_issuedateText.setEditable(false);
 
-        jLabel45.setText("Grama Niladari Division No:");
-
-        AddGNDNo2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddGNDNo2ActionPerformed(evt);
-            }
-        });
-
-        jLabel46.setText("On The North By:");
-
-        AddNotSurveyedNorth2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddNotSurveyedNorth2ActionPerformed(evt);
-            }
-        });
-
-        jLabel47.setText("On The East  By:");
-
-        jLabel48.setText("On The South By:");
-
-        jLabel49.setText("On The West By:");
-
-        AddNotSurveyedEast2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddNotSurveyedEast2ActionPerformed(evt);
-            }
-        });
-
-        AddNotSurveyedSouth2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddNotSurveyedSouth2ActionPerformed(evt);
-            }
-        });
-
-        AddNotSurveyedWest2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddNotSurveyedWest2ActionPerformed(evt);
-            }
-        });
-
-        jLabel50.setText("Issue Date:");
-
-        edit_Grant_Grant_No.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                edit_Grant_Grant_NoActionPerformed(evt);
+        search_grant_grantnoCombo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                search_grant_grantnoComboItemStateChanged(evt);
             }
         });
 
@@ -1033,122 +788,82 @@ public class GrantForm extends javax.swing.JInternalFrame {
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addGap(77, 77, 77)
-                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel10Layout.createSequentialGroup()
-                                .addComponent(jLabel49)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(AddNotSurveyedWest2))
-                            .addGroup(jPanel10Layout.createSequentialGroup()
-                                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel48)
-                                    .addComponent(jLabel47)
-                                    .addComponent(jLabel46))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(AddNotSurveyedEast2)
-                                    .addComponent(AddNotSurveyedSouth2)
-                                    .addComponent(AddNotSurveyedNorth2)))))
-                    .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel10Layout.createSequentialGroup()
-                                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel45, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(21, 21, 21)
-                                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(AddGNDNo2, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
-                                    .addComponent(AddGND2)))
-                            .addGroup(jPanel10Layout.createSequentialGroup()
-                                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel50, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addComponent(edit_Grant_Grant_No, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(2, 2, 2)))
-                .addContainerGap())
+                        .addComponent(search_grantnolabel, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(8, 8, 8))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
+                        .addComponent(search_grant_issuedatelabel, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)))
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(search_grant_grantnoCombo, 0, 118, Short.MAX_VALUE)
+                    .addComponent(search_grant_issuedateText))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(edit_Grant_Grant_No, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel50, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(488, 488, 488)
+                    .addComponent(search_grantnolabel, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(search_grant_grantnoCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel46, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AddNotSurveyedNorth2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel47, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AddNotSurveyedEast2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel48, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AddNotSurveyedSouth2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel49, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AddNotSurveyedWest2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(AddGND2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(AddGNDNo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel45))
-                .addGap(13, 13, 13))
+                    .addComponent(search_grant_issuedateText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(search_grant_issuedatelabel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         jPanel12.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Owner Information", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
 
-        edit_grant_nic_combo.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                edit_grant_nic_comboItemStateChanged(evt);
-            }
-        });
-
-        edit_grant_nameText.addKeyListener(new java.awt.event.KeyAdapter() {
+        search_grant_ownernameText.setEditable(false);
+        search_grant_ownernameText.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                edit_grant_nameTextKeyReleased(evt);
+                search_grant_ownernameTextKeyReleased(evt);
             }
         });
 
-        add_grant_addressText1.setColumns(20);
-        add_grant_addressText1.setRows(5);
-        edit_grant_owneraddress.setViewportView(add_grant_addressText1);
+        search_grantowner_telephoneText.setEditable(false);
 
-        edit_grant_no_of_children_test.addActionListener(new java.awt.event.ActionListener() {
+        search_grantowner_addressText.setEditable(false);
+        search_grantowner_addressText.setColumns(20);
+        search_grantowner_addressText.setRows(5);
+        jScrollPane4.setViewportView(search_grantowner_addressText);
+
+        search_grant_owner_no_of_children_text.setEditable(false);
+        search_grant_owner_no_of_children_text.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                edit_grant_no_of_children_testActionPerformed(evt);
+                search_grant_owner_no_of_children_textActionPerformed(evt);
             }
         });
 
-        edit_grant_marriedStatusRButton.setText("Married");
+        search_grant_owner_marriedStatusRButton.setText("Married");
 
-        edit_grant_singleStatusRButton.setText("Single");
+        search_grant_owner_singleStatusRButton.setText("Single");
 
-        jLabel51.setText("NIC :");
+        jLabel45.setText("NIC :");
 
-        jLabel52.setText("Name:");
+        jLabel21.setText("Name:");
 
-        jLabel53.setText("Phone Number:");
+        jLabel46.setText("Phone Number:");
 
-        jLabel54.setText("Address:");
+        jLabel47.setText("Address:");
 
-        jLabel55.setText("Birthday:");
+        jLabel48.setText("Birthday:");
 
-        jLabel56.setText("Status:");
+        jLabel49.setText("Status:");
 
-        jLabel57.setText("Annual Income:");
+        jLabel50.setText("Annual Income:");
 
-        jLabel58.setText("No. of married children:");
+        search_grant_owner_annualIncome.setEditable(false);
+
+        search_grantowner_DOB_text.setEditable(false);
+
+        jLabel51.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel51.setText("No. of married children:");
+
+        search_grant_owner_nic_text.setEditable(false);
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
@@ -1157,138 +872,195 @@ public class GrantForm extends javax.swing.JInternalFrame {
             .addGroup(jPanel12Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel56)
+                    .addGroup(jPanel12Layout.createSequentialGroup()
+                        .addComponent(jLabel47, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(21, 21, 21)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE))
                     .addGroup(jPanel12Layout.createSequentialGroup()
                         .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel54, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jLabel52, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
-                                .addComponent(jLabel51, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jLabel55, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(49, 49, 49)
-                        .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(edit_grant_DOB_test, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(edit_grant_owneraddress, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE))
-                            .addComponent(edit_grant_nameText, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(edit_grant_nic_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel12Layout.createSequentialGroup()
-                                .addComponent(edit_grant_marriedStatusRButton)
-                                .addGap(18, 18, 18)
-                                .addComponent(edit_grant_singleStatusRButton))))
-                    .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jPanel12Layout.createSequentialGroup()
-                            .addComponent(jLabel57)
-                            .addGap(48, 48, 48)
-                            .addComponent(edit_grant_annualIncome, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel12Layout.createSequentialGroup()
-                            .addComponent(jLabel58)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(edit_grant_no_of_children_test))
-                        .addGroup(jPanel12Layout.createSequentialGroup()
-                            .addComponent(jLabel53, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(32, 32, 32)
-                            .addComponent(edit_grant_telephoneText, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel45, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel46, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(search_grant_owner_nic_text, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(search_grantowner_telephoneText, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel12Layout.createSequentialGroup()
+                                .addComponent(jLabel51)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(search_grant_owner_annualIncome, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(search_grant_owner_no_of_children_text, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel12Layout.createSequentialGroup()
+                                .addComponent(jLabel49)
+                                .addGap(60, 60, 60)
+                                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(search_grantowner_DOB_text, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel12Layout.createSequentialGroup()
+                                        .addComponent(search_grant_owner_marriedStatusRButton)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(search_grant_owner_singleStatusRButton))))
+                            .addComponent(jLabel48, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel50))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
+                        .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(48, 48, 48)
+                        .addComponent(search_grant_ownernameText)))
+                .addContainerGap())
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel12Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel51, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(edit_grant_nic_combo))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel52)
-                    .addComponent(edit_grant_nameText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(edit_grant_telephoneText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel53))
-                .addGap(13, 13, 13)
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel54)
-                    .addComponent(edit_grant_owneraddress, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel55)
-                    .addComponent(edit_grant_DOB_test, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(edit_grant_marriedStatusRButton)
-                    .addComponent(edit_grant_singleStatusRButton)
-                    .addComponent(jLabel56))
+                    .addComponent(jLabel45, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(search_grant_owner_nic_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel57)
-                    .addComponent(edit_grant_annualIncome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(search_grant_ownernameText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel21))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel58)
-                    .addComponent(edit_grant_no_of_children_test, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(search_grantowner_telephoneText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel46))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
+                        .addComponent(jLabel47)
+                        .addGap(13, 13, 13)))
+                .addGap(20, 20, 20)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel48)
+                    .addComponent(search_grantowner_DOB_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(search_grant_owner_marriedStatusRButton)
+                    .addComponent(search_grant_owner_singleStatusRButton)
+                    .addComponent(jLabel49))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel50, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(search_grant_owner_annualIncome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(search_grant_owner_no_of_children_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel51, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
-        jPanel15.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Permit Information"));
-        jPanel15.setPreferredSize(new java.awt.Dimension(581, 581));
+        jPanel14.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Nominated Successor Information"));
 
-        jLabel59.setText("Grama Niladari Division:");
+        jLabel27.setText("Name:");
 
-        AddGND3.addActionListener(new java.awt.event.ActionListener() {
+        jLabel52.setText("NIC:");
+
+        jLabel53.setText("Address:");
+
+        searchgrant_S_name_text.setEditable(false);
+
+        jLabel54.setText("Relationship:");
+
+        searchgrant_S_nic_text.setEditable(false);
+
+        searchgrant_S_address_text.setEditable(false);
+        searchgrant_S_address_text.setColumns(20);
+        searchgrant_S_address_text.setRows(5);
+        jScrollPane2.setViewportView(searchgrant_S_address_text);
+
+        searchgrant_S_relationText.setEditable(false);
+
+        javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
+        jPanel14.setLayout(jPanel14Layout);
+        jPanel14Layout.setHorizontalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel14Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel54)
+                    .addComponent(jLabel52)
+                    .addComponent(jLabel53)
+                    .addComponent(jLabel27))
+                .addGap(29, 29, 29)
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(searchgrant_S_relationText, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(searchgrant_S_nic_text, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(searchgrant_S_name_text)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel14Layout.setVerticalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel14Layout.createSequentialGroup()
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel14Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(searchgrant_S_nic_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel14Layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(searchgrant_S_name_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel54)
+                            .addComponent(searchgrant_S_relationText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel52)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel53)
+                        .addGap(0, 41, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+
+        jPanel15.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Lot Information"));
+
+        jLabel28.setText("Plan Number:");
+
+        jLabel29.setText("Land Name:");
+
+        search_grant_landName_text.setEditable(false);
+
+        jLabel30.setText("Division Number:");
+
+        jLabel31.setText("Division Name:");
+
+        search_grant_division_name_text.setEditable(false);
+
+        jLabel3.setText("Included Land");
+
+        jLabel4.setText("Included Division");
+
+        jLabel104.setText("Expected Extent:");
+
+        search_grant_acres_text.setEditable(false);
+
+        search_grant_perches_text.setEditable(false);
+        search_grant_perches_text.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddGND3ActionPerformed(evt);
+                search_grant_perches_textActionPerformed(evt);
             }
         });
 
-        jLabel60.setText("Permit No:");
+        search_grant_roods_text.setEditable(false);
 
-        jLabel61.setText("Grama Niladari Division No:");
+        jLabel105.setText("Roods");
 
-        AddGNDNo3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddGNDNo3ActionPerformed(evt);
-            }
-        });
+        jLabel106.setText("Perches");
 
-        jLabel62.setText("On The North By:");
+        jLabel107.setText("Acre / Hectare");
 
-        AddNotSurveyedNorth3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddNotSurveyedNorth3ActionPerformed(evt);
-            }
-        });
+        jLabel108.setText("Lot No:");
 
-        jLabel63.setText("On The East  By:");
+        search_grant_division_no_text.setEditable(false);
 
-        jLabel64.setText("On The South By:");
+        search_grant_plan_no_text.setEditable(false);
 
-        jLabel65.setText("On The West By:");
-
-        AddNotSurveyedEast3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddNotSurveyedEast3ActionPerformed(evt);
-            }
-        });
-
-        AddNotSurveyedSouth3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddNotSurveyedSouth3ActionPerformed(evt);
-            }
-        });
-
-        AddNotSurveyedWest3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddNotSurveyedWest3ActionPerformed(evt);
-            }
-        });
-
-        jLabel66.setText("Issue Date:");
-
-        edit_Grant_PermitNo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                edit_Grant_PermitNoActionPerformed(evt);
-            }
-        });
+        search_grant_lotno_text.setEditable(false);
 
         javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
         jPanel15.setLayout(jPanel15Layout);
@@ -1297,371 +1069,110 @@ public class GrantForm extends javax.swing.JInternalFrame {
             .addGroup(jPanel15Layout.createSequentialGroup()
                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel15Layout.createSequentialGroup()
-                        .addGap(77, 77, 77)
+                        .addContainerGap()
                         .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel15Layout.createSequentialGroup()
-                                .addComponent(jLabel65)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(AddNotSurveyedWest3))
-                            .addGroup(jPanel15Layout.createSequentialGroup()
-                                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel64)
-                                    .addComponent(jLabel63)
-                                    .addComponent(jLabel62))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(AddNotSurveyedEast3)
-                                    .addComponent(AddNotSurveyedSouth3)
-                                    .addComponent(AddNotSurveyedNorth3)))))
-                    .addGroup(jPanel15Layout.createSequentialGroup()
+                            .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel108)
+                            .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(search_grant_division_no_text, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(search_grant_lotno_text, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(search_grant_plan_no_text, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(30, 30, 30)
+                        .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel15Layout.createSequentialGroup()
-                                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel61, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel59, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(21, 21, 21)
-                                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(AddGNDNo3, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
-                                    .addComponent(AddGND3)))
-                            .addGroup(jPanel15Layout.createSequentialGroup()
-                                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel60, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel66, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addComponent(edit_Grant_PermitNo, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(2, 2, 2)))
-                .addGap(18, 18, 18))
+                            .addComponent(search_grant_landName_text, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
+                            .addComponent(search_grant_division_name_text)))
+                    .addGroup(jPanel15Layout.createSequentialGroup()
+                        .addGap(100, 100, 100)
+                        .addComponent(jLabel104)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(search_grant_roods_text, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(search_grant_perches_text, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
+                            .addComponent(search_grant_acres_text))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel105)
+                            .addComponent(jLabel106)
+                            .addComponent(jLabel107)))
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel15Layout.setVerticalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel15Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(search_grant_division_no_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(search_grant_division_name_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel3)
                 .addGap(12, 12, 12)
                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel60, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(edit_Grant_PermitNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel66, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(488, 488, 488)
-                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel62, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AddNotSurveyedNorth3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel63, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AddNotSurveyedEast3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel64, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AddNotSurveyedSouth3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel65, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AddNotSurveyedWest3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(AddGND3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel59))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(AddGNDNo3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel61))
-                .addGap(13, 13, 13))
-        );
-
-        jPanel17.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Lot Information"));
-
-        jLabel67.setText("Plan Number");
-
-        jLabel68.setText("Land Name");
-
-        edit_grant_landName_test.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                edit_grant_landName_testActionPerformed(evt);
-            }
-        });
-
-        jLabel69.setText("Division Number:");
-
-        jLabel70.setText("Name:");
-
-        edit_grant_division_name_test.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                edit_grant_division_name_testActionPerformed(evt);
-            }
-        });
-
-        jLabel71.setText("Included Land");
-
-        jLabel72.setText("Included Division");
-
-        edit_grant_lot_number_Combo.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                edit_grant_lot_number_ComboItemStateChanged(evt);
-            }
-        });
-        edit_grant_lot_number_Combo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                edit_grant_lot_number_ComboActionPerformed(evt);
-            }
-        });
-
-        jLabel104.setText("Expected Extent");
-
-        edit_grant_perches_test.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                edit_grant_perches_testActionPerformed(evt);
-            }
-        });
-
-        jLabel106.setText("Roods");
-
-        jLabel107.setText("Perches");
-
-        jLabel108.setText("Acre / Hectare");
-
-        jLabel109.setText("Lot No");
-
-        edit_Grant_Division_No.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                edit_Grant_Division_NoItemStateChanged(evt);
-            }
-        });
-        edit_Grant_Division_No.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                edit_Grant_Division_NoActionPerformed(evt);
-            }
-        });
-
-        edit_grant_planNumber_combo1.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                edit_grant_planNumber_combo1ItemStateChanged(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
-        jPanel17.setLayout(jPanel17Layout);
-        jPanel17Layout.setHorizontalGroup(
-            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel17Layout.createSequentialGroup()
-                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel71, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel17Layout.createSequentialGroup()
-                            .addComponent(jLabel67, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(286, 286, 286)
-                            .addComponent(edit_grant_landName_test, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel68, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel17Layout.createSequentialGroup()
-                            .addComponent(jLabel70, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(edit_grant_division_name_test, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanel17Layout.createSequentialGroup()
-                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel17Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel109)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel17Layout.createSequentialGroup()
-                                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jPanel17Layout.createSequentialGroup()
-                                        .addComponent(jLabel104)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(edit_grant_acres_test, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(edit_grant_roods_test, javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(edit_grant_perches_test, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel106)
-                                    .addComponent(jLabel107)
-                                    .addComponent(jLabel108)))
-                            .addComponent(edit_grant_lot_number_Combo, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jLabel72)
-                    .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(edit_grant_planNumber_combo1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel17Layout.createSequentialGroup()
-                            .addComponent(jLabel69, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(edit_Grant_Division_No, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(161, Short.MAX_VALUE))
-        );
-        jPanel17Layout.setVerticalGroup(
-            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel17Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel72)
+                    .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(search_grant_landName_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(search_grant_plan_no_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel69, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(edit_grant_division_name_test, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel70, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(edit_Grant_Division_No, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel71)
-                .addGap(12, 12, 12)
-                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel67, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel68, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(edit_grant_landName_test, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(edit_grant_planNumber_combo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel109)
-                    .addComponent(edit_grant_lot_number_Combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(5, 5, 5)
-                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel17Layout.createSequentialGroup()
-                        .addComponent(jLabel108)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel107)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel106))
-                    .addGroup(jPanel17Layout.createSequentialGroup()
-                        .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel104)
-                            .addComponent(edit_grant_acres_test, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(edit_grant_perches_test, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(edit_grant_roods_test, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jPanel19.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "New successor Information"));
-
-        jLabel73.setText("Name:");
-
-        jLabel74.setText("NIC:");
-
-        jLabel75.setText("Address:");
-
-        jLabel76.setText("Relationship:");
-
-        EditGrant_successor_relationship.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Son", "Spouse", "Daughter", "Brother", "Other relation" }));
-
-        editgrant_NOS_address_test.setColumns(20);
-        editgrant_NOS_address_test.setRows(5);
-        jScrollPane2.setViewportView(editgrant_NOS_address_test);
-
-        nicInvalidLabel1.setForeground(new java.awt.Color(255, 0, 0));
-        nicInvalidLabel1.setText("NIC is invalid");
-
-        javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
-        jPanel19.setLayout(jPanel19Layout);
-        jPanel19Layout.setHorizontalGroup(
-            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel19Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel76)
-                    .addComponent(jLabel73)
-                    .addComponent(jLabel74)
-                    .addComponent(jLabel75))
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel108)
+                    .addComponent(search_grant_lotno_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(EditGrant_successor_relationship, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(editgrant_NOS_name_test, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel19Layout.createSequentialGroup()
-                        .addComponent(editgrant_NOS_nic_test1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(nicInvalidLabel1))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(11, Short.MAX_VALUE))
-        );
-        jPanel19Layout.setVerticalGroup(
-            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel19Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel73)
-                    .addComponent(editgrant_NOS_name_test, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel104)
+                    .addComponent(search_grant_acres_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel107))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel76)
-                    .addComponent(EditGrant_successor_relationship, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(search_grant_perches_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel106))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel74)
-                    .addComponent(editgrant_NOS_nic_test1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nicInvalidLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel75)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(search_grant_roods_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel105))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
-
-        edit_Grant.setText("Edit Grant");
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 493, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 3, Short.MAX_VALUE))
-                    .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, 496, Short.MAX_VALUE)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel19, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(edit_Grant)
-                .addGap(32, 32, 32))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(edit_Grant)
-                .addContainerGap(15, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab("Edit Grant", jPanel3);
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 819, Short.MAX_VALUE)
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 520, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("View All Grants", jPanel4);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 819, Short.MAX_VALUE)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, 339, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, 551, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 520, Short.MAX_VALUE)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Search Grant", jPanel5);
@@ -1671,13 +1182,13 @@ public class GrantForm extends javax.swing.JInternalFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 824, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jTabbedPane1)
+                .addGap(2, 2, 2))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 604, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -1689,360 +1200,314 @@ public class GrantForm extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void AddGNDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddGNDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_AddGNDActionPerformed
-
-    private void AddGNDNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddGNDNoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_AddGNDNoActionPerformed
-
-    private void AddNotSurveyedNorthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddNotSurveyedNorthActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_AddNotSurveyedNorthActionPerformed
-
-    private void AddNotSurveyedEastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddNotSurveyedEastActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_AddNotSurveyedEastActionPerformed
-
-    private void AddNotSurveyedSouthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddNotSurveyedSouthActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_AddNotSurveyedSouthActionPerformed
-
-    private void AddNotSurveyedWestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddNotSurveyedWestActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_AddNotSurveyedWestActionPerformed
-
-    private void Add_Grant_Grant_NoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Add_Grant_Grant_NoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Add_Grant_Grant_NoActionPerformed
-
-    private void AddGND1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddGND1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_AddGND1ActionPerformed
-
-    private void AddGNDNo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddGNDNo1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_AddGNDNo1ActionPerformed
-
-    private void AddNotSurveyedNorth1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddNotSurveyedNorth1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_AddNotSurveyedNorth1ActionPerformed
-
-    private void AddNotSurveyedEast1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddNotSurveyedEast1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_AddNotSurveyedEast1ActionPerformed
-
-    private void AddNotSurveyedSouth1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddNotSurveyedSouth1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_AddNotSurveyedSouth1ActionPerformed
-
-    private void AddNotSurveyedWest1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddNotSurveyedWest1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_AddNotSurveyedWest1ActionPerformed
-
-    private void Add_Grant_PermitNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Add_Grant_PermitNoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Add_Grant_PermitNoActionPerformed
-
-    private void add_grant_nic_comboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_add_grant_nic_comboItemStateChanged
+    public void UpdateOwner(){
         try {
-            Client searchClient = ClientController.searchClient((String) add_grant_nic_combo.getSelectedItem());
-            if (searchClient != null) {
-                add_grant_nameText.setText(searchClient.getClientName());
-                add_grant_DOB_test.setText(searchClient.getBirthday());
-                add_grant_no_of_children_test.setText(String.valueOf(searchClient.getNumberOfMarriedSons()+searchClient.getNumberOfUnmarriedSons()));
-                add_grant_telephoneText.setText(searchClient.getTelephone());
-                if (searchClient.isMarried() == 0) {
-                    add_grant_singleStatusRButton.setSelected(true);
+            this.choosenPermit = PermitController.searchPermit(String.valueOf(add_grant_permit_no_combo.getSelectedItem()));
+            if (choosenPermit != null) {
+                Client client = choosenPermit.getClient();
+                NominatedSuccessor nominatedSuccessor = choosenPermit.getNominatedSuccessor();
+                Lot lot = choosenPermit.getLot();
+                Land land = lot.getLand();
+                String permitIssueDate = choosenPermit.getPermitIssueDate();
+                this.addgrant_permit_issueDate.setText(permitIssueDate);//Permit issue date need to be added
+
+                this.add_grant_division_no_text.setText(land.getDivisionNumber());
+                GramaNiladariDivision searchGND = GramaNiladariDivisionController.searchGND(land.getDivisionNumber());
+                add_grant_division_name_text.setText(searchGND.getDivisionName());
+
+                this.add_grant_landName_text.setText(land.getLandName());
+                this.add_grant_plan_no_text.setText(land.getPlanNumber());
+
+                this.add_grant_lotno_text.setText(lot.getLotNumber());
+                this.add_grant_acres_text.setText(String.valueOf(lot.getNumberOfAcres()));
+                this.add_grant_perches_text.setText(String.valueOf(lot.getNumberOfPerches()));
+                this.add_grant_roods_text.setText(String.valueOf(lot.getNumberofRoods()));
+
+                this.add_grant_owner_nic_text.setText(client.getNIC());
+                this.add_grant_ownernameText.setText(client.getClientName());
+                this.add_grantowner_telephoneText.setText(client.getTelephone());
+                this.add_grantowner_DOB_test.setText(client.getBirthday());
+                this.add_grantowner_addressText.setText(client.getAddress());
+                this.add_grant_owner_annualIncome.setText(String.valueOf(client.getAnnualIncome()));
+                this.add_grant_owner_no_of_children_test.setText(String.valueOf(client.getNumberOfMarriedSons() + client.getNumberOfUnmarriedSons()));
+                if (client.isMarried() == 1) {
+                    this.add_grant_owner_marriedStatusRButton.setSelected(true);
                 } else {
-                    add_grant_marriedStatusRButton.setSelected(true);
+                    this.add_grant_owner_singleStatusRButton.setSelected(true);
                 }
-                add_grant_annualIncome.setText(String.valueOf(searchClient.getAnnualIncome()));
-                add_grant_addressText.setText(searchClient.getAddress());
+                
+                this.addgrant_S_nic_test.setText(nominatedSuccessor.getNIC_S());
+                this.addgrant_S_name_test.setText(nominatedSuccessor.getName());
+                this.addgrant_S_address_test.setText(nominatedSuccessor.getAddress());
+
+               
             }
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(ApplicantForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_add_grant_nic_comboItemStateChanged
-
-    private void add_grant_nameTextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_add_grant_nameTextKeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_add_grant_nameTextKeyReleased
-
-    private void add_grant_no_of_children_testActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_grant_no_of_children_testActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_add_grant_no_of_children_testActionPerformed
-
-    private void add_grant_landName_testActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_grant_landName_testActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_add_grant_landName_testActionPerformed
-
-    private void add_grant_division_name_testActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_grant_division_name_testActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_add_grant_division_name_testActionPerformed
-
-    private void add_grant_lot_number_ComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_add_grant_lot_number_ComboItemStateChanged
-        try {
-            Lot searchLot = LotController.searchLot(String.valueOf(add_grant_lot_number_Combo.getSelectedItem()));
-            if(searchLot!=null){
-                add_grant_acres_test.setText(String.valueOf(searchLot.getNumberOfAcres()));
-                add_grant_perches_test.setText(String.valueOf(searchLot.getNumberOfPerches()));
-                add_grant_roods_test.setText(String.valueOf(searchLot.getNumberofRoods()));
-            }
-
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(PermitForm.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_add_grant_lot_number_ComboItemStateChanged
-
-    private void add_grant_lot_number_ComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_grant_lot_number_ComboActionPerformed
+    
+    
+    }
+    
+    public void UpdateSuccessor(NominatedSuccessor newSuccessor){
+            this.addgrant_S_nic_test.setText(newSuccessor.getNIC_S());
+            this.addgrant_S_name_test.setText(newSuccessor.getName());
+            this.addgrant_S_address_test.setText(newSuccessor.getAddress());
+    
+    }
+    
+    public Permit getPermit(){
+        return this.choosenPermit;
+    }
+    
+    private void add_grant_perches_textActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_grant_perches_textActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_add_grant_lot_number_ComboActionPerformed
+    }//GEN-LAST:event_add_grant_perches_textActionPerformed
 
-    private void add_grant_perches_testActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_grant_perches_testActionPerformed
+    private void add_grant_owner_no_of_children_testActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_grant_owner_no_of_children_testActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_add_grant_perches_testActionPerformed
+    }//GEN-LAST:event_add_grant_owner_no_of_children_testActionPerformed
 
-    private void Add_Grant_Division_NoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_Add_Grant_Division_NoItemStateChanged
-        try {
-            GramaNiladariDivision searchGND = GramaNiladariDivisionController.searchGND((String) Add_Grant_Division_No.getSelectedItem());
-            if (searchGND != null) {
-                add_grant_division_name_test.setText(searchGND.getDivisionName());
-                ArrayList<Land> landsOfDivision = LandController.getLandsOfDivision(searchGND.getDivisionNumber());
-                ArrayList<Object> list=new ArrayList();
-                for (Land land : landsOfDivision) {
-                    list.add(land.getPlanNumber());
+    private void add_grant_ownernameTextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_add_grant_ownernameTextKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_add_grant_ownernameTextKeyReleased
+
+    private void addgrant_permit_issueDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addgrant_permit_issueDateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addgrant_permit_issueDateActionPerformed
+
+    private void add_grant_permit_no_comboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_add_grant_permit_no_comboItemStateChanged
+        this.UpdateOwner();
+      
+        /*   try {
+            this.choosenPermit = PermitController.searchPermit(String.valueOf(add_grant_permit_no_combo.getSelectedItem()));
+            if (choosenPermit != null) {
+                Client client = choosenPermit.getClient();
+                NominatedSuccessor nominatedSuccessor = choosenPermit.getNominatedSuccessor();
+                Lot lot = choosenPermit.getLot();
+                Land land = lot.getLand();
+                String permitIssueDate = choosenPermit.getPermitIssueDate();
+                this.add_grant_issuedate_label.setText(permitIssueDate);//Permit issue date need to be added
+
+                this.add_grant_division_no_text.setText(land.getDivisionNumber());
+                GramaNiladariDivision searchGND = GramaNiladariDivisionController.searchGND(land.getDivisionNumber());
+                add_grant_division_name_text.setText(searchGND.getDivisionName());
+
+                this.add_grant_landName_text.setText(land.getLandName());
+                this.add_grant_plan_no_text.setText(land.getPlanNumber());
+
+                this.add_grant_lotno_text.setText(lot.getLotNumber());
+                this.add_grant_acres_text.setText(String.valueOf(lot.getNumberOfAcres()));
+                this.add_grant_perches_text.setText(String.valueOf(lot.getNumberOfPerches()));
+                this.add_grant_roods_text.setText(String.valueOf(lot.getNumberofRoods()));
+
+                this.add_grant_owner_nic_text.setText(client.getNIC());
+                this.add_grant_ownernameText.setText(client.getClientName());
+                this.add_grantowner_telephoneText.setText(client.getTelephone());
+                this.add_grantowner_DOB_test.setText(client.getBirthday());
+                this.add_grantowner_addressText.setText(client.getAddress());
+                this.add_grant_owner_annualIncome.setText(String.valueOf(client.getAnnualIncome()));
+                this.add_grant_owner_no_of_children_test.setText(String.valueOf(client.getNumberOfMarriedSons() + client.getNumberOfUnmarriedSons()));
+                if (client.isMarried() == 1) {
+                    this.add_grant_owner_marriedStatusRButton.setSelected(true);
+                } else {
+                    this.add_grant_owner_singleStatusRButton.setSelected(true);
                 }
-                GUIitemsValidator.addItemToCombo(list, add_grant_planNumber_combo);
+                
+                this.addgrant_S_nic_test.setText(nominatedSuccessor.getNIC_S());
+                this.addgrant_S_name_test.setText(nominatedSuccessor.getName());
+                this.addgrant_S_address_test.setText(nominatedSuccessor.getAddress());
 
+               
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(PermitForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+*/
+    }//GEN-LAST:event_add_grant_permit_no_comboItemStateChanged
+
+    private void add_grant_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_grant_buttonActionPerformed
+        try {
+            this.choosenPermit = PermitController.searchPermit(String.valueOf(add_grant_permit_no_combo.getSelectedItem()));
+            if (choosenPermit!=null){
+                NominatedSuccessor nominatedSuccessor = new NominatedSuccessor(this.addgrant_S_nic_test.getText(), this.addgrant_S_name_test.getText(), this.addgrant_S_address_test.getText());
+                Client searchClient = ClientController.searchClient(String.valueOf(this.add_grant_owner_nic_text.getText()));
+                Lot searchLot = LotController.searchLot(String.valueOf(this.add_grant_lotno_text.getSelectedText()));
+                Date date = this.addgrant_grant_issue_dateChooser.getDate();
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY-MM-dd");
+                String issueDate = simpleDateFormat.format(date);
+            
+                Grant grant = new Grant(this.Add_Grant_Grant_No.getText(), issueDate,choosenPermit, searchLot, searchClient, nominatedSuccessor);
+                boolean addNewGrant = GrantController.addNewGrant(grant);
+                if (addNewGrant) {
+                    JOptionPane.showMessageDialog(this, "Grant Added successfully");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Grant does not added successfully");
+                }
+            
+            }
+        }
+        
+        catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(PermitForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_add_grant_buttonActionPerformed
+
+    private void add_grant_changeOwnerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_grant_changeOwnerActionPerformed
+       ChangePermitOwnershipForm changeOwnForm = new ChangePermitOwnershipForm(this);
+       changeOwnForm.setVisible(true);
+           
+    }//GEN-LAST:event_add_grant_changeOwnerActionPerformed
+
+    private void nominateSuccessorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nominateSuccessorButtonActionPerformed
+        NominateSuccessorForm newGrantSuccessor = new NominateSuccessorForm(this,this.choosenPermit);
+        newGrantSuccessor.setVisible(true);
+    }//GEN-LAST:event_nominateSuccessorButtonActionPerformed
+
+    private void search_grant_ownernameTextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_search_grant_ownernameTextKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_search_grant_ownernameTextKeyReleased
+
+    private void search_grant_owner_no_of_children_textActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search_grant_owner_no_of_children_textActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_search_grant_owner_no_of_children_textActionPerformed
+
+    private void search_grant_perches_textActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search_grant_perches_textActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_search_grant_perches_textActionPerformed
+
+    private void search_grant_grantnoComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_search_grant_grantnoComboItemStateChanged
+
+        try {
+            this.choosenGrant = GrantController.searchGrant(String.valueOf(this.search_grant_grantnoCombo.getSelectedItem()));
+            if (choosenGrant != null) {
+                Client client = choosenGrant.getClient();
+                NominatedSuccessor nominatedSuccessor = choosenGrant.getNominatedSuccessor();
+                Lot lot = choosenGrant.getLot();
+                Land land = lot.getLand();
+                String grantIssueDate = choosenGrant.getGrantIssueDate();
+                this.search_grant_issuedateText.setText(grantIssueDate);//Permit issue date need to be added
+
+                this.search_grant_division_no_text.setText(land.getDivisionNumber());
+                GramaNiladariDivision searchGND = GramaNiladariDivisionController.searchGND(land.getDivisionNumber());
+                search_grant_division_name_text.setText(searchGND.getDivisionName());
+
+                this.search_grant_landName_text.setText(land.getLandName());
+                this.search_grant_plan_no_text.setText(land.getPlanNumber());
+
+                this.search_grant_lotno_text.setText(lot.getLotNumber());
+                this.search_grant_acres_text.setText(String.valueOf(lot.getNumberOfAcres()));
+                this.search_grant_perches_text.setText(String.valueOf(lot.getNumberOfPerches()));
+                this.search_grant_roods_text.setText(String.valueOf(lot.getNumberofRoods()));
+
+                this.search_grant_owner_nic_text.setText(client.getNIC());
+                this.search_grant_ownernameText.setText(client.getClientName());
+                this.search_grantowner_telephoneText.setText(client.getTelephone());
+                this.search_grantowner_DOB_text.setText(client.getBirthday());
+                this.search_grantowner_addressText.setText(client.getAddress());
+                this.search_grant_owner_annualIncome.setText(String.valueOf(client.getAnnualIncome()));
+                this.search_grant_owner_no_of_children_text.setText(String.valueOf(client.getNumberOfMarriedSons() + client.getNumberOfUnmarriedSons()));
+                if (client.isMarried() == 1) {
+                    this.search_grant_owner_marriedStatusRButton.setSelected(true);
+                } else {
+                    this.search_grant_owner_singleStatusRButton.setSelected(true);
+                }
+                
+                this.searchgrant_S_nic_text.setText(nominatedSuccessor.getNIC_S());
+                this.searchgrant_S_name_text.setText(nominatedSuccessor.getName());
+                this.searchgrant_S_address_text.setText(nominatedSuccessor.getAddress());
+
+               
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(PermitForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_search_grant_grantnoComboItemStateChanged
+
+    private void viewAll_load_buttunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewAll_load_buttunActionPerformed
+        DefaultTableModel model = (DefaultTableModel) viewAll_table.getModel();
+        model.getDataVector().removeAllElements();
+        revalidate();
+       // try {
+           // ArrayList<Permit> allGrant = GrantController.getAllGrant();  **Getallgrant method should be implemented in grant controller
+
+        /*    for (Grant grant : allGrant) {
+                Object[] rowdata = {grant.getGrantNumber(), grant.getGranttIssueDate(), grant.getClient().getClientName(), grant.getClient().getNIC(), grant.getLot().getLand().getDivisionNumber(), grant.getLot().getLand().getPlanNumber(), grant.getLot().getLand().getLandName(), grant.getLot().getLotNumber(), grant.getNominatedSuccessor().getName(), grant.getClient().getGrantOwnershipPosition()};
+                model.addRow(rowdata);
             }
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(GramaNiladhariForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_Add_Grant_Division_NoItemStateChanged
+        }*/
 
-    private void Add_Grant_Division_NoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Add_Grant_Division_NoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Add_Grant_Division_NoActionPerformed
-
-    private void add_grant_planNumber_comboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_add_grant_planNumber_comboItemStateChanged
-        try {
-            Land searchLand = LandController.searchLand(String.valueOf(add_grant_planNumber_combo.getSelectedItem()));
-            if (searchLand != null) {
-                add_grant_landName_test.setText(searchLand.getLandName());
-                ArrayList<Lot> lotList = searchLand.getLotList();
-                ArrayList<Object> list=new ArrayList();
-                for (Lot lot : lotList) {
-                    list.add(lot.getLotNumber());
-                }
-                GUIitemsValidator.addItemToCombo(list, add_grant_lot_number_Combo);
-
-            }
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(GramaNiladhariForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_add_grant_planNumber_comboItemStateChanged
-
-    private void AddGND2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddGND2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_AddGND2ActionPerformed
-
-    private void AddGNDNo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddGNDNo2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_AddGNDNo2ActionPerformed
-
-    private void AddNotSurveyedNorth2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddNotSurveyedNorth2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_AddNotSurveyedNorth2ActionPerformed
-
-    private void AddNotSurveyedEast2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddNotSurveyedEast2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_AddNotSurveyedEast2ActionPerformed
-
-    private void AddNotSurveyedSouth2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddNotSurveyedSouth2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_AddNotSurveyedSouth2ActionPerformed
-
-    private void AddNotSurveyedWest2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddNotSurveyedWest2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_AddNotSurveyedWest2ActionPerformed
-
-    private void edit_Grant_Grant_NoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edit_Grant_Grant_NoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_edit_Grant_Grant_NoActionPerformed
-
-    private void edit_grant_nic_comboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_edit_grant_nic_comboItemStateChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_edit_grant_nic_comboItemStateChanged
-
-    private void edit_grant_nameTextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edit_grant_nameTextKeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_edit_grant_nameTextKeyReleased
-
-    private void edit_grant_no_of_children_testActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edit_grant_no_of_children_testActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_edit_grant_no_of_children_testActionPerformed
-
-    private void AddGND3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddGND3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_AddGND3ActionPerformed
-
-    private void AddGNDNo3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddGNDNo3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_AddGNDNo3ActionPerformed
-
-    private void AddNotSurveyedNorth3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddNotSurveyedNorth3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_AddNotSurveyedNorth3ActionPerformed
-
-    private void AddNotSurveyedEast3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddNotSurveyedEast3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_AddNotSurveyedEast3ActionPerformed
-
-    private void AddNotSurveyedSouth3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddNotSurveyedSouth3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_AddNotSurveyedSouth3ActionPerformed
-
-    private void AddNotSurveyedWest3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddNotSurveyedWest3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_AddNotSurveyedWest3ActionPerformed
-
-    private void edit_Grant_PermitNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edit_Grant_PermitNoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_edit_Grant_PermitNoActionPerformed
-
-    private void edit_grant_landName_testActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edit_grant_landName_testActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_edit_grant_landName_testActionPerformed
-
-    private void edit_grant_division_name_testActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edit_grant_division_name_testActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_edit_grant_division_name_testActionPerformed
-
-    private void edit_grant_lot_number_ComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_edit_grant_lot_number_ComboItemStateChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_edit_grant_lot_number_ComboItemStateChanged
-
-    private void edit_grant_lot_number_ComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edit_grant_lot_number_ComboActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_edit_grant_lot_number_ComboActionPerformed
-
-    private void edit_grant_perches_testActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edit_grant_perches_testActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_edit_grant_perches_testActionPerformed
-
-    private void edit_Grant_Division_NoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_edit_Grant_Division_NoItemStateChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_edit_Grant_Division_NoItemStateChanged
-
-    private void edit_Grant_Division_NoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edit_Grant_Division_NoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_edit_Grant_Division_NoActionPerformed
-
-    private void edit_grant_planNumber_combo1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_edit_grant_planNumber_combo1ItemStateChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_edit_grant_planNumber_combo1ItemStateChanged
+    }//GEN-LAST:event_viewAll_load_buttunActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField AddGND;
-    private javax.swing.JTextField AddGND1;
-    private javax.swing.JTextField AddGND2;
-    private javax.swing.JTextField AddGND3;
-    private javax.swing.JTextField AddGNDNo;
-    private javax.swing.JTextField AddGNDNo1;
-    private javax.swing.JTextField AddGNDNo2;
-    private javax.swing.JTextField AddGNDNo3;
-    private javax.swing.JTextField AddNotSurveyedEast;
-    private javax.swing.JTextField AddNotSurveyedEast1;
-    private javax.swing.JTextField AddNotSurveyedEast2;
-    private javax.swing.JTextField AddNotSurveyedEast3;
-    private javax.swing.JTextField AddNotSurveyedNorth;
-    private javax.swing.JTextField AddNotSurveyedNorth1;
-    private javax.swing.JTextField AddNotSurveyedNorth2;
-    private javax.swing.JTextField AddNotSurveyedNorth3;
-    private javax.swing.JTextField AddNotSurveyedSouth;
-    private javax.swing.JTextField AddNotSurveyedSouth1;
-    private javax.swing.JTextField AddNotSurveyedSouth2;
-    private javax.swing.JTextField AddNotSurveyedSouth3;
-    private javax.swing.JTextField AddNotSurveyedWest;
-    private javax.swing.JTextField AddNotSurveyedWest1;
-    private javax.swing.JTextField AddNotSurveyedWest2;
-    private javax.swing.JTextField AddNotSurveyedWest3;
-    private javax.swing.JComboBox Add_Grant_Division_No;
     private javax.swing.JTextField Add_Grant_Grant_No;
-    private javax.swing.JTextField Add_Grant_PermitNo;
-    private javax.swing.JComboBox Addgrant_successor_relationship;
-    private javax.swing.JComboBox EditGrant_successor_relationship;
-    private javax.swing.JTextField add_grant_DOB_test;
-    private javax.swing.JTextField add_grant_acres_test;
-    private javax.swing.JTextArea add_grant_addressText;
-    private javax.swing.JTextArea add_grant_addressText1;
-    private javax.swing.JTextField add_grant_annualIncome;
-    private javax.swing.JTextField add_grant_division_name_test;
-    private javax.swing.JTextField add_grant_landName_test;
-    private javax.swing.JComboBox add_grant_lot_number_Combo;
-    private javax.swing.JRadioButton add_grant_marriedStatusRButton;
-    private javax.swing.JTextField add_grant_nameText;
-    private javax.swing.JComboBox add_grant_nic_combo;
-    private javax.swing.JTextField add_grant_no_of_children_test;
-    private javax.swing.JTextField add_grant_perches_test;
-    private javax.swing.JComboBox add_grant_planNumber_combo;
-    private javax.swing.JTextField add_grant_roods_test;
-    private javax.swing.JRadioButton add_grant_singleStatusRButton;
-    private javax.swing.JTextField add_grant_telephoneText;
-    private javax.swing.JTextArea addgrant_NOS_address_test;
-    private javax.swing.JTextField addgrant_NOS_name_test;
-    private javax.swing.JTextField addgrant_NOS_nic_test;
-    private javax.swing.JButton edit_Grant;
-    private javax.swing.JComboBox edit_Grant_Division_No;
-    private javax.swing.JTextField edit_Grant_Grant_No;
-    private javax.swing.JTextField edit_Grant_PermitNo;
-    private javax.swing.JTextField edit_grant_DOB_test;
-    private javax.swing.JTextField edit_grant_acres_test;
-    private javax.swing.JTextField edit_grant_annualIncome;
-    private javax.swing.JTextField edit_grant_division_name_test;
-    private javax.swing.JTextField edit_grant_landName_test;
-    private javax.swing.JComboBox edit_grant_lot_number_Combo;
-    private javax.swing.JRadioButton edit_grant_marriedStatusRButton;
-    private javax.swing.JTextField edit_grant_nameText;
-    private javax.swing.JComboBox edit_grant_nic_combo;
-    private javax.swing.JTextField edit_grant_no_of_children_test;
-    private javax.swing.JScrollPane edit_grant_owneraddress;
-    private javax.swing.JTextField edit_grant_perches_test;
-    private javax.swing.JComboBox edit_grant_planNumber_combo1;
-    private javax.swing.JTextField edit_grant_roods_test;
-    private javax.swing.JRadioButton edit_grant_singleStatusRButton;
-    private javax.swing.JTextField edit_grant_telephoneText;
-    private javax.swing.JTextArea editgrant_NOS_address_test;
-    private javax.swing.JTextField editgrant_NOS_name_test;
-    private javax.swing.JTextField editgrant_NOS_nic_test1;
+    private javax.swing.JTextField add_grant_acres_text;
+    private javax.swing.JButton add_grant_button;
+    private javax.swing.JButton add_grant_changeOwner;
+    private javax.swing.JTextField add_grant_division_name_text;
+    private javax.swing.JTextField add_grant_division_no_text;
+    private javax.swing.JLabel add_grant_issuedate_label;
+    private javax.swing.JTextField add_grant_landName_text;
+    private javax.swing.JTextField add_grant_lotno_text;
+    private javax.swing.JTextField add_grant_owner_annualIncome;
+    private javax.swing.JRadioButton add_grant_owner_marriedStatusRButton;
+    private javax.swing.JTextField add_grant_owner_nic_text;
+    private javax.swing.JTextField add_grant_owner_no_of_children_test;
+    private javax.swing.JRadioButton add_grant_owner_singleStatusRButton;
+    private javax.swing.JTextField add_grant_ownernameText;
+    private javax.swing.JTextField add_grant_perches_text;
+    private javax.swing.JComboBox add_grant_permit_no_combo;
+    private javax.swing.JTextField add_grant_plan_no_text;
+    private javax.swing.JTextField add_grant_roods_text;
+    private javax.swing.JTextField add_grantowner_DOB_test;
+    private javax.swing.JTextArea add_grantowner_addressText;
+    private javax.swing.JTextField add_grantowner_telephoneText;
+    private javax.swing.JTextArea addgrant_S_address_test;
+    private javax.swing.JTextField addgrant_S_name_test;
+    private javax.swing.JTextField addgrant_S_nic_test;
+    private javax.swing.JTextField addgrant_S_relationText;
+    private org.freixas.jcalendar.JCalendarCombo addgrant_grant_issue_dateChooser;
+    private javax.swing.JTextField addgrant_permit_issueDate;
     private javax.swing.JLabel grantnolabel;
     private javax.swing.JLabel issuedatelabel;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel100;
     private javax.swing.JLabel jLabel101;
     private javax.swing.JLabel jLabel102;
     private javax.swing.JLabel jLabel103;
     private javax.swing.JLabel jLabel104;
+    private javax.swing.JLabel jLabel105;
     private javax.swing.JLabel jLabel106;
     private javax.swing.JLabel jLabel107;
     private javax.swing.JLabel jLabel108;
-    private javax.swing.JLabel jLabel109;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
@@ -2051,11 +1516,9 @@ public class GrantForm extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
-    private javax.swing.JLabel jLabel32;
-    private javax.swing.JLabel jLabel33;
-    private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
@@ -2077,43 +1540,16 @@ public class GrantForm extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel52;
     private javax.swing.JLabel jLabel53;
     private javax.swing.JLabel jLabel54;
-    private javax.swing.JLabel jLabel55;
-    private javax.swing.JLabel jLabel56;
-    private javax.swing.JLabel jLabel57;
-    private javax.swing.JLabel jLabel58;
-    private javax.swing.JLabel jLabel59;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel60;
-    private javax.swing.JLabel jLabel61;
-    private javax.swing.JLabel jLabel62;
-    private javax.swing.JLabel jLabel63;
-    private javax.swing.JLabel jLabel64;
-    private javax.swing.JLabel jLabel65;
-    private javax.swing.JLabel jLabel66;
-    private javax.swing.JLabel jLabel67;
-    private javax.swing.JLabel jLabel68;
-    private javax.swing.JLabel jLabel69;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel70;
-    private javax.swing.JLabel jLabel71;
-    private javax.swing.JLabel jLabel72;
-    private javax.swing.JLabel jLabel73;
-    private javax.swing.JLabel jLabel74;
-    private javax.swing.JLabel jLabel75;
-    private javax.swing.JLabel jLabel76;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabel99;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
+    private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
-    private javax.swing.JPanel jPanel17;
-    private javax.swing.JPanel jPanel19;
+    private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
@@ -2123,9 +1559,37 @@ public class GrantForm extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JLabel nicInvalidLabel;
-    private javax.swing.JLabel nicInvalidLabel1;
+    private javax.swing.JButton nominateSuccessorButton;
     private javax.swing.JLabel permitnolabel;
+    private javax.swing.JTextField search_grant_acres_text;
+    private javax.swing.JTextField search_grant_division_name_text;
+    private javax.swing.JTextField search_grant_division_no_text;
+    private javax.swing.JComboBox search_grant_grantnoCombo;
+    private javax.swing.JTextField search_grant_issuedateText;
+    private javax.swing.JLabel search_grant_issuedatelabel;
+    private javax.swing.JTextField search_grant_landName_text;
+    private javax.swing.JTextField search_grant_lotno_text;
+    private javax.swing.JTextField search_grant_owner_annualIncome;
+    private javax.swing.JRadioButton search_grant_owner_marriedStatusRButton;
+    private javax.swing.JTextField search_grant_owner_nic_text;
+    private javax.swing.JTextField search_grant_owner_no_of_children_text;
+    private javax.swing.JRadioButton search_grant_owner_singleStatusRButton;
+    private javax.swing.JTextField search_grant_ownernameText;
+    private javax.swing.JTextField search_grant_perches_text;
+    private javax.swing.JTextField search_grant_plan_no_text;
+    private javax.swing.JTextField search_grant_roods_text;
+    private javax.swing.JLabel search_grantnolabel;
+    private javax.swing.JTextField search_grantowner_DOB_text;
+    private javax.swing.JTextArea search_grantowner_addressText;
+    private javax.swing.JTextField search_grantowner_telephoneText;
+    private javax.swing.JTextArea searchgrant_S_address_text;
+    private javax.swing.JTextField searchgrant_S_name_text;
+    private javax.swing.JTextField searchgrant_S_nic_text;
+    private javax.swing.JTextField searchgrant_S_relationText;
+    private javax.swing.JButton viewAll_load_buttun;
+    private javax.swing.JTable viewAll_table;
     // End of variables declaration//GEN-END:variables
 }
