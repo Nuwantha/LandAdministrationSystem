@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+import las.common_classes.PatternChecker;
 import las.controllers.ClientController;
 import las.controllers.GramaNiladariDivisionController;
 import las.controllers.GrantController;
@@ -163,6 +164,7 @@ public class SearchPermitForm extends SearchForm {
                 }
             }
             if (search == "Permit" && bywhat == "By applicant name") {
+                typeText.setText(PatternChecker.checkstring(text));
                 ArrayList<Permit> permitlist = PermitController.getSimilarPermitsByName(text);
                 if (!permitlist.isEmpty()) {
 
@@ -178,6 +180,7 @@ public class SearchPermitForm extends SearchForm {
                 }
             }
             if (search == "Permit" && bywhat == "By NIC") {
+                typeText.setText(PatternChecker.checkNIC(text));
                 ArrayList<Permit> permitlist = PermitController.getSimilarPermitsByNIC(text);
                 if (!permitlist.isEmpty()) {
 

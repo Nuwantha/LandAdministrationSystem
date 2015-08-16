@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+import las.common_classes.PatternChecker;
 import las.controllers.ClientController;
 import las.controllers.GrantController;
 import las.controllers.PermitController;
@@ -58,6 +59,11 @@ public class SearchClientForm extends SearchForm {
 
         jLabel1.setText("Type text:");
 
+        typeText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                typeTextActionPerformed(evt);
+            }
+        });
         typeText.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 typeTextKeyReleased(evt);
@@ -147,6 +153,7 @@ public class SearchClientForm extends SearchForm {
 
             String text = typeText.getText();
             if (search == "Applicant" && bywhat == "By name") {
+                typeText.setText(PatternChecker.checkstring(text));
                 ArrayList<Client> clientlist = ClientController.getSimilarNames(text);
                 if (!clientlist.isEmpty()) {
 
@@ -174,6 +181,7 @@ public class SearchClientForm extends SearchForm {
                 }
             }
             if (search == "Applicant" && bywhat == "By NIC") {
+                typeText.setText(PatternChecker.checkNIC(text));
                 ArrayList<Client> clientlist = ClientController.getSimmilarNICs(text);
                 if (!clientlist.isEmpty()) {
 
@@ -206,6 +214,10 @@ public class SearchClientForm extends SearchForm {
             Logger.getLogger(SearchClientForm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_typeTextKeyReleased
+
+    private void typeTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_typeTextActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

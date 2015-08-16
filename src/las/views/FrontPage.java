@@ -13,12 +13,14 @@ import java.util.Arrays;
 import java.util.Date;
 import las.common_classes.GUIitemsValidator;
 import las.common_classes.PatternChecker;
-
+import las.controllers.UserController;
+import las.models.User;
 /**
  *
  * @author Gimhani
  */
 public class FrontPage extends javax.swing.JFrame {
+    private String curruser;
 
     /**
      * Creates new form FrontPage
@@ -32,6 +34,22 @@ public class FrontPage extends javax.swing.JFrame {
         desktopPane.add(sg);
         sg.setVisible(true);
         setDate();
+        username.setText(curruser);
+       /*User currentuser=UserController.searchUser(curruser); 
+       //for gramaniladari
+       if(currentuser.getPower()==3){
+            AddNewApplicantButton.setEnabled(false);
+            addnewpermitbutton.setEnabled(false);
+            addnewgrantbutton.setEnabled(false);
+            addnewlandbutton.setEnabled(false);
+            changegrantownershipbutton.setEnabled(false);
+            GramaNiladariDivisionInfoButton.setEnabled(false);
+            sg.setVisible(false);
+        }
+       //for land branch staff
+       else if(currentuser.getPower()==2){
+           addcertificationbutton.setEnabled(false);
+       }*/
         // sg.requestFocusForm();
     }
 
@@ -85,7 +103,7 @@ public class FrontPage extends javax.swing.JFrame {
         userpanel = new javax.swing.JPanel();
         LogOutButton = new javax.swing.JButton();
         ExitButton = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
+        username = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         dateLabel = new javax.swing.JLabel();
@@ -103,9 +121,9 @@ public class FrontPage extends javax.swing.JFrame {
         shortcutAccessPanel = new javax.swing.JPanel();
         AddNewApplicantButton = new javax.swing.JButton();
         addnewpermitbutton = new javax.swing.JButton();
-        addnewlandbutton1 = new javax.swing.JButton();
+        addnewgrantbutton = new javax.swing.JButton();
         addnewlandbutton = new javax.swing.JButton();
-        changepermitbutton = new javax.swing.JButton();
+        addcertificationbutton = new javax.swing.JButton();
         GramaNiladariDivisionInfoButton = new javax.swing.JButton();
         changegrantownershipbutton = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -320,23 +338,21 @@ public class FrontPage extends javax.swing.JFrame {
         ExitButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/las/icons/exit.png"))); // NOI18N
         ExitButton.setToolTipText("Exit");
 
-        jLabel5.setText("User Name and Icon");
+        username.setText("User Name and Icon");
 
         javax.swing.GroupLayout userpanelLayout = new javax.swing.GroupLayout(userpanel);
         userpanel.setLayout(userpanelLayout);
         userpanelLayout.setHorizontalGroup(
             userpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userpanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(userpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(userpanelLayout.createSequentialGroup()
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(38, 38, 38))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userpanelLayout.createSequentialGroup()
-                        .addComponent(LogOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ExitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+            .addGroup(userpanelLayout.createSequentialGroup()
+                .addContainerGap(62, Short.MAX_VALUE)
+                .addComponent(LogOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ExitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(userpanelLayout.createSequentialGroup()
+                .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         userpanelLayout.setVerticalGroup(
             userpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -345,7 +361,7 @@ public class FrontPage extends javax.swing.JFrame {
                     .addComponent(ExitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LogOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -450,6 +466,11 @@ public class FrontPage extends javax.swing.JFrame {
                 searchSetComboItemStateChanged(evt);
             }
         });
+        searchSetCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchSetComboActionPerformed(evt);
+            }
+        });
 
         searchByWhatCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "By name", "By NIC" }));
         searchByWhatCombo.addActionListener(new java.awt.event.ActionListener() {
@@ -547,15 +568,15 @@ public class FrontPage extends javax.swing.JFrame {
         });
         shortcutAccessPanel.add(addnewpermitbutton);
 
-        addnewlandbutton1.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
-        addnewlandbutton1.setText("Add New Grant");
-        importantButtonSet.add(addnewlandbutton1);
-        addnewlandbutton1.addActionListener(new java.awt.event.ActionListener() {
+        addnewgrantbutton.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
+        addnewgrantbutton.setText("Add New Grant");
+        importantButtonSet.add(addnewgrantbutton);
+        addnewgrantbutton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addnewlandbutton1ActionPerformed(evt);
+                addnewgrantbuttonActionPerformed(evt);
             }
         });
-        shortcutAccessPanel.add(addnewlandbutton1);
+        shortcutAccessPanel.add(addnewgrantbutton);
 
         addnewlandbutton.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
         addnewlandbutton.setText("Add New Land");
@@ -567,15 +588,15 @@ public class FrontPage extends javax.swing.JFrame {
         });
         shortcutAccessPanel.add(addnewlandbutton);
 
-        changepermitbutton.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
-        changepermitbutton.setText("Add Certification");
-        importantButtonSet.add(changepermitbutton);
-        changepermitbutton.addActionListener(new java.awt.event.ActionListener() {
+        addcertificationbutton.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
+        addcertificationbutton.setText("Add Certification");
+        importantButtonSet.add(addcertificationbutton);
+        addcertificationbutton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                changepermitbuttonActionPerformed(evt);
+                addcertificationbuttonActionPerformed(evt);
             }
         });
-        shortcutAccessPanel.add(changepermitbutton);
+        shortcutAccessPanel.add(addcertificationbutton);
 
         GramaNiladariDivisionInfoButton.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
         GramaNiladariDivisionInfoButton.setText("Grama Niladari Division Info");
@@ -747,13 +768,13 @@ public class FrontPage extends javax.swing.JFrame {
         permitForm.setVisible(true);
     }//GEN-LAST:event_addnewpermitbuttonActionPerformed
 
-    private void addnewlandbutton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addnewlandbutton1ActionPerformed
+    private void addnewgrantbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addnewgrantbuttonActionPerformed
         GrantForm grantForm = new GrantForm();
         grantForm.setSize(desktopPane.getSize());
         desktopPane.removeAll();
         desktopPane.add(grantForm);
         grantForm.setVisible(true);
-    }//GEN-LAST:event_addnewlandbutton1ActionPerformed
+    }//GEN-LAST:event_addnewgrantbuttonActionPerformed
 
     private void goButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goButtonActionPerformed
         SearchForm searchForm = null;
@@ -826,9 +847,13 @@ public class FrontPage extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_searchByWhatComboActionPerformed
 
-    private void changepermitbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changepermitbuttonActionPerformed
+    private void addcertificationbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addcertificationbuttonActionPerformed
         new GramaNiladariTaskForm(this,true).setVisible(true);
-    }//GEN-LAST:event_changepermitbuttonActionPerformed
+    }//GEN-LAST:event_addcertificationbuttonActionPerformed
+
+    private void searchSetComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchSetComboActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchSetComboActionPerformed
 
     /**
      * @param args the command line arguments
@@ -875,12 +900,12 @@ public class FrontPage extends javax.swing.JFrame {
     private javax.swing.JMenu Grant;
     private javax.swing.JButton LogOutButton;
     private javax.swing.JButton REminderButton;
+    private javax.swing.JButton addcertificationbutton;
+    private javax.swing.JButton addnewgrantbutton;
     private javax.swing.JButton addnewlandbutton;
-    private javax.swing.JButton addnewlandbutton1;
     private javax.swing.JButton addnewpermitbutton;
     private javax.swing.ButtonGroup applicantSearchSet;
     private javax.swing.JButton changegrantownershipbutton;
-    private javax.swing.JButton changepermitbutton;
     private javax.swing.JPanel clockPanel;
     private javax.swing.JLabel dateLabel;
     private javax.swing.JPanel desktopJPanel;
@@ -906,7 +931,6 @@ public class FrontPage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -946,6 +970,7 @@ public class FrontPage extends javax.swing.JFrame {
     private javax.swing.JPanel shortcutAccessPanel;
     private javax.swing.JPanel titlePanel;
     private javax.swing.JPanel userLogPanel;
+    private javax.swing.JLabel username;
     private javax.swing.JPanel userpanel;
     // End of variables declaration//GEN-END:variables
 }

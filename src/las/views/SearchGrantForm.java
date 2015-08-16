@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+import las.common_classes.PatternChecker;
 import las.controllers.GramaNiladariDivisionController;
 import las.controllers.GrantController;
 import las.models.Grant;
@@ -147,10 +148,12 @@ public class SearchGrantForm extends SearchForm {
                 addDataToTable(grantlist);
             }
             if (search == "Grant" && bywhat == "By applicant name") {
+                typeText.setText(PatternChecker.checkstring(text));
                 ArrayList<Grant> grantlist = GrantController.getSimilarGrantsByName(text);
                 addDataToTable(grantlist);
             }
             if (search == "Grant" && bywhat == "By NIC") {
+                typeText.setText(PatternChecker.checkNIC(text));
                 ArrayList<Grant> grantlist = GrantController.getSimilarPermitsByNIC(text);
                 addDataToTable(grantlist);
             }

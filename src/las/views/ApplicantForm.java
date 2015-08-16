@@ -228,7 +228,7 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
         editunmarriedchildrennotvalidlabel = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         jLabel41 = new javax.swing.JLabel();
-        occupationText2 = new javax.swing.JTextField();
+        editoccupation = new javax.swing.JTextField();
         jLabel42 = new javax.swing.JLabel();
         edit_annualIncome = new javax.swing.JTextField();
         editoccupationnotvalidlabel = new javax.swing.JLabel();
@@ -1237,9 +1237,9 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
 
         jLabel41.setText("Occupation:");
 
-        occupationText2.addKeyListener(new java.awt.event.KeyAdapter() {
+        editoccupation.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                occupationText2KeyReleased(evt);
+                editoccupationKeyReleased(evt);
             }
         });
 
@@ -1269,7 +1269,7 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addComponent(occupationText2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(editoccupation, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(editoccupationnotvalidlabel))
                     .addGroup(jPanel9Layout.createSequentialGroup()
@@ -1285,7 +1285,7 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel41)
                     .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(occupationText2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(editoccupation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(editoccupationnotvalidlabel)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1704,12 +1704,38 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
             if (edit_singleStatusRButton.isSelected()) {
                 isMarried = 0;
             }
-            int marriedSons = Integer.parseInt(edit_marided_sons.getText());
-            int unmarriedSons = Integer.parseInt(edit_unmarried_sons.getText());
-            double annualincome = Double.parseDouble(edit_annualIncome.getText());
+            int marriedSons=0;
+            int unmarriedSons=0;
+            double annualincome=0;
+            try{
+            marriedSons = Integer.parseInt(edit_marided_sons.getText());
+            }
+            catch(Exception e){
+                editmarriedchildrennotvalidlabel.setEnabled(true);
+            }
+            try{
+              unmarriedSons = Integer.parseInt(edit_unmarried_sons.getText());
+            }
+            catch(Exception e){
+                editunmarriedchildrennotvalidlabel.setEnabled(true);
+            }
+           try{
+            annualincome = Double.parseDouble(edit_annualIncome.getText());}
+           catch(Exception e){
+               editincomenotvalidlabel.setVisible(true);
+           }
 
             Client client = new Client(nic, aplicantName, DOB, telephoneNumber, address, annualincome, 0, 0, isMarried, marriedSons, unmarriedSons);
-            
+            if(!PatternChecker.checkStringdirect(edit_nameText.getText())){
+               editnamenotvalidlabel.setVisible(true);}
+        else if (!PatternChecker.checkTelNumdirect(edit_telephoneText.getText())){
+                editphonenonotvalidlabel.setVisible(true);     }
+        else if(!PatternChecker.checkStringdirect(editoccupation.getText())){
+               editoccupationnotvalidlabel.setVisible(true);}
+         else if(!PatternChecker.checkDecimaldirect(edit_annualIncome.getText())){
+               editincomenotvalidlabel.setVisible(true);}
+         else{   
+            if(edit_nameText.getText().trim().length()!=0 && edit_telephoneText.getText().trim().length()!=0 && edit_addressText.getText().trim().length()!=0 && edit_marided_sons.getText().trim().length()!=0 && edit_unmarried_sons.getText().trim().length()!=0 && edit_annualIncome.getText().trim().length()!=0 && editoccupation.getText().trim().length()!=0 && (edit_marriedStatusRButton.isSelected()|| edit_singleStatusRButton.isSelected())){
             try {
                 int updateClient = ClientController.updateClient(client);
                 if(updateClient>0){
@@ -1721,8 +1747,11 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
                 Logger.getLogger(ApplicantForm.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
                 Logger.getLogger(ApplicantForm.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
+            }}
+            else{
+            JOptionPane.showMessageDialog(this,"Please Fill The Relevant Details In The Blanks");
+        }
+        }   
         }
     }//GEN-LAST:event_edit_update_buttunActionPerformed
 
@@ -2070,25 +2099,25 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
         edit_unmarried_sons.setText(newtext);
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
             if(PatternChecker.checkIntegerdirect(edit_unmarried_sons.getText())){
-          occupationText2.requestFocus();}
+          editoccupation.requestFocus();}
             else{
              editunmarriedchildrennotvalidlabel.setVisible(true);   
             }}
         else if(evt.getKeyCode()==KeyEvent.VK_DOWN){
-            occupationText2.requestFocus();
+            editoccupation.requestFocus();
         }
         else if(evt.getKeyCode()==KeyEvent.VK_UP){
             edit_marided_sons.requestFocus();
         }
     }//GEN-LAST:event_edit_unmarried_sonsKeyReleased
 
-    private void occupationText2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_occupationText2KeyReleased
+    private void editoccupationKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_editoccupationKeyReleased
         // TODO add your handling code here:
         editoccupationnotvalidlabel.setVisible(false);
-         String newtext=PatternChecker.checkstring(occupationText2.getText());
-        occupationText2.setText(newtext);
+         String newtext=PatternChecker.checkstring(editoccupation.getText());
+        editoccupation.setText(newtext);
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
-            if(PatternChecker.checkStringdirect(occupationText2.getText())){
+            if(PatternChecker.checkStringdirect(editoccupation.getText())){
           edit_annualIncome.requestFocus();}
             else{
                  editoccupationnotvalidlabel.setVisible(true);
@@ -2099,7 +2128,7 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
         else if(evt.getKeyCode()==KeyEvent.VK_UP){
             edit_unmarried_sons.requestFocus();
         }
-    }//GEN-LAST:event_occupationText2KeyReleased
+    }//GEN-LAST:event_editoccupationKeyReleased
 
     private void edit_annualIncomeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edit_annualIncomeKeyReleased
         // TODO add your handling code here:
@@ -2116,7 +2145,7 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
            edit_update_buttun.requestFocus();
         }
         else if(evt.getKeyCode()==KeyEvent.VK_UP){
-            occupationText2.requestFocus();
+            editoccupation.requestFocus();
         }
     }//GEN-LAST:event_edit_annualIncomeKeyReleased
 
@@ -2187,6 +2216,7 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
     private javax.swing.JLabel editincomenotvalidlabel;
     private javax.swing.JLabel editmarriedchildrennotvalidlabel;
     private javax.swing.JLabel editnamenotvalidlabel;
+    private javax.swing.JTextField editoccupation;
     private javax.swing.JLabel editoccupationnotvalidlabel;
     private javax.swing.JLabel editphonenonotvalidlabel;
     private javax.swing.JLabel editunmarriedchildrennotvalidlabel;
@@ -2262,7 +2292,6 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
     private javax.swing.JLabel nicnotvalidlabel;
     private javax.swing.JTextField occupationText;
     private javax.swing.JTextField occupationText1;
-    private javax.swing.JTextField occupationText2;
     private javax.swing.JLabel occupationnotvalidlabel;
     private javax.swing.JPanel personalDetailPanel;
     private javax.swing.JPanel personalDetailPanel1;
