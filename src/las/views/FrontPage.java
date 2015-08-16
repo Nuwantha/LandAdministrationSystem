@@ -5,21 +5,31 @@
  */
 package las.views;
 
+import java.awt.Dimension;
+import las.views.searchset.SearchPermitForm;
+import las.views.searchset.SearchClientForm;
+import las.views.searchset.SearchGrantForm;
+import las.views.searchset.SearchForm;
 import java.awt.Toolkit;
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import las.common_classes.GUIitemsValidator;
 import las.common_classes.PatternChecker;
 import las.controllers.UserController;
 import las.models.User;
+
 /**
  *
  * @author Gimhani
  */
 public class FrontPage extends javax.swing.JFrame {
+
     private String curruser;
 
     /**
@@ -29,28 +39,37 @@ public class FrontPage extends javax.swing.JFrame {
         initComponents();
         setSize(Toolkit.getDefaultToolkit().getScreenSize());
         desktopPane.removeAll();
-        ApplicantForm sg = new ApplicantForm();
-        sg.setSize(desktopPane.getSize());
-        desktopPane.add(sg);
-        sg.setVisible(true);
+        ApplicantForm applicantForm = new ApplicantForm();
+        applicantForm.setSize(desktopPane.getSize());
+        desktopPane.removeAll();
+        desktopPane.add(applicantForm);
+        applicantForm.setVisible(true);
         setDate();
-        username.setText(curruser);
-       /*User currentuser=UserController.searchUser(curruser); 
-       //for gramaniladari
-       if(currentuser.getPower()==3){
-            AddNewApplicantButton.setEnabled(false);
-            addnewpermitbutton.setEnabled(false);
-            addnewgrantbutton.setEnabled(false);
-            addnewlandbutton.setEnabled(false);
-            changegrantownershipbutton.setEnabled(false);
-            GramaNiladariDivisionInfoButton.setEnabled(false);
-            sg.setVisible(false);
+        setPreferredSize(new Dimension(1366, 768));
+    }
+
+    public FrontPage(String user) {
+        this();
+        try {
+            this.curruser = user;
+            username.setText(user);
+            User currentuser = UserController.searchUser(user);
+            //for gramaniladari
+            if (currentuser.getPower() == 3) {
+                AddNewApplicantButton.setEnabled(false);
+                addnewpermitbutton.setEnabled(false);
+                addnewgrantbutton.setEnabled(false);
+                addnewlandbutton.setEnabled(false);
+                changegrantownershipbutton.setEnabled(false);
+                GramaNiladariDivisionInfoButton.setEnabled(false);
+
+            } //for land branch staff
+            else if (currentuser.getPower() == 2) {
+                addcertificationbutton.setEnabled(false);
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(FrontPage.class.getName()).log(Level.SEVERE, null, ex);
         }
-       //for land branch staff
-       else if(currentuser.getPower()==2){
-           addcertificationbutton.setEnabled(false);
-       }*/
-        // sg.requestFocusForm();
     }
 
     private void setDate() {
@@ -101,16 +120,17 @@ public class FrontPage extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         userLogPanel = new javax.swing.JPanel();
         userpanel = new javax.swing.JPanel();
+        username = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
         LogOutButton = new javax.swing.JButton();
         ExitButton = new javax.swing.JButton();
-        username = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         dateLabel = new javax.swing.JLabel();
         CalenderButton = new javax.swing.JButton();
         REminderButton = new javax.swing.JButton();
         jButton17 = new javax.swing.JButton();
-        clockPanel = new javax.swing.JPanel();
+        jButton18 = new javax.swing.JButton();
         searchPanel = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         searchSetCombo = new javax.swing.JComboBox();
@@ -118,6 +138,7 @@ public class FrontPage extends javax.swing.JFrame {
         goButton = new javax.swing.JButton();
         internalFrameAreaPanel = new javax.swing.JPanel();
         desktopPane = new javax.swing.JDesktopPane();
+        jPanel3 = new javax.swing.JPanel();
         shortcutAccessPanel = new javax.swing.JPanel();
         AddNewApplicantButton = new javax.swing.JButton();
         addnewpermitbutton = new javax.swing.JButton();
@@ -332,39 +353,51 @@ public class FrontPage extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        LogOutButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/las/icons/logOff.png"))); // NOI18N
-        LogOutButton.setToolTipText("Log-off");
+        userpanel.setBackground(new java.awt.Color(0, 102, 51));
 
-        ExitButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/las/icons/exit.png"))); // NOI18N
-        ExitButton.setToolTipText("Exit");
-
+        username.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         username.setText("User Name and Icon");
+
+        jPanel2.setOpaque(false);
+        jPanel2.setLayout(new java.awt.GridLayout(1, 2, 10, 0));
+
+        LogOutButton.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        LogOutButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/las/icons/logOff.png"))); // NOI18N
+        LogOutButton.setText("Log off");
+        LogOutButton.setToolTipText("Log-off");
+        jPanel2.add(LogOutButton);
+
+        ExitButton.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        ExitButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/las/icons/exit.png"))); // NOI18N
+        ExitButton.setText("Exit");
+        ExitButton.setToolTipText("Exit");
+        jPanel2.add(ExitButton);
 
         javax.swing.GroupLayout userpanelLayout = new javax.swing.GroupLayout(userpanel);
         userpanel.setLayout(userpanelLayout);
         userpanelLayout.setHorizontalGroup(
             userpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(userpanelLayout.createSequentialGroup()
-                .addContainerGap(62, Short.MAX_VALUE)
-                .addComponent(LogOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ExitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addGroup(userpanelLayout.createSequentialGroup()
-                .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(userpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(username, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
+                    .addGroup(userpanelLayout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
         userpanelLayout.setVerticalGroup(
             userpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(userpanelLayout.createSequentialGroup()
-                .addGroup(userpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(ExitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LogOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userpanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(4, 4, 4))
         );
 
+        jPanel1.setBackground(new java.awt.Color(0, 102, 51));
+
+        jLabel7.setBackground(new java.awt.Color(204, 204, 255));
         jLabel7.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel7.setText("Today:");
 
@@ -382,16 +415,8 @@ public class FrontPage extends javax.swing.JFrame {
         jButton17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/las/icons/Calc6868.png"))); // NOI18N
         jButton17.setToolTipText("Calculator");
 
-        javax.swing.GroupLayout clockPanelLayout = new javax.swing.GroupLayout(clockPanel);
-        clockPanel.setLayout(clockPanelLayout);
-        clockPanelLayout.setHorizontalGroup(
-            clockPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        clockPanelLayout.setVerticalGroup(
-            clockPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
+        jButton18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/las/icons/Calc6868.png"))); // NOI18N
+        jButton18.setToolTipText("Calculator");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -401,37 +426,35 @@ public class FrontPage extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(REminderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addGap(18, 18, 18)
-                        .addComponent(dateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(REminderButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton17)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(CalenderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(clockPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(dateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                        .addComponent(CalenderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(CalenderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(dateLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(REminderButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(dateLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(CalenderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(REminderButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
-            .addComponent(clockPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout userLogPanelLayout = new javax.swing.GroupLayout(userLogPanel);
@@ -439,23 +462,23 @@ public class FrontPage extends javax.swing.JFrame {
         userLogPanelLayout.setHorizontalGroup(
             userLogPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userLogPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(userpanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         userLogPanelLayout.setVerticalGroup(
             userLogPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userLogPanelLayout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
-                .addGroup(userLogPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(userLogPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(userpanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
+        searchPanel.setBackground(new java.awt.Color(0, 102, 51));
         searchPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        searchPanel.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel6.setText("Search ");
@@ -519,24 +542,40 @@ public class FrontPage extends javax.swing.JFrame {
         desktopPane.setOpaque(false);
         desktopPane.setPreferredSize(new java.awt.Dimension(581, 581));
 
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 66, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 29, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout desktopPaneLayout = new javax.swing.GroupLayout(desktopPane);
         desktopPane.setLayout(desktopPaneLayout);
         desktopPaneLayout.setHorizontalGroup(
             desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 941, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, desktopPaneLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(130, 130, 130))
         );
         desktopPaneLayout.setVerticalGroup(
             desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 494, Short.MAX_VALUE)
+            .addGroup(desktopPaneLayout.createSequentialGroup()
+                .addGap(207, 207, 207)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(258, Short.MAX_VALUE))
         );
+        desktopPane.setLayer(jPanel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout internalFrameAreaPanelLayout = new javax.swing.GroupLayout(internalFrameAreaPanel);
         internalFrameAreaPanel.setLayout(internalFrameAreaPanelLayout);
         internalFrameAreaPanelLayout.setHorizontalGroup(
             internalFrameAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(internalFrameAreaPanelLayout.createSequentialGroup()
-                .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 941, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 837, Short.MAX_VALUE)
         );
         internalFrameAreaPanelLayout.setVerticalGroup(
             internalFrameAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -545,6 +584,7 @@ public class FrontPage extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
+        shortcutAccessPanel.setBackground(new java.awt.Color(0, 102, 51));
         shortcutAccessPanel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         shortcutAccessPanel.setLayout(new java.awt.GridLayout(7, 1, 50, 10));
 
@@ -599,7 +639,7 @@ public class FrontPage extends javax.swing.JFrame {
         shortcutAccessPanel.add(addcertificationbutton);
 
         GramaNiladariDivisionInfoButton.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
-        GramaNiladariDivisionInfoButton.setText("Grama Niladari Division Info");
+        GramaNiladariDivisionInfoButton.setText("Division Info");
         importantButtonSet.add(GramaNiladariDivisionInfoButton);
         GramaNiladariDivisionInfoButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -609,7 +649,7 @@ public class FrontPage extends javax.swing.JFrame {
         shortcutAccessPanel.add(GramaNiladariDivisionInfoButton);
 
         changegrantownershipbutton.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
-        changegrantownershipbutton.setText("Change Grant ownership");
+        changegrantownershipbutton.setText("Change Ownership");
         importantButtonSet.add(changegrantownershipbutton);
         shortcutAccessPanel.add(changegrantownershipbutton);
 
@@ -618,31 +658,32 @@ public class FrontPage extends javax.swing.JFrame {
         desktopJPanelLayout.setHorizontalGroup(
             desktopJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(desktopJPanelLayout.createSequentialGroup()
-                .addGroup(desktopJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(desktopJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(desktopJPanelLayout.createSequentialGroup()
-                        .addContainerGap()
+                        .addComponent(titlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 720, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(userLogPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(desktopJPanelLayout.createSequentialGroup()
                         .addComponent(searchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(internalFrameAreaPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(shortcutAccessPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(desktopJPanelLayout.createSequentialGroup()
-                        .addComponent(titlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(userLogPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(shortcutAccessPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35)))
+                .addContainerGap())
         );
         desktopJPanelLayout.setVerticalGroup(
             desktopJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(desktopJPanelLayout.createSequentialGroup()
-                .addGroup(desktopJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(desktopJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(userLogPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(titlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(desktopJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(internalFrameAreaPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(searchPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(shortcutAccessPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(desktopJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(desktopJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(internalFrameAreaPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(searchPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(shortcutAccessPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 494, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -715,9 +756,8 @@ public class FrontPage extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(desktopJPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(desktopJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 1238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -783,7 +823,6 @@ public class FrontPage extends javax.swing.JFrame {
                 switch ((String) searchByWhatCombo.getSelectedItem()) {
                     case "By name":
                         searchForm = new SearchClientForm("Applicant", "By name");
-                        
                         break;
                     case "By NIC":
                         searchForm = new SearchClientForm("Applicant", "By NIC");
@@ -849,7 +888,7 @@ public class FrontPage extends javax.swing.JFrame {
     }//GEN-LAST:event_searchByWhatComboActionPerformed
 
     private void addcertificationbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addcertificationbuttonActionPerformed
-        new GramaNiladariTaskForm(this,true).setVisible(true);
+        new GramaNiladariTaskForm(this, true).setVisible(true);
     }//GEN-LAST:event_addcertificationbuttonActionPerformed
 
     private void searchSetComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchSetComboActionPerformed
@@ -907,7 +946,6 @@ public class FrontPage extends javax.swing.JFrame {
     private javax.swing.JButton addnewpermitbutton;
     private javax.swing.ButtonGroup applicantSearchSet;
     private javax.swing.JButton changegrantownershipbutton;
-    private javax.swing.JPanel clockPanel;
     private javax.swing.JLabel dateLabel;
     private javax.swing.JPanel desktopJPanel;
     private javax.swing.JDesktopPane desktopPane;
@@ -916,6 +954,7 @@ public class FrontPage extends javax.swing.JFrame {
     private javax.swing.ButtonGroup importantButtonSet;
     private javax.swing.JPanel internalFrameAreaPanel;
     private javax.swing.JButton jButton17;
+    private javax.swing.JButton jButton18;
     private javax.swing.JCheckBox jCheckBox13;
     private javax.swing.JCheckBox jCheckBox14;
     private javax.swing.JCheckBox jCheckBox15;
@@ -955,6 +994,8 @@ public class FrontPage extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JRadioButton jRadioButton10;
     private javax.swing.JRadioButton jRadioButton6;
     private javax.swing.JRadioButton jRadioButton7;

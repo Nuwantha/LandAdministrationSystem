@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package las.views;
+package las.views.searchset;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -12,7 +12,9 @@ import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import las.common_classes.PatternChecker;
 import las.controllers.ClientController;
+import las.controllers.GramaNiladariDivisionController;
 import las.controllers.GrantController;
+import las.controllers.LandController;
 import las.controllers.PermitController;
 import las.models.Client;
 import las.models.GramaNiladariDivision;
@@ -23,20 +25,18 @@ import las.models.Permit;
  *
  * @author Gimhani
  */
-public class SearchClientForm extends SearchForm {
-
-    
+public class SearchPermitForm extends SearchForm {
 
     /**
      * Creates new form SearchClientForm
      */
-    public SearchClientForm() {
+    public SearchPermitForm() {
         initComponents();
         typeText.requestFocus();
         model = (DefaultTableModel) jTable1.getModel();
     }
 
-    public SearchClientForm(String search, String bywhat) {
+    public SearchPermitForm(String search, String bywhat) {
         initComponents();
         model = (DefaultTableModel) jTable1.getModel();
         this.bywhat = bywhat;
@@ -76,11 +76,11 @@ public class SearchClientForm extends SearchForm {
 
             },
             new String [] {
-                "NIC", "Name", "Birthday", "Telephone", "Address", "Permit ", "Grant"
+                "Permit no", "Issued date", "Owner", "NIC", "Tele:", "Division", "Land", "Lot number"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, false, false, false, false, false
+                false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -97,6 +97,7 @@ public class SearchClientForm extends SearchForm {
             jTable1.getColumnModel().getColumn(4).setResizable(false);
             jTable1.getColumnModel().getColumn(5).setResizable(false);
             jTable1.getColumnModel().getColumn(6).setResizable(false);
+            jTable1.getColumnModel().getColumn(7).setResizable(false);
         }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -153,66 +154,56 @@ public class SearchClientForm extends SearchForm {
             revalidate();
 
             String text = typeText.getText();
-            if (search == "Applicant" && bywhat == "By name") {
+            if (search == "Permit" && bywhat == "By permit number") {
+                ArrayList<Permit> permitlist = PermitController.getSimilarPermitNumbers(text);
+                if (!permitlist.isEmpty()) {
+
+                    for (Permit permit : permitlist) {
+                        
+                        String division=GramaNiladariDivisionController.searchGND(permit.getLot().getLand().getDivisionNumber()).getDivisionName();
+                        String land=permit.getLot().getLand().getLandName();
+                        Object[] rowdata = {permit.getPermitNumber(), permit.getPermitIssueDate(),permit.getClient().getClientName(),permit.getClient().getNIC(), permit.getClient().getTelephone(),division,land,permit.getLot().getLotNumber()};
+                        model.addRow(rowdata);
+                    }
+                } else {
+                    jTable1.removeAll();
+                }
+            }
+            if (search == "Permit" && bywhat == "By applicant name") {
                 typeText.setText(PatternChecker.checkstring(text));
-                ArrayList<Client> clientlist = ClientController.getSimilarNames(text);
-                if (!clientlist.isEmpty()) {
+                ArrayList<Permit> permitlist = PermitController.getSimilarPermitsByName(text);
+                if (!permitlist.isEmpty()) {
 
-                    for (Client client : clientlist) {
-                        Permit permit = PermitController.searchPermitByClient(client.getNIC());
-                        String permitNumber;
-                        if (permit != null) {
-                            permitNumber = permit.getPermitNumber();
-                        } else {
-                            permitNumber = "Not given";
-                        }
-
-                        Grant grant = GrantController.searchGrantByClient(client.getNIC());
-                        String grantNumber;
-                        if (grant != null) {
-                            grantNumber = grant.getGrantNumber();
-                        } else {
-                            grantNumber = "Not given";
-                        }
-                        Object[] rowdata = {client.getNIC(), client.getClientName(), client.getBirthday(), client.getTelephone(), client.getAddress(), permitNumber, grantNumber};
+                    for (Permit permit : permitlist) {
+                        
+                        String division=GramaNiladariDivisionController.searchGND(permit.getLot().getLand().getDivisionNumber()).getDivisionName();
+                        String land=permit.getLot().getLand().getLandName();
+                        Object[] rowdata = {permit.getPermitNumber(), permit.getPermitIssueDate(),permit.getClient().getClientName(),permit.getClient().getNIC(), permit.getClient().getTelephone(),division,land,permit.getLot().getLotNumber()};
                         model.addRow(rowdata);
                     }
                 } else {
                     jTable1.removeAll();
                 }
             }
-            if (search == "Applicant" && bywhat == "By NIC") {
+            if (search == "Permit" && bywhat == "By NIC") {
                 typeText.setText(PatternChecker.checkNIC(text));
-                ArrayList<Client> clientlist = ClientController.getSimmilarNICs(text);
-                if (!clientlist.isEmpty()) {
+                ArrayList<Permit> permitlist = PermitController.getSimilarPermitsByNIC(text);
+                if (!permitlist.isEmpty()) {
 
-                    for (Client client : clientlist) {
-                        Permit permit = PermitController.searchPermitByClient(client.getNIC());
-                        String permitNumber;
-                        if (permit != null) {
-                            permitNumber = permit.getPermitNumber();
-                        } else {
-                            permitNumber = "Not given";
-                        }
-
-                        Grant grant = GrantController.searchGrantByClient(client.getNIC());
-                        String grantNumber;
-                        if (grant != null) {
-                            grantNumber = grant.getGrantNumber();
-                        } else {
-                            grantNumber = "Not given";
-                        }
-                        Object[] rowdata = {client.getNIC(), client.getClientName(), client.getBirthday(), client.getTelephone(), client.getAddress(), permitNumber, grantNumber};
+                    for (Permit permit : permitlist) {
+                        
+                        String division=GramaNiladariDivisionController.searchGND(permit.getLot().getLand().getDivisionNumber()).getDivisionName();
+                        String land=permit.getLot().getLand().getLandName();
+                        Object[] rowdata = {permit.getPermitNumber(), permit.getPermitIssueDate(),permit.getClient().getClientName(),permit.getClient().getNIC(), permit.getClient().getTelephone(),division,land,permit.getLot().getLotNumber()};
                         model.addRow(rowdata);
                     }
                 } else {
                     jTable1.removeAll();
                 }
             }
-            
             
         } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(SearchClientForm.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SearchPermitForm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_typeTextKeyReleased
 
