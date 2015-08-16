@@ -14,7 +14,6 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 import javax.swing.text.JTextComponent;
 import las.common_classes.GUIitemsValidator;
 import las.common_classes.PatternChecker;
@@ -40,19 +39,6 @@ public class ChangePermitOwnershipForm extends javax.swing.JDialog {
         
         initComponents();
         this.permitNo_changeOwner.setEditable(true);
-        nic_text.requestFocus();
-        namenotvalidlabel.setVisible(false);
-        nicInvalidLabel.setVisible(false);
-        phonenumnotvalidlabel.setVisible(false);
-        occupationnotvalidlabel.setVisible(false);
-        incomenotvalidlabel.setVisible(false);
-    }
-    
-    
-    public ChangePermitOwnershipForm(GrantForm grant ){
-        initComponents();
-      //  this.permitNo_changeOwner.setSelectedItem();
-    
     }
 
     /**
@@ -74,7 +60,7 @@ public class ChangePermitOwnershipForm extends javax.swing.JDialog {
         namelabel = new javax.swing.JLabel();
         telephoneText = new javax.swing.JTextField();
         PhoneNo = new javax.swing.JLabel();
-        owner_name_text = new javax.swing.JTextField();
+        po_name_text = new javax.swing.JTextField();
         niclabel = new javax.swing.JLabel();
         nic_text = new javax.swing.JTextField();
         addresslabel = new javax.swing.JLabel();
@@ -101,9 +87,9 @@ public class ChangePermitOwnershipForm extends javax.swing.JDialog {
         add_button = new javax.swing.JButton();
         cancel_button = new javax.swing.JButton();
         phonenumnotvalidlabel = new javax.swing.JLabel();
-        namenotvalidlabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(400, 300));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -162,29 +148,12 @@ public class ChangePermitOwnershipForm extends javax.swing.JDialog {
 
         PhoneNo.setText("Phone Number:");
 
-        owner_name_text.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                owner_name_textKeyReleased(evt);
-            }
-        });
-
         niclabel.setText("NIC:");
-
-        nic_text.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                nic_textKeyReleased(evt);
-            }
-        });
 
         addresslabel.setText("Address:");
 
         address_text.setColumns(20);
         address_text.setRows(5);
-        address_text.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                address_textKeyReleased(evt);
-            }
-        });
         jScrollPane1.setViewportView(address_text);
 
         nicInvalidLabel.setForeground(new java.awt.Color(255, 0, 0));
@@ -359,24 +328,11 @@ public class ChangePermitOwnershipForm extends javax.swing.JDialog {
                 add_buttonActionPerformed(evt);
             }
         });
-        add_button.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                add_buttonKeyReleased(evt);
-            }
-        });
 
         cancel_button.setText("Cancel");
-        cancel_button.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                cancel_buttonKeyReleased(evt);
-            }
-        });
 
         phonenumnotvalidlabel.setForeground(new java.awt.Color(255, 0, 0));
         phonenumnotvalidlabel.setText("NIC is invalid");
-
-        namenotvalidlabel.setForeground(new java.awt.Color(255, 0, 0));
-        namenotvalidlabel.setText("NIC is invalid");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -400,17 +356,13 @@ public class ChangePermitOwnershipForm extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(po_name_text, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(nic_text, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(15, 15, 15)
-                                .addComponent(nicInvalidLabel)
-                                .addGap(53, 53, 53))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(owner_name_text)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(namenotvalidlabel)
-                                .addGap(58, 58, 58)))
+                                .addComponent(nicInvalidLabel)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(childrenCountPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(telephoneText, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -441,8 +393,7 @@ public class ChangePermitOwnershipForm extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(namelabel)
-                            .addComponent(owner_name_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(namenotvalidlabel))
+                            .addComponent(po_name_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(telephoneText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -528,7 +479,7 @@ public class ChangePermitOwnershipForm extends javax.swing.JDialog {
                 address_text.requestFocus();
             }
             else if(evt.getKeyCode()==KeyEvent.VK_UP){
-                owner_name_text.requestFocus();
+                po_name_text.requestFocus();
             }
     }//GEN-LAST:event_telephoneTextKeyReleased
 
@@ -697,7 +648,7 @@ public class ChangePermitOwnershipForm extends javax.swing.JDialog {
 
     private void add_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_buttonActionPerformed
         int isMarried = 1;
-        String permitOwnerName = owner_name_text.getText();
+        String permitOwnerName = po_name_text.getText();
         String nic = nic_text.getText();
         String telephoneNumber = telephoneText.getText();
         String address = address_text.getText();
@@ -722,8 +673,8 @@ public class ChangePermitOwnershipForm extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(rootPane, "new permit owner added as a new client successfully");
                 try{
                     permit.setClient(newclient);
-                    boolean editPermit = PermitController.updatePermit(permit);
-                    if (editPermit){
+                    int editPermit = PermitController.updatePermit(permit);
+                    if (editPermit>0){
                         JOptionPane.showMessageDialog(this,"permit update successfully");
                     
                     }else {
@@ -756,76 +707,6 @@ public class ChangePermitOwnershipForm extends javax.swing.JDialog {
         }     
         
     }//GEN-LAST:event_permitNo_changeOwnerItemStateChanged
-
-    private void nic_textKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nic_textKeyReleased
-        // TODO add your handling code here:
-         nicInvalidLabel.setVisible(false);
-       String newtext=PatternChecker.checkNIC(nic_text.getText());
-       nic_text.setText(newtext);
-       if(evt.getKeyCode()==KeyEvent.VK_ENTER){
-           if(PatternChecker.checkNICdirect(nic_text.getText())){
-               owner_name_text.requestFocus();
-           }
-           else{
-               nicInvalidLabel.setVisible(true);
-           }
-       }
-       else if(evt.getKeyCode()==KeyEvent.VK_DOWN){
-           owner_name_text.requestFocus();
-       }
-    }//GEN-LAST:event_nic_textKeyReleased
-
-    private void owner_name_textKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_owner_name_textKeyReleased
-        // TODO add your handling code here:
-        namenotvalidlabel.setVisible(false);
-       String newtext=PatternChecker.checkstring(owner_name_text.getText());
-       owner_name_text.setText(newtext);
-       if(evt.getKeyCode()==KeyEvent.VK_ENTER){
-           if(PatternChecker.checkStringdirect(owner_name_text.getText())){
-               telephoneText.requestFocus();
-           }
-           else{
-               namenotvalidlabel.setVisible(true);
-           }
-       }
-       else if(evt.getKeyCode()==KeyEvent.VK_DOWN){
-          telephoneText.requestFocus();
-       }
-       else if(evt.getKeyCode()==KeyEvent.VK_UP){
-          nic_text.requestFocus();
-       }
-    }//GEN-LAST:event_owner_name_textKeyReleased
-
-    private void address_textKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_address_textKeyReleased
-        // TODO add your handling code here:
-        if(evt.getKeyCode()==KeyEvent.VK_DOWN){
-            marriedStatusRButton.requestFocus();
-        }
-        else if(evt.getKeyCode()==KeyEvent.VK_UP){
-            telephoneText.requestFocus();
-        }
-    }//GEN-LAST:event_address_textKeyReleased
-
-    private void add_buttonKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_add_buttonKeyReleased
-        // TODO add your handling code here:
-        if(evt.getKeyCode()==KeyEvent.VK_RIGHT){
-            cancel_button.requestFocus();
-        }
-        else if(evt.getKeyCode()==KeyEvent.VK_UP){
-            annualIncomeText.requestFocus();
-
-        }
-    }//GEN-LAST:event_add_buttonKeyReleased
-
-    private void cancel_buttonKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cancel_buttonKeyReleased
-        // TODO add your handling code here:
-        if(evt.getKeyCode()==KeyEvent.VK_LEFT){
-            add_button.requestFocus();
-        }
-        else if(evt.getKeyCode()==KeyEvent.VK_UP){
-            annualIncomeText.requestFocus();
-        }
-    }//GEN-LAST:event_cancel_buttonKeyReleased
     
     
     
@@ -897,16 +778,15 @@ public class ChangePermitOwnershipForm extends javax.swing.JDialog {
     private javax.swing.JSpinner marriedChildrenCountSpinner;
     private javax.swing.JRadioButton marriedStatusRButton;
     private javax.swing.JLabel namelabel;
-    private javax.swing.JLabel namenotvalidlabel;
     private javax.swing.JLabel nicInvalidLabel;
     private javax.swing.JTextField nic_text;
     private javax.swing.JLabel niclabel;
     private javax.swing.JTextField occupationText;
     private javax.swing.JLabel occupationnotvalidlabel;
     private javax.swing.JTextField ownerText;
-    private javax.swing.JTextField owner_name_text;
     private javax.swing.JComboBox permitNo_changeOwner;
     private javax.swing.JLabel phonenumnotvalidlabel;
+    private javax.swing.JTextField po_name_text;
     private javax.swing.JRadioButton singleStatusRButton;
     private javax.swing.JTextField telephoneText;
     private javax.swing.JSpinner unmarriedChildrenCountSpinner;
