@@ -15,13 +15,26 @@ public class Permit {
     private Lot lot;
     private Client client;
     private NominatedSuccessor nominatedSuccessor;
+    int haveGrant;
 
+    public Permit(String permitNumber, String permitIssueDate, Lot lot, Client client, NominatedSuccessor nominatedSuccessor, int havePermit) {
+        this.permitNumber = permitNumber;
+        this.permitIssueDate = permitIssueDate;
+        this.lot = lot;
+        this.client = client;
+        this.nominatedSuccessor = nominatedSuccessor;
+        this.haveGrant = havePermit;
+    }
+
+    
+    
     public Permit(String permitNumber, String permitIssueDate, Lot lot, Client client, NominatedSuccessor nominatedSuccessor) {
         this.permitNumber = permitNumber;
         this.permitIssueDate = permitIssueDate;
         this.lot = lot;
         this.client = client;
         this.nominatedSuccessor = nominatedSuccessor;
+        
     }
     
     
@@ -66,4 +79,12 @@ public class Permit {
     }
     
     
+    public int getHavePermit() {
+        return haveGrant;
+    }
+
+    public void setHavePermit(int havePermit) {
+        this.haveGrant = havePermit;
+    }
+
 }

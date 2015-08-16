@@ -727,39 +727,36 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                              <Component id="jLabel63" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jLabel59" min="-2" pref="62" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="286" max="-2" attributes="0"/>
-                                  <Component id="cancelpermit_landName_test" min="-2" pref="113" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <Component id="jLabel113" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="32767" attributes="0"/>
-                                          <Component id="cancelPermitLotNumberTest" min="-2" pref="110" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="103" groupAlignment="1" attributes="0">
-                                          <Group type="102" alignment="1" attributes="0">
-                                              <Component id="jLabel109" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                              <Component id="cancelpermit_acres_test" min="-2" pref="89" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Component id="cancelpermit_perches_test" alignment="1" min="-2" pref="89" max="-2" attributes="0"/>
-                                      </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jLabel59" min="-2" pref="62" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="286" max="-2" attributes="0"/>
+                              <Component id="cancelpermit_landName_test" min="-2" pref="113" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="jLabel113" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="cancelPermitLotNumberTest" min="-2" pref="110" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jLabel111" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel112" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Component id="jLabel109" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="cancelpermit_acres_test" min="-2" pref="89" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="cancelpermit_perches_test" alignment="1" min="-2" pref="89" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
-                                  <Component id="cancelpermit_roods_test" max="32767" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jLabel110" min="-2" max="-2" attributes="0"/>
                               </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLabel111" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel112" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                              <Component id="cancelpermit_roods_test" max="32767" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="jLabel110" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="103" alignment="1" groupAlignment="0" attributes="0">
                               <Component id="jLabel60" alignment="0" min="-2" pref="63" max="-2" attributes="0"/>
@@ -770,7 +767,12 @@
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
+                              <Component id="jLabel77" min="-2" pref="80" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLabel63" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
                                   <Component id="jLabel64" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Group type="103" alignment="0" groupAlignment="1" attributes="0">
                                       <Component id="cancelPermitPlanNumberTest" alignment="1" min="-2" pref="106" max="-2" attributes="0"/>
@@ -782,10 +784,6 @@
                                   </Group>
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jLabel77" min="-2" pref="80" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1043,32 +1041,33 @@
                                       </Group>
                                   </Group>
                               </Group>
-                              <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="jLabel7" max="32767" attributes="0"/>
-                                              <Component id="jLabel4" max="32767" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="AddGNDNo" alignment="0" pref="121" max="32767" attributes="0"/>
-                                              <Component id="AddGND" alignment="0" max="32767" attributes="0"/>
-                                          </Group>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="jLabel7" max="32767" attributes="0"/>
+                                          <Component id="jLabel4" max="32767" attributes="0"/>
                                       </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jLabel5" alignment="0" min="-2" pref="73" max="-2" attributes="0"/>
-                                              <Component id="jLabel3" alignment="0" min="-2" pref="63" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="AddGNDNo" alignment="0" pref="121" max="32767" attributes="0"/>
+                                          <Component id="AddGND" alignment="0" max="32767" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jLabel5" alignment="0" min="-2" pref="73" max="-2" attributes="0"/>
+                                          <Component id="jLabel3" alignment="0" min="-2" pref="63" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="addpermit_permit_issue_dateChooser" min="-2" max="-2" attributes="0"/>
+                                          <Group type="102" alignment="0" attributes="0">
                                               <Component id="addpermit_permit_numberTest" min="-2" pref="112" max="-2" attributes="0"/>
-                                              <Component id="addpermit_permit_issue_dateChooser" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Component id="generatePemitNumberButtun" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
-                                  <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
@@ -1078,10 +1077,11 @@
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel5" alignment="3" min="-2" pref="17" max="-2" attributes="0"/>
                               <Component id="addpermit_permit_numberTest" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="generatePemitNumberButtun" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -1200,6 +1200,14 @@
                   </Events>
                 </Component>
                 <Component class="org.freixas.jcalendar.JCalendarCombo" name="addpermit_permit_issue_dateChooser">
+                </Component>
+                <Component class="javax.swing.JButton" name="generatePemitNumberButtun">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Genarate"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="generatePemitNumberButtunActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>

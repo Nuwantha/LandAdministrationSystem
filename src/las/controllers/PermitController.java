@@ -96,6 +96,23 @@ public class PermitController {
                 int updateClient = ClientController.updateClient(client);
                 if (updateClient > 0) {
                     System.out.println("client updated");
+                    NominatedSuccessor nominatedSuccessor = permit.getNominatedSuccessor();
+                    boolean cancelPermit = NominatedSuccessorController.DeleteNominatedSuccessor(nominatedSuccessor.getNIC_S());
+                    if (cancelPermit) {
+                        System.out.println("succer delete");
+                        Lot lot = permit.getLot();
+                        lot.setIsAvilable(0);
+                        boolean updateLot = LotController.updateLot(lot);
+                        if (updateLot) {
+                            System.out.println("lotUpdated");
+                        } else {
+                            returnStatue = false;
+                            conn.rollback();
+                        }
+                    } else {
+                        returnStatue = false;
+                        conn.rollback();
+                    }
 
                 } else {
                     returnStatue = false;
@@ -133,10 +150,10 @@ public class PermitController {
             return null;
         }
     }
-    
+
     public static Permit searchPermitByClient(String NIC) throws ClassNotFoundException, SQLException {
         Connection conn = DBConnection.getDBConnection().getConnection();
-        String sql = "Select * from Permit where NIC='" +NIC + "'";
+        String sql = "Select * from Permit where NIC='" + NIC + "'";
         ResultSet rst = DBHandler.getData(conn, sql);
         if (rst.next()) {
             Client client = ClientController.searchClient(rst.getString("NIC"));
@@ -148,10 +165,10 @@ public class PermitController {
             return null;
         }
     }
-    
+
     public static ArrayList<Permit> getSimilarPermitsByName(String namepart) throws ClassNotFoundException, SQLException {
         Connection conn = DBConnection.getDBConnection().getConnection();
-        String sql = "Select * from client right join permit on client.NIC=permit.NIC where ClientName like '%"+namepart+"%'";
+        String sql = "Select * from client right join permit on client.NIC=permit.NIC where ClientName like '%" + namepart + "%'";
         ResultSet rst = DBHandler.getData(conn, sql);
         ArrayList<Permit> permitList = new ArrayList<>();
         while (rst.next()) {
@@ -163,10 +180,10 @@ public class PermitController {
         }
         return permitList;
     }
-    
+
     public static ArrayList<Permit> getSimilarPermitsByNIC(String nicpart) throws ClassNotFoundException, SQLException {
         Connection conn = DBConnection.getDBConnection().getConnection();
-        String sql = "Select * from client right join permit on client.NIC=permit.NIC where client.NIC like '%"+nicpart+"%'";
+        String sql = "Select * from client right join permit on client.NIC=permit.NIC where client.NIC like '%" + nicpart + "%'";
         ResultSet rst = DBHandler.getData(conn, sql);
         ArrayList<Permit> permitList = new ArrayList<>();
         while (rst.next()) {
@@ -178,7 +195,7 @@ public class PermitController {
         }
         return permitList;
     }
-    
+
     public static int getPermitCountOfDivision(String divisionNumber) throws ClassNotFoundException, SQLException {
         Connection conn = DBConnection.getDBConnection().getConnection();
         String sql = "select count(distinct permitNumber) as permitCount from permit natural join lot natural join land where divisionNumber ='" + divisionNumber + "'";
@@ -194,6 +211,21 @@ public class PermitController {
     public static ArrayList<Permit> getSimilarPermitNumbers(String permitNumberPart) throws ClassNotFoundException, SQLException {
         Connection conn = DBConnection.getDBConnection().getConnection();
         String sql = "Select * From permit where permitNumber like '" + permitNumberPart + "%'  order by permitNumber limit 10";
+        ResultSet rst = DBHandler.getData(conn, sql);
+        ArrayList<Permit> permitList = new ArrayList<>();
+        while (rst.next()) {
+            Client searchClient = ClientController.searchClient(rst.getString("NIC"));
+            Lot searchLot = LotController.searchLot(rst.getString("LotNumber"));
+            NominatedSuccessor searchNominateSuccessor = NominatedSuccessorController.searchNominateSuccessor(rst.getString("NIC_Successor"));
+            Permit permit = new Permit(rst.getString("PermitNumber"), rst.getString("PermitIssueDate"), searchLot, searchClient, searchNominateSuccessor);
+            permitList.add(permit);
+        }
+        return permitList;
+    }
+
+    public static ArrayList<Permit> getGrantHaventPermit(String permitNumberPart) throws ClassNotFoundException, SQLException {
+        Connection conn = DBConnection.getDBConnection().getConnection();
+        String sql = "Select * From permit where haveGrant =0 and permitNumber like '" + permitNumberPart + "%'  order by permitNumber limit 10";
         ResultSet rst = DBHandler.getData(conn, sql);
         ArrayList<Permit> permitList = new ArrayList<>();
         while (rst.next()) {
@@ -222,16 +254,8 @@ public class PermitController {
     }
 
     //*******************************************//
-    public static boolean updatePermit(Permit permit)throws ClassNotFoundException, SQLException {
+    public static boolean updatePermit(Permit permit) throws ClassNotFoundException, SQLException {
         return addNewPermit(permit);
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
 }

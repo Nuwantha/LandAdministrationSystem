@@ -17,9 +17,10 @@ import las.models.NominatedSuccessor;
  * @author Gimhani
  */
 public class NominatedSuccessorController {
+
     public static NominatedSuccessor searchNominateSuccessor(String NICS) throws ClassNotFoundException, SQLException {
         Connection conn = DBConnection.getDBConnection().getConnection();
-        String sql = "Select * from NominatedSuccessor where NIC_S='" + NICS+ "'";
+        String sql = "Select * from NominatedSuccessor where NIC_S='" + NICS + "'";
         ResultSet rst = DBHandler.getData(conn, sql);
         if (rst.next()) {
             NominatedSuccessor nominateSuccessor = new NominatedSuccessor(rst.getString("NIC_S"), rst.getString("Name"), rst.getString("Address"));
@@ -28,22 +29,27 @@ public class NominatedSuccessorController {
             return null;
         }
     }
-    
-     public static boolean addNewNominateSuccessor(NominatedSuccessor NOS) throws ClassNotFoundException, SQLException {
+
+    public static boolean addNewNominateSuccessor(NominatedSuccessor NOS) throws ClassNotFoundException, SQLException {
 
         Connection conn = DBConnection.getDBConnection().getConnection();
         String sql = "Insert into nominatedsuccessor Values('" + NOS.getName() + "','" + NOS.getNIC_S() + "','" + NOS.getAddress() + "')";
         int returnValue = DBHandler.setData(conn, sql);
         return returnValue > 0;
     }
-     
-         public static boolean updateNiminateSuccessor(NominatedSuccessor nominateSuccessor) throws ClassNotFoundException, SQLException {
+
+    public static boolean updateNiminateSuccessor(NominatedSuccessor nominateSuccessor) throws ClassNotFoundException, SQLException {
         Connection conn = DBConnection.getDBConnection().getConnection();
         String sql = "Update  nominatedsuccessor Set  Name='" + nominateSuccessor.getName() + "', Address='" + nominateSuccessor.getAddress() + "' Where NIC_S ='" + nominateSuccessor.getNIC_S() + "'";
         int res = DBHandler.setData(conn, sql);
-        return res>0;
+        return res > 0;
     }
 
-
+    public static boolean DeleteNominatedSuccessor(String nic) throws ClassNotFoundException, SQLException {
+        Connection conn = DBConnection.getDBConnection().getConnection();
+        String sql = "Delete  from nominatedSuccessor where NIC_S = '" + nic + "'";
+        int returnDelete = DBHandler.setData(conn, sql);
+        return returnDelete > 0;
+    }
 
 }
