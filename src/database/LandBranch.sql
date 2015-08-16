@@ -64,6 +64,17 @@ CREATE TABLE Client(
 	CONSTRAINT PRIMARY KEY (NIC)
 );
 
+CREATE TABLE CurrentResidence(
+       NIC VARCHAR(12) NOT NULL,
+       CurrentResidence VARCHAR(100),
+       IsOwner INT(1),
+       IsLandIllegal INT(1),
+       IsAppliedBefore INT(1),
+       IsInApplicantList INT(1),
+       CONSTRAINT PRIMARY KEY (NIC),
+       CONSTRAINT FOREIGN KEY(NIC) REFERENCES  Client(NIC)
+	ON UPDATE CASCADE ON DELETE CASCADE
+);
 CREATE TABLE Permit(
 	PermitNumber VARCHAR(50) NOT NULL,
 	PermitIssueDate DATE,
@@ -93,10 +104,10 @@ CREATE TABLE Grant1(
 );
 
 create table User (
-name VARCHAR(20) not null,
+username VARCHAR(20) not null,
 password VARCHAR(400) not null,
 power int(1) not null,
-constraint PRIMARY KEY(user)
+constraint PRIMARY KEY(username)
 );
 
 
@@ -203,6 +214,22 @@ INSERT INTO Client values('730134267v','Nimalasena','1973/04/05','0720456321','n
 INSERT INTO Client values('760134298v','Adikari','1976/04/22','072012211','no 15, 8e kanuwa ,Weligama','27000.00','0','0','1','0','1');
 INSERT INTO Client values('800134253v','Ranga','1979/04/26','0780454515','no 89, pansalagoda ,Weligama','27000.00','0','0','1','1','1');
 
+/*current residence values*/
+INSERT INTO CurrentResidence values('8002342354v','no 45, Galbokka ,Weligama','1','1','0','0');
+INSERT INTO CurrentResidence values('8302532365v','no 70, Galbokka ,Weligama','0','1','1','1');
+INSERT INTO CurrentResidence values('800134235v','no 64, Gammudawa ,Weligama','1','0','0','0');
+INSERT INTO CurrentResidence values('650134235v','no  65, Gammudawa ,Weligama','1','1','0','0');
+INSERT INTO CurrentResidence values('780134243v','no 34,Piliwatta ,Weligama','1','0','0','0');
+INSERT INTO CurrentResidence values('770134253v','no 65, 5e kanuwa ,Weligama','1','1','0','1');
+INSERT INTO CurrentResidence values('710134253v','no 75, 5e kanuwa ,Weligama','1','1','0','1');
+INSERT INTO CurrentResidence values('740134253v','no 95, 5e kanuwa ,Weligama','1','1','0','1');
+INSERT INTO CurrentResidence values('730134253v','no 65, 6e kanuwa ,Weligama','1','1','1','1');
+INSERT INTO CurrentResidence values('760134253v','no 65, 8e kanuwa ,Weligama','1','1','1','1');
+INSERT INTO CurrentResidence values('790134253v','no 65, pansalagoda ,Weligama','1','1','1','1');
+INSERT INTO CurrentResidence values('740134243v','no 11, 5e kanuwa ,Weligama','0','1','0','1');
+INSERT INTO CurrentResidence values('730134267v','no 05, 6e kanuwa ,Weligama','0','1','0','1');
+INSERT INTO CurrentResidence values('760134298v','no 15, 8e kanuwa ,Weligama','0','1','0','1');
+INSERT INTO CurrentResidence values('800134253v','no 89, pansalagoda ,Weligama','0','1','0','1');
 
 
 /*permit values*/
@@ -227,34 +254,3 @@ INSERT INTO Grant1 values('G222','2011/06/05','407/ENC/02','L002','780134243v','
 INSERT INTO Grant1 values('G467','2013/06/05','388/ENC/06','L009','770134253v','940569611v');
 INSERT INTO Grant1 values('G500','2013/06/05','388/ENC/05','L012','710134253v','920569211v');
 INSERT INTO Grant1 values('G488','2013/06/05','388/ENC/04','L003','740134253v','910569211v');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
