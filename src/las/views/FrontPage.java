@@ -103,11 +103,11 @@ public class FrontPage extends javax.swing.JFrame {
         shortcutAccessPanel = new javax.swing.JPanel();
         AddNewApplicantButton = new javax.swing.JButton();
         addnewpermitbutton = new javax.swing.JButton();
+        addnewlandbutton1 = new javax.swing.JButton();
+        addnewlandbutton = new javax.swing.JButton();
         changepermitbutton = new javax.swing.JButton();
         GramaNiladariDivisionInfoButton = new javax.swing.JButton();
         changegrantownershipbutton = new javax.swing.JButton();
-        addnewlandbutton = new javax.swing.JButton();
-        addnewlandbutton1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -547,9 +547,34 @@ public class FrontPage extends javax.swing.JFrame {
         });
         shortcutAccessPanel.add(addnewpermitbutton);
 
+        addnewlandbutton1.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
+        addnewlandbutton1.setText("Add New Grant");
+        importantButtonSet.add(addnewlandbutton1);
+        addnewlandbutton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addnewlandbutton1ActionPerformed(evt);
+            }
+        });
+        shortcutAccessPanel.add(addnewlandbutton1);
+
+        addnewlandbutton.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
+        addnewlandbutton.setText("Add New Land");
+        importantButtonSet.add(addnewlandbutton);
+        addnewlandbutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addnewlandbuttonActionPerformed(evt);
+            }
+        });
+        shortcutAccessPanel.add(addnewlandbutton);
+
         changepermitbutton.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
-        changepermitbutton.setText("Change Permit Ownership");
+        changepermitbutton.setText("Add Certification");
         importantButtonSet.add(changepermitbutton);
+        changepermitbutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changepermitbuttonActionPerformed(evt);
+            }
+        });
         shortcutAccessPanel.add(changepermitbutton);
 
         GramaNiladariDivisionInfoButton.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
@@ -566,26 +591,6 @@ public class FrontPage extends javax.swing.JFrame {
         changegrantownershipbutton.setText("Change Grant ownership");
         importantButtonSet.add(changegrantownershipbutton);
         shortcutAccessPanel.add(changegrantownershipbutton);
-
-        addnewlandbutton.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
-        addnewlandbutton.setText("Add New Land");
-        importantButtonSet.add(addnewlandbutton);
-        addnewlandbutton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addnewlandbuttonActionPerformed(evt);
-            }
-        });
-        shortcutAccessPanel.add(addnewlandbutton);
-
-        addnewlandbutton1.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
-        addnewlandbutton1.setText("Add Certification");
-        importantButtonSet.add(addnewlandbutton1);
-        addnewlandbutton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addnewlandbutton1ActionPerformed(evt);
-            }
-        });
-        shortcutAccessPanel.add(addnewlandbutton1);
 
         javax.swing.GroupLayout desktopJPanelLayout = new javax.swing.GroupLayout(desktopJPanel);
         desktopJPanel.setLayout(desktopJPanelLayout);
@@ -743,11 +748,11 @@ public class FrontPage extends javax.swing.JFrame {
     }//GEN-LAST:event_addnewpermitbuttonActionPerformed
 
     private void addnewlandbutton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addnewlandbutton1ActionPerformed
-        SearchClientForm searchClientForm = new SearchClientForm();
-        searchClientForm.setSize(desktopPane.getSize());
+        GrantForm grantForm = new GrantForm();
+        grantForm.setSize(desktopPane.getSize());
         desktopPane.removeAll();
-        desktopPane.add(searchClientForm);
-        searchClientForm.setVisible(true);
+        desktopPane.add(grantForm);
+        grantForm.setVisible(true);
     }//GEN-LAST:event_addnewlandbutton1ActionPerformed
 
     private void goButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goButtonActionPerformed
@@ -820,6 +825,10 @@ public class FrontPage extends javax.swing.JFrame {
     private void searchByWhatComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchByWhatComboActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_searchByWhatComboActionPerformed
+
+    private void changepermitbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changepermitbuttonActionPerformed
+        new GramaNiladariTaskForm(this,true).setVisible(true);
+    }//GEN-LAST:event_changepermitbuttonActionPerformed
 
     /**
      * @param args the command line arguments
