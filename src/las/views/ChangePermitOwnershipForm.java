@@ -14,7 +14,6 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 import javax.swing.text.JTextComponent;
 import las.common_classes.GUIitemsValidator;
 import las.common_classes.PatternChecker;
@@ -41,13 +40,42 @@ public class ChangePermitOwnershipForm extends javax.swing.JDialog {
     public ChangePermitOwnershipForm() {
         
         initComponents();
-        this.permitNo_changeOwner.setEditable(true);
+        
+        
+        this.permit_number_combo.setEditable(true);
         nic_text.requestFocus();
         namenotvalidlabel.setVisible(false);
         nicInvalidLabel.setVisible(false);
         phonenumnotvalidlabel.setVisible(false);
         occupationnotvalidlabel.setVisible(false);
         incomenotvalidlabel.setVisible(false);
+        
+          permit_number_combo.setEditable(true);
+        JTextComponent editorGrantHaventPermit = (JTextComponent) permit_number_combo.getEditor().getEditorComponent();
+        editorGrantHaventPermit.addKeyListener(new KeyAdapter() {
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                String item = (String) permit_number_combo.getEditor().getItem();
+                ArrayList<Object> list = new ArrayList();
+                try {
+
+                    ArrayList<Permit> grantHaventPermit = PermitController.getGrantHaventPermit(item);
+                    for (int i = 0; i < grantHaventPermit.size(); i++) {
+                        list.add(grantHaventPermit.get(i).getPermitNumber());
+                    }
+                    GUIitemsValidator.addItemToCombo(list, permit_number_combo);
+
+                } catch (ClassNotFoundException | SQLException ex) {
+                    Logger.getLogger(LandForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            }
+
+        });
+
+      
+        
     }
     
     
@@ -56,9 +84,9 @@ public class ChangePermitOwnershipForm extends javax.swing.JDialog {
         this.grantForm=grant;
         initComponents();
         this.permit=grantForm.getPermit();
-        this.permitNo_changeOwner.setSelectedItem(permit.getPermitNumber());
+        this.permit_number_combo.setSelectedItem(permit.getPermitNumber());
         this.ownerText.setText(permit.getClient().getClientName());
-        this.permitNo_changeOwner.setEditable(false);
+        this.permit_number_combo.setEditable(false);
         this.ownerText.setEditable(false);
         
         nic_text.requestFocus();
@@ -85,7 +113,7 @@ public class ChangePermitOwnershipForm extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         ownerText = new javax.swing.JTextField();
-        permitNo_changeOwner = new javax.swing.JComboBox();
+        permit_number_combo = new javax.swing.JComboBox();
         jPanel3 = new javax.swing.JPanel();
         namelabel = new javax.swing.JLabel();
         telephoneText = new javax.swing.JTextField();
@@ -130,10 +158,20 @@ public class ChangePermitOwnershipForm extends javax.swing.JDialog {
         jLabel1.setText("Permit No");
 
         ownerText.setEditable(false);
+        ownerText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ownerTextActionPerformed(evt);
+            }
+        });
 
-        permitNo_changeOwner.addItemListener(new java.awt.event.ItemListener() {
+        permit_number_combo.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                permitNo_changeOwnerItemStateChanged(evt);
+                permit_number_comboItemStateChanged(evt);
+            }
+        });
+        permit_number_combo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                permit_number_comboActionPerformed(evt);
             }
         });
 
@@ -148,7 +186,7 @@ public class ChangePermitOwnershipForm extends javax.swing.JDialog {
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(33, 33, 33)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(permitNo_changeOwner, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(permit_number_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ownerText, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -158,7 +196,7 @@ public class ChangePermitOwnershipForm extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(permitNo_changeOwner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(permit_number_combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
@@ -711,6 +749,9 @@ public class ChangePermitOwnershipForm extends javax.swing.JDialog {
     }//GEN-LAST:event_annualIncomeTextKeyReleased
 
     private void add_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_buttonActionPerformed
+       
+        
+        
         int isMarried = 1;
         String permitOwnerName = owner_name_text.getText();
         String nic = nic_text.getText();
@@ -730,30 +771,14 @@ public class ChangePermitOwnershipForm extends javax.swing.JDialog {
         int cur_PermitOwnership=this.permit.getClient().getPermitOwnershipPosition();
         int cur_GrantOwnership=this.permit.getClient().getGrantOwnershipPosition();
             
-        Client newclient = new Client(nic, permitOwnerName, DOB, telephoneNumber, address, annualincome, ++cur_PermitOwnership, cur_GrantOwnership, isMarried, marriedSons, unmarriedSons);
+        Client newclient = new Client(nic, permitOwnerName, DOB, telephoneNumber, address, annualincome,  cur_GrantOwnership,++cur_PermitOwnership, isMarried, marriedSons, unmarriedSons);
+        permit.setClient(newclient);
         try {
-            boolean addNewClient = ClientController.addNewClient(newclient);
-            if (addNewClient) {
-                JOptionPane.showMessageDialog(rootPane, "new permit owner added as a new client successfully");
-                try{
-                    permit.setClient(newclient);
-                    boolean editPermit = PermitController.updatePermit(permit);
-                    if (editPermit){
-                        JOptionPane.showMessageDialog(this,"permit update successfully");
-                    
-                    }else {
-                        JOptionPane.showMessageDialog(this,"permit could not updated");
-                    }
-                
-                }
-                catch(ClassNotFoundException|SQLException ex){
-                
-                }
-                if (this.fromGrant){
-                    this.grantForm.UpdateOwner();
-                }
-                
-                
+            boolean changePermitOwnership = PermitController.changePermitOwnership(permit);
+            if(changePermitOwnership){
+                JOptionPane.showMessageDialog(this,"Ownership change successfully");
+            }else{
+                JOptionPane.showMessageDialog(this, "Ownership doesnot channged");
             }
         } catch (ClassNotFoundException | SQLException ex) {
 
@@ -767,18 +792,17 @@ public class ChangePermitOwnershipForm extends javax.swing.JDialog {
     
     
     
-    private void permitNo_changeOwnerItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_permitNo_changeOwnerItemStateChanged
-        try {
-            this.permit=PermitController.searchPermit((String) permitNo_changeOwner.getSelectedItem());
-            if (permit!=null){
-                this.ownerText.setText((String)permit.getClient().getClientName());
+    private void permit_number_comboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_permit_number_comboItemStateChanged
+          try {
+            Permit searchPermit = PermitController.searchPermit(String.valueOf(permit_number_combo.getSelectedItem()));
+            this.permit=searchPermit;
+            if (searchPermit != null) {
+                ownerText.setText(searchPermit.getClient().getClientName());
             }
-                        
-        } catch (ClassNotFoundException |SQLException ex) {
-            Logger.getLogger(ChangePermitOwnershipForm.class.getName()).log(Level.SEVERE, null, ex);
-        }     
-        
-    }//GEN-LAST:event_permitNo_changeOwnerItemStateChanged
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(ChangeNominateSuccessoOfPermitrForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_permit_number_comboItemStateChanged
 
     private void nic_textKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nic_textKeyReleased
         // TODO add your handling code here:
@@ -849,6 +873,14 @@ public class ChangePermitOwnershipForm extends javax.swing.JDialog {
             annualIncomeText.requestFocus();
         }
     }//GEN-LAST:event_cancel_buttonKeyReleased
+
+    private void ownerTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ownerTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ownerTextActionPerformed
+
+    private void permit_number_comboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_permit_number_comboActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_permit_number_comboActionPerformed
     
     
     
@@ -928,7 +960,7 @@ public class ChangePermitOwnershipForm extends javax.swing.JDialog {
     private javax.swing.JLabel occupationnotvalidlabel;
     private javax.swing.JTextField ownerText;
     private javax.swing.JTextField owner_name_text;
-    private javax.swing.JComboBox permitNo_changeOwner;
+    private javax.swing.JComboBox permit_number_combo;
     private javax.swing.JLabel phonenumnotvalidlabel;
     private javax.swing.JRadioButton singleStatusRButton;
     private javax.swing.JTextField telephoneText;

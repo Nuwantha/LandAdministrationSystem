@@ -123,6 +123,11 @@ public class ChangeNominateSuccessoOfPermitrForm extends javax.swing.JDialog {
                 permit_number_comboItemStateChanged(evt);
             }
         });
+        permit_number_combo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                permit_number_comboActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -328,6 +333,10 @@ public class ChangeNominateSuccessoOfPermitrForm extends javax.swing.JDialog {
         }
 
     }//GEN-LAST:event_permit_number_comboItemStateChanged
+
+    private void permit_number_comboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_permit_number_comboActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_permit_number_comboActionPerformed
 
     public String sendNIC_S() {
         return nic_text.getText();

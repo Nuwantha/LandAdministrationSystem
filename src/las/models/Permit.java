@@ -15,7 +15,7 @@ public class Permit {
     private Lot lot;
     private Client client;
     private NominatedSuccessor nominatedSuccessor;
-    int haveGrant;
+    int haveGrant=0;
 
     public Permit(String permitNumber, String permitIssueDate, Lot lot, Client client, NominatedSuccessor nominatedSuccessor, int havePermit) {
         this.permitNumber = permitNumber;
@@ -79,11 +79,11 @@ public class Permit {
     }
     
     
-    public int getHavePermit() {
+    public int getHaveGrant() {
         return haveGrant;
     }
 
-    public void setHavePermit(int havePermit) {
+    public void setHaveGrant(int havePermit) {
         this.haveGrant = havePermit;
     }
 

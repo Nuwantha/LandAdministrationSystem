@@ -33,7 +33,7 @@ public class PermitController {
             boolean addNewNominateSuccessor = NominatedSuccessorController.addNewNominateSuccessor(permit.getNominatedSuccessor());
             if (addNewNominateSuccessor) {
                 System.out.println("nominate succssor added");
-                String sql = "Insert into permit Values('" + permit.getPermitNumber() + "','" + permit.getPermitIssueDate() + "','" + permit.getLot().getLotNumber() + "','" + permit.getClient().getNIC() + "','" + permit.getNominatedSuccessor().getNIC_S() + "')";
+                String sql = "Insert into permit Values('" + permit.getPermitNumber() + "','" + permit.getPermitIssueDate() + "','" + permit.getLot().getLotNumber() + "','" + permit.getClient().getNIC() + "','" + permit.getNominatedSuccessor().getNIC_S() + "','" + permit.getHaveGrant() + "')";
                 int returnPermitInsert = DBHandler.setData(conn, sql);
                 if (returnPermitInsert > 0) {
                     System.out.println("permit added");
@@ -183,7 +183,7 @@ public class PermitController {
 
     public static Permit searchPermit(String permitNumber) throws ClassNotFoundException, SQLException {
         Connection conn = DBConnection.getDBConnection().getConnection();
-        String sql = "Select * from Permit where PermitNumber='" + permitNumber + "'";
+        String sql = "Select * from Permit natural join client where PermitNumber='" + permitNumber + "' order by permitOwnershipPosition desc";
         ResultSet rst = DBHandler.getData(conn, sql);
         if (rst.next()) {
             Client client = ClientController.searchClient(rst.getString("NIC"));
@@ -299,8 +299,39 @@ public class PermitController {
     }
 
     //*******************************************//
-    public static boolean updatePermit(Permit permit) throws ClassNotFoundException, SQLException {
-        return addNewPermit(permit);
+    public static boolean changePermitOwnership(Permit permit) throws ClassNotFoundException, SQLException {
+        boolean returnStatue = true;
+        Connection conn = DBConnection.getDBConnection().getConnection();
+        conn.setAutoCommit(false);
+        try {
+            boolean addNewClient = ClientController.addNewClient(permit.getClient());
+            if (addNewClient) {
+                System.err.println("new client added");
+                String sql = "Insert into permit Values('" + permit.getPermitNumber() + "','" + permit.getPermitIssueDate() + "','" + permit.getLot().getLotNumber() + "','" + permit.getClient().getNIC() + "','" + permit.getNominatedSuccessor().getNIC_S() + "','" + permit.getHaveGrant() + "')";
+                int returnPermitInsert = DBHandler.setData(conn, sql);
+                if (returnPermitInsert > 0) {
+                    System.out.println("permit aded");
+
+                } else {
+                    returnStatue = false;
+                    conn.rollback();
+                }
+            } else {
+                returnStatue = false;
+                conn.rollback();
+            }
+
+            if (returnStatue) {
+                conn.commit();
+            }
+
+        } catch (SQLException sqlExeption) {
+            returnStatue = false;
+            conn.rollback();
+        } finally {
+            conn.setAutoCommit(true);
+        }
+        return returnStatue;
     }
 
 }
