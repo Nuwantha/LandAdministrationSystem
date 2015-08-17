@@ -145,7 +145,7 @@ public class SearchGrantForm extends SearchForm {
 
             String text = typeText.getText();
             if (search == "Grant" && bywhat == "By permit number") {
-                ArrayList<Grant> grantlist = GrantController.getSimilarPlanNumbers(text);
+                ArrayList<Grant> grantlist = GrantController.getSimilarGrantNumbers(text);
                 addDataToTable(grantlist);
             }
             if (search == "Grant" && bywhat == "By applicant name") {
@@ -159,7 +159,7 @@ public class SearchGrantForm extends SearchForm {
                 addDataToTable(grantlist);
             }
             if (search == "Grant" && bywhat == "By grant number") {
-                ArrayList<Grant> grantlist = GrantController.getSimilarPlanNumbers(text);
+                ArrayList<Grant> grantlist = GrantController.getSimilarGrantNumbers(text);
                 addDataToTable(grantlist);
             }
 

@@ -84,7 +84,7 @@ public class GrantForm extends javax.swing.JInternalFrame {
                 String item = (String) search_grant_grantnoCombo.getEditor().getItem();
                 ArrayList<Object> list = new ArrayList();
                 try {
-                    ArrayList<Grant> simmilarPlanNumbers = GrantController.getSimilarPlanNumbers(item);
+                    ArrayList<Grant> simmilarPlanNumbers = GrantController.getSimilarGrantNumbers(item);
                     for (int i = 0; i < simmilarPlanNumbers.size(); i++) {
                         list.add(simmilarPlanNumbers.get(i).getGrantNumber());
                     }

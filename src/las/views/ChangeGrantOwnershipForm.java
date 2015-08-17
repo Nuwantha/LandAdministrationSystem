@@ -5,11 +5,16 @@
  */
 package las.views;
 
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.text.JTextComponent;
 import las.common_classes.GUIitemsValidator;
 import las.common_classes.PatternChecker;
 import las.controllers.ClientController;
@@ -18,13 +23,16 @@ import las.controllers.PermitController;
 import las.models.Client;
 import las.models.Grant;
 import las.models.NominatedSuccessor;
+import las.models.Permit;
 
 /**
  *
  * @author Gimhani
  */
 public class ChangeGrantOwnershipForm extends javax.swing.JDialog {
+
     private Grant grant;
+
     /**
      * Creates new form ChangeGrantOwnershipForm
      */
@@ -37,6 +45,31 @@ public class ChangeGrantOwnershipForm extends javax.swing.JDialog {
         phonenumnotvalidlabel.setVisible(false);
         occupationnotvalidlabel.setVisible(false);
         incomenotvalidlabel.setVisible(false);
+
+        grantno_changeOwnerCombo.setEditable(true);
+        JTextComponent editorGrant = (JTextComponent) grantno_changeOwnerCombo.getEditor().getEditorComponent();
+        editorGrant.addKeyListener(new KeyAdapter() {
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                String item = (String) grantno_changeOwnerCombo.getEditor().getItem();
+                ArrayList<Object> list = new ArrayList();
+                try {
+
+                    ArrayList<Grant> similarPermitNumberGrants = GrantController.getSimilarGrantNumbers(item);
+                    for (int i = 0; i < similarPermitNumberGrants.size(); i++) {
+                        list.add(similarPermitNumberGrants.get(i).getGrantNumber());
+                    }
+                    GUIitemsValidator.addItemToCombo(list, grantno_changeOwnerCombo);
+
+                } catch (ClassNotFoundException | SQLException ex) {
+                    Logger.getLogger(LandForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            }
+
+        });
+
     }
 
     /**
@@ -98,6 +131,17 @@ public class ChangeGrantOwnershipForm extends javax.swing.JDialog {
         jLabel1.setText("Grant No");
 
         ownerText.setEditable(false);
+
+        grantno_changeOwnerCombo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                grantno_changeOwnerComboItemStateChanged(evt);
+            }
+        });
+        grantno_changeOwnerCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                grantno_changeOwnerComboActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -493,21 +537,19 @@ public class ChangeGrantOwnershipForm extends javax.swing.JDialog {
     private void telephoneTextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_telephoneTextKeyReleased
         // TODO add your handling code here:
         phonenumnotvalidlabel.setVisible(false);
-        String newtext=PatternChecker.checkTelNum(telephoneText.getText());
+        String newtext = PatternChecker.checkTelNum(telephoneText.getText());
         telephoneText.setText(newtext);
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
-            if (telephoneText.getText().length()==10){
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            if (telephoneText.getText().length() == 10) {
                 address_text.requestFocus();
-            }
-            else{
+            } else {
                 phonenumnotvalidlabel.setVisible(true);
-            }}
-            else if(evt.getKeyCode()==KeyEvent.VK_DOWN){
-                address_text.requestFocus();
             }
-            else if(evt.getKeyCode()==KeyEvent.VK_UP){
-                nic_text.requestFocus();
-            }
+        } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
+            address_text.requestFocus();
+        } else if (evt.getKeyCode() == KeyEvent.VK_UP) {
+            nic_text.requestFocus();
+        }
     }//GEN-LAST:event_telephoneTextKeyReleased
 
     private void birthdayChooser1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_birthdayChooser1ActionPerformed
@@ -516,15 +558,12 @@ public class ChangeGrantOwnershipForm extends javax.swing.JDialog {
 
     private void birthdayChooser1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_birthdayChooser1KeyReleased
         // TODO add your handling code here:
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
 
             marriedStatusRButton.requestFocus();
-        }
-
-        else if(evt.getKeyCode()==KeyEvent.VK_DOWN){
+        } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
             marriedStatusRButton.requestFocus();
-        }
-        else if(evt.getKeyCode()==KeyEvent.VK_UP){
+        } else if (evt.getKeyCode() == KeyEvent.VK_UP) {
             address_text.requestFocus();
 
         }
@@ -540,20 +579,15 @@ public class ChangeGrantOwnershipForm extends javax.swing.JDialog {
 
     private void marriedStatusRButtonKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_marriedStatusRButtonKeyReleased
         // TODO add your handling code here:
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
 
             marriedStatusRButton.isSelected();
-        }
-
-        else if(evt.getKeyCode()==KeyEvent.VK_DOWN){
+        } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
             marriedChildrenCountSpinner.requestFocus();
-        }
-        else if(evt.getKeyCode()==KeyEvent.VK_UP){
+        } else if (evt.getKeyCode() == KeyEvent.VK_UP) {
             birthdayChooser1.requestFocus();
 
-        }
-
-        else if(evt.getKeyCode()==KeyEvent.VK_RIGHT){
+        } else if (evt.getKeyCode() == KeyEvent.VK_RIGHT) {
             singleStatusRButton.requestFocus();
 
         }
@@ -561,20 +595,15 @@ public class ChangeGrantOwnershipForm extends javax.swing.JDialog {
 
     private void singleStatusRButtonKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_singleStatusRButtonKeyReleased
         // TODO add your handling code here:
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
 
             singleStatusRButton.isSelected();
-        }
-
-        else if(evt.getKeyCode()==KeyEvent.VK_DOWN){
+        } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
             marriedChildrenCountSpinner.requestFocus();
-        }
-        else if(evt.getKeyCode()==KeyEvent.VK_UP){
+        } else if (evt.getKeyCode() == KeyEvent.VK_UP) {
             birthdayChooser1.requestFocus();
 
-        }
-
-        else if(evt.getKeyCode()==KeyEvent.VK_LEFT){
+        } else if (evt.getKeyCode() == KeyEvent.VK_LEFT) {
             marriedStatusRButton.requestFocus();
 
         }
@@ -582,20 +611,17 @@ public class ChangeGrantOwnershipForm extends javax.swing.JDialog {
 
     private void marriedChildrenCountSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_marriedChildrenCountSpinnerStateChanged
         // TODO add your handling code here:
-        GUIitemsValidator.limitminimumSpinnerValue(marriedChildrenCountSpinner,0);
+        GUIitemsValidator.limitminimumSpinnerValue(marriedChildrenCountSpinner, 0);
     }//GEN-LAST:event_marriedChildrenCountSpinnerStateChanged
 
     private void marriedChildrenCountSpinnerKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_marriedChildrenCountSpinnerKeyReleased
         // TODO add your handling code here:
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
 
             unmarriedChildrenCountSpinner.requestFocus();
-        }
-
-        else if(evt.getKeyCode()==KeyEvent.VK_DOWN){
+        } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
             GUIitemsValidator.decrementSpinnerValue(marriedChildrenCountSpinner);
-        }
-        else if(evt.getKeyCode()==KeyEvent.VK_UP){
+        } else if (evt.getKeyCode() == KeyEvent.VK_UP) {
             GUIitemsValidator.incermentSpinnerValue(marriedChildrenCountSpinner);
 
         }
@@ -603,20 +629,17 @@ public class ChangeGrantOwnershipForm extends javax.swing.JDialog {
 
     private void unmarriedChildrenCountSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_unmarriedChildrenCountSpinnerStateChanged
         // TODO add your handling code here:
-        GUIitemsValidator.limitminimumSpinnerValue(unmarriedChildrenCountSpinner,0);
+        GUIitemsValidator.limitminimumSpinnerValue(unmarriedChildrenCountSpinner, 0);
     }//GEN-LAST:event_unmarriedChildrenCountSpinnerStateChanged
 
     private void unmarriedChildrenCountSpinnerKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_unmarriedChildrenCountSpinnerKeyReleased
         // TODO add your handling code here:
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
 
             occupationText.requestFocus();
-        }
-
-        else if(evt.getKeyCode()==KeyEvent.VK_DOWN){
+        } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
             GUIitemsValidator.decrementSpinnerValue(unmarriedChildrenCountSpinner);
-        }
-        else if(evt.getKeyCode()==KeyEvent.VK_UP){
+        } else if (evt.getKeyCode() == KeyEvent.VK_UP) {
             GUIitemsValidator.incermentSpinnerValue(unmarriedChildrenCountSpinner);
 
         }
@@ -629,20 +652,17 @@ public class ChangeGrantOwnershipForm extends javax.swing.JDialog {
     private void occupationTextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_occupationTextKeyReleased
         // TODO add your handling code here:
         occupationnotvalidlabel.setVisible(false);
-        String newtext=PatternChecker.checkstring(occupationText.getText());
+        String newtext = PatternChecker.checkstring(occupationText.getText());
         occupationText.setText(newtext);
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
-            if(PatternChecker.checkStringdirect(occupationText.getText())){
-                annualIncomeText.requestFocus();}
-            else{
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            if (PatternChecker.checkStringdirect(occupationText.getText())) {
+                annualIncomeText.requestFocus();
+            } else {
                 occupationnotvalidlabel.setVisible(true);
             }
-        }
-
-        else if(evt.getKeyCode()==KeyEvent.VK_DOWN){
+        } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
             annualIncomeText.requestFocus();
-        }
-        else if(evt.getKeyCode()==KeyEvent.VK_UP){
+        } else if (evt.getKeyCode() == KeyEvent.VK_UP) {
             unmarriedChildrenCountSpinner.requestFocus();
 
         }
@@ -651,121 +671,104 @@ public class ChangeGrantOwnershipForm extends javax.swing.JDialog {
     private void annualIncomeTextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_annualIncomeTextKeyReleased
         // TODO add your handling code here:
         incomenotvalidlabel.setVisible(false);
-        String newtext=PatternChecker.checkDecimal(annualIncomeText.getText());
+        String newtext = PatternChecker.checkDecimal(annualIncomeText.getText());
         annualIncomeText.setText(newtext);
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
-            if(PatternChecker.checkDecimaldirect(annualIncomeText.getText())){
-               // addCurrentResidenceButton.requestFocus();
-            }else{
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            if (PatternChecker.checkDecimaldirect(annualIncomeText.getText())) {
+                // addCurrentResidenceButton.requestFocus();
+            } else {
                 incomenotvalidlabel.setVisible(true);
             }
-        }
-
-        else if(evt.getKeyCode()==KeyEvent.VK_DOWN){
+        } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
             add_button.requestFocus();
-        }
-        else if(evt.getKeyCode()==KeyEvent.VK_UP){
+        } else if (evt.getKeyCode() == KeyEvent.VK_UP) {
             occupationText.requestFocus();
 
         }
     }//GEN-LAST:event_annualIncomeTextKeyReleased
 
     private void add_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_buttonActionPerformed
-        int isMarried = 1;
-        String grantOwnerName = newowner_name_text.getText();
-        String nic = nic_text.getText();
-        String telephoneNumber = telephoneText.getText();
-        String address = address_text.getText();
-        Date date = birthdayChooser1.getDate();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY-MM-dd");
-        String DOB = simpleDateFormat.format(date);
-        System.out.println(DOB);
-        if (singleStatusRButton.isSelected()) {
-            isMarried = 0;
-        }
-        int marriedSons = Integer.parseInt(marriedChildrenCountSpinner.getValue().toString());
-        int unmarriedSons = Integer.parseInt(unmarriedChildrenCountSpinner.getValue().toString());
-        double annualincome = Double.parseDouble(annualIncomeText.getText());
-
-        int cur_PermitOwnership=this.grant.getClient().getPermitOwnershipPosition();
-        int cur_GrantOwnership=this.grant.getClient().getGrantOwnershipPosition()+1;//as grant ownership is changed
-            
-        Client newclient = new Client(nic, grantOwnerName, DOB, telephoneNumber, address, annualincome, cur_PermitOwnership, ++cur_GrantOwnership, isMarried, marriedSons, unmarriedSons);
-        try {
-            boolean addNewClient = ClientController.addNewClient(newclient);
-            if (addNewClient) {
-                JOptionPane.showMessageDialog(rootPane, "new grant owner added as a new client successfully");
-                try{
-                    grant.setClient(newclient);
-                    boolean editGrant = GrantController.changeGrantOwnership(grant);
-                    if (editGrant){
-                        JOptionPane.showMessageDialog(this,"grant update successfully");
-                    
-                    }else {
-                        JOptionPane.showMessageDialog(this,"grant could not updated");
+            try {                                           
+                Grant searchGrant = GrantController.searchGrant(String.valueOf(grantno_changeOwnerCombo.getSelectedItem()));               
+               if(searchGrant !=null){ 
+                int isMarried = 1;
+                String grantOwnerName = newowner_name_text.getText();
+                String nic = nic_text.getText();
+                String telephoneNumber = telephoneText.getText();
+                String address = address_text.getText();
+                Date date = birthdayChooser1.getDate();
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY-MM-dd");
+                String DOB = simpleDateFormat.format(date);
+                System.out.println(DOB);
+                if (singleStatusRButton.isSelected()) {
+                    isMarried = 0;
+                }
+                int marriedSons = Integer.parseInt(marriedChildrenCountSpinner.getValue().toString());
+                int unmarriedSons = Integer.parseInt(unmarriedChildrenCountSpinner.getValue().toString());
+                double annualincome = Double.parseDouble(annualIncomeText.getText());
+                
+                //int cur_PermitOwnership = this.grant.getClient().getPermitOwnershipPosition();
+                int cur_GrantOwnership = searchGrant.getClient().getGrantOwnershipPosition() + 1;//as grant ownership is changed
+                
+                Client newclient = new Client(nic, grantOwnerName, DOB, telephoneNumber, address, annualincome, ++cur_GrantOwnership, 0, isMarried, marriedSons, unmarriedSons);
+                searchGrant.setClient(newclient);
+                try {
+                    boolean changeGrantOwnership = GrantController.changeGrantOwnership(searchGrant);
+                    if (changeGrantOwnership) {
+                        JOptionPane.showMessageDialog(this, "grant ownership change succesfully");
+                    } else {
+                        JOptionPane.showMessageDialog(this, "grant ownership doesnot change");
                     }
-                
+                } catch (ClassNotFoundException | SQLException ex) {
+                    Logger.getLogger(ChangeGrantOwnershipForm.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                catch(ClassNotFoundException|SQLException ex){
-                
-                }
-                
+               }
+            } catch (ClassNotFoundException | SQLException ex) {
+                Logger.getLogger(ChangeGrantOwnershipForm.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (ClassNotFoundException | SQLException ex) {
-
-            this.setVisible(false);
-    }                    
-        
-        
         
     }//GEN-LAST:event_add_buttonActionPerformed
 
     private void nic_textKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nic_textKeyReleased
         // TODO add your handling code here:
-       nicInvalidLabel.setVisible(false);
-       String newtext=PatternChecker.checkNIC(nic_text.getText());
-       nic_text.setText(newtext);
-       if(evt.getKeyCode()==KeyEvent.VK_ENTER){
-           if(PatternChecker.checkNICdirect(nic_text.getText())){
-               newowner_name_text.requestFocus();
-           }
-           else{
-               nicInvalidLabel.setVisible(true);
-           }
-       }
-       else if(evt.getKeyCode()==KeyEvent.VK_DOWN){
-           newowner_name_text.requestFocus();
-       }
-        
+        nicInvalidLabel.setVisible(false);
+        String newtext = PatternChecker.checkNIC(nic_text.getText());
+        nic_text.setText(newtext);
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            if (PatternChecker.checkNICdirect(nic_text.getText())) {
+                newowner_name_text.requestFocus();
+            } else {
+                nicInvalidLabel.setVisible(true);
+            }
+        } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
+            newowner_name_text.requestFocus();
+        }
+
     }//GEN-LAST:event_nic_textKeyReleased
 
     private void newowner_name_textKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_newowner_name_textKeyReleased
         // TODO add your handling code here:
         namenotvalidlabel.setVisible(false);
-       String newtext=PatternChecker.checkstring(newowner_name_text.getText());
-       newowner_name_text.setText(newtext);
-       if(evt.getKeyCode()==KeyEvent.VK_ENTER){
-           if(PatternChecker.checkStringdirect(newowner_name_text.getText())){
-               telephoneText.requestFocus();
-           }
-           else{
-               namenotvalidlabel.setVisible(true);
-           }
-       }
-       else if(evt.getKeyCode()==KeyEvent.VK_DOWN){
-          telephoneText.requestFocus();
-       }
-       else if(evt.getKeyCode()==KeyEvent.VK_UP){
-          nic_text.requestFocus();
-       }
+        String newtext = PatternChecker.checkstring(newowner_name_text.getText());
+        newowner_name_text.setText(newtext);
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            if (PatternChecker.checkStringdirect(newowner_name_text.getText())) {
+                telephoneText.requestFocus();
+            } else {
+                namenotvalidlabel.setVisible(true);
+            }
+        } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
+            telephoneText.requestFocus();
+        } else if (evt.getKeyCode() == KeyEvent.VK_UP) {
+            nic_text.requestFocus();
+        }
     }//GEN-LAST:event_newowner_name_textKeyReleased
 
     private void add_buttonKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_add_buttonKeyReleased
         // TODO add your handling code here:
-         if(evt.getKeyCode()==KeyEvent.VK_RIGHT){
+        if (evt.getKeyCode() == KeyEvent.VK_RIGHT) {
             cancel_button.requestFocus();
-        }
-        else if(evt.getKeyCode()==KeyEvent.VK_UP){
+        } else if (evt.getKeyCode() == KeyEvent.VK_UP) {
             annualIncomeText.requestFocus();
 
         }
@@ -773,23 +776,37 @@ public class ChangeGrantOwnershipForm extends javax.swing.JDialog {
 
     private void cancel_buttonKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cancel_buttonKeyReleased
         // TODO add your handling code here:
-        if(evt.getKeyCode()==KeyEvent.VK_LEFT){
+        if (evt.getKeyCode() == KeyEvent.VK_LEFT) {
             add_button.requestFocus();
-        }
-        else if(evt.getKeyCode()==KeyEvent.VK_UP){
+        } else if (evt.getKeyCode() == KeyEvent.VK_UP) {
             annualIncomeText.requestFocus();
         }
     }//GEN-LAST:event_cancel_buttonKeyReleased
 
     private void address_textKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_address_textKeyReleased
         // TODO add your handling code here:
-        if(evt.getKeyCode()==KeyEvent.VK_DOWN){
+        if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
             marriedStatusRButton.requestFocus();
-        }
-        else if(evt.getKeyCode()==KeyEvent.VK_UP){
+        } else if (evt.getKeyCode() == KeyEvent.VK_UP) {
             telephoneText.requestFocus();
         }
     }//GEN-LAST:event_address_textKeyReleased
+
+    private void grantno_changeOwnerComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_grantno_changeOwnerComboItemStateChanged
+        try {
+            Grant searchGrant = GrantController.searchGrant(String.valueOf(grantno_changeOwnerCombo.getSelectedItem()));
+           if (searchGrant!=null) {
+                ownerText.setText(searchGrant.getClient().getClientName());
+
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(ChangeGrantOwnershipForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_grantno_changeOwnerComboItemStateChanged
+
+    private void grantno_changeOwnerComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_grantno_changeOwnerComboActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_grantno_changeOwnerComboActionPerformed
 
     /**
      * @param args the command line arguments

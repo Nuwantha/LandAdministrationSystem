@@ -735,6 +735,11 @@ public class FrontPage extends javax.swing.JFrame {
         Grant.add(jMenuItem8);
 
         jMenuItem9.setText("Change ownership");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
         Grant.add(jMenuItem9);
 
         jMenuBar1.add(Grant);
@@ -920,6 +925,10 @@ public class FrontPage extends javax.swing.JFrame {
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         new ChangePermitOwnershipForm().setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+new ChangeGrantOwnershipForm().setVisible(true);
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     /**
      * @param args the command line arguments
