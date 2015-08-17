@@ -5,6 +5,17 @@
  */
 package las.views;
 
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.text.JTextComponent;
+import las.common_classes.GUIitemsValidator;
+import las.controllers.GrantController;
+import las.controllers.PermitController;
 import las.models.Grant;
 import las.models.NominatedSuccessor;
 import las.models.Permit;
@@ -13,70 +24,95 @@ import las.models.Permit;
  *
  * @author Gimhani
  */
-public class NominateSuccessorForm extends javax.swing.JDialog {
+public class ChangeNominateSuccessoGrantrForm extends javax.swing.JDialog {
+
     Grant grant;
     Permit permit;
     PermitForm parent_permit;
     GrantForm parent_grant;
     int type;
+
     /**
      * Creates new form NominateSuccessorForm
+     *
      * @param modal
      */
-    public NominateSuccessorForm(java.awt.Frame parent, boolean modal) {
+    public ChangeNominateSuccessoGrantrForm(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        grant_number_combo.setEditable(true);
+        JTextComponent editorGrant = (JTextComponent) grant_number_combo.getEditor().getEditorComponent();
+        editorGrant.addKeyListener(new KeyAdapter() {
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                String item = (String) grant_number_combo.getEditor().getItem();
+                ArrayList<Object> list = new ArrayList();
+                try {
+
+                    ArrayList<Grant> similarGrantNumbers = GrantController.getSimilarGrantNumbers(item);
+                    for (int i = 0; i < similarGrantNumbers.size(); i++) {
+                        list.add(similarGrantNumbers.get(i).getGrantNumber());
+                    }
+                    GUIitemsValidator.addItemToCombo(list, grant_number_combo);
+
+                } catch (ClassNotFoundException | SQLException ex) {
+                    Logger.getLogger(LandForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            }
+
+        });
+
         nicInvalidLabel.setVisible(false);
     }
-    
-    public NominateSuccessorForm(GrantForm parent,Permit choosenpermit){
-        this.permit=choosenpermit;
-        this.parent_grant=parent;
+
+    public ChangeNominateSuccessoGrantrForm(GrantForm parent, Permit choosenpermit) {
+        this.permit = choosenpermit;
+        this.parent_grant = parent;
         this.setTitle("Nominate a successor to Grant");
-        this.type=3;
+        this.type = 3;
         numberLabel.setText("Permit number:");
         ownerText.setText(permit.getClient().getClientName());
-        NominatedSuccessor successor=permit.getNominatedSuccessor();
-        if(successor!=null){
+        NominatedSuccessor successor = permit.getNominatedSuccessor();
+        if (successor != null) {
             currentSuccessorText.setText(successor.getName());
-        }else{
+        } else {
             currentSuccessorText.setText("No Successor nomination yet!");
         }
-            
+
     }
-    
-    
-    
+
     //to view gui for grant successor nomination
-    public NominateSuccessorForm(GrantForm parent, boolean modal,Grant grant) { 
+    public ChangeNominateSuccessoGrantrForm(GrantForm parent, boolean modal, Grant grant) {
         //this(parent, modal);
-        this.grant=grant;
-        this.type=2; //if grant .type=2
+        this.grant = grant;
+        this.type = 2; //if grant .type=2
         this.setTitle("Nominate a successor to Grant");
-        this.parent_grant=parent;
+        this.parent_grant = parent;
         numberLabel.setText("Grant number:");
         ownerText.setText(grant.getClient().getClientName());
-        NominatedSuccessor successor=grant.getNominatedSuccessor();
-        if(successor!=null){
+        NominatedSuccessor successor = grant.getNominatedSuccessor();
+        if (successor != null) {
             currentSuccessorText.setText(successor.getName());
-        }else{
+        } else {
             currentSuccessorText.setText("No Successor nomination yet!");
         }
     }
-    
+
     //to view gui for permit successor nomination
-    public NominateSuccessorForm(PermitForm parent, boolean modal,Permit permit) { 
+    public ChangeNominateSuccessoGrantrForm(PermitForm parent, boolean modal, Permit permit) {
         //this(parent, modal);
-        this.permit=permit;
-        this.type=1; //if grant .type=2
+        this.permit = permit;
+        this.type = 1; //if grant .type=2
         this.setTitle("Nominate a successor to Permit");
-        this.parent_permit=parent;
+        this.parent_permit = parent;
         numberLabel.setText("Permit number:");
         ownerText.setText(permit.getClient().getClientName());
-        NominatedSuccessor successor=permit.getNominatedSuccessor();
-        if(successor!=null){
+        NominatedSuccessor successor = permit.getNominatedSuccessor();
+        if (successor != null) {
             currentSuccessorText.setText(successor.getName());
-        }else{
+        } else {
             currentSuccessorText.setText("No Successor nomination yet!");
         }
     }
@@ -94,19 +130,17 @@ public class NominateSuccessorForm extends javax.swing.JDialog {
         jTextField6 = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
         numberLabel = new javax.swing.JLabel();
         ownerlabel = new javax.swing.JLabel();
         ownerText = new javax.swing.JTextField();
         currentnominatedsucclabel = new javax.swing.JLabel();
         currentSuccessorText = new javax.swing.JTextField();
+        grant_number_combo = new javax.swing.JComboBox();
         jPanel3 = new javax.swing.JPanel();
         namelabel = new javax.swing.JLabel();
         niclabel = new javax.swing.JLabel();
         addresslabel = new javax.swing.JLabel();
         ns_name_text = new javax.swing.JTextField();
-        relationshiplabel = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox();
         nic_text = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         address_text = new javax.swing.JTextArea();
@@ -131,6 +165,12 @@ public class NominateSuccessorForm extends javax.swing.JDialog {
 
         currentnominatedsucclabel.setText("Currently nominated successor:");
 
+        grant_number_combo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                grant_number_comboItemStateChanged(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -145,7 +185,7 @@ public class NominateSuccessorForm extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(ownerText, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(grant_number_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(currentnominatedsucclabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -156,9 +196,9 @@ public class NominateSuccessorForm extends javax.swing.JDialog {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(numberLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(numberLabel)
+                    .addComponent(grant_number_combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ownerlabel)
@@ -177,10 +217,6 @@ public class NominateSuccessorForm extends javax.swing.JDialog {
         niclabel.setText("NIC:");
 
         addresslabel.setText("Address:");
-
-        relationshiplabel.setText("Relationship:");
-
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Son", "Spouse", "Daughter", "Brother", "Other relation" }));
 
         address_text.setColumns(20);
         address_text.setRows(5);
@@ -228,34 +264,28 @@ public class NominateSuccessorForm extends javax.swing.JDialog {
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(relationshiplabel)
                             .addComponent(namelabel)
                             .addComponent(niclabel)
                             .addComponent(addresslabel))
-                        .addGap(18, 18, 18)
+                        .addGap(37, 37, 37)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(ns_name_text, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(nic_text, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(nicInvalidLabel))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 66, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(namelabel)
                     .addComponent(ns_name_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(relationshiplabel)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(niclabel)
                     .addComponent(nic_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -265,8 +295,7 @@ public class NominateSuccessorForm extends javax.swing.JDialog {
                     .addComponent(addresslabel)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -303,31 +332,58 @@ public class NominateSuccessorForm extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void add_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_buttonActionPerformed
-        NominatedSuccessor successor=new NominatedSuccessor(nic_text.getText(), ns_name_text.getText(), address_text.getText());
+        //  NominatedSuccessor successor=new NominatedSuccessor(nic_text.getText(), ns_name_text.getText(), address_text.getText());
         //add this to database
-        if(type==1){
-            this.permit.setNominatedSuccessor(successor);
-        }else if (type==2){
-            this.grant.setNominatedSuccessor(successor);
-        }else if (type==3){
-            this.parent_grant.UpdateSuccessor(successor);
+        try {
+            NominatedSuccessor successor = new NominatedSuccessor(nic_text.getText(), ns_name_text.getText(), address_text.getText());
+            Grant searchGrant = GrantController.searchGrant(String.valueOf(grant_number_combo.getSelectedItem()));
+            if (searchGrant != null) {
+                boolean changeNominatedSuccessorGrant = GrantController.changeNominatedSuccessorGrant(searchGrant, successor);
+                if (changeNominatedSuccessorGrant) {
+                    JOptionPane.showMessageDialog(this, "Nominate Successor Changed");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Nominanted Successor does not Changed");
+                }
+            }
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(ChangeNominateSuccessoOfPermitrForm.class.getName()).log(Level.SEVERE, null, ex);
         }
-  
-        
-        this.setVisible(false);
+
+       
     }//GEN-LAST:event_add_buttonActionPerformed
-    
-    
-    public String sendNIC_S(){
+
+    private void grant_number_comboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_grant_number_comboItemStateChanged
+        try {
+            Grant searchGrant = GrantController.searchGrant(String.valueOf(grant_number_combo.getSelectedItem()));
+            if (searchGrant != null) {
+                NominatedSuccessor nominatedSuccessor = searchGrant.getNominatedSuccessor();
+                ownerText.setText(searchGrant.getClient().getClientName());
+                if (nominatedSuccessor != null) {
+                    currentSuccessorText.setText(nominatedSuccessor.getName());
+                } else {
+                    currentSuccessorText.setText("No Successor nomination yet!");
+                }
+
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(ChangeNominateSuccessoOfPermitrForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_grant_number_comboItemStateChanged
+
+    public String sendNIC_S() {
         return nic_text.getText();
     }
+
     /**
      * @param args the command line arguments
      */
@@ -345,20 +401,21 @@ public class NominateSuccessorForm extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(NominateSuccessorForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ChangeNominateSuccessoGrantrForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(NominateSuccessorForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ChangeNominateSuccessoGrantrForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(NominateSuccessorForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ChangeNominateSuccessoGrantrForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(NominateSuccessorForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ChangeNominateSuccessoGrantrForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                NominateSuccessorForm dialog = new NominateSuccessorForm(new javax.swing.JFrame(), true);
+                ChangeNominateSuccessoGrantrForm dialog = new ChangeNominateSuccessoGrantrForm(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -377,14 +434,13 @@ public class NominateSuccessorForm extends javax.swing.JDialog {
     private javax.swing.JButton cancel_button;
     private javax.swing.JTextField currentSuccessorText;
     private javax.swing.JLabel currentnominatedsucclabel;
+    private javax.swing.JComboBox grant_number_combo;
     private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JComboBox jComboBox2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JLabel namelabel;
     private javax.swing.JLabel nicInvalidLabel;
@@ -394,6 +450,5 @@ public class NominateSuccessorForm extends javax.swing.JDialog {
     private javax.swing.JLabel numberLabel;
     private javax.swing.JTextField ownerText;
     private javax.swing.JLabel ownerlabel;
-    private javax.swing.JLabel relationshiplabel;
     // End of variables declaration//GEN-END:variables
 }

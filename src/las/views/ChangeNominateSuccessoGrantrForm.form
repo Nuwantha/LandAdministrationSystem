@@ -53,7 +53,8 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jPanel1" max="32767" attributes="0"/>
+              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -110,7 +111,7 @@
                               <EmptySpace max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="ownerText" min="-2" pref="183" max="-2" attributes="0"/>
-                                  <Component id="jTextField1" min="-2" pref="134" max="-2" attributes="0"/>
+                                  <Component id="grant_number_combo" min="-2" pref="131" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -127,9 +128,9 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="numberLabel" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField1" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="numberLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="grant_number_combo" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -147,8 +148,6 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JTextField" name="jTextField1">
-            </Component>
             <Component class="javax.swing.JLabel" name="numberLabel">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -174,6 +173,16 @@
             </Component>
             <Component class="javax.swing.JTextField" name="currentSuccessorText">
             </Component>
+            <Component class="javax.swing.JComboBox" name="grant_number_combo">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="0"/>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="grant_number_comboItemStateChanged"/>
+              </Events>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="jPanel3">
@@ -194,14 +203,12 @@
                           <Component id="jPanel4" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="relationshiplabel" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="namelabel" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="niclabel" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="addresslabel" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jComboBox2" min="-2" pref="119" max="-2" attributes="0"/>
                                   <Component id="ns_name_text" min="-2" pref="160" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="nic_text" min="-2" pref="109" max="-2" attributes="0"/>
@@ -210,7 +217,7 @@
                                   </Group>
                                   <Component id="jScrollPane1" alignment="0" min="-2" pref="194" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="66" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -220,17 +227,12 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="namelabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="ns_name_text" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="relationshiplabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jComboBox2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="niclabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="nic_text" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -243,7 +245,6 @@
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -265,24 +266,6 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="ns_name_text">
-            </Component>
-            <Component class="javax.swing.JLabel" name="relationshiplabel">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Relationship:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JComboBox" name="jComboBox2">
-              <Properties>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="5">
-                    <StringItem index="0" value="Son"/>
-                    <StringItem index="1" value="Spouse"/>
-                    <StringItem index="2" value="Daughter"/>
-                    <StringItem index="3" value="Brother"/>
-                    <StringItem index="4" value="Other relation"/>
-                  </StringArray>
-                </Property>
-              </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="nic_text">
             </Component>

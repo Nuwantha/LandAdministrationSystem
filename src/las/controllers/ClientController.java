@@ -83,7 +83,7 @@ public class ClientController {
     
     public static ArrayList<Client> getNoPermitOwners(String nicPart) throws ClassNotFoundException, SQLException {
         Connection conn = DBConnection.getDBConnection().getConnection();
-        String sql = "Select * From client where permitownershipPosition = '0' and NIC like '" + nicPart + "%'  order by NIC limit 10";
+        String sql = "Select * From client where permitownershipPosition = '0' and grantownershipposition = '0' and NIC like '" + nicPart + "%'  order by NIC limit 10";
         ResultSet rst = DBHandler.getData(conn, sql);
         ArrayList<Client> clientList = new ArrayList<>();
         while (rst.next()) {

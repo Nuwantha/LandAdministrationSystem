@@ -22,9 +22,7 @@ import las.common_classes.GUIitemsValidator;
 import las.controllers.ClientController;
 import las.controllers.GramaNiladariDivisionController;
 import las.controllers.GrantController;
-import las.controllers.LandController;
 import las.controllers.LotController;
-import las.controllers.NominatedSuccessorController;
 import las.controllers.PermitController;
 import las.models.Client;
 import las.models.GramaNiladariDivision;
@@ -1366,7 +1364,7 @@ public class GrantForm extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_add_grant_changeOwnerActionPerformed
 
     private void nominateSuccessorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nominateSuccessorButtonActionPerformed
-        NominateSuccessorForm newGrantSuccessor = new NominateSuccessorForm(this,this.choosenPermit);
+        ChangeNominateSuccessoGrantrForm newGrantSuccessor = new ChangeNominateSuccessoGrantrForm(this,this.choosenPermit);
         newGrantSuccessor.setVisible(true);
     }//GEN-LAST:event_nominateSuccessorButtonActionPerformed
 
