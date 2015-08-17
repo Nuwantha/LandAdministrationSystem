@@ -11,6 +11,7 @@ import las.views.searchset.SearchClientForm;
 import las.views.searchset.SearchGrantForm;
 import las.views.searchset.SearchForm;
 import java.awt.Toolkit;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -19,9 +20,11 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import las.common_classes.GUIitemsValidator;
 import las.common_classes.PatternChecker;
 import las.controllers.UserController;
+import las.db_utilities.BackUp;
 import las.models.User;
 
 /**
@@ -765,9 +768,19 @@ public class FrontPage extends javax.swing.JFrame {
         jMenu4.add(jSeparator1);
 
         jMenuItem13.setText("Create a backup");
+        jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem13ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem13);
 
         jMenuItem14.setText("Restore backup");
+        jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem14ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem14);
 
         jMenuBar1.add(jMenu4);
@@ -938,6 +951,35 @@ new ChangeGrantOwnershipForm().setVisible(true);
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         new ChangeNominateSuccessoGrantrForm(this, true).setVisible(true);
     }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
+        try {
+           int writeBackup = BackUp.writeBackup();
+            if(writeBackup==0){
+                JOptionPane.showMessageDialog(this,"Backup  successfully");
+            }else{
+                JOptionPane.showMessageDialog(this,"Backup is not successfully");
+            
+            }
+        } catch (IOException | InterruptedException ex) {
+                   Logger.getLogger(FrontPage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMenuItem13ActionPerformed
+
+    private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
+        try {
+            int restoreBackup = BackUp.restoreBackup();
+            if(restoreBackup==0){
+                JOptionPane.showMessageDialog(this,"Backup restored successfully");
+            }else{
+                JOptionPane.showMessageDialog(this,"Backup is not restored successfully");
+            
+            }
+            
+        } catch (IOException | InterruptedException ex) {
+           ex.printStackTrace();
+        }
+    }//GEN-LAST:event_jMenuItem14ActionPerformed
 
     /**
      * @param args the command line arguments
