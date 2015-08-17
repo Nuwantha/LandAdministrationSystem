@@ -5,10 +5,16 @@
  */
 package las.views.searchset;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
+import javax.swing.JTable;
+import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import las.common_classes.PatternChecker;
 import las.controllers.ClientController;
@@ -18,29 +24,31 @@ import las.models.Client;
 import las.models.GramaNiladariDivision;
 import las.models.Grant;
 import las.models.Permit;
+import las.views.ApplicantForm;
+import las.views.FrontPage;
 
 /**
  *
  * @author Gimhani
  */
 public class SearchClientForm extends SearchForm {
-
-    
-
+    PopUpTable popUp;
     /**
      * Creates new form SearchClientForm
      */
     public SearchClientForm() {
+        
         initComponents();
         typeText.requestFocus();
         model = (DefaultTableModel) jTable1.getModel();
     }
-
+    
     public SearchClientForm(String search, String bywhat) {
-        initComponents();
-        model = (DefaultTableModel) jTable1.getModel();
+        this();
         this.bywhat = bywhat;
         this.search = search;
+        popUp=new PopUpTable(jTable1);
+        
     }
 
     /**
@@ -88,6 +96,11 @@ public class SearchClientForm extends SearchForm {
             }
         });
         jTable1.getTableHeader().setReorderingAllowed(false);
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
             jTable1.getColumnModel().getColumn(0).setResizable(false);
@@ -148,16 +161,16 @@ public class SearchClientForm extends SearchForm {
 
     private void typeTextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_typeTextKeyReleased
         try {
-
+            
             model.getDataVector().removeAllElements();
             revalidate();
-
+            
             String text = typeText.getText();
             if (search == "Applicant" && bywhat == "By name") {
                 typeText.setText(PatternChecker.checkstring(text));
                 ArrayList<Client> clientlist = ClientController.getSimilarNames(text);
                 if (!clientlist.isEmpty()) {
-
+                    
                     for (Client client : clientlist) {
                         Permit permit = PermitController.searchPermitByClient(client.getNIC());
                         String permitNumber;
@@ -166,7 +179,7 @@ public class SearchClientForm extends SearchForm {
                         } else {
                             permitNumber = "Not given";
                         }
-
+                        
                         Grant grant = GrantController.searchGrantByClient(client.getNIC());
                         String grantNumber;
                         if (grant != null) {
@@ -185,7 +198,7 @@ public class SearchClientForm extends SearchForm {
                 typeText.setText(PatternChecker.checkNIC(text));
                 ArrayList<Client> clientlist = ClientController.getSimmilarNICs(text);
                 if (!clientlist.isEmpty()) {
-
+                    
                     for (Client client : clientlist) {
                         Permit permit = PermitController.searchPermitByClient(client.getNIC());
                         String permitNumber;
@@ -194,7 +207,7 @@ public class SearchClientForm extends SearchForm {
                         } else {
                             permitNumber = "Not given";
                         }
-
+                        
                         Grant grant = GrantController.searchGrantByClient(client.getNIC());
                         String grantNumber;
                         if (grant != null) {
@@ -210,7 +223,6 @@ public class SearchClientForm extends SearchForm {
                 }
             }
             
-            
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(SearchClientForm.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -220,6 +232,12 @@ public class SearchClientForm extends SearchForm {
         // TODO add your handling code here:
     }//GEN-LAST:event_typeTextActionPerformed
 
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+         if(SwingUtilities.isRightMouseButton(evt)){
+             popUp.show(evt.getComponent(),evt.getX(),evt.getY());
+         }
+    }//GEN-LAST:event_jTable1MouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -228,4 +246,34 @@ public class SearchClientForm extends SearchForm {
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField typeText;
     // End of variables declaration//GEN-END:variables
+}
+
+class PopUpTable extends JPopupMenu {
+    
+    public PopUpTable(final JTable table) {
+        JMenuItem viewItem = new JMenuItem("View Client");
+        JMenuItem editItem = new JMenuItem("Edit Client");
+        viewItem.addActionListener(new ActionListener() {
+            
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int selected = table.getSelectedRow();
+                String nic=String.valueOf(((DefaultTableModel)table.getModel()).getValueAt(selected, 1));
+                ////
+            }
+        });
+        editItem.addActionListener(new ActionListener() {
+            
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int selected = table.getSelectedRow();
+                String nic=String.valueOf(((DefaultTableModel)table.getModel()).getValueAt(selected, 0));
+                new ApplicantForm(nic).setVisible(true);
+            }
+        });
+        
+        
+        add(viewItem);
+        add(editItem);
+    }
 }

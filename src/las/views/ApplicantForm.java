@@ -26,7 +26,7 @@ import las.models.Client;
  * @author Gimhani
  */
 public class ApplicantForm extends javax.swing.JInternalFrame {
-
+    String searchednic;
     /**
      * Creates new form ApplicantForm
      */
@@ -97,6 +97,16 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
         });
     }
 
+    public ApplicantForm(String nic){
+        try {
+            this.searchednic=nic;
+            searchClient(nic);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ApplicantForm.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ApplicantForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -1547,7 +1557,16 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
 
     private void search_nic_comboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_search_nic_comboItemStateChanged
         try {
-            Client searchClient = ClientController.searchClient((String) search_nic_combo.getSelectedItem());
+           searchClient((String) search_nic_combo.getSelectedItem());
+            
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(ApplicantForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_search_nic_comboItemStateChanged
+
+    private void searchClient(String nic) throws ClassNotFoundException, SQLException{
+        
+            Client searchClient = ClientController.searchClient(nic);
             if (searchClient != null) {
                 search_nameText.setText(searchClient.getClientName());
                 search_DOB_test.setText(searchClient.getBirthday());
@@ -1562,11 +1581,9 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
                 search_annualIncome.setText(String.valueOf(searchClient.getAnnualIncome()));
                 search_addressText.setText(searchClient.getAddress());
             }
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(ApplicantForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_search_nic_comboItemStateChanged
-
+        
+    }
+    
     private void search_DOB_testActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search_DOB_testActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_search_DOB_testActionPerformed
