@@ -47,8 +47,27 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
         editunmarriedchildrennotvalidlabel.setVisible(false);
         editoccupationnotvalidlabel.setVisible(false);
         editincomenotvalidlabel.setVisible(false);
-
+        search_DOB_test.setEditable(false);
+        search_addressText.setEditable(false);
+        search_annualIncome.setEditable(false);
+        search_marided_sons.setEditable(false);
+        search_nameText.setEditable(false);
+        search_telephoneText.setEditable(false);
+        search_unmarried_sons.setEditable(false);
         search_nic_combo.setEditable(true);
+        /*search_nic_combo.setEditable(true);
+        registerButton.setEnabled(false);
+        search_DOB_test.setEditable(false);
+        search_addressText.setEditable(false);
+        search_annualIncome.setEditable(false);
+        search_marided_sons.setEditable(false);
+        search_marriedStatusRButton.setEnabled(false);
+        search_nameText.setEditable(false);
+        search_singleStatusRButton.setEnabled(false);
+        search_telephoneText.setEditable(false);
+        search_unmarried_sons.setEditable(false);
+        searchoccupationbutton.setEditable(false);*/
+        
         JTextComponent editorSearchNICCombo = (JTextComponent) search_nic_combo.getEditor().getEditorComponent();
         editorSearchNICCombo.addKeyListener(new KeyAdapter() {
 
@@ -211,7 +230,7 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
         search_unmarried_sons = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jLabel31 = new javax.swing.JLabel();
-        occupationText1 = new javax.swing.JTextField();
+        searchoccupationbutton = new javax.swing.JTextField();
         jLabel32 = new javax.swing.JLabel();
         search_annualIncome = new javax.swing.JTextField();
         search_DOB_test = new javax.swing.JTextField();
@@ -998,7 +1017,7 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
                     .addComponent(jLabel31))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(occupationText1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(searchoccupationbutton, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(search_annualIncome, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
@@ -1008,7 +1027,7 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel31)
-                    .addComponent(occupationText1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(searchoccupationbutton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel32)
@@ -1025,6 +1044,11 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
         search_nic_combo.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 search_nic_comboItemStateChanged(evt);
+            }
+        });
+        search_nic_combo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                search_nic_comboKeyReleased(evt);
             }
         });
 
@@ -1509,7 +1533,10 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
     private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButton3ActionPerformed
-
+public void EnableAddButton(){
+    if(nameText.getText().trim().length()!=0 && nicText.getText().trim().length()!=0 && telephoneText.getText().trim().length()!=0 && addressText.getText().trim().length()!=0 && annualIncomeText.getText().trim().length()!=0 &&(marriedStatusRButton.isSelected()|| singleStatusRButton.isSelected()) ){
+        registerButton.setEnabled(true);
+    }}
     private void edit_nic_comboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_edit_nic_comboItemStateChanged
         try {
             Client searchClient = ClientController.searchClient((String) edit_nic_combo.getSelectedItem());
@@ -1597,6 +1624,7 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_addCurrentResidenceButtonActionPerformed
 
     private void nicTextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nicTextKeyReleased
+         EnableAddButton();
         if (nameText.getText() != "" && nicText.getText() != "") {
             addCurrentResidenceButton.setEnabled(true);
         }
@@ -1637,7 +1665,7 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
         else if(evt.getKeyCode()==KeyEvent.VK_DOWN){          
             nicText.requestFocus();
         }
-        
+        EnableAddButton();
     }//GEN-LAST:event_nameTextKeyReleased
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
@@ -1665,7 +1693,7 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
         
         }
 
-        if(nameText.getText().trim().length()!=0 && nicText.getText().trim().length()!=0 && telephoneText.getText().trim().length()!=0 && addressText.getText().trim().length()!=0 && annualIncomeText.getText().trim().length()!=0 &&(marriedStatusRButton.isSelected()|| singleStatusRButton.isSelected()) ){
+        
         if(!PatternChecker.checkStringdirect(nameText.getText())){
                namenotvalidlabel.setVisible(true);}
         else if (!PatternChecker.checkNICdirect(nicText.getText())){
@@ -1697,15 +1725,14 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(ApplicantForm.class.getName()).log(Level.SEVERE, null, ex);
             
-        }}}
-        else{
-            JOptionPane.showMessageDialog(rootPane, "Please Fill The Blanks in The Form");
-        }
+        }}
+        
         
 
     }//GEN-LAST:event_registerButtonActionPerformed
 
     private void edit_update_buttunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edit_update_buttunActionPerformed
+        
         int showConfirmDialog = JOptionPane.showConfirmDialog(this, "Do you want to update");
         if (showConfirmDialog == 0) {
             int isMarried = 1;
@@ -1784,6 +1811,7 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
 
     private void telephoneTextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_telephoneTextKeyReleased
         // TODO add your handling code here:
+         EnableAddButton();
          phonenumnotvalidlabel.setVisible(false);
         String newtext=PatternChecker.checkTelNum(telephoneText.getText());
         telephoneText.setText(newtext);
@@ -1804,6 +1832,7 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
 
     private void addressTextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_addressTextKeyReleased
         // TODO add your handling code here:
+         EnableAddButton();
          if(evt.getKeyCode()==KeyEvent.VK_ENTER && addressText.getText().trim().length()!=0){
             
                 birthdayChooser1.requestFocus();
@@ -1813,7 +1842,7 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
            birthdayChooser1.requestFocus();
         }
         else if(evt.getKeyCode()==KeyEvent.VK_UP){
-            addressText.requestFocus();
+            telephoneText.requestFocus();
         }
     }//GEN-LAST:event_addressTextKeyReleased
 
@@ -1841,6 +1870,7 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
 
     private void marriedStatusRButtonKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_marriedStatusRButtonKeyReleased
         // TODO add your handling code here:
+         EnableAddButton();
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
             
                 marriedStatusRButton.isSelected();
@@ -1862,6 +1892,7 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
 
     private void singleStatusRButtonKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_singleStatusRButtonKeyReleased
         // TODO add your handling code here:
+         EnableAddButton();
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
             
                 singleStatusRButton.isSelected();
@@ -1920,6 +1951,7 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
 
     private void occupationTextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_occupationTextKeyReleased
         // TODO add your handling code here:
+         EnableAddButton();
         occupationnotvalidlabel.setVisible(false);
         String newtext=PatternChecker.checkstring(occupationText.getText());
         occupationText.setText(newtext);
@@ -1942,6 +1974,7 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
 
     private void annualIncomeTextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_annualIncomeTextKeyReleased
         // TODO add your handling code here:
+         EnableAddButton();
        incomenotvalidlabel.setVisible(false);
         String newtext=PatternChecker.checkDecimal(annualIncomeText.getText());
         annualIncomeText.setText(newtext);
@@ -2191,6 +2224,10 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_singleStatusRButtonStateChanged
 
+    private void search_nic_comboKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_search_nic_comboKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_search_nic_comboKeyReleased
+
     public void getResidenceData() { //to accept data from current residence detail form
 
     }
@@ -2308,7 +2345,6 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
     private javax.swing.JTextField nicText;
     private javax.swing.JLabel nicnotvalidlabel;
     private javax.swing.JTextField occupationText;
-    private javax.swing.JTextField occupationText1;
     private javax.swing.JLabel occupationnotvalidlabel;
     private javax.swing.JPanel personalDetailPanel;
     private javax.swing.JPanel personalDetailPanel1;
@@ -2326,6 +2362,7 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
     private javax.swing.JRadioButton search_singleStatusRButton;
     private javax.swing.JTextField search_telephoneText;
     private javax.swing.JTextField search_unmarried_sons;
+    private javax.swing.JTextField searchoccupationbutton;
     private javax.swing.JRadioButton singleStatusRButton;
     private javax.swing.ButtonGroup statusButtonGroup;
     private javax.swing.JTextField telephoneText;

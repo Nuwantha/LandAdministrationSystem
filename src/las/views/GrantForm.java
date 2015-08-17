@@ -44,7 +44,27 @@ public class GrantForm extends javax.swing.JInternalFrame {
      */
     public GrantForm() {
         initComponents();
-        
+        add_grant_ownernameText.setEditable(false);
+        add_grant_owner_nic_text.setEditable(false);
+        add_grantowner_telephoneText.setEditable(false);
+        add_grantowner_addressText.setEditable(false);
+        add_grantowner_DOB_test.setEditable(false);
+        add_grant_owner_annualIncome.setEditable(false);
+        add_grant_owner_no_of_children_test.setEditable(false);
+        addgrant_S_name_test.setEditable(false);
+        addgrant_S_relationText.setEditable(false);
+        addgrant_S_nic_test.setEditable(false);
+        addgrant_S_address_test.setEditable(false);
+        addgrant_permit_issueDate.setEditable(false);
+        add_grant_division_no_text.setEditable(false);
+        add_grant_division_name_text.setEditable(false);
+        add_grant_plan_no_text.setEditable(false);
+        add_grant_landName_text.setEditable(false);
+        add_grant_lotno_text.setEditable(false);
+        add_grant_acres_text.setEditable(false);
+       add_grant_perches_text.setEditable(false);
+        add_grant_roods_text.setEditable(false);
+        add_grant_button.setEnabled(false);
         //add grant
         
         this.Add_Grant_Grant_No.setEditable(true);
@@ -263,6 +283,12 @@ public class GrantForm extends javax.swing.JInternalFrame {
 
         issuedatelabel.setText("Issue Date:");
 
+        Add_Grant_Grant_No.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                Add_Grant_Grant_NoKeyReleased(evt);
+            }
+        });
+
         addgrant_grant_issue_dateChooser.setEditable(true);
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -359,8 +385,23 @@ public class GrantForm extends javax.swing.JInternalFrame {
         });
 
         add_grant_owner_marriedStatusRButton.setText("Married");
+        add_grant_owner_marriedStatusRButton.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                add_grant_owner_marriedStatusRButtonStateChanged(evt);
+            }
+        });
 
         add_grant_owner_singleStatusRButton.setText("Single");
+        add_grant_owner_singleStatusRButton.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                add_grant_owner_singleStatusRButtonStateChanged(evt);
+            }
+        });
+        add_grant_owner_singleStatusRButton.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                add_grant_owner_singleStatusRButtonKeyReleased(evt);
+            }
+        });
 
         jLabel35.setText("NIC :");
 
@@ -1203,7 +1244,11 @@ public class GrantForm extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+public void EnableAdd(){
+    if(addgrant_permit_issueDate.getText().trim().length()!=0 && Add_Grant_Grant_No.getText().trim().length()!=0){
+        add_grant_button.setEnabled(true);
+    }
+}
     public void UpdateOwner(){
         try {
             this.choosenPermit = PermitController.searchPermit(String.valueOf(add_grant_permit_no_combo.getSelectedItem()));
@@ -1460,6 +1505,25 @@ public class GrantForm extends javax.swing.JInternalFrame {
         }*/
 
     }//GEN-LAST:event_viewAll_load_buttunActionPerformed
+
+    private void Add_Grant_Grant_NoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Add_Grant_Grant_NoKeyReleased
+        // TODO add your handling code here:
+        EnableAdd();
+    }//GEN-LAST:event_Add_Grant_Grant_NoKeyReleased
+
+    private void add_grant_owner_marriedStatusRButtonStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_add_grant_owner_marriedStatusRButtonStateChanged
+        // TODO add your handling code here:
+         EnableAdd();
+    }//GEN-LAST:event_add_grant_owner_marriedStatusRButtonStateChanged
+
+    private void add_grant_owner_singleStatusRButtonKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_add_grant_owner_singleStatusRButtonKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_add_grant_owner_singleStatusRButtonKeyReleased
+
+    private void add_grant_owner_singleStatusRButtonStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_add_grant_owner_singleStatusRButtonStateChanged
+        // TODO add your handling code here:
+         EnableAdd();
+    }//GEN-LAST:event_add_grant_owner_singleStatusRButtonStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -14,6 +14,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.text.JTextComponent;
 import las.common_classes.GUIitemsValidator;
+import las.common_classes.PatternChecker;
 import las.controllers.PermitController;
 import las.models.Grant;
 import las.models.NominatedSuccessor;
@@ -28,7 +29,14 @@ public class ChangeNominateSuccessoOfPermitrForm extends javax.swing.JDialog {
     public ChangeNominateSuccessoOfPermitrForm(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        permit_number_combo.setEditable(true);
+        ownerText.setEditable(false);
+        currentSuccessorText.setEditable(false);
+        permit_number_combo.setEditable(false);
+        nameinvalidlabel.setVisible(false);
+        nicInvalidLabel.setVisible(false);
+        permit_number_combo.requestFocus();
+        cancel_button.setEnabled(false);
+        change_button.setEnabled(false);
         JTextComponent editorGrantHaventPermit = (JTextComponent) permit_number_combo.getEditor().getEditorComponent();
         editorGrantHaventPermit.addKeyListener(new KeyAdapter() {
 
@@ -101,6 +109,7 @@ public class ChangeNominateSuccessoOfPermitrForm extends javax.swing.JDialog {
         cancel_button = new javax.swing.JButton();
         change_button = new javax.swing.JButton();
         nicInvalidLabel = new javax.swing.JLabel();
+        nameinvalidlabel = new javax.swing.JLabel();
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -115,6 +124,12 @@ public class ChangeNominateSuccessoOfPermitrForm extends javax.swing.JDialog {
 
         ownerlabel.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         ownerlabel.setText("Owner:");
+
+        ownerText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                ownerTextKeyReleased(evt);
+            }
+        });
 
         currentnominatedsucclabel.setText("Currently nominated successor:");
 
@@ -176,16 +191,43 @@ public class ChangeNominateSuccessoOfPermitrForm extends javax.swing.JDialog {
 
         addresslabel.setText("Address:");
 
+        ns_name_text.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                ns_name_textKeyReleased(evt);
+            }
+        });
+
+        nic_text.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                nic_textKeyReleased(evt);
+            }
+        });
+
         address_text.setColumns(20);
         address_text.setRows(5);
+        address_text.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                address_textKeyReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(address_text);
 
         cancel_button.setText("Cancel");
+        cancel_button.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cancel_buttonKeyReleased(evt);
+            }
+        });
 
         change_button.setText("Change");
         change_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 change_buttonActionPerformed(evt);
+            }
+        });
+        change_button.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                change_buttonKeyReleased(evt);
             }
         });
 
@@ -212,6 +254,9 @@ public class ChangeNominateSuccessoOfPermitrForm extends javax.swing.JDialog {
         nicInvalidLabel.setForeground(new java.awt.Color(255, 0, 0));
         nicInvalidLabel.setText("NIC is invalid");
 
+        nameinvalidlabel.setForeground(new java.awt.Color(255, 0, 0));
+        nameinvalidlabel.setText("Invalid");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -227,13 +272,16 @@ public class ChangeNominateSuccessoOfPermitrForm extends javax.swing.JDialog {
                             .addComponent(addresslabel))
                         .addGap(37, 37, 37)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ns_name_text, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(nic_text, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(nicInvalidLabel))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 66, Short.MAX_VALUE)))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(ns_name_text, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(nameinvalidlabel)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -242,7 +290,8 @@ public class ChangeNominateSuccessoOfPermitrForm extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(namelabel)
-                    .addComponent(ns_name_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ns_name_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nameinvalidlabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(niclabel)
@@ -298,6 +347,13 @@ public class ChangeNominateSuccessoOfPermitrForm extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void change_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_change_buttonActionPerformed
+       if(!PatternChecker.checkStringdirect(ns_name_text.getText())) {
+           nameinvalidlabel.setVisible(true);
+       }
+       else if(!PatternChecker.checkNICdirect(nic_text.getText())) {
+           nicInvalidLabel.setVisible(true);
+       }
+       else{ 
         try {
             NominatedSuccessor successor = new NominatedSuccessor(nic_text.getText(), ns_name_text.getText(), address_text.getText());
             Permit searchPermit = PermitController.searchPermit(String.valueOf(permit_number_combo.getSelectedItem()));
@@ -312,7 +368,7 @@ public class ChangeNominateSuccessoOfPermitrForm extends javax.swing.JDialog {
           
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(ChangeNominateSuccessoOfPermitrForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }}
     }//GEN-LAST:event_change_buttonActionPerformed
 
     private void permit_number_comboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_permit_number_comboItemStateChanged
@@ -338,6 +394,92 @@ public class ChangeNominateSuccessoOfPermitrForm extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_permit_number_comboActionPerformed
 
+    private void ns_name_textKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ns_name_textKeyReleased
+        // TODO add your handling code here:
+        EnabelChangeAndCancel();
+         nameinvalidlabel.setVisible(false);
+        String newtext=PatternChecker.checkstring(ns_name_text.getText());
+        ns_name_text.setText(newtext);
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            if (PatternChecker.checkStringdirect(ns_name_text.getText())){
+                nic_text.requestFocus();
+            }
+            else{
+                nameinvalidlabel.setVisible(true);
+            }
+        }
+        else if (evt.getKeyCode()==KeyEvent.VK_DOWN){
+             nic_text.requestFocus();
+        }
+        else if (evt.getKeyCode()==KeyEvent.VK_UP){
+             permit_number_combo.requestFocus();
+        }
+    }//GEN-LAST:event_ns_name_textKeyReleased
+
+    private void nic_textKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nic_textKeyReleased
+        // TODO add your handling code here:
+        EnabelChangeAndCancel();
+         nicInvalidLabel.setVisible(false);
+        String newtext=PatternChecker.checkNIC(nic_text.getText());
+        nic_text.setText(newtext);
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            if (PatternChecker.checkNICdirect(nic_text.getText())){
+                address_text.requestFocus();
+            }
+            else{
+                nicInvalidLabel.setVisible(true);
+            }
+        }
+        else if (evt.getKeyCode()==KeyEvent.VK_DOWN){
+             address_text.requestFocus();
+        }
+        else if (evt.getKeyCode()==KeyEvent.VK_UP){
+             ns_name_text.requestFocus();
+        }
+    }//GEN-LAST:event_nic_textKeyReleased
+
+    private void address_textKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_address_textKeyReleased
+        // TODO add your handling code here:
+        EnabelChangeAndCancel();
+        if (evt.getKeyCode()==KeyEvent.VK_DOWN){
+             change_button.requestFocus();
+        }
+        else if (evt.getKeyCode()==KeyEvent.VK_UP){
+             nic_text.requestFocus();
+        }
+    }//GEN-LAST:event_address_textKeyReleased
+
+    private void change_buttonKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_change_buttonKeyReleased
+        // TODO add your handling code here:
+        if (evt.getKeyCode()==KeyEvent.VK_RIGHT){
+             cancel_button.requestFocus();
+        }
+        else if (evt.getKeyCode()==KeyEvent.VK_UP){
+             address_text.requestFocus();
+        }
+    }//GEN-LAST:event_change_buttonKeyReleased
+
+    private void cancel_buttonKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cancel_buttonKeyReleased
+        // TODO add your handling code here:
+        if (evt.getKeyCode()==KeyEvent.VK_LEFT){
+             change_button.requestFocus();
+        }
+        else if (evt.getKeyCode()==KeyEvent.VK_UP){
+             address_text.requestFocus();
+        }
+        
+    }//GEN-LAST:event_cancel_buttonKeyReleased
+
+    private void ownerTextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ownerTextKeyReleased
+        // TODO add your handling code here:
+        EnabelChangeAndCancel();
+    }//GEN-LAST:event_ownerTextKeyReleased
+public void EnabelChangeAndCancel(){
+    if (ns_name_text.getText().trim().length()!=0 && nic_text.getText().trim().length()!=0 && address_text.getText().trim().length()!=0 && ownerText.getText().trim().length()!=0){
+        change_button.setEnabled(true);
+        cancel_button.setEnabled(true);
+    }
+}
     public String sendNIC_S() {
         return nic_text.getText();
     }
@@ -399,6 +541,7 @@ public class ChangeNominateSuccessoOfPermitrForm extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField6;
+    private javax.swing.JLabel nameinvalidlabel;
     private javax.swing.JLabel namelabel;
     private javax.swing.JLabel nicInvalidLabel;
     private javax.swing.JTextField nic_text;

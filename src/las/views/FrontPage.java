@@ -6,10 +6,6 @@
 package las.views;
 
 import java.awt.Dimension;
-import las.views.searchset.SearchPermitForm;
-import las.views.searchset.SearchClientForm;
-import las.views.searchset.SearchGrantForm;
-import las.views.searchset.SearchForm;
 import java.awt.Toolkit;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -25,7 +21,12 @@ import las.common_classes.GUIitemsValidator;
 import las.common_classes.PatternChecker;
 import las.controllers.UserController;
 import las.db_utilities.BackUp;
+import static las.db_utilities.BackUp.writeBackup;
 import las.models.User;
+import las.views.searchset.SearchClientForm;
+import las.views.searchset.SearchForm;
+import las.views.searchset.SearchGrantForm;
+import las.views.searchset.SearchPermitForm;
 
 /**
  *
@@ -953,17 +954,17 @@ new ChangeGrantOwnershipForm().setVisible(true);
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
-        try {
-           int writeBackup = BackUp.writeBackup();
+        /*try {
+            int writeBackup = BackUp.writeBackup();
             if(writeBackup==0){
                 JOptionPane.showMessageDialog(this,"Backup  successfully");
             }else{
                 JOptionPane.showMessageDialog(this,"Backup is not successfully");
             
             }
-        } catch (IOException | InterruptedException ex) {
+        } catch (IOException ex) {
                    Logger.getLogger(FrontPage.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
     private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed

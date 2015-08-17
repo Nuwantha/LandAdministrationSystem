@@ -215,6 +215,9 @@
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="Add_Grant_Grant_No">
+                      <Events>
+                        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="Add_Grant_Grant_NoKeyReleased"/>
+                      </Events>
                     </Component>
                     <Component class="org.freixas.jcalendar.JCalendarCombo" name="addgrant_grant_issue_dateChooser">
                       <Properties>
@@ -462,11 +465,18 @@
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Married"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="add_grant_owner_marriedStatusRButtonStateChanged"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JRadioButton" name="add_grant_owner_singleStatusRButton">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Single"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="add_grant_owner_singleStatusRButtonStateChanged"/>
+                        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="add_grant_owner_singleStatusRButtonKeyReleased"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel35">
                       <Properties>

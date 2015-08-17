@@ -165,6 +165,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="ownerText">
+              <Events>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="ownerTextKeyReleased"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="currentnominatedsucclabel">
               <Properties>
@@ -210,15 +213,19 @@
                               </Group>
                               <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="ns_name_text" min="-2" pref="160" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="nic_text" min="-2" pref="109" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="nicInvalidLabel" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="jScrollPane1" alignment="0" min="-2" pref="194" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="ns_name_text" min="-2" pref="160" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="nameinvalidlabel" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
-                              <EmptySpace min="0" pref="66" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -232,6 +239,7 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="namelabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="ns_name_text" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="nameinvalidlabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -267,8 +275,14 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="ns_name_text">
+              <Events>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="ns_name_textKeyReleased"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="nic_text">
+              <Events>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="nic_textKeyReleased"/>
+              </Events>
             </Component>
             <Container class="javax.swing.JScrollPane" name="jScrollPane1">
               <AuxValues>
@@ -282,6 +296,9 @@
                     <Property name="columns" type="int" value="20"/>
                     <Property name="rows" type="int" value="5"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="address_textKeyReleased"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -316,6 +333,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Cancel"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="cancel_buttonKeyReleased"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="change_button">
                   <Properties>
@@ -323,6 +343,7 @@
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="change_buttonActionPerformed"/>
+                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="change_buttonKeyReleased"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -333,6 +354,14 @@
                   <Color blue="0" green="0" red="ff" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="NIC is invalid"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="nameinvalidlabel">
+              <Properties>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="0" green="0" red="ff" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Invalid"/>
               </Properties>
             </Component>
           </SubComponents>

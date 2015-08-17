@@ -217,15 +217,18 @@ public static boolean checkNICdirect(String nicText) {
             Matcher matcher = pattern.matcher(c.toString());
             if (matcher.find()) {
                 result = 1;
+                
             } else {
                 result = 0;
+                
             }
             if (result == 0) {
                 text = text.substring(0, i - 1);
+                
 
             }
         }
-        return text;
+       return text;
 
     }
     

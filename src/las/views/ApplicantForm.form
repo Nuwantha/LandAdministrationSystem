@@ -1308,7 +1308,7 @@
                                   </Group>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="occupationText1" alignment="0" min="-2" pref="94" max="-2" attributes="0"/>
+                                      <Component id="searchoccupationbutton" alignment="0" min="-2" pref="94" max="-2" attributes="0"/>
                                       <Component id="search_annualIncome" alignment="0" min="-2" pref="94" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace pref="19" max="32767" attributes="0"/>
@@ -1321,7 +1321,7 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jLabel31" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="occupationText1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="searchoccupationbutton" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
@@ -1339,7 +1339,7 @@
                             <Property name="text" type="java.lang.String" value="Occupation:"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="occupationText1">
+                        <Component class="javax.swing.JTextField" name="searchoccupationbutton">
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel32">
                           <Properties>
@@ -1363,6 +1363,7 @@
                       </Properties>
                       <Events>
                         <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="search_nic_comboItemStateChanged"/>
+                        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="search_nic_comboKeyReleased"/>
                       </Events>
                     </Component>
                   </SubComponents>
