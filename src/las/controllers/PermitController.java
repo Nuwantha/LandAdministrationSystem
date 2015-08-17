@@ -80,6 +80,51 @@ public class PermitController {
         return returnStatue;
     }
 
+    public static boolean changeNominatedSuccessorPermit(Permit permit, NominatedSuccessor newSuccessor) throws ClassNotFoundException, SQLException {
+
+        boolean returnStatue = true;
+        Connection conn = DBConnection.getDBConnection().getConnection();
+        conn.setAutoCommit(false);
+        try {
+            boolean addNewNominateSuccessor = NominatedSuccessorController.addNewNominateSuccessor(newSuccessor);
+            if (addNewNominateSuccessor) {
+                System.err.println("new successor added");
+                String sql = "Update permit set NIC_Successor ='" + newSuccessor.getNIC_S() + "' where permitNumber = '" + permit.getPermitNumber() + "'";
+                int returnPermitDelete = DBHandler.setData(conn, sql);
+                if (returnPermitDelete > 0) {
+                    System.out.println("permit update");
+                    NominatedSuccessor nominatedSuccessor = permit.getNominatedSuccessor();
+
+                    boolean DeleteNominatedSuccessor = NominatedSuccessorController.DeleteNominatedSuccessor(nominatedSuccessor.getNIC_S());
+                    if (DeleteNominatedSuccessor) {
+                        System.out.println("old successsor deleted");
+
+                    } else {
+                        returnStatue = false;
+                        conn.rollback();
+                    }
+                } else {
+                    returnStatue = false;
+                    conn.rollback();
+                }
+            } else {
+                returnStatue = false;
+                conn.rollback();
+            }
+
+            if (returnStatue) {
+                conn.commit();
+            }
+
+        } catch (SQLException sqlExeption) {
+            returnStatue = false;
+            conn.rollback();
+        } finally {
+            conn.setAutoCommit(true);
+        }
+        return returnStatue;
+    }
+
     public static boolean cancelPermit(Permit permit) throws ClassNotFoundException, SQLException {
 
         boolean returnStatue = true;
