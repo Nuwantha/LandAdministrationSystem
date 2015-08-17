@@ -793,6 +793,14 @@ public class FrontPage extends javax.swing.JFrame {
 
     }//GEN-LAST:event_AddNewApplicantButtonActionPerformed
 
+    public void addApplicantForm(String nic){
+        ApplicantForm applicantForm = new ApplicantForm(nic);
+        applicantForm.setSize(desktopPane.getSize());
+        desktopPane.removeAll();
+        desktopPane.add(applicantForm);
+        applicantForm.setVisible(true);
+    }
+    
     private void GramaNiladariDivisionInfoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GramaNiladariDivisionInfoButtonActionPerformed
         GramaNiladhariForm gramaNiladhariForm = new GramaNiladhariForm();
         gramaNiladhariForm.setSize(desktopPane.getSize());
