@@ -522,6 +522,11 @@ public class GramaNiladhariForm extends javax.swing.JInternalFrame {
                 boolean updateGND = GramaNiladariDivisionController.updateGND(gramaNiladariDivision);
                 if (updateGND) {
                     JOptionPane.showMessageDialog(rootPane, "updated succesfully");
+                    gnd_name_test.setText(null);
+                    gnd_zone_test.setText(null);
+                    gnd_gramaniladari_name.setText(null);
+                    gnd_update_combo.setSelectedItem(null);
+                    
                 } else {
                     JOptionPane.showMessageDialog(rootPane, "updated is not success");
                 }

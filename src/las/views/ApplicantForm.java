@@ -1536,6 +1536,9 @@ public class ApplicantForm extends javax.swing.JInternalFrame {
 public void EnableAddButton(){
     if(nameText.getText().trim().length()!=0 && nicText.getText().trim().length()!=0 && telephoneText.getText().trim().length()!=0 && addressText.getText().trim().length()!=0 && annualIncomeText.getText().trim().length()!=0 &&(marriedStatusRButton.isSelected()|| singleStatusRButton.isSelected()) ){
         registerButton.setEnabled(true);
+    }
+    else{
+        registerButton.setEnabled(false);
     }}
     private void edit_nic_comboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_edit_nic_comboItemStateChanged
         try {
@@ -1784,6 +1787,17 @@ public void EnableAddButton(){
                 int updateClient = ClientController.updateClient(client);
                 if(updateClient>0){
                     JOptionPane.showMessageDialog(this,"update successfully");
+                    edit_nameText.setText(null);
+                    edit_nic_combo.setSelectedItem(null);
+                    edit_telephoneText.setText(null);
+                    edit_addressText.setText(null);     
+                    edit_DOB_test.setText(null);
+                    edit_marided_sons.setText(null);
+                    edit_unmarried_sons.setText(null);
+                    editoccupation.setText(null);
+                    edit_annualIncome.setText(null);
+                    edit_marriedStatusRButton.setSelected(false);
+                    edit_singleStatusRButton.setSelected(false);
                 }else{
                     JOptionPane.showMessageDialog(this, "doesn't updated");
                 }

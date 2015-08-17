@@ -192,6 +192,11 @@ public class ChangeGrantOwnershipForm extends javax.swing.JDialog {
 
         niclabel.setText("NIC:");
 
+        nic_text.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nic_textActionPerformed(evt);
+            }
+        });
         nic_text.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 nic_textKeyReleased(evt);
@@ -716,6 +721,7 @@ public class ChangeGrantOwnershipForm extends javax.swing.JDialog {
                     boolean changeGrantOwnership = GrantController.changeGrantOwnership(searchGrant);
                     if (changeGrantOwnership) {
                         JOptionPane.showMessageDialog(this, "grant ownership change succesfully");
+                        this.setVisible(false);
                     } else {
                         JOptionPane.showMessageDialog(this, "grant ownership doesnot change");
                     }
@@ -807,6 +813,10 @@ public class ChangeGrantOwnershipForm extends javax.swing.JDialog {
     private void grantno_changeOwnerComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_grantno_changeOwnerComboActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_grantno_changeOwnerComboActionPerformed
+
+    private void nic_textActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nic_textActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nic_textActionPerformed
 
     /**
      * @param args the command line arguments

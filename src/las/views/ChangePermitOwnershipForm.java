@@ -41,7 +41,7 @@ public class ChangePermitOwnershipForm extends javax.swing.JDialog {
         
         initComponents();
         
-        
+        add_button.setEnabled(false);
         this.permit_number_combo.setEditable(true);
         nic_text.requestFocus();
         namenotvalidlabel.setVisible(false);
@@ -567,6 +567,7 @@ public class ChangePermitOwnershipForm extends javax.swing.JDialog {
 
     private void telephoneTextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_telephoneTextKeyReleased
         // TODO add your handling code here:
+        EnableAddButton();
         phonenumnotvalidlabel.setVisible(false);
         String newtext=PatternChecker.checkTelNum(telephoneText.getText());
         telephoneText.setText(newtext);
@@ -608,6 +609,7 @@ public class ChangePermitOwnershipForm extends javax.swing.JDialog {
 
     private void marriedStatusRButtonStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_marriedStatusRButtonStateChanged
         // TODO add your handling code here:
+        EnableAddButton();
     }//GEN-LAST:event_marriedStatusRButtonStateChanged
 
     private void marriedStatusRButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_marriedStatusRButtonActionPerformed
@@ -638,6 +640,7 @@ public class ChangePermitOwnershipForm extends javax.swing.JDialog {
 
     private void singleStatusRButtonKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_singleStatusRButtonKeyReleased
         // TODO add your handling code here:
+        EnableAddButton();
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
 
             singleStatusRButton.isSelected();
@@ -706,6 +709,7 @@ public class ChangePermitOwnershipForm extends javax.swing.JDialog {
 
     private void occupationTextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_occupationTextKeyReleased
         // TODO add your handling code here:
+        EnableAddButton();
         occupationnotvalidlabel.setVisible(false);
         String newtext=PatternChecker.checkstring(occupationText.getText());
         occupationText.setText(newtext);
@@ -728,6 +732,7 @@ public class ChangePermitOwnershipForm extends javax.swing.JDialog {
 
     private void annualIncomeTextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_annualIncomeTextKeyReleased
         // TODO add your handling code here:
+        EnableAddButton();
         incomenotvalidlabel.setVisible(false);
         String newtext=PatternChecker.checkDecimal(annualIncomeText.getText());
         annualIncomeText.setText(newtext);
@@ -747,7 +752,15 @@ public class ChangePermitOwnershipForm extends javax.swing.JDialog {
 
         }
     }//GEN-LAST:event_annualIncomeTextKeyReleased
-
+    public void EnableAddButton(){
+        if(owner_name_text.getText().trim().length()!=0 && nic_text.getText().trim().length()!=0 && annualIncomeText.getText().trim().length()!=0 &&  telephoneText.getText().length()!=0 
+           && occupationText.getText().trim().length()!=0 && (marriedStatusRButton.isSelected() || singleStatusRButton.isSelected())){
+            add_button.setEnabled(true);
+        }
+        else{
+            add_button.setEnabled(false);
+        }
+    }
     private void add_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_buttonActionPerformed
        
         
@@ -764,11 +777,28 @@ public class ChangePermitOwnershipForm extends javax.swing.JDialog {
         if (singleStatusRButton.isSelected()) {
             isMarried = 0;
         }
+        double annualincome=0;
         int marriedSons = Integer.parseInt(marriedChildrenCountSpinner.getValue().toString());
         int unmarriedSons = Integer.parseInt(unmarriedChildrenCountSpinner.getValue().toString());
-        double annualincome = Double.parseDouble(annualIncomeText.getText());
-
-        int cur_PermitOwnership=this.permit.getClient().getPermitOwnershipPosition();
+        try{
+        annualincome = Double.parseDouble(annualIncomeText.getText());}
+        catch(Exception e){
+          incomenotvalidlabel.setVisible(false);
+        }
+        if(!PatternChecker.checkStringdirect(owner_name_text.getText())){
+            namenotvalidlabel.setVisible(false);
+        }
+        else if(!PatternChecker.checkNICdirect(nic_text.getText())){
+           nicInvalidLabel.setVisible(false);
+        }
+        else if(!PatternChecker.checkTelNumdirect(telephoneText.getText())){
+           phonenumnotvalidlabel.setVisible(false);
+        }
+         else if(!PatternChecker.checkDecimaldirect(annualIncomeText.getText())){
+           annualIncomeText.setVisible(false);
+        }
+        else{
+             int cur_PermitOwnership=this.permit.getClient().getPermitOwnershipPosition();
         int cur_GrantOwnership=this.permit.getClient().getGrantOwnershipPosition();
             
         Client newclient = new Client(nic, permitOwnerName, DOB, telephoneNumber, address, annualincome,  cur_GrantOwnership,++cur_PermitOwnership, isMarried, marriedSons, unmarriedSons);
@@ -777,6 +807,7 @@ public class ChangePermitOwnershipForm extends javax.swing.JDialog {
             boolean changePermitOwnership = PermitController.changePermitOwnership(permit);
             if(changePermitOwnership){
                 JOptionPane.showMessageDialog(this,"Ownership change successfully");
+                this.setVisible(false);
             }else{
                 JOptionPane.showMessageDialog(this, "Ownership doesnot channged");
             }
@@ -785,7 +816,7 @@ public class ChangePermitOwnershipForm extends javax.swing.JDialog {
             this.setVisible(false);
         }
         
-        
+        }
         
     }//GEN-LAST:event_add_buttonActionPerformed
 
@@ -806,6 +837,7 @@ public class ChangePermitOwnershipForm extends javax.swing.JDialog {
 
     private void nic_textKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nic_textKeyReleased
         // TODO add your handling code here:
+        EnableAddButton();
          nicInvalidLabel.setVisible(false);
        String newtext=PatternChecker.checkNIC(nic_text.getText());
        nic_text.setText(newtext);
@@ -824,6 +856,7 @@ public class ChangePermitOwnershipForm extends javax.swing.JDialog {
 
     private void owner_name_textKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_owner_name_textKeyReleased
         // TODO add your handling code here:
+        EnableAddButton();
         namenotvalidlabel.setVisible(false);
        String newtext=PatternChecker.checkstring(owner_name_text.getText());
        owner_name_text.setText(newtext);
@@ -845,6 +878,7 @@ public class ChangePermitOwnershipForm extends javax.swing.JDialog {
 
     private void address_textKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_address_textKeyReleased
         // TODO add your handling code here:
+        EnableAddButton();
         if(evt.getKeyCode()==KeyEvent.VK_DOWN){
             marriedStatusRButton.requestFocus();
         }

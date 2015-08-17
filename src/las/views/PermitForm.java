@@ -302,7 +302,7 @@ public class PermitForm extends javax.swing.JInternalFrame {
         jLabel12 = new javax.swing.JLabel();
         addpermit_NOS_name_test = new javax.swing.JTextField();
         addpermit_NOS_nic_test = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        addpermit_address = new javax.swing.JScrollPane();
         addpermit_NOS_address_test = new javax.swing.JTextArea();
         nicInvalidLabel = new javax.swing.JLabel();
         nameinvalidlabel = new javax.swing.JLabel();
@@ -1302,9 +1302,9 @@ public class PermitForm extends javax.swing.JInternalFrame {
             }
         });
 
-        jScrollPane1.addKeyListener(new java.awt.event.KeyAdapter() {
+        addpermit_address.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                jScrollPane1KeyReleased(evt);
+                addpermit_addressKeyReleased(evt);
             }
         });
 
@@ -1315,7 +1315,7 @@ public class PermitForm extends javax.swing.JInternalFrame {
                 addpermit_NOS_address_testKeyReleased(evt);
             }
         });
-        jScrollPane1.setViewportView(addpermit_NOS_address_test);
+        addpermit_address.setViewportView(addpermit_NOS_address_test);
 
         nicInvalidLabel.setForeground(new java.awt.Color(255, 0, 0));
         nicInvalidLabel.setText("NIC is invalid");
@@ -1345,7 +1345,7 @@ public class PermitForm extends javax.swing.JInternalFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel12)
                         .addGap(37, 37, 37)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(addpermit_address, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 87, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -1364,7 +1364,7 @@ public class PermitForm extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel12)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(addpermit_address, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -1587,6 +1587,26 @@ public class PermitForm extends javax.swing.JInternalFrame {
             boolean addNewPermit = PermitController.addNewPermit(permit);
             if (addNewPermit) {
                 JOptionPane.showMessageDialog(this, "permit Added successfully");
+                add_permit_division_name_test.setText(null);
+                add_permit_landName_test.setText(null);
+                add_permit_perches_test.setText(null);
+                add_permit_roods_test.setText(null);
+                add_permit_acres_test.setText(null);
+                add_permit_nameText.setText(null);
+                add_permit_telephoneText.setText(null);
+                add_permit_addressText.setText(null);
+                add_permit_DOB_test.setText(null);
+                add_permit_annualIncome.setText(null);
+                add_permit_no_of_children_test.setText(null);
+                addpermit_permit_numberTest.setText(null);
+                addpermit_NOS_name_test.setText(null);
+                addpermit_NOS_nic_test.setText(null);
+                add_permit_division_number_combo.setSelectedItem(null);
+                add_permit_planNumber_combo.setSelectedItem(null);
+                add_permit_lot_number_Combo.setSelectedItem(null);
+                add_permit_marriedStatusRButton.setSelected(false);
+                add_permit_singleStatusRButton.setSelected(false);
+                
             } else {
                 JOptionPane.showMessageDialog(this, "permit does not added successfully");
             }
@@ -1729,6 +1749,28 @@ public class PermitForm extends javax.swing.JInternalFrame {
                 boolean cancelPermit = PermitController.cancelPermit(permit);
                 if (cancelPermit) {
                     JOptionPane.showMessageDialog(this, "permit cancel successfully");
+                    cancelPermit_issueDate.setText(null);
+                    cancelPermit_DivisionumberTest.setText(null);
+                    cancelpermit_division_name_test.setText(null);
+                    cancelPermitPlanNumberTest.setText(null);
+                    cancelpermit_landName_test.setText(null);
+                    cancelPermitLotNumberTest.setText(null);
+                    cancelpermit_acres_test.setText(null);
+                    cancelpermit_perches_test.setText(null);
+                    cancelpermit_roods_test.setText(null);
+                    cancelPermit_clientNic.setText(null);
+                    cancelpermit_nameText.setText(null);
+                    cancelpermit_telephoneText.setText(null);
+                    cancelpermit_DOB_test.setText(null);
+                    cancelpermit_addressText.setText(null);
+                    cancelpermit_annualIncome.setText(null);
+                    cancelpermit_no_of_children_test.setText(null);
+                    cancelpermit_NOS_name_test.setText(null);
+                    cancelpermit_NOS_nic_test.setText(null);
+                    cancelpermit_NOS_address_test.setText(null);
+                    cancelpermit_permit_number_combo.setSelectedItem(null);
+                    cancelpermit_marriedStatusRButton.setSelected(false);
+                    cancelpermit_singleStatusRButton.setSelected(false);
                 } else {
                     JOptionPane.showMessageDialog(this, "permit does not cancel successfully");
                 }
@@ -1919,10 +1961,10 @@ public class PermitForm extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_addpermit_NOS_nic_testActionPerformed
 
-    private void jScrollPane1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jScrollPane1KeyReleased
+    private void addpermit_addressKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_addpermit_addressKeyReleased
         // TODO add your handling code here:
         EnableGererateButton();
-    }//GEN-LAST:event_jScrollPane1KeyReleased
+    }//GEN-LAST:event_addpermit_addressKeyReleased
 
     private void generatePemitNumberButtunMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_generatePemitNumberButtunMouseClicked
         // TODO add your handling code here:
@@ -1983,6 +2025,7 @@ public void EnableGererateButton(){
     private javax.swing.JTextField addpermit_NOS_name_test;
     private javax.swing.JTextField addpermit_NOS_nic_test;
     private javax.swing.JButton addpermit_add_permit_button;
+    private javax.swing.JScrollPane addpermit_address;
     private org.freixas.jcalendar.JCalendarCombo addpermit_permit_issue_dateChooser;
     private javax.swing.JTextField addpermit_permit_numberTest;
     private javax.swing.ButtonGroup buttonGroup1;
@@ -2085,7 +2128,6 @@ public void EnableGererateButton(){
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;

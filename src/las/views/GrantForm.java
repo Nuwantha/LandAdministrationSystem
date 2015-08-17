@@ -1390,6 +1390,30 @@ public void EnableAdd(){
                 boolean addNewGrant = GrantController.addNewGrant(grant);
                 if (addNewGrant) {
                     JOptionPane.showMessageDialog(this, "Grant Added successfully");
+                    add_grant_ownernameText.setText(null);
+                    add_grant_owner_nic_text.setText(null);
+                    add_grantowner_telephoneText.setText(null);
+                    add_grantowner_addressText.setText(null);
+                    add_grantowner_DOB_test.setText(null);
+                    add_grant_owner_annualIncome.setText(null);
+                    add_grant_owner_no_of_children_test.setText(null);
+                    addgrant_S_name_test.setText(null);
+                    addgrant_S_relationText.setText(null);
+                    addgrant_S_nic_test.setText(null);
+                    addgrant_S_address_test.setText(null);
+                    addgrant_permit_issueDate.setText(null);
+                    add_grant_division_no_text.setText(null);
+                    add_grant_division_name_text.setText(null);
+                    add_grant_plan_no_text.setText(null);
+                    add_grant_landName_text.setText(null);
+                    add_grant_lotno_text.setText(null);
+                    add_grant_acres_text.setText(null);
+                    add_grant_perches_text.setText(null);
+                    add_grant_roods_text.setText(null);
+                    add_grant_owner_marriedStatusRButton.setSelected(false);
+                    add_grant_owner_singleStatusRButton.setSelected(false);
+                    Add_Grant_Grant_No.setText(null);
+                    add_grant_permit_no_combo.setSelectedItem(null);
                 } else {
                     JOptionPane.showMessageDialog(this, "Grant does not added successfully");
                 }

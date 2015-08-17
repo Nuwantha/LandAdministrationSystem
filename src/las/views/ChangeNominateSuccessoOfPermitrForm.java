@@ -31,7 +31,6 @@ public class ChangeNominateSuccessoOfPermitrForm extends javax.swing.JDialog {
         initComponents();
         ownerText.setEditable(false);
         currentSuccessorText.setEditable(false);
-        permit_number_combo.setEditable(false);
         nameinvalidlabel.setVisible(false);
         nicInvalidLabel.setVisible(false);
         permit_number_combo.requestFocus();
@@ -361,6 +360,7 @@ public class ChangeNominateSuccessoOfPermitrForm extends javax.swing.JDialog {
             boolean changeNominatedSuccessorPermit = PermitController.changeNominatedSuccessorPermit(searchPermit, successor);
             if (changeNominatedSuccessorPermit){
                 JOptionPane.showMessageDialog(this, "Nominate Successor Changed");
+                this.setVisible(false);
             }else{
                 JOptionPane.showMessageDialog(this, "Nominanted Successor does not Changed");
             }
@@ -478,6 +478,9 @@ public void EnabelChangeAndCancel(){
     if (ns_name_text.getText().trim().length()!=0 && nic_text.getText().trim().length()!=0 && address_text.getText().trim().length()!=0 && ownerText.getText().trim().length()!=0){
         change_button.setEnabled(true);
         cancel_button.setEnabled(true);
+    }
+    else{
+        change_button.setEnabled(false);
     }
 }
     public String sendNIC_S() {

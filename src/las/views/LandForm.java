@@ -53,7 +53,7 @@ public class LandForm extends javax.swing.JInternalFrame {
         editbounedsouthnotvalidlabel.setVisible(false);
         editlandnamenotvalidlabel.setVisible(false);
         add_lot_buttun.setEnabled(false);
-        
+        updateButton.setEnabled(false);
         
         
         try {
@@ -1256,6 +1256,20 @@ public class LandForm extends javax.swing.JInternalFrame {
             boolean addNewLand = LandController.addNewLand(land);
             if (addNewLand) {
                 JOptionPane.showMessageDialog(this, "land add successsfully");
+                plan_nummber_test.setText(null);
+                land_name_test.setText(null);
+                gnd_name_test.setText(null);
+                lot_number_test.setText(null);
+                acre_test.setText(null);
+                perches_test.setText(null);
+                rood_test.setText(null);
+                land_north_test.setText(null);
+                land_east_test.setText(null);
+                land_west_test.setText(null);
+                land_south_test.setText(null);
+                gnd_number_combo.setSelectedItem(null);
+               lot_table.setModel(new DefaultTableModel());
+               
             }
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(LandForm.class.getName()).log(Level.SEVERE, null, ex);
@@ -1286,8 +1300,20 @@ public class LandForm extends javax.swing.JInternalFrame {
             Logger.getLogger(LandForm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_update_planNumber_comboItemStateChanged
-
+public void EnableUpdate(){
+    if(update_land_name.getText().trim().length()!=0 && update_planNumber_combo.getSelectedItem()!=null && update_gnd_combo.getSelectedItem()!=null){
+        updateButton.setEnabled(true);
+    }
+}
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
+       
+        if(!PatternChecker.checkStringdirect(update_land_name.getText())){
+           editlandnamenotvalidlabel.setVisible(true);
+       }
+       else if(update_land_name.getText().trim().length()==0){
+           editlandnamenotvalidlabel.setVisible(true);
+       }
+       else{
         int showConfirmDialog = JOptionPane.showConfirmDialog(this, "do you want to update");
         if (showConfirmDialog == 0) {
             Land land = new Land(String.valueOf(update_planNumber_combo.getSelectedItem()), update_land_name.getText(), (String) update_gnd_combo.getSelectedItem(), update_west_test.getText(), update_east_test.getText(), update_south_test.getText(), update_north_test.getText());
@@ -1302,6 +1328,14 @@ public class LandForm extends javax.swing.JInternalFrame {
                 boolean updateLand = LandController.updateLand(land);
                 if (updateLand) {
                     JOptionPane.showMessageDialog(this, "land update successsfully");
+                    update_planNumber_combo.setSelectedItem(null);
+                    update_gnd_combo.setSelectedItem(null);
+                    update_land_name.setText(null);
+                    update_north_test.setText(null);
+                    update_west_test.setText(null);
+                    update_south_test.setText(null);
+                    update_east_test.setText(null);
+                    update_lot_table.setModel(new DefaultTableModel());
                 } else {
                     JOptionPane.showMessageDialog(this, "land doesn't update successsfully");
                 }
@@ -1309,6 +1343,7 @@ public class LandForm extends javax.swing.JInternalFrame {
                 Logger.getLogger(LandForm.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+       }
 
     }//GEN-LAST:event_updateButtonActionPerformed
 
@@ -1575,6 +1610,7 @@ public class LandForm extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_update_planNumber_comboKeyReleased
 
     private void update_land_nameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_update_land_nameKeyReleased
+         EnableUpdate();
         editlandnamenotvalidlabel.setVisible(false);        
         String newtext=PatternChecker.checkstring(update_land_name.getText());
         update_land_name.setText(newtext);
