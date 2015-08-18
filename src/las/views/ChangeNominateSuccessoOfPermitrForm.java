@@ -212,6 +212,11 @@ public class ChangeNominateSuccessoOfPermitrForm extends javax.swing.JDialog {
         jScrollPane1.setViewportView(address_text);
 
         cancel_button.setText("Cancel");
+        cancel_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancel_buttonActionPerformed(evt);
+            }
+        });
         cancel_button.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 cancel_buttonKeyReleased(evt);
@@ -360,7 +365,7 @@ public class ChangeNominateSuccessoOfPermitrForm extends javax.swing.JDialog {
             boolean changeNominatedSuccessorPermit = PermitController.changeNominatedSuccessorPermit(searchPermit, successor);
             if (changeNominatedSuccessorPermit){
                 JOptionPane.showMessageDialog(this, "Nominate Successor Changed");
-                this.setVisible(false);
+                this.dispose();
             }else{
                 JOptionPane.showMessageDialog(this, "Nominanted Successor does not Changed");
             }
@@ -474,6 +479,11 @@ public class ChangeNominateSuccessoOfPermitrForm extends javax.swing.JDialog {
         // TODO add your handling code here:
         EnabelChangeAndCancel();
     }//GEN-LAST:event_ownerTextKeyReleased
+
+    private void cancel_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancel_buttonActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_cancel_buttonActionPerformed
 public void EnabelChangeAndCancel(){
     if (ns_name_text.getText().trim().length()!=0 && nic_text.getText().trim().length()!=0 && address_text.getText().trim().length()!=0 && ownerText.getText().trim().length()!=0){
         change_button.setEnabled(true);

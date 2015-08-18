@@ -249,6 +249,11 @@ public class ChangeNominateSuccessoGrantrForm extends javax.swing.JDialog {
         jScrollPane1.setViewportView(address_text);
 
         cancel_button.setText("Cancel");
+        cancel_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancel_buttonActionPerformed(evt);
+            }
+        });
         cancel_button.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 cancel_buttonKeyReleased(evt);
@@ -392,7 +397,7 @@ public class ChangeNominateSuccessoGrantrForm extends javax.swing.JDialog {
                 boolean changeNominatedSuccessorGrant = GrantController.changeNominatedSuccessorGrant(searchGrant, successor);
                 if (changeNominatedSuccessorGrant) {
                     JOptionPane.showMessageDialog(this, "Nominate Successor Changed");
-                    this.setVisible(false);
+                    this.dispose();
                 } else {
                     JOptionPane.showMessageDialog(this, "Nominanted Successor does not Changed");
                 }
@@ -506,6 +511,11 @@ public void EnabelChangeAndCancel(){
              nic_text.requestFocus();
         }
     }//GEN-LAST:event_address_textKeyReleased
+
+    private void cancel_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancel_buttonActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_cancel_buttonActionPerformed
 
     public String sendNIC_S() {
         return nic_text.getText();

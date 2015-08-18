@@ -204,6 +204,11 @@ public class CurrentResidenceDetailForm extends javax.swing.JDialog {
 
         que2ButtonGroup.add(jRadioButton5);
         jRadioButton5.setText("Yes");
+        jRadioButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton5ActionPerformed(evt);
+            }
+        });
 
         que2ButtonGroup.add(jRadioButton6);
         jRadioButton6.setText("No");
@@ -412,6 +417,10 @@ public class CurrentResidenceDetailForm extends javax.swing.JDialog {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jRadioButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton5ActionPerformed
 
     /**
      * @param args the command line arguments

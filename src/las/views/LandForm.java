@@ -53,7 +53,14 @@ public class LandForm extends javax.swing.JInternalFrame {
         editbounedsouthnotvalidlabel.setVisible(false);
         editlandnamenotvalidlabel.setVisible(false);
         add_lot_buttun.setEnabled(false);
-        updateButton.setEnabled(false);
+        //updateButton.setEnabled(false);
+        search_land_name.setEditable(false);
+        search_gnd_test.setEditable(false);
+        search_north_test.setEditable(false);
+        search_east_test1.setEditable(false);
+        search_south_test.setEditable(false);
+        search_west_test.setEditable(false);
+        search_lot_table.setEnabled(false);
         
         
         try {
@@ -549,6 +556,11 @@ public class LandForm extends javax.swing.JInternalFrame {
         );
 
         jButton1.setText("Cancel");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         land_save_buttun.setText("Save");
         land_save_buttun.addActionListener(new java.awt.event.ActionListener() {
@@ -818,6 +830,11 @@ public class LandForm extends javax.swing.JInternalFrame {
         );
 
         cancelButton.setText("Cancel");
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelButtonActionPerformed(evt);
+            }
+        });
         cancelButton.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 cancelButtonKeyReleased(evt);
@@ -1024,6 +1041,11 @@ public class LandForm extends javax.swing.JInternalFrame {
         );
 
         jButton4.setText("Cancel");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         search_lot_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1201,9 +1223,8 @@ public class LandForm extends javax.swing.JInternalFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(LandTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 518, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -1277,6 +1298,7 @@ public class LandForm extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_land_save_buttunActionPerformed
 
     private void update_planNumber_comboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_update_planNumber_comboItemStateChanged
+        EnableUpdate();
         String selectedPlanNumber = (String) update_planNumber_combo.getSelectedItem();
         try {
             Land searchLand = LandController.searchLand(selectedPlanNumber);
@@ -1303,6 +1325,9 @@ public class LandForm extends javax.swing.JInternalFrame {
 public void EnableUpdate(){
     if(update_land_name.getText().trim().length()!=0 && update_planNumber_combo.getSelectedItem()!=null && update_gnd_combo.getSelectedItem()!=null){
         updateButton.setEnabled(true);
+    }
+    else{
+        updateButton.setEnabled(false);
     }
 }
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
@@ -1746,6 +1771,49 @@ public void EnableUpdate(){
             rood_test.requestFocus();
         }
     }//GEN-LAST:event_add_lot_buttunKeyReleased
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        search_land_name.setText(null);
+        search_gnd_test.setText(null);
+        search_north_test.setText(null);
+        search_east_test1.setText(null);
+        search_south_test.setText(null);
+        search_west_test.setText(null);
+        search_lot_table.setModel(new DefaultTableModel());
+        search_planNumber_combo.setSelectedItem(null);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+        // TODO add your handling code here:
+         int showConfirmDialog = JOptionPane.showConfirmDialog(this, "Are You Sure?");
+        if (showConfirmDialog == 0) {
+        update_planNumber_combo.setSelectedItem(null);
+        update_gnd_combo.setSelectedItem(null);
+        update_land_name.setText(null);
+        update_north_test.setText(null);
+        update_west_test.setText(null);
+        update_south_test.setText(null);
+        update_east_test.setText(null);
+        update_lot_table.setModel(new DefaultTableModel());}
+    }//GEN-LAST:event_cancelButtonActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        plan_nummber_test.setText(null);
+        land_name_test.setText(null);
+        gnd_name_test.setText(null);
+        lot_number_test.setText(null);
+        acre_test.setText(null);
+        perches_test.setText(null);
+        rood_test.setText(null);
+        land_north_test.setText(null);
+        land_east_test.setText(null);
+        land_west_test.setText(null);
+        land_south_test.setText(null);
+        gnd_number_combo.setSelectedItem(null);
+        lot_table.setModel(new DefaultTableModel());
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -420,6 +420,11 @@ public class ChangePermitOwnershipForm extends javax.swing.JDialog {
         });
 
         cancel_button.setText("Cancel");
+        cancel_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancel_buttonActionPerformed(evt);
+            }
+        });
         cancel_button.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 cancel_buttonKeyReleased(evt);
@@ -807,7 +812,7 @@ public class ChangePermitOwnershipForm extends javax.swing.JDialog {
             boolean changePermitOwnership = PermitController.changePermitOwnership(permit);
             if(changePermitOwnership){
                 JOptionPane.showMessageDialog(this,"Ownership change successfully");
-                this.setVisible(false);
+                this.dispose();
             }else{
                 JOptionPane.showMessageDialog(this, "Ownership doesnot channged");
             }
@@ -915,6 +920,11 @@ public class ChangePermitOwnershipForm extends javax.swing.JDialog {
     private void permit_number_comboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_permit_number_comboActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_permit_number_comboActionPerformed
+
+    private void cancel_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancel_buttonActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_cancel_buttonActionPerformed
     
     
     

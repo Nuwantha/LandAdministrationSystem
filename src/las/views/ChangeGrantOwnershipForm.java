@@ -393,6 +393,11 @@ public class ChangeGrantOwnershipForm extends javax.swing.JDialog {
         });
 
         cancel_button.setText("Cancel");
+        cancel_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancel_buttonActionPerformed(evt);
+            }
+        });
         cancel_button.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 cancel_buttonKeyReleased(evt);
@@ -721,7 +726,7 @@ public class ChangeGrantOwnershipForm extends javax.swing.JDialog {
                     boolean changeGrantOwnership = GrantController.changeGrantOwnership(searchGrant);
                     if (changeGrantOwnership) {
                         JOptionPane.showMessageDialog(this, "grant ownership change succesfully");
-                        this.setVisible(false);
+                        this.dispose();
                     } else {
                         JOptionPane.showMessageDialog(this, "grant ownership doesnot change");
                     }
@@ -817,6 +822,11 @@ public class ChangeGrantOwnershipForm extends javax.swing.JDialog {
     private void nic_textActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nic_textActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_nic_textActionPerformed
+
+    private void cancel_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancel_buttonActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_cancel_buttonActionPerformed
 
     /**
      * @param args the command line arguments

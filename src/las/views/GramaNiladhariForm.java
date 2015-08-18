@@ -39,6 +39,10 @@ public class GramaNiladhariForm extends javax.swing.JInternalFrame {
         gnd_update_combo.requestFocus();
         gnd_search_combo.setMaximumRowCount(10);
         gnd_search_combo.setEditable(true);
+        gnd_name_test.setText(null);
+        gnd_zone_test.setText(null);
+        gnd_gramaniladari_name.setText(null);
+        gnd_update_combo.setSelectedItem(null);
         JTextComponent editor = (JTextComponent) gnd_search_combo.getEditor().getEditorComponent();
 
         editor.addKeyListener(new KeyAdapter() {
@@ -273,6 +277,11 @@ public class GramaNiladhariForm extends javax.swing.JInternalFrame {
         });
 
         gnd_cancel_button.setText("Cancel");
+        gnd_cancel_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gnd_cancel_buttonActionPerformed(evt);
+            }
+        });
         gnd_cancel_button.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 gnd_cancel_buttonKeyReleased(evt);
@@ -502,7 +511,15 @@ public class GramaNiladhariForm extends javax.swing.JInternalFrame {
     private void gnd_update_comboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gnd_update_comboActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_gnd_update_comboActionPerformed
-
+public void EnabelUpdate(){
+    if(gnd_update_combo.getSelectedItem()!=null && gnd_name_test.getText().trim().length()!=0 &&
+            gnd_zone_test.getText().trim().length()!=0 && gnd_gramaniladari_name.getText().trim().length()!=0 ){
+        gnd_update_button.setEnabled(true);
+    }
+    else{
+       gnd_update_button.setEnabled(false); 
+    }
+}
     private void gnd_update_comboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_gnd_update_comboItemStateChanged
         try {
             GramaNiladariDivision searchGND = GramaNiladariDivisionController.searchGND((String) gnd_update_combo.getSelectedItem());
@@ -512,9 +529,16 @@ public class GramaNiladhariForm extends javax.swing.JInternalFrame {
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(GramaNiladhariForm.class.getName()).log(Level.SEVERE, null, ex);
         }
+         catch (NullPointerException ex) {
+            Logger.getLogger(GramaNiladhariForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_gnd_update_comboItemStateChanged
 
     private void gnd_update_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gnd_update_buttonActionPerformed
+        if(!PatternChecker.checkStringdirect(gnd_name_test.getText())){
+            gnnamenotvalidlabel.setEnabled(true);
+        }
+        else{
         int showConfirmDialog = JOptionPane.showConfirmDialog(rootPane, "Do yo want to update");
         if (showConfirmDialog == 0) {
             GramaNiladariDivision gramaNiladariDivision = new GramaNiladariDivision((String) gnd_update_combo.getSelectedItem(), gnd_name_test.getText(), gnd_zone_test.getText(), gnd_gramaniladari_name.getText());
@@ -534,6 +558,7 @@ public class GramaNiladhariForm extends javax.swing.JInternalFrame {
             } catch (ClassNotFoundException | SQLException ex) {
                 Logger.getLogger(GramaNiladhariForm.class.getName()).log(Level.SEVERE, null, ex);
             }
+        }
         }
     }//GEN-LAST:event_gnd_update_buttonActionPerformed
 
@@ -586,6 +611,7 @@ public class GramaNiladhariForm extends javax.swing.JInternalFrame {
 
     private void gnd_name_testKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_gnd_name_testKeyReleased
         // TODO add your handling code here:
+        EnabelUpdate();
         if(evt.getKeyCode()==KeyEvent.VK_ENTER || evt.getKeyCode()==KeyEvent.VK_DOWN){
             gnd_zone_test.requestFocus();
         }
@@ -596,6 +622,7 @@ public class GramaNiladhariForm extends javax.swing.JInternalFrame {
 
     private void gnd_zone_testKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_gnd_zone_testKeyReleased
         // TODO add your handling code here:
+        EnabelUpdate();
         if(evt.getKeyCode()==KeyEvent.VK_ENTER || evt.getKeyCode()==KeyEvent.VK_DOWN){
             gnd_gramaniladari_name.requestFocus();
         }
@@ -605,6 +632,7 @@ public class GramaNiladhariForm extends javax.swing.JInternalFrame {
 
     private void gnd_gramaniladari_nameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_gnd_gramaniladari_nameKeyReleased
         // TODO add your handling code here:
+        EnabelUpdate();
         gnnamenotvalidlabel.setVisible(false);
         String newtext=PatternChecker.checkstring(gnd_gramaniladari_name.getText());
         gnd_gramaniladari_name.setText(newtext);
@@ -638,6 +666,14 @@ public class GramaNiladhariForm extends javax.swing.JInternalFrame {
         else if(evt.getKeyCode()==KeyEvent.VK_LEFT){
             gnd_update_button.requestFocus();}
     }//GEN-LAST:event_gnd_cancel_buttonKeyReleased
+
+    private void gnd_cancel_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gnd_cancel_buttonActionPerformed
+        // TODO add your handling code here:
+         gnd_name_test.setText(null);
+        gnd_zone_test.setText(null);
+        gnd_gramaniladari_name.setText(null);
+        gnd_update_combo.setSelectedItem(null);
+    }//GEN-LAST:event_gnd_cancel_buttonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
